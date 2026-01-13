@@ -7,7 +7,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
     <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
-    <title>Cuestionario Maestro DI - Interactivo</title>
+    <title>Cuestionario Maestro DI - Banco Completo (101 Preguntas)</title>
     <style>
         :root { 
             --blue: #1a73e8; 
@@ -32,16 +32,16 @@
 
         .container { 
             width: 100%;
-            max-width: 700px; 
+            max-width: 800px; 
             background: white; 
             padding: 30px; 
             border-radius: 12px; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
-            margin-top: 20px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.1); 
+            margin-top: 10px;
         }
 
         h1 { 
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--blue); 
             text-align: center; 
             margin-top: 0;
@@ -52,38 +52,29 @@
 
         .stats { 
             display: flex; 
-            justify-content: space-between; 
-            background: #f1f3f4;
-            padding: 12px 20px;
+            justify-content: space-around; 
+            background: #f8f9fa;
+            padding: 12px;
             border-radius: 8px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-weight: 600;
-            font-size: 0.9rem;
+            border: 1px solid #eee;
         }
 
-        .stat-item { display: flex; align-items: center; gap: 5px; }
+        .stat-item span { color: var(--blue); }
 
-        .question-card {
-            animation: fadeIn 0.4s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .question-card { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         .question-text { 
-            font-size: 1.2rem; 
+            font-size: 1.15rem; 
             font-weight: 600; 
             margin-bottom: 20px; 
-            line-height: 1.4;
+            line-height: 1.5;
+            color: #202124;
         }
 
-        .options-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+        .options-container { display: flex; flex-direction: column; gap: 10px; }
 
         .option { 
             display: block; 
@@ -91,106 +82,39 @@
             padding: 14px 18px; 
             text-align: left; 
             background: white; 
-            border: 2px solid #dadce0; 
+            border: 2px solid #e0e0e0; 
             border-radius: 8px; 
             cursor: pointer; 
             transition: all 0.2s; 
-            font-size: 1rem;
-            outline: none;
+            font-size: 0.95rem;
         }
 
-        .option:hover:not(.disabled) { 
-            background: #f8f9fa; 
-            border-color: var(--blue);
-        }
-
-        .option.correct { 
-            background: #e6f4ea; 
-            border-color: var(--green); 
-            color: var(--green); 
-            font-weight: bold; 
-        }
-
-        .option.wrong { 
-            background: #fce8e6; 
-            border-color: var(--red); 
-            color: var(--red); 
-        }
-
-        .option.disabled { 
-            cursor: default;
-        }
+        .option:hover:not(.disabled) { border-color: var(--blue); background: #f1f3f4; }
+        .option.correct { background: #e6f4ea; border-color: var(--green); color: var(--green); font-weight: bold; }
+        .option.wrong { background: #fce8e6; border-color: var(--red); color: var(--red); }
+        .option.disabled { cursor: default; }
 
         .justification { 
             margin-top: 20px; 
             padding: 15px; 
-            background: #e8f0fe; 
+            background: #eef4ff; 
             border-left: 5px solid var(--blue); 
-            font-size: 0.95rem; 
-            line-height: 1.5;
+            font-size: 0.9rem; 
             border-radius: 4px;
             display: none;
         }
 
-        .actions {
-            margin-top: 25px;
-            display: flex;
-            justify-content: flex-end;
-        }
+        .actions { margin-top: 25px; display: flex; justify-content: flex-end; }
+        .btn-next { background: var(--blue); color: white; border: none; padding: 12px 25px; border-radius: 6px; font-weight: 600; cursor: pointer; display: none; }
 
-        .btn-next {
-            background: var(--blue);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            display: none;
-            transition: background 0.2s;
-        }
-
-        .btn-next:hover {
-            background: var(--blue-hover);
-        }
-
-        .results-screen {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .score-circle {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: var(--blue);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 20px;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .score-circle span { font-size: 0.8rem; font-weight: normal; }
-
-        .btn-restart {
-            background: #34a853;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 20px;
-        }
+        .results-screen { text-align: center; padding: 30px; }
+        .score-circle { width: 100px; height: 100px; border-radius: 50%; background: var(--blue); color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.5rem; font-weight: bold; }
+        .btn-restart { background: #1e8e3e; color: white; border: none; padding: 12px 30px; border-radius: 6px; font-weight: 600; cursor: pointer; }
     </style>
 </head>
 <body>
-    <div class="container" id="app">
-        <h1>Examen Desarrollo de Interfaces 🖥️</h1>
+    <div class="container">
+        <h1>Cuestionario Maestro Desarrollo de Interfaces 🖥️</h1>
         
         <div class="stats">
             <div class="stat-item">✅ <span id="correctScore">0</span></div>
@@ -198,9 +122,7 @@
             <div class="stat-item">📝 <span id="currentCount">0</span>/<span id="totalCount">0</span></div>
         </div>
 
-        <div id="quiz-root">
-            <!-- El contenido se genera dinámicamente -->
-        </div>
+        <div id="quiz-root"></div>
 
         <div class="actions">
             <button id="nextBtn" class="btn-next" onclick="nextQuestion()">Siguiente Pregunta →</button>
@@ -209,88 +131,107 @@
 
     <script>
         const rawQuestions = [
-            // PREGUNTAS ORIGINALES + NUEVAS DEL PDF
             { q: "El primer paso a la hora de diseñar un informe es:", o: ["Selección de datos", "Modificación de la cabecera", "Organización de los datos", "Diseñar el layout"], c: 0, j: "Antes de diseñar la apariencia, debes identificar qué representar y qué datos necesitas." },
             { q: "¿Qué evento de teclado se produce cuando solamente se pulsa una tecla?", o: ["keyPressed", "keyTyped", "keyReleased", "keyEntered"], c: 0, j: "keyPressed se dispara al presionar la tecla inicialmente." },
             { q: "Podemos definir la GUI como:", o: ["Conjunto de elementos gráficos para comunicarse con el sistema", "Distribución en pantalla", "Diseño físico del hardware", "Ninguna es correcta"], c: 0, j: "Es el medio visual de interacción entre usuario y máquina." },
             { q: "¿Qué representa una propiedad simple?", o: ["Un único valor", "Un ámbito público", "Un array de valores", "Un ámbito privado"], c: 0, j: "Representa un valor atómico único." },
-            { q: "Herramientas para evaluar la usabilidad:", o: ["Todas son correctas", "Entrevistas", "Cuestionarios", "Test"], c: 0, j: "La evaluación de usabilidad es multidisciplinar y usa diversas herramientas." },
-            { q: "¿Qué evento se produce al pulsar y soltar la tecla?", o: ["keyTyped", "keyReleased", "keyPressed", "KeyDown"], c: 0, j: "keyTyped representa la acción completa de generar un carácter." },
-            { q: "SVG está pensado para:", o: ["Figuras simples y complejas mediante ecuaciones", "Figuras simples", "Figuras complejas", "Ninguna"], c: 0, j: "Permite definir gráficos escalables mediante expresiones matemáticas." },
-            { q: "Sección del informe que introduce datos visibles solo en la primera página:", o: ["Cabecera", "Muestra los datos", "Resúmenes", "Ninguna"], c: 0, j: "La cabecera de informe contextualiza el documento al inicio." },
-            { q: "¿Qué elemento XAML permite seleccionar más de una opción?", o: ["CheckBox", "Button", "RadioButton", "TextBox"], c: 0, j: "CheckBox permite múltiples selecciones independientes." },
-            { q: "Beneficio de la usabilidad:", o: ["Reducción de costes de aprendizaje y esfuerzo", "Aumento de asistencia", "Optimización de código", "Ninguna"], c: 0, j: "Una interfaz usable es más intuitiva y fácil de aprender." },
-            { q: "Regla de Nielsen 'Visibilidad del estado del sistema':", o: ["Informar al usuario de lo que ocurre en todo momento", "Salida de emergencia", "Uso de deshacer", "Lenguaje del usuario"], c: 0, j: "El sistema debe dar feedback constante sobre sus procesos." },
-            { q: "Sobre los archivos de solución (.sln), es INCORRECTO:", o: ["Pertenece a Eclipse", "Almacena configuración", "Pertenecen a Visual Studio", "Agrupan proyectos"], c: 0, j: ".sln es el formato de soluciones de Microsoft Visual Studio, no de Eclipse." },
-            { q: "Propiedad que identifica de forma única un elemento en XAML:", o: ["Name", "Content", "Text", "Style"], c: 0, j: "Name permite referenciar el control desde el código." },
-            { q: "Evento de ratón cuando el puntero abandona una zona:", o: ["mouseExited", "mouseClicked", "mousePressed", "mouseReleased"], c: 0, j: "mouseExited detecta la salida del cursor del área del componente." },
-            { q: "En un informe, la sección del cuerpo:", o: ["Muestra los datos", "Solo primera página", "Muestra totales", "Ninguna"], c: 0, j: "El cuerpo es el área donde se repiten y muestran los registros." },
-            { q: "¿Qué método indica si un CheckBox está seleccionado?", o: ["IsChecked", "IsReleased", "IsEnabled", "IsClicked"], c: 0, j: "IsChecked devuelve el estado booleano del control." },
-            { q: "¿Qué guía indica los aspectos más importantes desarrollados previamente?", o: ["Guía rápida", "Manual rápido", "Guía de usuario", "Guía de administración"], c: 0, j: "Es un resumen ejecutivo de la documentación completa." },
-            { q: "Pruebas para comprobar que se cumplen los requisitos especificados:", o: ["Pruebas funcionales", "Simulación", "Aceptación", "Recursos"], c: 0, j: "Verifican que el software realice las funciones solicitadas." },
-            { q: "Las pruebas de caja blanca cubren:", o: ["Todas las opciones", "Sentencias", "Condiciones", "Caminos"], c: 0, j: "Analizan la lógica y estructura interna del código." },
-            { q: "Definición de prueba BETA:", o: ["Realizada por usuarios finales en entorno no controlado", "Producto listo para implantar", "Entorno supervisado", "Funcional"], c: 0, j: "Se realiza con público real fuera del laboratorio de desarrollo." },
-            { q: "¿Qué es una prueba de seguridad?", o: ["Verificar mecanismos de protección del sistema", "Simular comportamiento", "Analizar recursos", "Requisitos"], c: 0, j: "Busca vulnerabilidades y asegura la protección de datos." },
-            { q: "Ayuda al situar el ratón sobre elementos:", o: ["Tooltips", "HeldDesk", "HelpTools", "Ayuda"], c: 0, j: "Pequeñas etiquetas flotantes informativas." },
-            { q: "Analizar el sistema solo mediante entradas y salidas es:", o: ["Prueba de caja negra", "Caja blanca", "Estructural", "Caja oscura"], c: 0, j: "No se mira el código, solo la respuesta del sistema." },
-            { q: "Prueba que compara el resultado esperado con el obtenido en módulos aislados:", o: ["Prueba unitaria", "Regresión", "Sistema", "Integración"], c: 0, j: "Verifica la corrección de la unidad mínima de código." },
-            { q: "Prueba ALFA:", o: ["Entorno controlado por el desarrollador", "Verificar con usuarios", "Listo para cliente", "Carga"], c: 0, j: "Es una prueba interna previa a la beta." },
-            { q: "¿Para qué sirve NuGet?", o: ["Gestionar referencias y paquetes", "Ejecutar scripts", "Características", "Todas"], c: 0, j: "Es el gestor de dependencias de .NET." },
-            { q: "Prueba de errores 404 (cantidad de enlaces rotos) es una métrica:", o: ["Directa", "Indirecta", "Porcentaje", "Ninguna"], c: 0, j: "Es una cuenta simple de elementos." },
-            { q: "Porcentaje de enlaces rotos es una métrica:", o: ["Indirecta", "Directa", "Ambas", "Ninguna"], c: 0, j: "Requiere un cálculo basado en otras métricas." },
-            { q: "En pruebas de integración se comprueba que:", o: ["Los módulos funcionan correctamente en conjunto", "Módulos aislados", "Aceptación", "Requisitos"], c: 0, j: "Verifica la interoperabilidad entre componentes." },
-            { q: "Pruebas de regresión:", o: ["Los cambios no introducen nuevos errores", "Errores iniciales", "Seguridad", "Rendimiento"], c: 0, j: "Asegura que lo que funcionaba sigue funcionando." },
-            { q: "Aplicaciones para generar informes:", o: ["JasperReports y Reporting Services", "JasperReports y Eclipse", "Visual Studio", "Eclipse"], c: 0, j: "Son los motores líderes de reporting." },
-            { q: "¿Qué es cualidad de ser recordado en usabilidad?", o: ["Tiempo en volver a usar tras un largo periodo", "Interactuar efectivo", "Agradable", "Errores"], c: 0, j: "Mide qué tan fácil es retomar el uso del diseño." },
-            { q: "Para usar un listener se debe:", o: ["Implementar interfaz, registrarlo e implementar callbacks", "No detectar", "Síncrono", "Ninguna"], c: 0, j: "Es el ciclo estándar de manejo de eventos en Java." },
-            { q: "¿En qué librería están los escuchadores en java?", o: ["java.awt.event", "java.awt.class", "method", "listener"], c: 0, j: "Contiene todas las clases de eventos y listeners." },
-            { q: "Sección de datos en un informe (layout) frecuente:", o: ["Formato tabular y estructura matriz", "Esquemático", "Árbol", "Tubular"], c: 0, j: "Son las formas más comunes de presentar registros." },
-            { q: "Si la RAM es crítica, usamos prueba de:", o: ["Uso de recursos", "Volumen", "Instalación", "Recuperación"], c: 0, j: "Analiza el consumo de hardware del sistema." },
-            { q: "Forzar el fallo para comprobar la resiliencia es prueba de:", o: ["Recuperación", "Configuración", "Recursos", "Volumen"], c: 0, j: "Verifica cómo vuelve el sistema tras un error." },
-            { q: "Un componente es:", o: ["Objeto reutilizable para una función específica", "Objeto único", "Fragmento no integrable", "Sin relación"], c: 0, j: "Su esencia es la modularidad y reutilización." },
-            { q: "NuSpec proporciona:", o: ["Metadatos básicos del paquete NuGet", "Configuración cliente", "Licencias", "Código"], c: 0, j: "Define la identidad y dependencias del paquete." },
-            { q: "JButton NO tiene el atributo:", o: ["IsChecked", "IsCancel", "Content", "IsEnabled"], c: 0, j: "JButton no es un control de estado marcado (Check)." },
-            { q: "Propósito de guía de usuario:", o: ["Explicar todas las funcionalidades", "Arquitectura", "Solo algunas", "Ninguna"], c: 0, j: "Manual completo para la operativa final." },
-            { q: "Objetivo de pruebas de integración:", o: ["Interoperabilidad entre componentes", "Usabilidad", "Unidad individual", "Requisitos no funcionales"], c: 0, j: "Foco en la conexión entre piezas del software." },
-            { q: "Eficacia en usabilidad:", o: ["Grado de éxito del usuario en sus tareas", "Cuántos errores comete", "Tiempo en volver", "Agradable"], c: 0, j: "Mide la precisión e integridad con que los usuarios alcanzan sus objetivos." },
-            { q: "Sección de informe 'Descripción' en publicación permite:", o: ["Nombre, idioma y carpeta menú inicio", "Implementación", "Manifiesto", "Asociación"], c: 0, j: "Define los datos básicos del archivo de salida." },
-            { q: "Documentación técnica detalla:", o: ["Arquitectura, diseño y estructura interna", "Requisitos", "Interfaz", "Paso a paso"], c: 0, j: "Manual para otros desarrolladores o soporte técnico." },
-            { q: "Secciones de un informe:", o: ["Cabecera, cuerpo y pie", "Cabecera y pie", "Anexo", "Título"], c: 0, j: "Estructura clásica de un reporte de datos." },
-            { q: "Prueba de aceptación:", o: ["Usuarios finales validan requisitos", "Interoperabilidad", "Antes de entregar", "Unidad individual"], c: 0, j: "El cliente da el visto bueno final." },
-            { q: "Manual de Instalación detalla:", o: ["Detalles del SO y proceso de instalación", "Resumen", "Extensión", "Pasos trabajo"], c: 0, j: "Guía para la puesta en marcha técnica." },
-            { q: "Orden versión software:", o: ["Major, minor, build, revisión", "Minor, major", "Build, revisión", "Major, build"], c: 0, j: "Estándar de versionado de software." },
-            { q: "Pruebas automáticas:", o: ["Sin intervención directa, mediante scripts", "Usuario protagonista", "No existen", "Ninguna"], c: 0, j: "Ejecución programada de tests." },
-            { q: "HelpNDoc permite generar ayuda en:", o: [".chm, .pdf o .html", "Elevada comprensión", "SandCastle", ".mp4"], c: 0, j: "Es una herramienta de autoría de ayuda multiformato." },
-            { q: "Empaquetar en Java resulta en archivo:", o: [".jar", ".exe", ".ddl", ".java"], c: 0, j: "Java ARchive para distribución de aplicaciones." },
-            { q: "Control de versiones sirve para:", o: ["Controlar y rastrear cambios en el código", "Aumentar complejidad", "Limitar acceso", "No cambios"], c: 0, j: "Histórico y gestión colaborativa de código." },
-            { q: "Paquetes gestionados INCORRECTO:", o: ["No son compatibles con otras versiones", "Protegen propiedad", "Actualizaciones", "Divisiones"], c: 0, j: "Los paquetes deben manejar compatibilidad." },
-            { q: "XAML práctica NO correcta:", o: ["Utilizar Canvas de forma masiva", "Evitar fijos", "No fijos", "StackPanel"], c: 0, j: "Canvas dificulta el diseño adaptativo." },
-            { q: "Sección de informe en primera página:", o: ["Cabecera", "Pie", "Cuerpo", "Anexo"], c: 0, j: "El Report Header solo aparece al principio." },
-            { q: "Archivo para agrupar proyectos en Visual Studio:", o: [".sln", ".exe", ".csproj", ".dll"], c: 0, j: "Archivo de Solución que organiza el espacio de trabajo." },
-            { q: "¿En qué fase se realizan pruebas de aceptación?", o: ["Antes de la entrega final", "Programación", "Unitarias", "Diseño"], c: 0, j: "Es el paso previo al cierre del proyecto." },
-            { q: "Pruebas del sistema comprueban:", o: ["Configuración y recuperación del sistema", "Clases", "Interfaz", "Código"], c: 0, j: "Valida el software como un todo integrado." },
-            { q: "¿Cuándo se realizan las pruebas de sistema?", o: ["Tras integrar todos los componentes", "Antes integración", "Diseño", "Después aceptación"], c: 0, j: "Se ejecutan sobre el producto terminado." },
-            { q: "Objetivo pruebas de recursos:", o: ["Comportamiento respecto a recursos", "Requisitos", "Lógicos", "Aislados"], c: 0, j: "Mide eficiencia en uso de CPU y memoria." },
-
-            // NUEVAS PREGUNTAS EXTRAÍDAS DEL PDF
-            { q: "¿Cuál de las siguientes opciones tiene un componente?", o: ["Todas las opciones", "Una propiedad", "Un atributo", "Un evento"], c: 0, j: "Los componentes agrupan propiedades, atributos y eventos para su funcionamiento." },
-            { q: "Un escuchador de eventos es un mecanismo:", o: ["Asíncrono", "Síncrono", "Diferencial", "Interno"], c: 0, j: "Los eventos ocurren en cualquier momento y el sistema los gestiona asincrónicamente." },
-            { q: "Indique cuáles son aspectos de la pauta de estructura para el diseño:", o: ["Jerarquía, foco, homogeneidad y relaciones", "Jerarquía, peso y distinción", "Jerarquía y heterogeneidad", "Foco y distinción"], c: 0, j: "Son los pilares para organizar visualmente una interfaz funcional." },
-            { q: "¿Cuál de las siguientes opciones no es propia de un CheckBox?", o: ["Stretch", "IsChecked", "Hover", "Release"], c: 0, j: "Stretch es una propiedad de estiramiento (layout/imágenes), no un estado lógico de CheckBox." },
-            { q: "NetBeans es código abierto, lo que significa:", o: ["Producto libre, gratuito con código disponible", "Solo código disponible para descarga", "Producto gratuito pero cerrado", "Solo para expertos"], c: 0, j: "El código abierto implica acceso al fuente y libertad de distribución." },
-            { q: "XAML es fundamentalmente un:", o: ["Lenguaje", "IDE", "Elemento gráfico", "Tecnología de base de datos"], c: 0, j: "XAML es un lenguaje declarativo basado en XML para definir interfaces." },
-            { q: "Un cuadro de diálogo permite:", o: ["Interactuar con la ventana principal", "Definir hardware", "Cerrar el sistema", "Solo mostrar errores"], c: 0, j: "Son ventanas secundarias para entrada de datos o confirmaciones." },
-            { q: "SVG elementos principales son:", o: ["Contenedores, gráficos y animación", "Audio y fijos", "Moleculares", "Definitivos"], c: 0, j: "SVG permite agrupar objetos, dibujar formas y aplicar movimiento." },
-            { q: "¿Qué es facilidad de aprendizaje en usabilidad?", o: ["Usuarios nuevos pueden interactuar de forma efectiva", "Interactuar tras un largo periodo", "Cuántos errores comete", "Sencillez visual"], c: 0, j: "Mide el esfuerzo requerido para que un novato use el sistema." },
-            { q: "Las pruebas que comprueban tiempos de respuesta son:", o: ["Pruebas de rendimiento", "Pruebas de integración", "Pruebas de sistema", "Ninguna"], c: 0, j: "El rendimiento evalúa velocidad, capacidad y estabilidad." },
-            { q: "El lenguaje MXML es un lenguaje usado en:", o: ["Aplicaciones Adobe Flex", "Compilar archivos .fla", "Estructura DataGrid únicamente", "Ninguna"], c: 0, j: "MXML es el lenguaje de marcado para la plataforma Flex." },
-            { q: "Respecto al lenguaje XUL, es correcto:", o: ["Usa el motor renderizado Gecko (Mozilla)", "Está basado en Python", "Desarrollado por IBM", "Es para móviles Android"], c: 0, j: "XUL fue creado por Mozilla para interfaces multiplataforma." },
-            { q: "¿Para qué sirve la firma de componentes?", o: ["Verifica origen y garantiza autenticidad", "Verifica solo documentación", "Certifica licencias", "Actualiza parches"], c: 0, j: "Garantiza que el software no ha sido alterado y proviene de un autor conocido." },
-            { q: "¿Para qué sirve la herramienta GhostDoc?", o: ["Generar documentación XML automática en VS", "Detectar errores de código", "Omitir comentarios", "Generar diagramas UML"], c: 0, j: "Es una extensión de Visual Studio para automatizar comentarios de documentación." },
-            { q: "¿Qué es eficacia en usabilidad?", o: ["Grado de éxito en las tareas", "Tiempos de respuesta", "Agradable visualmente", "Errores por minuto"], c: 0, j: "La eficacia mide si el usuario consigue completar su objetivo." },
-            { q: "¿Por qué elementos están compuestas las clases?", o: ["Todas (Propiedades, Métodos, Campos)", "Solo propiedades", "Solo métodos", "Solo constructores"], c: 0, j: "Una clase agrupa datos (campos/propiedades) y lógica (métodos)." },
-            { q: "¿Cuál es el constructor de la clase Alumno?", o: ["public Alumno()", "public class Alumno", "public String getNombre()", "public void setEdad()"], c: 0, j: "El constructor tiene el mismo nombre que la clase y no tiene tipo de retorno." },
-            { q: "A la manera de unir distintos componentes se le denomina:", o: ["Desarrollo basado en componentes", "Programación lineal", "Diseño monolítico", "Ninguna"], c: 0, j: "Fomenta la reutilización y modularidad del software." }
+            { q: "Las herramientas normalmente utilizadas para la evaluación de la usabilidad son:", o: ["Todas las respuestas son correctas", "Entrevistas", "Cuestionarios", "Test"], c: 0, j: "La usabilidad se evalúa mediante diversas técnicas cualitativas y cuantitativas." },
+            { q: "¿Qué función realiza una acción al pulsar la tecla?", o: ["keyPressed", "keyTyped", "keyReleased", "Ninguna"], c: 0, j: "keyPressed es el evento que captura el acto de presionar." },
+            { q: "Los componentes nos permiten dibujar en pantalla un estado, un valor, etc. ¿Cuál de estos tiene un componente?", o: ["Todas las opciones son correctas", "Una propiedad", "Un atributo", "Un evento"], c: 0, j: "Un componente es una entidad completa que integra propiedades, atributos y eventos." },
+            { q: "Un escuchador de eventos es un mecanismo:", o: ["Asíncrono", "Síncrono", "Diferencial", "Interno"], c: 0, j: "Los eventos se disparan y gestionan de forma asíncrona respecto al flujo principal." },
+            { q: "¿Qué evento se produce al pulsar y soltar la tecla?", o: ["keyTyped", "keyReleased", "keyPressed", "KeyDown"], c: 0, j: "keyTyped representa la generación de un carácter completo (presión + liberación)." },
+            { q: "Formas de comunicarnos con el ordenador:", o: ["Todas (Entornos gráficos, Línea de comandos, Táctiles)", "Solo entornos gráficos", "Solo línea de comandos", "Solo voz"], c: 0, j: "Existen múltiples canales de interfaz." },
+            { q: "Pautas de estructura para el diseño de interfaces:", o: ["Jerarquía, foco, homogeneidad y relaciones", "Jerarquía, peso y distinción", "Jerarquía y heterogeneidad", "Foco y relaciones"], c: 0, j: "Son los cuatro pilares organizativos de una interfaz limpia." },
+            { q: "SVG está pensado para:", o: ["Figuras simples y complejas mediante ecuaciones", "Solo figuras simples", "Solo figuras complejas", "Ninguna"], c: 0, j: "SVG permite definir gráficos escalables matemáticamente." },
+            { q: "En un informe, la sección de la cabecera:", o: ["Introduce datos visibles en la primera página", "Muestra los datos", "Muestra totales", "Ninguna"], c: 0, j: "La cabecera de informe aparece únicamente al inicio del documento." },
+            { q: "¿Qué elemento XAML permite seleccionar más de una opción?", o: ["CheckBox", "RadioButton", "Button", "TextBox"], c: 0, j: "CheckBox permite selecciones múltiples independientes." },
+            { q: "Indique cuál es un beneficio de la usabilidad:", o: ["Reducción de costes de aprendizaje y esfuerzo", "Aumento de asistencia", "Optimización de código", "Ninguna"], c: 0, j: "Mejora la eficiencia y satisfacción del usuario." },
+            { q: "¿Cuál de las siguientes opciones NO es de CheckBox?", o: ["Stretch", "IsChecked", "Hover", "Release"], c: 0, j: "Stretch es para layouts/imágenes, no es una propiedad lógica de CheckBox." },
+            { q: "La regla de Nielsen 'Visibilidad del estado del sistema' hace referencia a:", o: ["Informar al usuario de lo que ocurre en todo momento", "Salida de emergencia", "Uso de deshacer", "Lenguaje del usuario"], c: 0, j: "El sistema debe ofrecer feedback constante al usuario." },
+            { q: "Señale la opción incorrecta sobre los archivos de solución (.sln):", o: ["Pertenece a Eclipse", "Almacena configuración específica", "Pertenecen a Visual Studio", "Agrupan proyectos"], c: 0, j: "Es el archivo de organización de Microsoft Visual Studio." },
+            { q: "¿Por qué se aconseja utilizar listas desplegables?", o: ["Seleccionar uno o varios elementos optimizando espacio", "Seleccionar todos", "Solo para escribir", "Ninguna"], c: 0, j: "Guían al usuario y ahorran espacio en pantalla." },
+            { q: "NetBeans es código abierto, lo que significa:", o: ["Producto libre y gratuito con código disponible", "Solo para descarga", "Solo lenguajes soportados por comunidad", "De pago"], c: 0, j: "Es un IDE abierto y accesible." },
+            { q: "XAML es fundamentalmente:", o: ["Un lenguaje", "Un IDE", "Una tecnología de red", "Elemento gráfico"], c: 0, j: "Es un lenguaje declarativo basado en XML." },
+            { q: "Propiedad que identifica de forma única un elemento en XAML:", o: ["Name", "Content", "Text", "Style"], c: 0, j: "Name vincula el objeto con el código subyacente." },
+            { q: "Evento del ratón que ocurre cuando el puntero abandona una zona:", o: ["mouseExited", "mouseClicked", "mousePressed", "mouseReleased"], c: 0, j: "mouseExited detecta la salida del cursor." },
+            { q: "Un cuadro de diálogo:", o: ["Permite interactuar con la principal", "Es una ventana grande fija", "Se cierra solo", "Define hardware"], c: 0, j: "Facilita la entrada de datos secundaria." },
+            { q: "Señala la opción que NO es un principio básico del diseño:", o: ["Inconsistente", "Intuitiva", "Predecible", "Clara"], c: 0, j: "La inconsistencia es un error de diseño." },
+            { q: "Característica correcta para la utilización de fuentes:", o: ["Utilizar una semántica clara", "Todo en mayúsculas", "Gráficos de fondo", "Lenguaje complejo"], c: 0, j: "La claridad semántica mejora la legibilidad." },
+            { q: "En un informe, la sección del cuerpo:", o: ["Muestra los datos", "Solo primera página", "Muestra totales", "Ninguna"], c: 0, j: "Es la zona donde se listan los registros." },
+            { q: "Componentes WPF creados a partir de UserControl heredarán:", o: ["Propiedades, eventos y métodos", "Solo eventos", "Solo métodos abstractos", "Solo valores"], c: 0, j: "Heredan la estructura completa de un control de usuario." },
+            { q: "Eclipse permite programar en:", o: ["Todas (PHP, JS, HTML...)", "Solo Java", "Solo C++", "Solo Python"], c: 0, j: "Es un IDE multipropósito mediante plugins." },
+            { q: "Elementos de SVG principales:", o: ["Contenedores, gráficos y animación", "Audio y fijos", "Moleculares", "Definitivos"], c: 0, j: "Define la estructura básica de los gráficos vectoriales." },
+            { q: "¿Qué guía indica los aspectos más importantes desarrollados previamente?", o: ["Guía rápida", "Manual técnico", "Guía de usuario", "Guía de administración"], c: 0, j: "Es un resumen ejecutivo de la documentación." },
+            { q: "¿Qué pruebas comprueban que se cumplen los requisitos especificados?", o: ["Pruebas funcionales", "Simulación", "Aceptación", "Recursos"], c: 0, j: "Verifican que el software haga lo que debe." },
+            { q: "Las pruebas de caja blanca cubren:", o: ["Todas (Sentencias, Condiciones, Caminos)", "Solo entradas", "Solo salidas", "Solo interfaz"], c: 0, j: "Analizan la estructura lógica interna." },
+            { q: "Análisis de sistema solo mediante entradas y salidas es:", o: ["Prueba de caja negra", "Caja blanca", "Estructural", "Caja oscura"], c: 0, j: "No se mira el código, solo el comportamiento." },
+            { q: "Definición de prueba BETA:", o: ["Usuarios finales en entorno no controlado", "Entorno controlado", "Producto listo para implantar", "Funcional"], c: 0, j: "Prueba real con usuarios externos." },
+            { q: "Pruebas que verifican funcionales, interfaces, doc y comportamiento límite:", o: ["Pruebas de sistema", "Integración", "Regresión", "Unitarias"], c: 0, j: "Validan el sistema como un todo." },
+            { q: "¿Qué es una prueba de seguridad?", o: ["Verificar mecanismos de protección del sistema", "Simular comportamiento", "Analizar recursos", "Requisitos"], c: 0, j: "Busca vulnerabilidades." },
+            { q: "Ayuda al situar el ratón sobre elementos:", o: ["Tooltips", "HeldDesk", "HelpTools", "Ayuda"], c: 0, j: "Pequeñas ventanas de ayuda contextual." },
+            { q: "En pruebas de integración, ¿pueden aplicarse técnicas de caja negra?", o: ["Sí", "No", "Solo en Beta", "Ninguna"], c: 0, j: "Se pueden probar interfaces entre módulos como cajas negras." },
+            { q: "Prueba que compara el resultado esperado con el obtenido:", o: ["Prueba unitaria", "Regresión", "Sistema", "Integración"], c: 0, j: "Verifica la corrección de una unidad mínima." },
+            { q: "Prueba ALFA:", o: ["Entorno controlado por el desarrollador", "Verificar con usuarios finales fuera", "Simulación carga", "Listo para cliente"], c: 0, j: "Prueba interna previa a la beta." },
+            { q: "Herramienta que NO genera ayuda:", o: ["DocFinger", "HelpNDoc", "SandCastle", "GhostDoc"], c: 0, j: "DocFinger no es una herramienta estándar de este tipo." },
+            { q: "Respuesta de sistema en caso de error es:", o: ["Prueba de recuperación", "Seguridad", "Sistema", "Funcional"], c: 0, j: "Comprueba cómo el sistema vuelve a la normalidad." },
+            { q: "¿Para qué sirve NuGet?", o: ["Gestionar referencias y paquetes", "Ejecutar scripts", "Características", "Todas"], c: 0, j: "Gestor de dependencias de .NET." },
+            { q: "Errores 404 (cantidad absoluta) es una métrica:", o: ["Directa", "Indirecta", "Porcentaje", "Ninguna"], c: 0, j: "Es una medida simple de conteo." },
+            { q: "Porcentaje de enlaces rotos es una métrica:", o: ["Indirecta", "Directa", "Ambas", "Ninguna"], c: 0, j: "Requiere un cálculo derivado de otras métricas." },
+            { q: "Averiguar elementos críticos del sistema es prueba de:", o: ["Uso de recursos", "Seguridad", "Sistema", "Funcionales"], c: 0, j: "Mide CPU, RAM y otros cuellos de botella." },
+            { q: "¿Para qué sirve la firma de componentes?", o: ["Verifica origen y garantiza autenticidad", "Verifica solo origen", "Certifica documentación", "Verifica licencias"], c: 0, j: "Asegura que el componente no ha sido alterado." },
+            { q: "Gestión de versiones (GNU/Standard):", o: ["Pares liberadas e impares beta", "Versiones pares como beta", "Impares como liberadas", "No hay diferencia"], c: 0, j: "Históricamente, los números impares se reservan para desarrollo." },
+            { q: "¿Para qué se utilizan principalmente los paquetes gestionados?", o: ["Distribuir aplicaciones y dependencias", "Modificar aplicaciones", "Verificar autenticidad", "Aplicar parches"], c: 0, j: "Permiten una distribución controlada." },
+            { q: "Pruebas de regresión tienen como objetivo:", o: ["Comprobar que cambios no introducen nuevos errores", "Errores iniciales", "Seguridad", "Rendimiento"], c: 0, j: "Protege la funcionalidad ya existente." },
+            { q: "Aplicaciones para generación de informes principales:", o: ["JasperReports y Reporting Services", "Visual Studio y Eclipse", "Word y Excel", "JavaFX"], c: 0, j: "Estándares en reporting Java y .NET." },
+            { q: "El lenguaje MXML se usa en:", o: ["Aplicaciones Adobe Flex", "Compilar .fla", "Solo DataGrids", "Ninguna"], c: 0, j: "Lenguaje de marcado para Flex." },
+            { q: "Respecto al lenguaje XUL:", o: ["Usa motor Gecko (Mozilla)", "Basado en Python", "Desarrollado por IBM", "Todas"], c: 0, j: "Lenguaje de interfaces de Mozilla." },
+            { q: "Facilidad de aprendizaje en usabilidad:", o: ["Usuarios nuevos interactúan efectivamente", "Tras largo periodo", "Agradable", "Errores"], c: 0, j: "Mide la curva de aprendizaje inicial." },
+            { q: "Pruebas de caja negra pueden diferenciar:", o: ["Pruebas de comparación", "Cobertura condiciones", "Cobertura caminos", "Ninguna"], c: 0, j: "La comparación es una técnica de caja negra." },
+            { q: "Constructor de la clase Alumno:", o: ["public Alumno()", "public class Alumno", "public String getNombre()", "public void setEdad()"], c: 0, j: "Mismo nombre que la clase, sin retorno." },
+            { q: "Formas frecuentes de representar datos:", o: ["Formato tabular y estructura matriz", "Vectorial", "Solo tubular", "Ninguna"], c: 0, j: "Estándares en visualización de informes." },
+            { q: "En la guía de usuario se debe:", o: ["Indicar pasos para desarrollar un trabajo", "Resumen técnico", "Configuración técnica", "Código fuente"], c: 0, j: "Es manual para el uso diario del cliente." },
+            { q: "Método para cambiar edad al perro:", o: ["public void set_edad(int valor)", "public void get_edad()", "public void set_edad()", "public void perro()"], c: 0, j: "Sigue la convención de setters." },
+            { q: "Acción apretando únicamente botón con ratón requiere:", o: ["ActionListener", "MouseListener", "KeyListener", "FocusListener"], c: 0, j: "En Java, los botones usan ActionListener para la lógica de pulsación." },
+            { q: "Pasos para usar un listener:", o: ["Implementar interfaz, registrar e implementar callbacks", "No detectar", "Sincrono", "Ninguna"], c: 0, j: "Ciclo de vida de manejo de eventos." },
+            { q: "¿Qué es un listener?", o: ["Encargado de controlar un evento", "Un handler visual", "Acción de usuario", "Componente gráfico"], c: 0, j: "Objeto que escucha y reacciona a señales." },
+            { q: "¿En qué librería están los listeners en java?", o: ["java.awt.event", "java.awt.class", "method", "listener"], c: 0, j: "Paquete estándar de eventos AWT." },
+            { q: "Asociar pulsar y soltar tecla a evento:", o: ["public void keyTyped(keyEvent e)", "public void keyPressed", "public void keyReleased", "mouseClicked"], c: 0, j: "keyTyped combina ambas acciones en un carácter." },
+            { q: "Pruebas unitarias realizan comparaciones de:", o: ["Módulos esperados vs obtenido", "Usabilidad", "Interoperabilidad", "Simulación carga"], c: 0, j: "Foco en la unidad mínima de código." },
+            { q: "Método para obtener nombre al perro:", o: ["public String getNombre()", "public void setNombre()", "public setNombre(String)", "Ninguna"], c: 0, j: "Sigue la convención de getters." },
+            { q: "JButton NO tiene atributo:", o: ["IsChecked", "IsCancel", "Content", "IsEnabled"], c: 0, j: "JButton no tiene estado de marcado." },
+            { q: "Un componente es un objeto reutilizable para:", o: ["Función específica", "Uso único", "No integrable", "Sin relación"], c: 0, j: "La modularidad es clave." },
+            { q: "NuSpec proporciona:", o: ["Metadatos básicos del paquete NuGet", "Configuración cliente", "Licencias", "Código"], c: 0, j: "Identifica el paquete." },
+            { q: "JButton tiene la propiedad:", o: ["isPressed", "undoLimit", "isChecked", "isPointed"], c: 0, j: "Indica si el botón está siendo presionado en ese instante." },
+            { q: "Diseño de interfaz debe ser:", o: ["Sencilla, clara, predecible, flexible...", "Compleja, difusa", "Inflexible", "Impredecible"], c: 0, j: "La simplicidad y predictibilidad son esenciales." },
+            { q: "NetBeans y Eclipse soportan:", o: ["Múltiples lenguajes", "Solo Java", "Solo C++", "Solo interfaces"], c: 0, j: "Son IDEs extensibles." },
+            { q: "SVG Contenedores sirven para:", o: ["Organizar y agrupar elementos", "Audio", "Desagrupar", "No pueden contener otros"], c: 0, j: "Permiten jerarquizar el gráfico vectorial." },
+            { q: "RIA (Rich Internet Application) es:", o: ["App web con funcionalidad de escritorio", "App web limitada", "Librería dinámica", "Ninguna"], c: 0, j: "Buscan una experiencia de usuario rica en el navegador." },
+            { q: "Eficiencia en usabilidad es:", o: ["Tiempo realizar tarea aprendida", "Interactuar efectivo", "Satisfacción", "Recordar"], c: 0, j: "Productividad tras superar la fase de aprendizaje." },
+            { q: "Incorrecto sobre PRUEBAS DE SISTEMA:", o: ["Comprueban integridad de componentes (eso es Integración)", "Comprueban tensión", "Comprueban volumen", "Comprueban usabilidad"], c: 0, j: "La integridad es foco de las pruebas de integración." },
+            { q: "Manual de usuario incluye:", o: ["Pasos para desarrollar trabajo", "Código fuente", "Administración técnica", "Solo versión rápida"], c: 0, j: "Es la guía operativa final." },
+            { q: "Publicación: Descripcion permite definir:", o: ["Datos básicos (nombre, idioma, carpeta)", "Implementación web", "Acceso URL", "Icono"], c: 0, j: "Contextualiza la instalación." },
+            { q: "Publicación: Implementación permite señalar:", o: ["Dato clave web/despliegue/autoejecución CD", "Acceso", "Icono", "Nombre"], c: 0, j: "Define el origen del despliegue." },
+            { q: "Publicación: Manifiesto define:", o: ["Comportamiento control acceso y URL", "Icono", "Nombre", "Idioma"], c: 0, j: "Gestiona permisos y rutas de inicio." },
+            { q: "Publicación: Asociaciones de archivo permite:", o: ["Configuraciones icono y extensión sistema", "Acceso", "Nombre", "Integridad"], c: 0, j: "Vincula el software con el SO." },
+            { q: "Entidades básicas de la POC:", o: ["Los componentes", "Las pruebas", "Las jerarquías", "Los metadatos"], c: 0, j: "Programación Orientada a Componentes." },
+            { q: "Un evento es una acción que:", o: ["Realiza un usuario sobre un componente", "Ocurre ajeno al usuario", "Es síncrono", "Llama al kernel"], c: 0, j: "Interacción usuario-interfaz." },
+            { q: "Pruebas de comportamiento son:", o: ["Pruebas de caja negra", "Caja blanca", "Caja transparente", "Manuales"], c: 0, j: "Validan la respuesta del sistema a entradas." },
+            { q: "Pruebas estructurales son:", o: ["Pruebas de caja blanca", "Caja negra", "Comportamiento", "Unitarias"], c: 0, j: "Analizan la estructura del código." },
+            { q: "Valores en informes pueden ser:", o: ["Números, letras y fechas", "Solo números", "Solo alfanuméricos", "Solo fechas"], c: 0, j: "Soportan diversos tipos de datos." },
+            { q: "Objetivo integración técnica ascendente:", o: ["Análisis del valor límite (enfoque PDF)", "Suposición errores", "Validación entradas", "Ninguna"], c: 0, j: "Técnica específica de validación de módulos." },
+            { q: "Aceptación sirve para:", o: ["Validar cumplimiento de lo solicitado cliente", "Consumo recursos", "Errores lógicos", "Módulos aislados"], c: 0, j: "Cierre del proyecto con el cliente." },
+            { q: "Entorno Microsoft para XAML:", o: ["Visual Studio", "Eclipse", "Android Studio", "Jar Jar Beans"], c: 0, j: "IDE oficial de Microsoft." },
+            { q: "Función de un campo en informe:", o: ["Representar un dato (nombre/tel)", "Conectar base datos", "Trasformar contenido", "Layout"], c: 0, j: "Unidad mínima de información visible." },
+            { q: "WPF respecto a XAML:", o: ["Namespaces asocian elementos con controles WPF", "WPF es un plugin", "No se integran", "WPF es el lenguaje"], c: 0, j: "Vínculo entre marcado y controles." },
+            { q: "¿Qué consigue 'deck' en código?", o: ["Seleccionada basada en zero-index", "Segunda página", "Tercera página", "Todas"], c: 0, j: "Referencia a la página seleccionada por defecto." },
+            { q: "¿Qué pruebas evalúan CPU y memoria?", o: ["Pruebas de uso de recursos", "Funcionales", "Aceptación", "Unitarias"], c: 0, j: "Miden la eficiencia hardware." },
+            { q: "Prueba que verifica mecanismos de protección:", o: ["Seguridad", "Funcional", "Recuperación", "Rendimiento"], c: 0, j: "Valida la integridad y privacidad." },
+            { q: "Nielsen 'Visibilidad' indica:", o: ["Sistema informa constantemente al usuario", "Control usuario", "Prevención errores", "Consistencia"], c: 0, j: "Feedback oportuno." },
+            { q: "Archivo para agrupar proyectos en VS:", o: [".sln", ".exe", ".csproj", ".dll"], c: 0, j: "Solution file." },
+            { q: "Guía rápida ofrece:", o: ["Visión rápida de funcionalidades importantes", "Manual técnico", "Mantenimiento", "Administración"], c: 0, j: "Resumen de lo esencial." },
+            { q: "Aceptación participa principalmente:", o: ["El cliente o usuario final", "Programador", "SO", "Compilador"], c: 0, j: "El receptor del producto." },
+            { q: "¿Cuándo se realizan pruebas de sistema?", o: ["Tras integrar todos los componentes", "Antes integración", "Diseño", "Después aceptación"], c: 0, j: "Sobre el producto integrado final." },
+            { q: "Métrica indirecta definition:", o: ["Relación entre dos o más atributos", "Expresión numérica simple", "Valor numérico del atributo", "Valor resultante subjetivo"], c: 0, j: "Requiere derivación de otras medidas." }
         ];
 
         let questions = [];
@@ -311,7 +252,6 @@
         }
 
         function initQuiz() {
-            // Barajar preguntas y opciones
             questions = shuffle([...rawQuestions]).map(q => {
                 const options = [...q.o];
                 const correctText = options[q.c];
@@ -344,7 +284,7 @@
             
             root.innerHTML = `
                 <div class="question-card">
-                    <div class="question-text">${q.q}</div>
+                    <div class="question-text">${currentIdx + 1}. ${q.q}</div>
                     <div class="options-container" id="options">
                         ${q.o.map((opt, i) => `
                             <button class="option" onclick="checkAnswer(${i}, this)">
@@ -370,9 +310,7 @@
 
             options.forEach((opt, i) => {
                 opt.classList.add('disabled');
-                if (i === q.c) {
-                    opt.classList.add('correct');
-                }
+                if (i === q.c) opt.classList.add('correct');
             });
 
             if (selectedIdx === q.c) {
@@ -407,13 +345,12 @@
             
             root.innerHTML = `
                 <div class="results-screen">
-                    <h2>¡Cuestionario Finalizado!</h2>
                     <div class="score-circle">
                         ${percent}%
-                        <span>Aciertos</span>
                     </div>
+                    <h2>¡Cuestionario Finalizado!</h2>
                     <p>Has respondido correctamente <strong>${score.correct}</strong> de <strong>${questions.length}</strong> preguntas.</p>
-                    <p>Fallos registrados: ${score.wrong}</p>
+                    <p>Total Fallos: ${score.wrong}</p>
                     <button class="btn-restart" onclick="location.reload()">Reiniciar Cuestionario</button>
                 </div>
             `;
@@ -423,4 +360,3 @@
     </script>
 </body>
 </html>
-
