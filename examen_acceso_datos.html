@@ -1270,6 +1270,66 @@
                 correct: 3,
                 justification: "Optimiza consultas que comparan valores dentro de un rango específico (mayor que, menor que, etc.) basándose en el tipo de dato."
             }
+            {
+                id: 96,
+                question: "¿Qué anotación se utiliza en EJB para permitir que un cliente desde una máquina virtual distinta (remota) acceda al bean?",
+                options: [
+                    "@Local",
+                    "@Remote",
+                    "@Client",
+                    "@Service"
+                ],
+                correct: 1,
+                justification: "La anotación @Remote expone la interfaz para que pueda ser invocada por clientes remotos (RMI), a diferencia de @Local."
+            },
+            {
+                id: 97,
+                question: "¿Cuál es la definición correcta de un fichero binario ?",
+                options: [
+                    "Un archivo que solo contiene texto ASCII.",
+                    "Un archivo que contiene información representada por ceros y unos para ser tratada por un programa (imágenes, ejecutables).",
+                    "Un archivo corrupto.",
+                    "Un directorio del sistema."
+                ],
+                correct: 1,
+                justification: "A diferencia de los ficheros de texto, los binarios almacenan información codificada no legible directamente por humanos."
+            },
+            {
+                id: 98,
+                question: "¿Qué clase de Java se utiliza para leer ficheros de texto de manera eficiente utilizando un búfer interno?",
+                options: [
+                    "FileReader",
+                    "BufferedReader",
+                    "Scanner",
+                    "FileInputStream"
+                ],
+                correct: 1,
+                justification: "BufferedReader realiza lecturas por bloques (búfer) en lugar de carácter a carácter, lo que mejora el rendimiento frente a FileReader a secas."
+            },
+            {
+                id: 99,
+                question: "¿Cuál es una ventaja principal de una Base de Datos Objeto-Relacional (BDOR) frente a una relacional pura?",
+                options: [
+                    "Elimina el uso de SQL.",
+                    "Permite crear tipos de datos complejos (objetos) y usar herencia manteniendo la estructura relacional.",
+                    "Es más rápida en todas las operaciones.",
+                    "No soporta transacciones ACID."
+                ],
+                correct: 1,
+                justification: "Extiende el modelo relacional permitiendo definir tipos personalizados y estructuras complejas propias de la POO."
+            },
+            {
+                id: 100,
+                question: "De las siguientes herramientas ORM, ¿cuál es la específica para el lenguaje Java?",
+                options: [
+                    "Django",
+                    "Yii",
+                    "Hibernate",
+                    "Laravel"
+                ],
+                correct: 2,
+                justification: "Hibernate es el estándar de facto en Java. Django es de Python, y Yii/Laravel son de PHP."
+            }
         ];
 
 // State variables
@@ -1457,5 +1517,6 @@
 </body>
 
 </html>
+
 
 
