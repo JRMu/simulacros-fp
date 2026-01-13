@@ -50,7 +50,7 @@
             <div id="start-screen" class="text-center space-y-6">
                 <div class="text-6xl mb-4">📚</div>
                 <h2 class="text-xl font-semibold text-gray-800">Bienvenido al simulacro</h2>
-                <p class="text-gray-600">Este cuestionario contiene <strong>117 preguntas</strong> extraídas de tu documentación.</p>
+                <p class="text-gray-600">Este cuestionario contiene <strong>119 preguntas</strong> extraídas de tu documentación.</p>
                 <div class="bg-blue-50 p-4 rounded-lg text-left text-sm text-blue-800 inline-block max-w-md mx-auto">
                     <ul class="list-disc pl-5 space-y-1">
                         <li>Modo interactivo: Feedback inmediato.</li>
@@ -65,7 +65,7 @@
 
             <div id="quiz-screen" class="hidden space-y-6">
                 <div class="flex justify-between items-center text-sm font-medium text-gray-500 mb-2">
-                    <span id="question-counter">Pregunta 1 de 117</span>
+                    <span id="question-counter">Pregunta 1 de 119</span>
                     <span id="score-counter" class="text-indigo-600">Aciertos: 0</span>
                 </div>
 
@@ -1525,6 +1525,30 @@
         ],
         correct: 2,
         justification: "Al leer el archivo como un flujo (stream) secuencial, no necesitas cargar todo el contenido en la RAM a la vez, lo cual es crítico para archivos grandes."
+    },
+    {
+        id: 118,
+        question: "RA4 - ¿Qué concepto permite reutilizar tipos en Bases de Datos Orientadas a Objetos (BDOO)?",
+        options: [
+            "Normalización",
+            "Herencia",
+            "Indexación",
+            "Serialización"
+        ],
+        correct: 1,
+        justification: "Al igual que en la programación orientada a objetos (Java), la Herencia permite crear nuevos tipos de datos basándose en otros ya existentes, reutilizando sus atributos y métodos."
+    },
+    {
+        id: 119,
+        question: "RA1 - ¿Para qué se utiliza un búfer al leer un fichero de texto?",
+        options: [
+            "Para cifrar el contenido",
+            "Para validar la codificación",
+            "Para almacenar datos de forma permanente",
+            "Para mejorar el rendimiento de lectura"
+        ],
+        correct: 3,
+        justification: "El uso de un búfer (memoria intermedia) reduce drásticamente el número de accesos físicos al disco duro, leyendo grandes bloques de datos de una vez en lugar de carácter a carácter, lo que dispara la velocidad."
     }
             
         ];
@@ -1711,6 +1735,7 @@
     </script>
 </body>
 </html>
+
 
 
 
