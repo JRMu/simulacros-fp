@@ -1369,7 +1369,56 @@
         ],
         correct: 3,
         justification: "InputStream es la clase base para leer bytes. Reader es para caracteres, OutputStream para escribir bytes y Writer para escribir caracteres."
+    },
+    {
+        id: 105,
+        question: "RA6 - ¿Qué fichero describe dependencias de un componente Java?",
+        options: [
+            "pom.xml",
+            "main.class",
+            "web.xml",
+            "manifest.mf"
+        ],
+        correct: 3,
+        justification: "En el contexto de componentes y JARs, el MANIFEST.MF contiene información vital sobre el paquete y las clases relacionadas."
+    },
+    {
+        id: 106,
+        question: "RA5 - ¿Qué problema tiene almacenar XML como BLOB?",
+        options: [
+            "Impide validación",
+            "Dificulta consultas internas",
+            "Pierde el documento",
+            "Elimina jerarquía"
+        ],
+        correct: 1,
+        justification: "Al guardarlo como binario (BLOB), la base de datos no puede 'entrar' fácilmente en el XML para buscar por nodos o etiquetas específicas."
+    },
+    {
+        id: 107,
+        question: "RA2 - ¿Qué ocurre si no se cierra una conexión JDBC?",
+        options: [
+            "No hay consecuencias",
+            "Se pierde la base de datos",
+            "Se consumen recursos innecesariamente",
+            "Se cierra automáticamente siempre"
+        ],
+        correct: 2,
+        justification: "Dejar conexiones abiertas agota los recursos del servidor y puede bloquear la aplicación (Connection Leaks)."
+    },
+    {
+        id: 108,
+        question: "RA3 - ¿Qué archivo centraliza la configuración de Hibernate?",
+        options: [
+            "hibernate.cfg.xml",
+            "web.xml",
+            "pom.xml",
+            "build.gradle"
+        ],
+        correct: 0,
+        justification: "Es el fichero XML estándar para configurar la conexión, el driver y el dialecto en Hibernate nativo."
     }
+            
         ];
 
         // State variables
@@ -1554,5 +1603,6 @@
     </script>
 </body>
 </html>
+
 
 
