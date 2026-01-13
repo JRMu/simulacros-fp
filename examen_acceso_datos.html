@@ -50,7 +50,7 @@
             <div id="start-screen" class="text-center space-y-6">
                 <div class="text-6xl mb-4">📚</div>
                 <h2 class="text-xl font-semibold text-gray-800">Bienvenido al simulacro</h2>
-                <p class="text-gray-600">Este cuestionario contiene <strong>114 preguntas</strong> extraídas de tu documentación.</p>
+                <p class="text-gray-600">Este cuestionario contiene <strong>115 preguntas</strong> extraídas de tu documentación.</p>
                 <div class="bg-blue-50 p-4 rounded-lg text-left text-sm text-blue-800 inline-block max-w-md mx-auto">
                     <ul class="list-disc pl-5 space-y-1">
                         <li>Modo interactivo: Feedback inmediato.</li>
@@ -65,7 +65,7 @@
 
             <div id="quiz-screen" class="hidden space-y-6">
                 <div class="flex justify-between items-center text-sm font-medium text-gray-500 mb-2">
-                    <span id="question-counter">Pregunta 1 de 114</span>
+                    <span id="question-counter">Pregunta 1 de 115</span>
                     <span id="score-counter" class="text-indigo-600">Aciertos: 0</span>
                 </div>
 
@@ -1489,6 +1489,18 @@
         ],
         correct: 3,
         justification: "Las propiedades indexadas son aquellas que representan un array o colección de valores, permitiendo acceder a ellos mediante un índice numérico."
+    },
+    {
+        id: 115,
+        question: "RA3 - ¿Qué alternativa ofrece un ORM frente al uso directo de JDBC?",
+        options: [
+            "Mayor dependencia del SGBD",
+            "Abstracción de la persistencia",
+            "Uso exclusivo de SQL nativo",
+            "Eliminación de entidades"
+        ],
+        correct: 1,
+        justification: "El ORM (como Hibernate) permite trabajar directamente con objetos Java, abstrayendo (ocultando) la complejidad de las sentencias SQL y la conexión de bajo nivel propia de JDBC."
     }
             
         ];
@@ -1675,6 +1687,7 @@
     </script>
 </body>
 </html>
+
 
 
 
