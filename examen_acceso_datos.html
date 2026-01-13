@@ -1333,7 +1333,43 @@
                 ],
                 correct: 2,
                 justification: "FileNotFoundException es una subclase de IOException. Al ser una 'checked exception', Java te obliga a rodearla con try-catch o lanzarla con throws."
-            }
+            },
+            {
+        id: 102,
+        question: "En la clase java.io.File, ¿qué método programa el borrado del archivo para el momento en que se detenga la Máquina Virtual de Java (JVM)?",
+        options: [
+            "delete()",
+            "remove()",
+            "deleteOnExit()",
+            "destroy()"
+        ],
+        correct: 2,
+        justification: "A diferencia de delete() que borra al instante, deleteOnExit() marca el archivo para ser borrado automáticamente cuando el programa termina."
+    },
+    {
+        id: 103,
+        question: "En JPA/Hibernate, ¿qué anotación es obligatoria poner sobre el atributo que actúa como Clave Primaria (Primary Key)?",
+        options: [
+            "@Key",
+            "@Id",
+            "@Primary",
+            "@Identifier"
+        ],
+        correct: 1,
+        justification: "La anotación @Id (javax.persistence.Id) indica qué campo de la clase Java se corresponde con la clave primaria de la tabla."
+    },
+    {
+        id: 104,
+        question: "¿Cuál es la superclase abstracta base para leer flujos de datos binarios (bytes) en Java?",
+        options: [
+            "Reader",
+            "Writer",
+            "OutputStream",
+            "InputStream"
+        ],
+        correct: 3,
+        justification: "InputStream es la clase base para leer bytes. Reader es para caracteres, OutputStream para escribir bytes y Writer para escribir caracteres."
+    }
         ];
 
         // State variables
@@ -1518,3 +1554,4 @@
     </script>
 </body>
 </html>
+
