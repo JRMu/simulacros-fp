@@ -50,7 +50,7 @@
             <div id="start-screen" class="text-center space-y-6">
                 <div class="text-6xl mb-4">📚</div>
                 <h2 class="text-xl font-semibold text-gray-800">Bienvenido al simulacro</h2>
-                <p class="text-gray-600">Este cuestionario contiene <strong>108 preguntas</strong> extraídas de tu documentación.</p>
+                <p class="text-gray-600">Este cuestionario contiene <strong>111 preguntas</strong> extraídas de tu documentación.</p>
                 <div class="bg-blue-50 p-4 rounded-lg text-left text-sm text-blue-800 inline-block max-w-md mx-auto">
                     <ul class="list-disc pl-5 space-y-1">
                         <li>Modo interactivo: Feedback inmediato.</li>
@@ -1417,7 +1417,43 @@
         ],
         correct: 0,
         justification: "Es el fichero XML estándar para configurar la conexión, el driver y el dialecto en Hibernate nativo."
-    }
+    },
+    {
+        id: 109,
+        question: "RA1 - ¿Qué método de RandomAccessFile devuelve la posición actual del puntero?",
+        options: [
+            "position()",
+            "seek()",
+            "read()",
+            "getFilePointer()"
+        ],
+        correct: 3,
+        justification: "Mientras que seek() sirve para MOVER el puntero, getFilePointer() nos dice en qué byte exacto estamos situados ahora mismo."
+    },
+    {
+        id: 110,
+        question: "RA5 - ¿Qué ventaja principal aporta conservar el formato XML original (en una Base de Datos Nativa o columna XML) frente a descomponerlo?",
+        options: [
+            "Reduce el tamaño del archivo.",
+            "Elimina la necesidad de validación.",
+            "Mantiene la estructura jerárquica y el orden del documento original.",
+            "Mejora la concurrencia de usuarios."
+        ],
+        correct: 2,
+        justification: "La gran ventaja de lo nativo es que no se pierde información: la jerarquía (padres/hijos) y el orden de los elementos se mantienen intactos, tal cual se crearon."
+    },
+    {
+        id: 111,
+        question: "RA3 - ¿Qué ventaja aporta el uso de Anotaciones (Annotations) en el mapeo ORM frente a los archivos XML?",
+        options: [
+            "Aumenta el código SQL generado.",
+            "Obliga a usar XML para todo.",
+            "Reduce la configuración externa, ya que la meta-información va dentro del propio código Java.",
+            "Impide migraciones futuras."
+        ],
+        correct: 2,
+        justification: "Al usar anotaciones (como @Entity, @Id), no necesitas mantener ficheros .xml gigantescos paralelos al código; todo queda centralizado en la propia clase."
+    }        
             
         ];
 
@@ -1603,6 +1639,7 @@
     </script>
 </body>
 </html>
+
 
 
 
