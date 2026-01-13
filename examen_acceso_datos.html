@@ -1330,6 +1330,18 @@
                 correct: 2,
                 justification: "Hibernate es el estándar de facto en Java. Django es de Python, y Yii/Laravel son de PHP."
             }
+            {
+                id: 101, // O el número que toque
+                question: "En la jerarquía de excepciones de Java, ¿de qué clase hereda directamente FileNotFoundException?",
+                options: [
+                    "Hereda de RuntimeException (es una excepción no gestionada).",
+                    "Hereda directamente de la clase Exception.",
+                    "Hereda de IOException, por lo que es una excepción gestionada (checked) que debemos capturar.",
+                    "Hereda de Error, ya que es un fallo grave del sistema."
+                ],
+                correct: 2,
+                justification: "FileNotFoundException es una subclase de IOException. Al ser una 'checked exception', Java te obliga a rodearla con try-catch o lanzarla con throws."
+            }
         ];
 
 // State variables
@@ -1517,6 +1529,7 @@
 </body>
 
 </html>
+
 
 
 
