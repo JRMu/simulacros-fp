@@ -50,7 +50,7 @@
             <div id="start-screen" class="text-center space-y-6">
                 <div class="text-6xl mb-4">📚</div>
                 <h2 class="text-xl font-semibold text-gray-800">Bienvenido al simulacro</h2>
-                <p class="text-gray-600">Este cuestionario contiene <strong>111 preguntas</strong> extraídas de tu documentación.</p>
+                <p class="text-gray-600">Este cuestionario contiene <strong>114 preguntas</strong> extraídas de tu documentación.</p>
                 <div class="bg-blue-50 p-4 rounded-lg text-left text-sm text-blue-800 inline-block max-w-md mx-auto">
                     <ul class="list-disc pl-5 space-y-1">
                         <li>Modo interactivo: Feedback inmediato.</li>
@@ -65,7 +65,7 @@
 
             <div id="quiz-screen" class="hidden space-y-6">
                 <div class="flex justify-between items-center text-sm font-medium text-gray-500 mb-2">
-                    <span id="question-counter">Pregunta 1 de 101</span>
+                    <span id="question-counter">Pregunta 1 de 114</span>
                     <span id="score-counter" class="text-indigo-600">Aciertos: 0</span>
                 </div>
 
@@ -1453,7 +1453,43 @@
         ],
         correct: 2,
         justification: "Al usar anotaciones (como @Entity, @Id), no necesitas mantener ficheros .xml gigantescos paralelos al código; todo queda centralizado en la propia clase."
-    }        
+    },
+        {
+        id: 112,
+        question: "RA2 - ¿Qué propiedad JDBC controla la gestión automática de transacciones?",
+        options: [
+            "isolation",
+            "readOnly",
+            "timeout",
+            "autoCommit"
+        ],
+        correct: 3,
+        justification: "La propiedad autoCommit determina si cada sentencia SQL se trata como una transacción individual (true) o si se agrupan manualmente (false)."
+    },
+    {
+        id: 113,
+        question: "RA6 - ¿Qué interfaz JPA gestiona el ciclo de vida de entidades?",
+        options: [
+            "EntityTransaction",
+            "EntityManager",
+            "EntityFactory",
+            "PersistenceUnit"
+        ],
+        correct: 1,
+        justification: "EntityManager es la interfaz principal que gestiona la persistencia y el ciclo de vida (persist, merge, remove) de las entidades."
+    },
+    {
+        id: 114,
+        question: "RA6 - ¿Qué tipo de propiedad JavaBean representa una lista?",
+        options: [
+            "Restringida",
+            "Ligada",
+            "Simple",
+            "Indexada"
+        ],
+        correct: 3,
+        justification: "Las propiedades indexadas son aquellas que representan un array o colección de valores, permitiendo acceder a ellos mediante un índice numérico."
+    }
             
         ];
 
@@ -1639,6 +1675,7 @@
     </script>
 </body>
 </html>
+
 
 
 
