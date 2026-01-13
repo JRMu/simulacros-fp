@@ -50,7 +50,7 @@
             <div id="start-screen" class="text-center space-y-6">
                 <div class="text-6xl mb-4">📚</div>
                 <h2 class="text-xl font-semibold text-gray-800">Bienvenido al simulacro</h2>
-                <p class="text-gray-600">Este cuestionario contiene <strong>115 preguntas</strong> extraídas de tu documentación.</p>
+                <p class="text-gray-600">Este cuestionario contiene <strong>117 preguntas</strong> extraídas de tu documentación.</p>
                 <div class="bg-blue-50 p-4 rounded-lg text-left text-sm text-blue-800 inline-block max-w-md mx-auto">
                     <ul class="list-disc pl-5 space-y-1">
                         <li>Modo interactivo: Feedback inmediato.</li>
@@ -65,7 +65,7 @@
 
             <div id="quiz-screen" class="hidden space-y-6">
                 <div class="flex justify-between items-center text-sm font-medium text-gray-500 mb-2">
-                    <span id="question-counter">Pregunta 1 de 115</span>
+                    <span id="question-counter">Pregunta 1 de 117</span>
                     <span id="score-counter" class="text-indigo-600">Aciertos: 0</span>
                 </div>
 
@@ -1501,6 +1501,30 @@
         ],
         correct: 1,
         justification: "El ORM (como Hibernate) permite trabajar directamente con objetos Java, abstrayendo (ocultando) la complejidad de las sentencias SQL y la conexión de bajo nivel propia de JDBC."
+    },
+{
+        id: 116,
+        question: "RA3 - ¿Qué problema soluciona principalmente un ORM?",
+        options: [
+            "La concurrencia de hilos",
+            "El desfase objeto-relacional",
+            "La serialización binaria",
+            "La validación XML"
+        ],
+        correct: 1,
+        justification: "El ORM actúa como puente para resolver la incompatibilidad (impedance mismatch) entre el modelo de objetos de Java y el modelo relacional (tablas) de la base de datos."
+    },
+    {
+        id: 117,
+        question: "RA1 - ¿Qué ventaja tiene el uso de streams frente a cargar un fichero completo en memoria?",
+        options: [
+            "Mayor velocidad de CPU",
+            "Acceso directo a cualquier dato",
+            "Menor consumo de memoria",
+            "Eliminación de excepciones"
+        ],
+        correct: 2,
+        justification: "Al leer el archivo como un flujo (stream) secuencial, no necesitas cargar todo el contenido en la RAM a la vez, lo cual es crítico para archivos grandes."
     }
             
         ];
@@ -1687,6 +1711,7 @@
     </script>
 </body>
 </html>
+
 
 
 
