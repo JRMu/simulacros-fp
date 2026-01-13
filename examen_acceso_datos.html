@@ -50,7 +50,7 @@
             <div id="start-screen" class="text-center space-y-6">
                 <div class="text-6xl mb-4">📚</div>
                 <h2 class="text-xl font-semibold text-gray-800">Bienvenido al simulacro</h2>
-                <p class="text-gray-600">Este cuestionario contiene <strong>119 preguntas</strong> extraídas de tu documentación.</p>
+                <p class="text-gray-600">Este cuestionario contiene <strong>121 preguntas</strong> extraídas de tu documentación.</p>
                 <div class="bg-blue-50 p-4 rounded-lg text-left text-sm text-blue-800 inline-block max-w-md mx-auto">
                     <ul class="list-disc pl-5 space-y-1">
                         <li>Modo interactivo: Feedback inmediato.</li>
@@ -65,7 +65,7 @@
 
             <div id="quiz-screen" class="hidden space-y-6">
                 <div class="flex justify-between items-center text-sm font-medium text-gray-500 mb-2">
-                    <span id="question-counter">Pregunta 1 de 119</span>
+                    <span id="question-counter">Pregunta 1 de 121</span>
                     <span id="score-counter" class="text-indigo-600">Aciertos: 0</span>
                 </div>
 
@@ -1549,6 +1549,30 @@
         ],
         correct: 3,
         justification: "El uso de un búfer (memoria intermedia) reduce drásticamente el número de accesos físicos al disco duro, leyendo grandes bloques de datos de una vez en lugar de carácter a carácter, lo que dispara la velocidad."
+    },
+    {
+        id: 120,
+        question: "RA6 - ¿Cuál de los siguientes NO es un tipo válido de Enterprise JavaBean (EJB) según la arquitectura estándar?",
+        options: [
+            "Bean de Sesión (Session Bean)",
+            "Bean de Entidad (Entity Bean)",
+            "Message Driven Bean (MDB)",
+            "Bean de Interfaz"
+        ],
+        correct: 3,
+        justification: "Los tipos estándar son Sesión, Entidad y Mensajería. 'Bean de Interfaz' es un término inventado que no existe en la especificación EJB."
+    },
+    {
+        id: 121,
+        question: "RA3 - ¿Cómo se denomina el estado de un objeto que tiene una representación en la base de datos y está siendo gestionado por la sesión actual?",
+        options: [
+            "Transient (Transitorio)",
+            "Persistent (Persistente)",
+            "Detached (Desacoplado)",
+            "Removed (Eliminado)"
+        ],
+        correct: 1,
+        justification: "El estado 'Persistent' (o Managed en JPA) indica que el objeto existe en la base de datos y cualquier cambio en él se sincronizará automáticamente."
     }
             
         ];
