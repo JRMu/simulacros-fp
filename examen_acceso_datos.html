@@ -35,10 +35,8 @@
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
 
-    <!-- Main Container -->
     <div class="w-full max-w-3xl bg-white rounded-2xl shadow-xl overflow-hidden fade-in" id="app-container">
         
-        <!-- Header -->
         <div class="bg-indigo-600 p-6 text-white text-center relative">
             <h1 class="text-2xl font-bold">Examen Acceso a Datos</h1>
             <p class="text-indigo-200 mt-2">Bloques: Ficheros, XML, JDBC, Componentes y JPA</p>
@@ -47,18 +45,16 @@
             </div>
         </div>
 
-        <!-- Content Area -->
         <div class="p-6 md:p-8">
             
-            <!-- Start Screen -->
             <div id="start-screen" class="text-center space-y-6">
                 <div class="text-6xl mb-4">📚</div>
                 <h2 class="text-xl font-semibold text-gray-800">Bienvenido al simulacro</h2>
-                <p class="text-gray-600">Este cuestionario contiene <strong>95 preguntas</strong> extraídas de tu documentación.</p>
+                <p class="text-gray-600">Este cuestionario contiene <strong>101 preguntas</strong> extraídas de tu documentación.</p>
                 <div class="bg-blue-50 p-4 rounded-lg text-left text-sm text-blue-800 inline-block max-w-md mx-auto">
                     <ul class="list-disc pl-5 space-y-1">
                         <li>Modo interactivo: Feedback inmediato.</li>
-                        <li><strong>Modo Aleatorio:</strong> Las preguntas salen en orden diferente cada vez.</li>
+                        <li><strong>Modo Aleatorio:</strong> Las preguntas y respuestas salen en orden diferente cada vez.</li>
                         <li>Al final verás tu puntuación total.</li>
                     </ul>
                 </div>
@@ -67,10 +63,9 @@
                 </button>
             </div>
 
-            <!-- Quiz Screen -->
             <div id="quiz-screen" class="hidden space-y-6">
                 <div class="flex justify-between items-center text-sm font-medium text-gray-500 mb-2">
-                    <span id="question-counter">Pregunta 1 de 95</span>
+                    <span id="question-counter">Pregunta 1 de 101</span>
                     <span id="score-counter" class="text-indigo-600">Aciertos: 0</span>
                 </div>
 
@@ -79,10 +74,8 @@
                 </div>
 
                 <div id="options-container" class="grid gap-3">
-                    <!-- Options will be injected here -->
-                </div>
+                    </div>
 
-                <!-- Feedback Section -->
                 <div id="feedback-container" class="hidden mt-4 p-4 rounded-lg border-l-4">
                     <h3 id="feedback-title" class="font-bold mb-1"></h3>
                     <p id="feedback-text" class="text-sm"></p>
@@ -95,7 +88,6 @@
                 </div>
             </div>
 
-            <!-- Results Screen -->
             <div id="results-screen" class="hidden text-center space-y-8">
                 <div class="text-6xl" id="result-icon">🏆</div>
                 <div>
@@ -1331,7 +1323,7 @@
                 justification: "Hibernate es el estándar de facto en Java. Django es de Python, y Yii/Laravel son de PHP."
             },
             {
-                id: 101, // O el número que toque
+                id: 101, 
                 question: "En la jerarquía de excepciones de Java, ¿de qué clase hereda directamente FileNotFoundException?",
                 options: [
                     "Hereda de RuntimeException (es una excepción no gestionada).",
@@ -1344,7 +1336,7 @@
             }
         ];
 
-// State variables
+        // State variables
         let currentQuestionIndex = 0;
         let score = 0;
         let errors = 0;
@@ -1410,13 +1402,11 @@
             feedbackContainer.classList.add('hidden');
             nextBtn.classList.add('hidden');
             
-            // --- AQUÍ ESTÁ EL CAMBIO: BARAJAR RESPUESTAS ---
-            // Creamos objetos temporales para no perder el índice real de la respuesta correcta
+            // --- BARAJAR RESPUESTAS ---
             let optionsWithIndex = currentQuestion.options.map((opt, index) => {
                 return { text: opt, originalIndex: index };
             });
             
-            // Barajamos las opciones
             shuffleArray(optionsWithIndex);
 
             // Creamos los botones
@@ -1424,10 +1414,10 @@
                 const btn = document.createElement('button');
                 btn.className = "option-btn w-full text-left p-4 rounded-lg border-2 border-gray-200 hover:border-indigo-400 bg-white text-gray-700 font-medium transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50";
                 
-                // Mostramos A, B, C visualmente, pero el texto viene barajado
+                // Visualmente A, B, C, D
                 btn.innerHTML = `<span class="inline-block w-8 h-8 text-center leading-8 bg-gray-100 rounded-full text-xs font-bold mr-3 text-gray-600">${String.fromCharCode(65 + visualIndex)}</span> ${optObj.text}`;
                 
-                // Guardamos cuál era su índice original para saber si es la correcta luego
+                // Guardamos el índice original
                 btn.dataset.originalIndex = optObj.originalIndex;
                 
                 btn.onclick = () => selectAnswer(optObj.originalIndex, btn);
@@ -1460,7 +1450,7 @@
                 selectedBtn.classList.remove('border-gray-200', 'bg-white');
                 selectedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-800');
                 
-                // Buscar visualmente cuál era el botón correcto (porque ahora están desordenados)
+                // Buscar visualmente cuál era el botón correcto
                 for (let btn of buttons) {
                     if (parseInt(btn.dataset.originalIndex) === correctIndex) {
                         btn.classList.remove('border-gray-200', 'bg-white');
@@ -1527,11 +1517,4 @@
         }
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
