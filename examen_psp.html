@@ -47,7 +47,7 @@
                 </p>
                 <div class="flex flex-col gap-2 max-w-xs mx-auto">
                     <div class="flex items-center gap-2 text-sm text-slate-500 justify-center">
-                        <i class="fas fa-random"></i> 76 Preguntas únicas
+                        <i class="fas fa-random"></i> 90 Preguntas únicas
                     </div>
                     <div class="flex items-center gap-2 text-sm text-slate-500 justify-center">
                         <i class="fas fa-shuffle"></i> Orden y respuestas aleatorias
@@ -688,6 +688,72 @@
         options: ["Una dirección IP", "Un mecanismo de comunicación entre aplicaciones en red", "Un servicio del sistema", "Un protocolo de transporte"],
         correct: 1, // B
         justification: "Punto final de una conexión que permite a las aplicaciones intercambiar datos."
+    },
+            {
+        q: "RA5 - ¿Qué objetivo tiene la programación segura?",
+        options: ["Aumentar el tamaño del código", "Eliminar la reutilización", "Proteger datos y aplicaciones", "Evitar el uso de librerías"],
+        correct: 2, // C
+        justification: "El objetivo fundamental es garantizar la confidencialidad, integridad y disponibilidad, protegiendo los datos y la lógica de la aplicación."
+    },
+    {
+        q: "RA5 - ¿Qué criptografía utiliza una sola clave?",
+        options: ["Clave simétrica", "Hash", "Clave pública", "Biométrica"],
+        correct: 0, // A
+        justification: "La criptografía simétrica utiliza la misma clave tanto para cifrar como para descifrar (clave compartida)."
+    },
+    {
+        q: "RA4 - ¿Qué componente documenta funciones accesibles de un servicio?",
+        options: ["Balanceador", "Switch", "API", "Servidor dedicado"],
+        correct: 2, // C
+        justification: "Una API (Interfaz de Programación de Aplicaciones) define y documenta cómo interactuar con el servicio."
+    },
+    {
+        q: "RA5 - ¿Qué fase concede acceso a recursos tras verificar identidad?",
+        options: ["Identificación", "Registro", "Autenticación", "Autorización"],
+        correct: 3, // D
+        justification: "Una vez autenticado (sabemos quién eres), la Autorización es la fase que determina qué puedes hacer o tocar."
+    },
+    {
+        q: "RA1 - ¿Qué herramienta permite monitorizar procesos en ejecución?",
+        options: ["Editor de texto", "IDE", "Administrador de tareas", "Compilador"],
+        correct: 2, // C
+        justification: "El Administrador de tareas (o 'ps' / 'top' en Linux) permite visualizar y gestionar los procesos activos."
+    },
+    {
+        q: "RA2 - ¿Qué estado indica que un hilo espera un recurso o evento?",
+        options: ["Listo", "Bloqueado", "Terminado", "Ejecución"],
+        correct: 1, // B
+        justification: "El estado 'Bloqueado' (Blocked/Waiting) ocurre cuando el hilo se detiene esperando algo (I/O, un monitor, etc.) y libera la CPU."
+    },
+    {
+        q: "RA1 - ¿Qué caracteriza a la programación paralela?",
+        options: ["Ejecución secuencial optimizada", "Ejecución simultánea en varios procesadores o núcleos", "Uso exclusivo de red", "Ausencia de comunicación entre tareas"],
+        correct: 1, // B
+        justification: "La clave de la programación paralela es dividir el trabajo para usar varios núcleos a la vez (simultaneidad)."
+    },
+    {
+        q: "RA5 - ¿Qué tipo de información debe cifrarse siempre?",
+        options: ["Código fuente", "Archivos temporales", "Datos públicos", "Información sensible"],
+        correct: 3, // D
+        justification: "Toda información confidencial o sensible (contraseñas, datos personales, bancarios) debe protegerse mediante cifrado."
+    },
+            {
+        q: "RA2 - ¿Qué técnica evita condiciones de carrera entre hilos?",
+        options: ["Planificación", "Serialización", "Sincronización", "Compilación"],
+        correct: 2, // C
+        justification: "La sincronización (con synchronized) coordina el acceso a recursos compartidos para evitar inconsistencias (condiciones de carrera)."
+    },
+    {
+        q: "RA2 - ¿Qué ocurre cuando un hilo modifica un dato compartido?",
+        options: ["El cambio se pierde", "El hilo se bloquea", "El dato se copia automáticamente", "Los demás hilos pueden ver el cambio"],
+        correct: 3, // D
+        justification: "Al compartir el mismo espacio de memoria del proceso, cualquier cambio en una variable común es visible inmediatamente para los demás hilos."
+    },
+    {
+        q: "RA3 - ¿Para qué se usan hilos en servidores de red?",
+        options: ["Reducir la seguridad", "Atender múltiples clientes simultáneamente", "Eliminar la planificación", "Evitar el uso de sockets"],
+        correct: 1, // B
+        justification: "El uso de hilos permite crear servidores concurrentes que no dejan esperando a un cliente mientras atienden a otro."
     }
             
         ];
@@ -880,5 +946,6 @@
 </body>
 
 </html>
+
 
 
