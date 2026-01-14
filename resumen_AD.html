@@ -165,25 +165,36 @@
         <div class="bg-white p-5 rounded-lg shadow border-purple-500 card">
             <h2 class="text-xl font-bold text-purple-600 mb-3">🧩 6. Componentes y EJB</h2>
             <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Conceptos:</strong>
+                <li><strong>Empaquetado (JAR):</strong> Es un ZIP con las clases compiladas.</li>
+                <li class="bg-purple-50 p-2 rounded border border-purple-200">
+                    <strong>¡Diferencia de Ficheros!:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Encapsulación:</strong> Proteger datos (Interfaz pública).</li>
-                        <li><strong>Introspección:</strong> Analizarse en ejecución.</li>
+                        <li><strong><code class="code-tag">manifest.mf</code>:</strong> (En META-INF). Describe el componente y sus librerías requeridas <strong>dentro del JAR</strong>.</li>
+                        <li><strong><code class="code-tag">pom.xml</code>:</strong> Fichero de <strong>Maven</strong> para gestionar dependencias del proyecto.</li>
                     </ul>
                 </li>
+                
+                <li><strong>Conceptos Clave:</strong>
+                    <ul class="list-disc ml-5 mt-1">
+                        <li><strong>Encapsulación:</strong> Ocultar implementación (Interfaz pública).</li>
+                        <li><strong>Introspección:</strong> Analizarse en tiempo de ejecución.</li>
+                    </ul>
+                </li>
+                
                 <li><strong>Propiedades Bean:</strong>
                     <ul class="list-disc ml-5 mt-1">
                         <li><strong>Indexada:</strong> Lista/Array.</li>
-                        <li><strong>Ligada:</strong> Notifica cambios.</li>
-                        <li><strong>Restringida:</strong> Pide permiso (vetable).</li>
+                        <li><strong>Ligada:</strong> Notifica cambios (PropertyChange).</li>
+                        <li><strong>Restringida:</strong> Pide permiso (VetoableChange).</li>
                     </ul>
                 </li>
+                
                 <li><strong>Tipos EJB:</strong>
                     <ul class="list-disc ml-5 mt-1">
                         <li><strong>Stateless:</strong> Sin memoria (Rápido).</li>
                         <li><strong>Stateful:</strong> Con memoria (Carrito).</li>
                         <li><strong>MDB:</strong> Asíncrono (Mensajes).</li>
-                        <li><strong>Singleton:</strong> Uno para todos.</li>
+                        <li><strong>Singleton:</strong> Instancia única.</li>
                     </ul>
                     <div class="truco">🚨 <strong>Trampa:</strong> "Bean de Interfaz" NO existe.</div>
                 </li>
@@ -209,3 +220,4 @@
 </body>
 
 </html>
+
