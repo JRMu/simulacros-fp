@@ -50,7 +50,7 @@
             <div id="start-screen" class="text-center space-y-6">
                 <div class="text-6xl mb-4">📚</div>
                 <h2 class="text-xl font-semibold text-gray-800">Bienvenido al simulacro</h2>
-                <p class="text-gray-600">Este cuestionario contiene <strong>121 preguntas</strong> extraídas de tu documentación.</p>
+                <p class="text-gray-600">Este cuestionario contiene <strong>122 preguntas</strong> extraídas de tu documentación.</p>
                 <div class="bg-blue-50 p-4 rounded-lg text-left text-sm text-blue-800 inline-block max-w-md mx-auto">
                     <ul class="list-disc pl-5 space-y-1">
                         <li>Modo interactivo: Feedback inmediato.</li>
@@ -65,7 +65,7 @@
 
             <div id="quiz-screen" class="hidden space-y-6">
                 <div class="flex justify-between items-center text-sm font-medium text-gray-500 mb-2">
-                    <span id="question-counter">Pregunta 1 de 121</span>
+                    <span id="question-counter">Pregunta 1 de 122</span>
                     <span id="score-counter" class="text-indigo-600">Aciertos: 0</span>
                 </div>
 
@@ -1573,6 +1573,18 @@
         ],
         correct: 1,
         justification: "El estado 'Persistent' (o Managed en JPA) indica que el objeto existe en la base de datos y cualquier cambio en él se sincronizará automáticamente."
+    },
+    {
+        id: 122,
+        question: "RA5 - Según el temario, ¿cómo se considera al lenguaje XQuery en relación con XPath 2.0?",
+        options: [
+            "Es una versión reducida de XPath.",
+            "Son lenguajes independientes sin relación.",
+            "Se considera una extensión de XPath 2.0.",
+            "XPath 2.0 es la evolución de XQuery."
+        ],
+        correct: 2,
+        justification: "El temario indica textualmente que XQuery 'está considerado como una extensión de XPath 2.0', añadiendo capacidades funcionales similares a SQL sobre la base de navegación de XPath."
     }
             
         ];
@@ -1759,6 +1771,7 @@
     </script>
 </body>
 </html>
+
 
 
 
