@@ -47,7 +47,7 @@
                 </p>
                 <div class="flex flex-col gap-2 max-w-xs mx-auto">
                     <div class="flex items-center gap-2 text-sm text-slate-500 justify-center">
-                        <i class="fas fa-random"></i> 59 Preguntas únicas
+                        <i class="fas fa-random"></i> 70 Preguntas únicas
                     </div>
                     <div class="flex items-center gap-2 text-sm text-slate-500 justify-center">
                         <i class="fas fa-shuffle"></i> Orden y respuestas aleatorias
@@ -473,7 +473,114 @@
                 options: ["Encapsulación.", "Fragmentación en paquetes.", "Handshake.", "Invocación remota."],
                 correct: 1, // B
                 justification: "La fragmentación o segmentación ocurre en el nivel de transporte para dividir el mensaje en unidades manejables."
-            }
+            },
+            {
+        q: "¿Qué método estático de la clase Cipher se utiliza para crear una instancia del objeto especificando el algoritmo de cifrado (ej: 'AES/ECB/PKCS5Padding')?",
+        options: ["Cipher.init()", "Cipher.getInstance()", "Cipher.create()", "Cipher.update()"],
+        correct: 1, // B
+        justification: "El método getInstance() es el encargado de instanciar la clase Cipher con la transformación solicitada para poder usarla."
+    },
+    {
+        q: "Según el protocolo TCP, ¿cuál es la secuencia correcta de mensajes para cerrar una conexión (Handshake de fin)?",
+        options: ["El cliente envía FIN y la conexión se corta inmediatamente.", "Secuencia de 4 pasos: FIN (Cliente) -> ACK (Servidor) -> FIN (Servidor) -> ACK (Cliente).", "El servidor envía RST al cliente para finalizar.", "El cliente envía un paquete STOP y espera confirmación."],
+        correct: 1, // B
+        justification: "El cierre ordenado requiere que ambos extremos confirmen el fin: primero uno envía FIN y recibe ACK, luego el otro envía su FIN y recibe su ACK."
+    },
+    {
+        q: "¿Qué protocolo de la capa de aplicación es el estándar utilizado para el envío y transferencia de correo electrónico?",
+        options: ["POP3.", "IMAP.", "SMTP.", "HTTP."],
+        correct: 2, // C
+        justification: "SMTP (Simple Mail Transfer Protocol) es el protocolo diseñado para el intercambio y envío de correos, mientras que POP3/IMAP son para la recepción."
+    },
+            {
+        q: "Según el solucionario del libro, ¿qué ventaja principal ofrece REST frente a SOAP en comunicaciones simultáneas?",
+        options: [
+            "REST utiliza un cifrado más potente que SOAP.",
+            "Los mensajes enviados definen todo lo necesario para procesarse, por lo que el servidor no necesita almacenar el estado (Stateless).",
+            "REST permite el uso de protocolos de transporte distintos a HTTP.",
+            "SOAP no permite el envío de datos binarios."
+        ],
+        correct: 1, // B
+        justification: "Texto literal del solucionario (5.5): 'Los mensajes definen todo lo necesario... por lo que ni cliente ni servidor deben almacenar el estado'."
+    },
+    {
+        q: "¿Qué método de la clase Thread devuelve la REFERENCIA al objeto hilo que se está ejecutando actualmente (no su ID)?",
+        options: [
+            "long getId()",
+            "static Thread currentThread()",
+            "void interrupt()",
+            "String getName()"
+        ],
+        correct: 1, // B
+        justification: "Cuidado con la trampa: getId() devuelve un número (long), pero currentThread() devuelve la referencia al propio objeto (Thread) en ejecución."
+    },
+    {
+        q: "¿Qué elementos identifican de forma COMPLETA y única una conexión de socket establecida entre dos máquinas?",
+        options: [
+            "Solo la IP y puerto del servidor.",
+            "La IP de origen y la IP de destino únicamente.",
+            "Protocolo, IP origen, Puerto origen, IP destino y Puerto destino.",
+            "El nombre de dominio y la dirección MAC."
+        ],
+        correct: 2, // C
+        justification: "Aunque un socket local es IP:Puerto, la conexión completa (el túnel) se identifica por los 5 valores: Protocolo + IP/Puerto de ambos extremos."
+    },
+    {
+        q: "En las condiciones de Bernstein, si la intersección entre el Conjunto de Lectura 1 (L1) y el Conjunto de Lectura 2 (L2) es vacía, ¿podemos asegurar que hay concurrencia?",
+        options: [
+            "Sí, porque no comparten datos leídos.",
+            "No, porque las condiciones de Bernstein solo comparan Escritura vs Lectura o Escritura vs Escritura.",
+            "Sí, es la condición principal de Bernstein.",
+            "No, porque siempre debe haber intersección en las lecturas."
+        ],
+        correct: 1, // B
+        justification: "Pregunta trampa: Dos procesos pueden leer lo mismo a la vez sin problemas. Bernstein se centra en conflictos de modificación (Escritura). Saber solo L1 y L2 no determina si hay conflicto de escritura."
+    },
+    {
+        q: "¿Cuál es la consecuencia funcional principal de NO utilizar hilos (servidor iterativo) en un servidor web?",
+        options: [
+            "El servidor consume más memoria RAM.",
+            "Solo se puede atender una única petición a la vez (de forma secuencial).",
+            "El código es mucho más complejo de mantener.",
+            "No se pueden utilizar sockets TCP."
+        ],
+        correct: 1, // B
+        justification: "Aunque los hilos ahorran recursos, la razón funcional de usarlos es que un servidor 'sin hilos' (iterativo) bloquea a todos los usuarios hasta que termina con el primero."
+    },
+            {
+        q: "¿Cuál de las siguientes NO es una de las tres condiciones de Bernstein necesarias para que dos procesos (P1 y P2) puedan ejecutarse concurrentemente?",
+        options: [
+            "L(P1) ∩ E(P2) = Ø (Intersección vacía entre Lectura de 1 y Escritura de 2).",
+            "E(P1) ∩ L(P2) = Ø (Intersección vacía entre Escritura de 1 y Lectura de 2).",
+            "E(P1) ∩ E(P2) = Ø (Intersección vacía entre Escrituras de ambos).",
+            "L(P1) ∩ L(P2) = Ø (Intersección vacía entre Lecturas de ambos)."
+        ],
+        correct: 3, // D
+        justification: "Bernstein NO prohíbe que dos procesos lean la misma variable a la vez. El conflicto solo existe si al menos uno de ellos escribe (modifica) el dato."
+    },
+    {
+        q: "En la notación de las condiciones de Bernstein, ¿qué representa habitualmente el conjunto E(Pi)?",
+        options: [
+            "El conjunto de variables de Entrada (Lectura).",
+            "El conjunto de Errores del proceso.",
+            "El conjunto de variables de Escritura (Salida/Modificación).",
+            "El conjunto de Estados del proceso."
+        ],
+        correct: 2, // C
+        justification: "E(Pi) o W(Pi) representa el conjunto de Escritura (Write/Output), es decir, las variables que el proceso va a alterar durante su ejecución."
+    },
+    {
+        q: "Si se cumplen las tres condiciones de Bernstein entre dos procesos, ¿qué propiedad importante se garantiza?",
+        options: [
+            "Que los procesos se ejecutarán más rápido.",
+            "El determinismo: el resultado final será el mismo independientemente de si se ejecutan secuencial o concurrentemente.",
+            "Que no habrá interbloqueos (Deadlocks) bajo ninguna circunstancia.",
+            "Que el sistema operativo asignará más prioridad a estos procesos."
+        ],
+        correct: 1, // B
+        justification: "El objetivo de Bernstein es garantizar que la ejecución paralela no corrompa los datos, asegurando que el resultado sea determinista (igual que si fueran uno detrás de otro)."
+    }
+            
         ];
 
         // --- APP LOGIC ---
@@ -662,4 +769,5 @@
         }
     </script>
 </body>
+
 </html>
