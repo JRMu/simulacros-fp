@@ -615,6 +615,79 @@
         options: ["Gestión de hilos", "Balanceo de carga", "Planificación de procesos", "Establecimiento de claves"],
         correct: 3, // D - Establecimiento de claves
         justification: "Los protocolos seguros definen cómo se generan, intercambian y establecen las claves para el cifrado."
+    },
+            // --- PREGUNTAS LITERALES DEL MODELO DE EXAMEN ---
+    {
+        q: "RA1 - ¿Qué estado indica que un proceso está usando la CPU?",
+        options: ["Bloqueado", "Ejecución", "Listo", "Terminado"],
+        correct: 1, // B
+        justification: "El proceso en ejecución es el que tiene el control del procesador en ese instante."
+    },
+    {
+        q: "RA4 - ¿Qué tecnología permite invocar métodos remotos en Java?",
+        options: ["RMI", "FTP", "DNS", "HTTP"],
+        correct: 0, // A
+        justification: "RMI (Remote Method Invocation) permite llamar a métodos de objetos en otras máquinas virtuales."
+    },
+    {
+        q: "RA3 - ¿Qué rol inicia normalmente la comunicación en red?",
+        options: ["Router", "Servidor", "Cliente", "Firewall"],
+        correct: 2, // C
+        justification: "El cliente es quien solicita el inicio de la conexión hacia el servidor."
+    },
+    {
+        q: "RA3 - ¿Qué clase Java permite aceptar conexiones entrantes?",
+        options: ["DatagramSocket", "URL", "ServerSocket", "Socket"],
+        correct: 2, // C
+        justification: "ServerSocket se utiliza en el lado servidor para esperar y aceptar peticiones."
+    },
+    {
+        q: "RA1 - ¿Qué objetivo tiene la planificación de procesos?",
+        options: ["Decidir qué proceso usa la CPU en cada momento", "Compilar los ejecutables", "Eliminar procesos inactivos", "Asignar memoria permanente a los procesos"],
+        correct: 0, // A
+        justification: "El planificador del SO decide los turnos de uso del procesador."
+    },
+    {
+        q: "RA5 - ¿Qué define un protocolo criptográfico?",
+        options: ["Un algoritmo aislado", "Un sistema operativo", "Un lenguaje de programación", "Reglas para comunicaciones seguras"],
+        correct: 3, // D
+        justification: "Conjunto de reglas que gobiernan el intercambio seguro de información."
+    },
+    {
+        q: "RA5 - ¿Qué práctica es segura al trabajar con archivos?",
+        options: ["Abrirlos en modo escritura siempre", "Ejecutarlos desde la app", "Controlar permisos de acceso", "Usar rutas absolutas públicas"],
+        correct: 2, // C
+        justification: "La restricción de permisos es básica para la seguridad de la información."
+    },
+    {
+        q: "RA2 - ¿Qué método pausa un hilo durante un tiempo determinado?",
+        options: ["stop()", "sleep()", "notify()", "wait()"],
+        correct: 1, // B
+        justification: "sleep() detiene la ejecución el tiempo especificado en milisegundos."
+    },
+    {
+        q: "RA4 - ¿Qué protocolo utiliza XML para servicios web?",
+        options: ["SOAP", "UDP", "RPC", "REST"],
+        correct: 0, // A
+        justification: "SOAP utiliza exclusivamente XML para el formato de sus mensajes."
+    },
+    {
+        q: "RA4 - ¿Qué caracteriza a un servidor concurrente?",
+        options: ["No usa hilos", "Atiende varias peticiones a la vez", "Usa solo UDP", "Atiende una petición cada vez"],
+        correct: 1, // B
+        justification: "Utiliza hilos o procesos hijos para gestionar múltiples clientes simultáneamente."
+    },
+    {
+        q: "RA1 - ¿Qué característica define a un servicio del sistema?",
+        options: ["Solo se inicia manualmente", "Se ejecuta en segundo plano sin interacción directa del usuario", "Finaliza tras una única ejecución", "Siempre requiere interfaz gráfica"],
+        correct: 1, // B
+        justification: "Los servicios (demonios) funcionan en background sin interfaz de usuario."
+    },
+    {
+        q: "RA3 - ¿Qué es un socket?",
+        options: ["Una dirección IP", "Un mecanismo de comunicación entre aplicaciones en red", "Un servicio del sistema", "Un protocolo de transporte"],
+        correct: 1, // B
+        justification: "Punto final de una conexión que permite a las aplicaciones intercambiar datos."
     }
             
         ];
@@ -807,4 +880,5 @@
 </body>
 
 </html>
+
 
