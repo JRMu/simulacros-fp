@@ -1370,17 +1370,17 @@
         correct: 3,
         justification: "InputStream es la clase base para leer bytes. Reader es para caracteres, OutputStream para escribir bytes y Writer para escribir caracteres."
     },
-    {
+{
         id: 105,
-        question: "RA6 - ¿Qué fichero describe dependencias de un componente Java?",
+        question: "RA2 - Para establecer una conexión, si necesitamos añadir librerías externas a nuestro proyecto (como el driver), ¿en qué fichero debemos definir las dependencias si estamos utilizando Maven?",
         options: [
-            "pom.xml",
-            "main.class",
+            "manifest.mf",
             "web.xml",
-            "manifest.mf"
+            "pom.xml",
+            "context.xml"
         ],
-        correct: 0,
-        justification: "El archivo pom.xml es el fichero de configuración de Maven y se utiliza para definir y gestionar las dependencias de un componente o proyecto Java, así como su versión, plugins y configuración de compilación."
+        correct: 2,
+        justification: "Maven utiliza el fichero 'pom.xml' (Project Object Model) para gestionar la configuración del proyecto, incluyendo la descarga automática de las dependencias (librerías) necesarias."
     },
     {
         id: 106,
@@ -1771,6 +1771,7 @@
     </script>
 </body>
 </html>
+
 
 
 
