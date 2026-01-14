@@ -47,7 +47,7 @@
                 </p>
                 <div class="flex flex-col gap-2 max-w-xs mx-auto">
                     <div class="flex items-center gap-2 text-sm text-slate-500 justify-center">
-                        <i class="fas fa-random"></i> 59 Preguntas únicas
+                        <i class="fas fa-random"></i> 99 Preguntas únicas
                     </div>
                     <div class="flex items-center gap-2 text-sm text-slate-500 justify-center">
                         <i class="fas fa-shuffle"></i> Orden y respuestas aleatorias
@@ -473,7 +473,289 @@
                 options: ["Encapsulación.", "Fragmentación en paquetes.", "Handshake.", "Invocación remota."],
                 correct: 1, // B
                 justification: "La fragmentación o segmentación ocurre en el nivel de transporte para dividir el mensaje en unidades manejables."
-            }
+            },
+            {
+        q: "¿Qué método estático de la clase Cipher se utiliza para crear una instancia del objeto especificando el algoritmo de cifrado (ej: 'AES/ECB/PKCS5Padding')?",
+        options: ["Cipher.init()", "Cipher.getInstance()", "Cipher.create()", "Cipher.update()"],
+        correct: 1, // B
+        justification: "El método getInstance() es el encargado de instanciar la clase Cipher con la transformación solicitada para poder usarla."
+    },
+    {
+        q: "Según el protocolo TCP, ¿cuál es la secuencia correcta de mensajes para cerrar una conexión (Handshake de fin)?",
+        options: ["El cliente envía FIN y la conexión se corta inmediatamente.", "Secuencia de 4 pasos: FIN (Cliente) -> ACK (Servidor) -> FIN (Servidor) -> ACK (Cliente).", "El servidor envía RST al cliente para finalizar.", "El cliente envía un paquete STOP y espera confirmación."],
+        correct: 1, // B
+        justification: "El cierre ordenado requiere que ambos extremos confirmen el fin: primero uno envía FIN y recibe ACK, luego el otro envía su FIN y recibe su ACK."
+    },
+    {
+        q: "¿Qué protocolo de la capa de aplicación es el estándar utilizado para el envío y transferencia de correo electrónico?",
+        options: ["POP3.", "IMAP.", "SMTP.", "HTTP."],
+        correct: 2, // C
+        justification: "SMTP (Simple Mail Transfer Protocol) es el protocolo diseñado para el intercambio y envío de correos, mientras que POP3/IMAP son para la recepción."
+    },
+            {
+        q: "Según el solucionario del libro, ¿qué ventaja principal ofrece REST frente a SOAP en comunicaciones simultáneas?",
+        options: [
+            "REST utiliza un cifrado más potente que SOAP.",
+            "Los mensajes enviados definen todo lo necesario para procesarse, por lo que el servidor no necesita almacenar el estado (Stateless).",
+            "REST permite el uso de protocolos de transporte distintos a HTTP.",
+            "SOAP no permite el envío de datos binarios."
+        ],
+        correct: 1, // B
+        justification: "Texto literal del solucionario (5.5): 'Los mensajes definen todo lo necesario... por lo que ni cliente ni servidor deben almacenar el estado'."
+    },
+    {
+        q: "¿Qué método de la clase Thread devuelve la REFERENCIA al objeto hilo que se está ejecutando actualmente (no su ID)?",
+        options: [
+            "long getId()",
+            "static Thread currentThread()",
+            "void interrupt()",
+            "String getName()"
+        ],
+        correct: 1, // B
+        justification: "Cuidado con la trampa: getId() devuelve un número (long), pero currentThread() devuelve la referencia al propio objeto (Thread) en ejecución."
+    },
+    {
+        q: "¿Qué elementos identifican de forma COMPLETA y única una conexión de socket establecida entre dos máquinas?",
+        options: [
+            "Solo la IP y puerto del servidor.",
+            "La IP de origen y la IP de destino únicamente.",
+            "Protocolo, IP origen, Puerto origen, IP destino y Puerto destino.",
+            "El nombre de dominio y la dirección MAC."
+        ],
+        correct: 2, // C
+        justification: "Aunque un socket local es IP:Puerto, la conexión completa (el túnel) se identifica por los 5 valores: Protocolo + IP/Puerto de ambos extremos."
+    },
+    {
+        q: "En las condiciones de Bernstein, si la intersección entre el Conjunto de Lectura 1 (L1) y el Conjunto de Lectura 2 (L2) es vacía, ¿podemos asegurar que hay concurrencia?",
+        options: [
+            "Sí, porque no comparten datos leídos.",
+            "No, porque las condiciones de Bernstein solo comparan Escritura vs Lectura o Escritura vs Escritura.",
+            "Sí, es la condición principal de Bernstein.",
+            "No, porque siempre debe haber intersección en las lecturas."
+        ],
+        correct: 1, // B
+        justification: "Pregunta trampa: Dos procesos pueden leer lo mismo a la vez sin problemas. Bernstein se centra en conflictos de modificación (Escritura). Saber solo L1 y L2 no determina si hay conflicto de escritura."
+    },
+    {
+        q: "¿Cuál es la consecuencia funcional principal de NO utilizar hilos (servidor iterativo) en un servidor web?",
+        options: [
+            "El servidor consume más memoria RAM.",
+            "Solo se puede atender una única petición a la vez (de forma secuencial).",
+            "El código es mucho más complejo de mantener.",
+            "No se pueden utilizar sockets TCP."
+        ],
+        correct: 1, // B
+        justification: "Aunque los hilos ahorran recursos, la razón funcional de usarlos es que un servidor 'sin hilos' (iterativo) bloquea a todos los usuarios hasta que termina con el primero."
+    },
+            {
+        q: "¿Cuál de las siguientes NO es una de las tres condiciones de Bernstein necesarias para que dos procesos (P1 y P2) puedan ejecutarse concurrentemente?",
+        options: [
+            "L(P1) ∩ E(P2) = Ø (Intersección vacía entre Lectura de 1 y Escritura de 2).",
+            "E(P1) ∩ L(P2) = Ø (Intersección vacía entre Escritura de 1 y Lectura de 2).",
+            "E(P1) ∩ E(P2) = Ø (Intersección vacía entre Escrituras de ambos).",
+            "L(P1) ∩ L(P2) = Ø (Intersección vacía entre Lecturas de ambos)."
+        ],
+        correct: 3, // D
+        justification: "Bernstein NO prohíbe que dos procesos lean la misma variable a la vez. El conflicto solo existe si al menos uno de ellos escribe (modifica) el dato."
+    },
+    {
+        q: "En la notación de las condiciones de Bernstein, ¿qué representa habitualmente el conjunto E(Pi)?",
+        options: [
+            "El conjunto de variables de Entrada (Lectura).",
+            "El conjunto de Errores del proceso.",
+            "El conjunto de variables de Escritura (Salida/Modificación).",
+            "El conjunto de Estados del proceso."
+        ],
+        correct: 2, // C
+        justification: "E(Pi) o W(Pi) representa el conjunto de Escritura (Write/Output), es decir, las variables que el proceso va a alterar durante su ejecución."
+    },
+    {
+        q: "Si se cumplen las tres condiciones de Bernstein entre dos procesos, ¿qué propiedad importante se garantiza?",
+        options: [
+            "Que los procesos se ejecutarán más rápido.",
+            "El determinismo: el resultado final será el mismo independientemente de si se ejecutan secuencial o concurrentemente.",
+            "Que no habrá interbloqueos (Deadlocks) bajo ninguna circunstancia.",
+            "Que el sistema operativo asignará más prioridad a estos procesos."
+        ],
+        correct: 1, // B
+        justification: "El objetivo de Bernstein es garantizar que la ejecución paralela no corrompa los datos, asegurando que el resultado sea determinista (igual que si fueran uno detrás de otro)."
+    },
+            {
+        q: "RA2 - ¿Qué estado tiene un hilo creado pero aún no ejecutado?",
+        options: ["Muerto", "Bloqueado", "Ejecución", "Listo"],
+        correct: 3, // D - Listo
+        justification: "Estado del ciclo de vida: el hilo ha sido creado y está a la espera de que el planificador le asigne la CPU."
+    },
+    {
+        q: "RA1 - ¿Qué es un proceso en un sistema operativo?",
+        options: ["Un hilo independiente del hardware", "Un programa en ejecución gestionado por el sistema operativo", "Un archivo ejecutable almacenado en disco", "Un servicio exclusivo del usuario"],
+        correct: 1, // B - Un programa en ejecución...
+        justification: "Definición literal: Un proceso es un programa dinámico en ejecución, a diferencia del archivo estático en disco."
+    },
+    {
+        q: "RA1 - ¿Qué elemento permite ejecutar tareas de forma concurrente dentro de un proceso?",
+        options: ["Servicios", "Ejecutables", "Hilos", "Drivers"],
+        correct: 2, // C - Hilos
+        justification: "Los hilos (threads) son las unidades que comparten los recursos del proceso padre para trabajar simultáneamente."
+    },
+    {
+        q: "RA5 - ¿Qué práctica mejora la seguridad del código?",
+        options: ["Evitar revisiones", "Validar los datos de entrada", "Usar solo bajo nivel", "Reutilizar código obsoleto"],
+        correct: 1, // B - Validar los datos...
+        justification: "La validación de inputs es fundamental para evitar inyecciones y errores no controlados."
+    },
+    {
+        q: "RA1 - ¿Qué ocurre si dos procesos acceden sin control a un recurso compartido?",
+        options: ["Los procesos se detienen", "El sistema siempre lo evita automáticamente", "Se crea un nuevo hilo", "Pueden producirse inconsistencias"],
+        correct: 3, // D - Pueden producirse inconsistencias
+        justification: "Sin mecanismos de sincronización (como semáforos o monitores), los datos pueden corromperse (condición de carrera)."
+    },
+    {
+        q: "RA5 - ¿Qué elemento es clave en protocolos criptográficos?",
+        options: ["Gestión de hilos", "Balanceo de carga", "Planificación de procesos", "Establecimiento de claves"],
+        correct: 3, // D - Establecimiento de claves
+        justification: "Los protocolos seguros definen cómo se generan, intercambian y establecen las claves para el cifrado."
+    },
+            // --- PREGUNTAS LITERALES DEL MODELO DE EXAMEN ---
+    {
+        q: "RA1 - ¿Qué estado indica que un proceso está usando la CPU?",
+        options: ["Bloqueado", "Ejecución", "Listo", "Terminado"],
+        correct: 1, // B
+        justification: "El proceso en ejecución es el que tiene el control del procesador en ese instante."
+    },
+    {
+        q: "RA4 - ¿Qué tecnología permite invocar métodos remotos en Java?",
+        options: ["RMI", "FTP", "DNS", "HTTP"],
+        correct: 0, // A
+        justification: "RMI (Remote Method Invocation) permite llamar a métodos de objetos en otras máquinas virtuales."
+    },
+    {
+        q: "RA3 - ¿Qué rol inicia normalmente la comunicación en red?",
+        options: ["Router", "Servidor", "Cliente", "Firewall"],
+        correct: 2, // C
+        justification: "El cliente es quien solicita el inicio de la conexión hacia el servidor."
+    },
+    {
+        q: "RA3 - ¿Qué clase Java permite aceptar conexiones entrantes?",
+        options: ["DatagramSocket", "URL", "ServerSocket", "Socket"],
+        correct: 2, // C
+        justification: "ServerSocket se utiliza en el lado servidor para esperar y aceptar peticiones."
+    },
+    {
+        q: "RA1 - ¿Qué objetivo tiene la planificación de procesos?",
+        options: ["Decidir qué proceso usa la CPU en cada momento", "Compilar los ejecutables", "Eliminar procesos inactivos", "Asignar memoria permanente a los procesos"],
+        correct: 0, // A
+        justification: "El planificador del SO decide los turnos de uso del procesador."
+    },
+    {
+        q: "RA5 - ¿Qué define un protocolo criptográfico?",
+        options: ["Un algoritmo aislado", "Un sistema operativo", "Un lenguaje de programación", "Reglas para comunicaciones seguras"],
+        correct: 3, // D
+        justification: "Conjunto de reglas que gobiernan el intercambio seguro de información."
+    },
+    {
+        q: "RA5 - ¿Qué práctica es segura al trabajar con archivos?",
+        options: ["Abrirlos en modo escritura siempre", "Ejecutarlos desde la app", "Controlar permisos de acceso", "Usar rutas absolutas públicas"],
+        correct: 2, // C
+        justification: "La restricción de permisos es básica para la seguridad de la información."
+    },
+    {
+        q: "RA2 - ¿Qué método pausa un hilo durante un tiempo determinado?",
+        options: ["stop()", "sleep()", "notify()", "wait()"],
+        correct: 1, // B
+        justification: "sleep() detiene la ejecución el tiempo especificado en milisegundos."
+    },
+    {
+        q: "RA4 - ¿Qué protocolo utiliza XML para servicios web?",
+        options: ["SOAP", "UDP", "RPC", "REST"],
+        correct: 0, // A
+        justification: "SOAP utiliza exclusivamente XML para el formato de sus mensajes."
+    },
+    {
+        q: "RA4 - ¿Qué caracteriza a un servidor concurrente?",
+        options: ["No usa hilos", "Atiende varias peticiones a la vez", "Usa solo UDP", "Atiende una petición cada vez"],
+        correct: 1, // B
+        justification: "Utiliza hilos o procesos hijos para gestionar múltiples clientes simultáneamente."
+    },
+    {
+        q: "RA1 - ¿Qué característica define a un servicio del sistema?",
+        options: ["Solo se inicia manualmente", "Se ejecuta en segundo plano sin interacción directa del usuario", "Finaliza tras una única ejecución", "Siempre requiere interfaz gráfica"],
+        correct: 1, // B
+        justification: "Los servicios (demonios) funcionan en background sin interfaz de usuario."
+    },
+    {
+        q: "RA3 - ¿Qué es un socket?",
+        options: ["Una dirección IP", "Un mecanismo de comunicación entre aplicaciones en red", "Un servicio del sistema", "Un protocolo de transporte"],
+        correct: 1, // B
+        justification: "Punto final de una conexión que permite a las aplicaciones intercambiar datos."
+    },
+            {
+        q: "RA5 - ¿Qué objetivo tiene la programación segura?",
+        options: ["Aumentar el tamaño del código", "Eliminar la reutilización", "Proteger datos y aplicaciones", "Evitar el uso de librerías"],
+        correct: 2, // C
+        justification: "El objetivo fundamental es garantizar la confidencialidad, integridad y disponibilidad, protegiendo los datos y la lógica de la aplicación."
+    },
+    {
+        q: "RA5 - ¿Qué criptografía utiliza una sola clave?",
+        options: ["Clave simétrica", "Hash", "Clave pública", "Biométrica"],
+        correct: 0, // A
+        justification: "La criptografía simétrica utiliza la misma clave tanto para cifrar como para descifrar (clave compartida)."
+    },
+    {
+        q: "RA4 - ¿Qué componente documenta funciones accesibles de un servicio?",
+        options: ["Balanceador", "Switch", "API", "Servidor dedicado"],
+        correct: 2, // C
+        justification: "Una API (Interfaz de Programación de Aplicaciones) define y documenta cómo interactuar con el servicio."
+    },
+    {
+        q: "RA5 - ¿Qué fase concede acceso a recursos tras verificar identidad?",
+        options: ["Identificación", "Registro", "Autenticación", "Autorización"],
+        correct: 3, // D
+        justification: "Una vez autenticado (sabemos quién eres), la Autorización es la fase que determina qué puedes hacer o tocar."
+    },
+    {
+        q: "RA1 - ¿Qué herramienta permite monitorizar procesos en ejecución?",
+        options: ["Editor de texto", "IDE", "Administrador de tareas", "Compilador"],
+        correct: 2, // C
+        justification: "El Administrador de tareas (o 'ps' / 'top' en Linux) permite visualizar y gestionar los procesos activos."
+    },
+    {
+        q: "RA2 - ¿Qué estado indica que un hilo espera un recurso o evento?",
+        options: ["Listo", "Bloqueado", "Terminado", "Ejecución"],
+        correct: 1, // B
+        justification: "El estado 'Bloqueado' (Blocked/Waiting) ocurre cuando el hilo se detiene esperando algo (I/O, un monitor, etc.) y libera la CPU."
+    },
+    {
+        q: "RA1 - ¿Qué caracteriza a la programación paralela?",
+        options: ["Ejecución secuencial optimizada", "Ejecución simultánea en varios procesadores o núcleos", "Uso exclusivo de red", "Ausencia de comunicación entre tareas"],
+        correct: 1, // B
+        justification: "La clave de la programación paralela es dividir el trabajo para usar varios núcleos a la vez (simultaneidad)."
+    },
+    {
+        q: "RA5 - ¿Qué tipo de información debe cifrarse siempre?",
+        options: ["Código fuente", "Archivos temporales", "Datos públicos", "Información sensible"],
+        correct: 3, // D
+        justification: "Toda información confidencial o sensible (contraseñas, datos personales, bancarios) debe protegerse mediante cifrado."
+    },
+            {
+        q: "RA2 - ¿Qué técnica evita condiciones de carrera entre hilos?",
+        options: ["Planificación", "Serialización", "Sincronización", "Compilación"],
+        correct: 2, // C
+        justification: "La sincronización (con synchronized) coordina el acceso a recursos compartidos para evitar inconsistencias (condiciones de carrera)."
+    },
+    {
+        q: "RA2 - ¿Qué ocurre cuando un hilo modifica un dato compartido?",
+        options: ["El cambio se pierde", "El hilo se bloquea", "El dato se copia automáticamente", "Los demás hilos pueden ver el cambio"],
+        correct: 3, // D
+        justification: "Al compartir el mismo espacio de memoria del proceso, cualquier cambio en una variable común es visible inmediatamente para los demás hilos."
+    },
+    {
+        q: "RA3 - ¿Para qué se usan hilos en servidores de red?",
+        options: ["Reducir la seguridad", "Atender múltiples clientes simultáneamente", "Eliminar la planificación", "Evitar el uso de sockets"],
+        correct: 1, // B
+        justification: "El uso de hilos permite crear servidores concurrentes que no dejan esperando a un cliente mientras atienden a otro."
+    }
+            
         ];
 
         // --- APP LOGIC ---
@@ -662,4 +944,9 @@
         }
     </script>
 </body>
+
 </html>
+
+
+
+
