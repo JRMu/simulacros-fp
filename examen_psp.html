@@ -47,7 +47,7 @@
                 </p>
                 <div class="flex flex-col gap-2 max-w-xs mx-auto">
                     <div class="flex items-center gap-2 text-sm text-slate-500 justify-center">
-                        <i class="fas fa-random"></i> 70 Preguntas únicas
+                        <i class="fas fa-random"></i> 76 Preguntas únicas
                     </div>
                     <div class="flex items-center gap-2 text-sm text-slate-500 justify-center">
                         <i class="fas fa-shuffle"></i> Orden y respuestas aleatorias
@@ -579,6 +579,42 @@
         ],
         correct: 1, // B
         justification: "El objetivo de Bernstein es garantizar que la ejecución paralela no corrompa los datos, asegurando que el resultado sea determinista (igual que si fueran uno detrás de otro)."
+    },
+            {
+        q: "RA2 - ¿Qué estado tiene un hilo creado pero aún no ejecutado?",
+        options: ["Muerto", "Bloqueado", "Ejecución", "Listo"],
+        correct: 3, // D - Listo
+        justification: "Estado del ciclo de vida: el hilo ha sido creado y está a la espera de que el planificador le asigne la CPU."
+    },
+    {
+        q: "RA1 - ¿Qué es un proceso en un sistema operativo?",
+        options: ["Un hilo independiente del hardware", "Un programa en ejecución gestionado por el sistema operativo", "Un archivo ejecutable almacenado en disco", "Un servicio exclusivo del usuario"],
+        correct: 1, // B - Un programa en ejecución...
+        justification: "Definición literal: Un proceso es un programa dinámico en ejecución, a diferencia del archivo estático en disco."
+    },
+    {
+        q: "RA1 - ¿Qué elemento permite ejecutar tareas de forma concurrente dentro de un proceso?",
+        options: ["Servicios", "Ejecutables", "Hilos", "Drivers"],
+        correct: 2, // C - Hilos
+        justification: "Los hilos (threads) son las unidades que comparten los recursos del proceso padre para trabajar simultáneamente."
+    },
+    {
+        q: "RA5 - ¿Qué práctica mejora la seguridad del código?",
+        options: ["Evitar revisiones", "Validar los datos de entrada", "Usar solo bajo nivel", "Reutilizar código obsoleto"],
+        correct: 1, // B - Validar los datos...
+        justification: "La validación de inputs es fundamental para evitar inyecciones y errores no controlados."
+    },
+    {
+        q: "RA1 - ¿Qué ocurre si dos procesos acceden sin control a un recurso compartido?",
+        options: ["Los procesos se detienen", "El sistema siempre lo evita automáticamente", "Se crea un nuevo hilo", "Pueden producirse inconsistencias"],
+        correct: 3, // D - Pueden producirse inconsistencias
+        justification: "Sin mecanismos de sincronización (como semáforos o monitores), los datos pueden corromperse (condición de carrera)."
+    },
+    {
+        q: "RA5 - ¿Qué elemento es clave en protocolos criptográficos?",
+        options: ["Gestión de hilos", "Balanceo de carga", "Planificación de procesos", "Establecimiento de claves"],
+        correct: 3, // D - Establecimiento de claves
+        justification: "Los protocolos seguros definen cómo se generan, intercambian y establecen las claves para el cifrado."
     }
             
         ];
@@ -771,3 +807,4 @@
 </body>
 
 </html>
+
