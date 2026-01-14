@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test AD - Nivel Libro (XML, Componentes, EJB)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f3f4f6; }
+        .hidden { display: none; }
+        .correct { background-color: #dcfce7; border-color: #22c55e; color: #15803d; }
+        .incorrect { background-color: #fee2e2; border-color: #ef4444; color: #b91c1c; }
+        .option-btn { transition: all 0.2s; border: 2px solid #e5e7eb; }
+        .option-btn:hover:not(:disabled) { background-color: #f9fafb; border-color: #d1d5db; }
+        .card-enter { animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <header class="bg-indigo-700 text-white shadow-lg sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold flex items-center gap-2">
+                <span class="text-2xl">📚</span> Test AD: Libro
+            </h1>
+            <div class="flex items-center gap-4 text-sm font-medium">
+                <div class="bg-indigo-800 px-3 py-1 rounded-full">
+                    Aciertos: <span id="score" class="text-green-300 font-bold">0</span>
+                </div>
+                <div class="bg-indigo-800 px-3 py-1 rounded-full">
+                    Fallos: <span id="errors" class="text-red-300 font-bold">0</span>
+                </div>
+                <div class="bg-indigo-600 px-3 py-1 rounded-full">
+                    <span id="progress">1</span> / <span id="total">32</span>
+                </div>
+            </div>
+            <a href="index.html" class="text-indigo-200 hover:text-white transition-colors text-xl font-bold px-2">✕</a>
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center justify-center p-4">
+        
+        <div id="quiz-card" class="bg-white rounded-2xl shadow-xl p-6 md:p-8 w-full max-w-2xl border-t-4 border-indigo-500 card-enter">
+            
+            <h2 id="question-text" class="text-xl md:text-2xl font-bold text-gray-800 mb-6 leading-relaxed">
+                </h2>
+
+            <div id="options-container" class="space-y-3">
+                </div>
+
+            <div id="feedback" class="hidden mt-6 p-4 rounded-lg border-l-4 bg-gray-50">
+                <p id="justification" class="text-gray-700 text-sm italic"></p>
+                <button onclick="nextQuestion()" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg shadow transition-transform transform active:scale-95 flex justify-center items-center gap-2">
+                    Siguiente Pregunta ➡
+                </button>
+            </div>
+
+        </div>
+
+        <div id="summary" class="hidden bg-white rounded-2xl shadow-xl p-8 w-full max-w-md text-center border-t-4 border-purple-500 card-enter">
+            <div class="text-6xl mb-4">🏆</div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">¡Test Completado!</h2>
+            <p class="text-gray-500 mb-6">Has repasado los conceptos clave del Libro.</p>
+            
+            <div class="flex justify-center gap-8 mb-8">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-green-500" id="final-score">0</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wide">Aciertos</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-red-500" id="final-errors">0</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wide">Fallos</div>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <button onclick="location.reload()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg shadow">
+                    Repetir Test 🔄
+                </button>
+                <a href="index.html" class="block w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-3 rounded-lg transition-colors">
+                    Volver al Menú 🏠
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // --- DATA: PREGUNTAS DEL LIBRO (GENERADAS POR NOTEBOOKLM) ---
+        const rawQuestions = [
+            {
+                q: "¿Qué caracteriza primordialmente a una base de datos nativa XML (NXD)?",
+                options: [
+                    "Almacena los datos exclusivamente en tablas relacionales.",
+                    "Guarda los datos en documentos XML y utiliza un modelo lógico para este formato.",
+                    "No permite el uso de lenguajes de consulta como XPath.",
+                    "Solo sirve para almacenar archivos de imagen y vídeo."
+                ],
+                correct: 1, // B
+                justification: "Una base de datos nativa se define por guardar la información directamente en documentos XML siguiendo un modelo lógico específico para este lenguaje."
+            },
+            {
+                q: "En el contexto de eXist-db, ¿qué es una colección?",
+                options: [
+                    "Un identificador único para cada nodo del XML.",
+                    "Un archivo binario que no puede contener otros documentos.",
+                    "Un grupo de documentos XML o recursos organizado de forma jerárquica, similar a una carpeta.",
+                    "Un lenguaje de programación para modificar bases de datos relacionales."
+                ],
+                correct: 2, // C
+                justification: "Las colecciones en eXist-db funcionan como directorios que establecen una jerarquía para organizar recursos y subcolecciones."
+            },
+            {
+                q: "¿Cómo se denomina a los archivos individuales (XML o binarios) almacenados dentro de una colección en eXist-db?",
+                options: [
+                    "Recursos.",
+                    "Metadatos.",
+                    "Tablas.",
+                    "Índices estructurales."
+                ],
+                correct: 0, // A
+                justification: "Dentro de las colecciones, los archivos individuales se denominan recursos, pudiendo ser de tipo XML o binarios."
+            },
+            {
+                q: "¿Qué función tienen los índices estructurales en eXist-db?",
+                options: [
+                    "Permiten al usuario definir tipos de datos personalizados.",
+                    "Indexan automáticamente la estructura de los nodos, elementos y atributos de los documentos.",
+                    "Sirven para convertir el XML en código Java automáticamente.",
+                    "Son los únicos índices que el usuario debe configurar manualmente."
+                ],
+                correct: 1, // B
+                justification: "Los índices estructurales se encargan de indexar la estructura de nodos y atributos y son mantenidos de forma automática por la base de datos."
+            },
+            {
+                q: "¿Cuál es el propósito principal del lenguaje XPath?",
+                options: [
+                    "Modificar el contenido de un documento XML de forma nativa.",
+                    "Validar si un archivo XML sigue las reglas de un esquema XSD.",
+                    "Navegar por los nodos de un documento XML mediante expresiones de ruta.",
+                    "Crear bases de datos relacionales desde Java."
+                ],
+                correct: 2, // C
+                justification: "XPath utiliza una sintaxis de rutas para identificar elementos y navegar por la estructura de árbol de un documento XML."
+            },
+            {
+                q: "¿Cómo se define el lenguaje XQuery en relación con otros estándares XML?",
+                options: [
+                    "Es un lenguaje independiente que no utiliza XPath.",
+                    "Es una extensión de XPath 2.0 diseñada para realizar consultas sobre colecciones de datos.",
+                    "Es un lenguaje destinado exclusivamente a la escritura y actualización de datos.",
+                    "Es el sustituto de Java para la gestión de ficheros binarios."
+                ],
+                correct: 1, // B
+                justification: "XQuery se considera una extensión de XPath 2.0 y está enfocado en la recuperación y consulta de datos jerárquicos."
+            },
+            {
+                q: "Si XQuery está enfocado a la lectura y consulta, ¿qué estrategia o lenguaje se menciona para realizar modificaciones (actualizaciones/borrados)?",
+                options: [
+                    "SQL Avanzado.",
+                    "XUpdate.",
+                    "XPath selectivo.",
+                    "JAXB."
+                ],
+                correct: 1, // B
+                justification: "XUpdate es un lenguaje especializado en la realización de modificaciones, como actualizaciones y borrados, en bases de datos XML."
+            },
+            {
+                q: "¿Para qué se utilizan los documentos XSD o DTD en una base de datos XML?",
+                options: [
+                    "Para aumentar la velocidad de conexión mediante JDBC.",
+                    "Para la validación de los documentos, definiendo la estructura que deben tener para ser válidos.",
+                    "Para transformar un XML en un objeto JSON.",
+                    "Para eliminar la necesidad de usar colecciones."
+                ],
+                correct: 1, // B
+                justification: "Estos documentos permiten validar que los archivos XML almacenados respetan una estructura predefinida."
+            },
+            {
+                q: "¿Cuál es la característica principal del analizador sintáctico (parser) DOM?",
+                options: [
+                    "Lee el XML línea por línea sin cargarlo en memoria.",
+                    "Carga el documento XML completo en memoria creando una estructura de árbol.",
+                    "Es mucho más rápido y ligero que el parser SAX.",
+                    "No permite la navegación bidireccional por los datos."
+                ],
+                correct: 1, // B
+                justification: "El modelo DOM guarda toda la información del XML en memoria para permitir el acceso y la actualización dinámica de su estructura."
+            },
+            {
+                q: "¿Cuál es la principal ventaja de utilizar un parser SAX frente a uno DOM?",
+                options: [
+                    "Permite manipular el fichero XML más fácilmente.",
+                    "Es más eficiente en memoria y más rápido porque no carga todo el árbol en la aplicación.",
+                    "Ofrece navegación bidireccional por los nodos.",
+                    "Es mucho más sencillo de implementar en Java."
+                ],
+                correct: 1, // B
+                justification: "SAX se basa en eventos y lee el fichero de forma secuencial, lo que evita el consumo excesivo de recursos al no cargar el documento completo en memoria."
+            },
+            {
+                q: "En la programación de componentes, ¿qué es un JavaBeans (Bean)?",
+                options: [
+                    "Un tipo de base de datos orientada a objetos.",
+                    "Una clase Java que sigue estándares específicos, con propiedades, constructores y métodos getter/setter.",
+                    "Un archivo de configuración de Maven para dependencias.",
+                    "Un protocolo de transferencia de archivos (SFTP)."
+                ],
+                correct: 1, // B
+                justification: "Un bean es un modelo de componentes consistente en una clase Java con sus propiedades y métodos de acceso definidos."
+            },
+            {
+                q: "¿Qué caracteriza a una propiedad indexada en un JavaBean?",
+                options: [
+                    "Solo puede almacenar un valor único de tipo String.",
+                    "Representa un array o lista de valores y permite acceder a elementos individuales mediante un índice.",
+                    "Notifica automáticamente a otros componentes cuando cambia su valor.",
+                    "Requiere permiso del sistema para ser modificada."
+                ],
+                correct: 1, // B
+                justification: "Las propiedades indexadas permiten la lectura y escritura tanto de la lista completa como de elementos específicos a través de un índice."
+            },
+            {
+                q: "¿Qué ocurre cuando cambia el valor de una propiedad ligada (bound property)?",
+                options: [
+                    "El programa se detiene hasta que el usuario confirma el cambio.",
+                    "El bean envía un evento de tipo PropertyChangeEvent a los objetos 'listener' registrados.",
+                    "El valor antiguo se borra permanentemente sin posibilidad de recuperación.",
+                    "Se genera automáticamente un archivo manifest.mf."
+                ],
+                correct: 1, // B
+                justification: "Una propiedad ligada desencadena un evento de notificación de cambio que es capturado por un listener tipo PropertyChangeListener."
+            },
+            {
+                q: "¿Cuál es la función de una propiedad restringida (constrained property)?",
+                options: [
+                    "Impedir que cualquier usuario vea el valor de la propiedad.",
+                    "Permitir que un 'listener' vete o impida el cambio de valor de la propiedad tras realizar una consulta.",
+                    "Almacenar datos en una base de datos relacional de forma segura.",
+                    "Limitar el número de caracteres de un atributo."
+                ],
+                correct: 1, // B
+                justification: "En las propiedades restringidas, los listeners pueden comprobar el cambio propuesto y restringirlo mediante una excepción si no es válido."
+            },
+            {
+                q: "¿Qué clase de soporte se utiliza en Java para gestionar las propiedades restringidas?",
+                options: [
+                    "PropertyChangeSupport.",
+                    "VetoableChangeSupport.",
+                    "DatabaseManager.",
+                    "XQueryService."
+                ],
+                correct: 1, // B
+                justification: "La clase VetoableChangeSupport facilita la gestión de las restricciones y los permisos de cambio en este tipo de propiedades."
+            },
+            {
+                q: "¿Qué diferencia crítica existe entre el fichero manifest.mf y el pom.xml?",
+                options: [
+                    "El manifest.mf es para desarrollo y el pom.xml para ejecución.",
+                    "El manifest.mf va dentro del JAR y define atributos en ejecución; el pom.xml es de Maven y define dependencias en desarrollo.",
+                    "Ambos ficheros son idénticos y se pueden intercambiar.",
+                    "El pom.xml se encuentra dentro de la carpeta META-INF de un archivo JAR."
+                ],
+                correct: 1, // B
+                justification: "El manifest.mf describe el contenido del JAR y sus requisitos de ejecución, mientras que el pom.xml es la base de un proyecto Maven para gestionar sus librerías y construcción."
+            },
+            {
+                q: "¿Dónde se ubica típicamente el archivo manifest.mf dentro de un paquete JAR?",
+                options: [
+                    "En la raíz del proyecto.",
+                    "En la carpeta src/main/java.",
+                    "En la carpeta interna denominada META-INF.",
+                    "Dentro del repositorio local de Maven."
+                ],
+                correct: 2, // C
+                justification: "Java ubica el archivo descriptivo manifest.mf en la carpeta interna meta-inf del archivo JAR."
+            },
+            {
+                q: "¿Qué es un Enterprise JavaBeans (EJB) Stateless?",
+                options: [
+                    "Un bean que mantiene el estado del cliente entre múltiples solicitudes.",
+                    "Un bean de sesión que no mantiene el estado de la sesión del cliente tras finalizar una invocación.",
+                    "Un bean diseñado para mensajes asíncronos exclusivamente.",
+                    "Una instancia única compartida por toda la aplicación."
+                ],
+                correct: 1, // B
+                justification: "Los beans stateless no utilizan sesiones para gestionar datos permanentes del cliente entre distintas llamadas."
+            },
+            {
+                q: "¿Cuál es la característica principal del EJB Stateful?",
+                options: [
+                    "Es más rápido que el Stateless porque no guarda información.",
+                    "Mantiene el estado de la sesión y la interacción (conversación) con un cliente específico.",
+                    "Solo permite realizar operaciones matemáticas simples.",
+                    "Se instancia una sola vez para todos los usuarios de la aplicación."
+                ],
+                correct: 1, // B
+                justification: "Los beans stateful representan el estado de una sesión única entre el cliente y el bean, manteniendo la continuidad de la información."
+            },
+            {
+                q: "¿Para qué se diseñan los EJB de tipo Singleton?",
+                options: [
+                    "Para enviar correos electrónicos de forma asíncrona.",
+                    "Para casos donde una única instancia del bean es compartida y accedida simultáneamente por todos los clientes.",
+                    "Para representar una fila de una tabla en la base de datos.",
+                    "Para borrar datos de un documento XML de forma secuencial."
+                ],
+                correct: 1, // B
+                justification: "Un bean singleton existe como una instancia única por aplicación durante todo su ciclo de vida."
+            },
+            {
+                q: "¿Qué tipo de EJB se invoca mediante el envío de mensajes asíncronos?",
+                options: [
+                    "Entity Beans.",
+                    "Stateful Beans.",
+                    "Message Driven Beans (MDB).",
+                    "Singleton Beans."
+                ],
+                correct: 2, // C
+                justification: "Los beans controlados por mensajes (MDB) tienen un comportamiento similar a los de sesión, pero se activan al recibir un mensaje."
+            },
+            {
+                q: "¿Cuál es el inconveniente más destacable del parser DOM?",
+                options: [
+                    "No permite la manipulación del XML.",
+                    "Consume mucho espacio en memoria y es lento procesando archivos grandes.",
+                    "No permite navegar en ambas direcciones.",
+                    "No verifica la estructura sintáctica."
+                ],
+                correct: 1, // B
+                justification: "Al cargar todo el árbol del documento en memoria, el parser DOM ocupa mucho espacio y ralentiza el proceso en comparación con SAX."
+            },
+            {
+                q: "En XPath, ¿qué expresión se usa para seleccionar el nodo raíz?",
+                options: [
+                    "//",
+                    "/",
+                    "/.",
+                    "@"
+                ],
+                correct: 1, // B - Corregida la opción para que sea '/'
+                justification: "La barra inclinada simple '/' indica que la selección comienza desde la raíz del nodo."
+            },
+            {
+                q: "¿Qué operador de XPath permite realizar una selección de múltiples rutas en una misma consulta?",
+                options: [
+                    "+",
+                    "|",
+                    "*",
+                    "div"
+                ],
+                correct: 1, // B
+                justification: "El operador | permite unir dos o más consultas XPath para ejecutar una selección múltiple en un solo paso."
+            },
+            {
+                q: "¿Qué significa la sigla FLWOR en el lenguaje XQuery?",
+                options: [
+                    "Un método para validar esquemas XSD.",
+                    "For, Let, Where, Order by y Return.",
+                    "Un parser basado en eventos para archivos binarios.",
+                    "Una propiedad ligada de los JavaBeans."
+                ],
+                correct: 1, // B
+                justification: "FLWOR es la estructura básica de XQuery para seleccionar, filtrar y ordenar nodos de un XML."
+            },
+            {
+                q: "¿Qué clase de Java se utiliza para capturar errores específicos de la API XML:DB?",
+                options: [
+                    "SQLException.",
+                    "XMLDBException.",
+                    "NullPointerException.",
+                    "PropertyVetoException."
+                ],
+                correct: 1, // B
+                justification: "XMLDBException es la clase encargada de gestionar los errores producidos al interactuar con bases de datos XML nativas."
+            },
+            {
+                q: "¿Qué función cumple la anotación @Stateless en EJB 3.1?",
+                options: [
+                    "Define que el bean debe guardar su estado en la base de datos permanentemente.",
+                    "Permite crear fácilmente beans de sesión sin estado gestionados por el contenedor.",
+                    "Indica que el bean solo puede recibir mensajes de tipo JSON.",
+                    "Restringe el acceso a la clase mediante un listener."
+                ],
+                correct: 1, // B
+                justification: "Esta anotación le indica al contenedor EJB que la clase es un bean de sesión sin estado que puede ser reutilizado para procesar solicitudes."
+            },
+            {
+                q: "¿Qué diferencia a una base de datos orientada a objetos (BDOO) de una relacional en cuanto al almacenamiento?",
+                options: [
+                    "La BDOO usa tablas y columnas, la relacional usa objetos.",
+                    "La BDOO representa la información mediante objetos, tal como en el lenguaje de programación.",
+                    "La relacional es más rápida porque no usa 'joins'.",
+                    "La BDOO no permite el uso de identificadores únicos."
+                ],
+                correct: 1, // B
+                justification: "Las BDOO nacieron para representar de manera natural los datos mediante objetos, simplificando la conceptualización del software."
+            },
+            {
+                q: "¿Qué técnica se utiliza para optimizar la obtención de registros en una base de datos XML?",
+                options: [
+                    "Persistencia.",
+                    "Indexación.",
+                    "Introspección.",
+                    "Encapsulación."
+                ],
+                correct: 1, // B
+                justification: "La indexación es la técnica fundamental para acelerar las consultas y optimizar la recuperación de registros."
+            },
+            {
+                q: "¿Cuál es el archivo de configuración base en un proyecto Maven donde se añaden las dependencias de Hibernate o EJB?",
+                options: [
+                    "hibernate.cfg.xml.",
+                    "persistence.xml.",
+                    "pom.xml.",
+                    "manifest.mf."
+                ],
+                correct: 2, // C
+                justification: "El archivo pom.xml es la base del proyecto Maven donde se definen las librerías necesarias para construir la aplicación."
+            },
+            {
+                q: "¿Qué capacidad permite a un programa examinar sus propios objetos, propiedades y métodos en tiempo de ejecución?",
+                options: [
+                    "Introspección / Reflexión.",
+                    "Polimorfismo.",
+                    "Herencia.",
+                    "Mapeo."
+                ],
+                correct: 0, // A
+                justification: "La introspección y la reflexión permiten a una aplicación analizar y modificar su propia estructura de forma dinámica durante la ejecución."
+            },
+            {
+                q: "¿Qué ventaja presentan las bases de datos nativas XML respecto a los datos heterogéneos?",
+                options: [
+                    "No permiten guardar datos distintos.",
+                    "Permiten guardar datos de forma heterogénea sin necesidad de un esquema previo rígido.",
+                    "Obligan a que todos los documentos tengan el mismo tamaño.",
+                    "Solo admiten datos de tipo entero."
+                ],
+                correct: 1, // B
+                justification: "Una de las ventajas de las bases de datos XML nativas es su flexibilidad para almacenar documentos con estructuras variadas."
+            }
+        ];
+
+        // --- LÓGICA DEL TEST ---
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let errors = 0;
+        let canAnswer = true;
+
+        // Mezclar preguntas (Fisher-Yates)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Inicializar
+        function initQuiz() {
+            questions = shuffleArray([...rawQuestions]); // Clonar y mezclar
+            document.getElementById('total').textContent = questions.length;
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex >= questions.length) {
+                showSummary();
+                return;
+            }
+
+            const q = questions[currentQuestionIndex];
+            const qText = document.getElementById('question-text');
+            const optsContainer = document.getElementById('options-container');
+            const feedback = document.getElementById('feedback');
+
+            // Resetear UI
+            qText.textContent = q.q;
+            optsContainer.innerHTML = '';
+            feedback.classList.add('hidden');
+            canAnswer = true;
+
+            // Actualizar progreso
+            document.getElementById('progress').textContent = currentQuestionIndex + 1;
+
+            // Crear botones
+            q.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = "option-btn w-full text-left p-4 rounded-lg bg-white shadow-sm hover:shadow-md text-gray-700 font-medium";
+                btn.textContent = opt;
+                btn.onclick = () => checkAnswer(index, btn);
+                optsContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIndex, btn) {
+            if (!canAnswer) return;
+            canAnswer = false;
+
+            const q = questions[currentQuestionIndex];
+            const opts = document.querySelectorAll('.option-btn');
+            const feedback = document.getElementById('feedback');
+            const justText = document.getElementById('justification');
+
+            // Marcar correcta e incorrecta
+            if (selectedIndex === q.correct) {
+                btn.classList.add('correct');
+                score++;
+                document.getElementById('score').textContent = score;
+                justText.innerHTML = `<strong class="text-green-600">¡Correcto!</strong> ${q.justification}`;
+            } else {
+                btn.classList.add('incorrect');
+                opts[q.correct].classList.add('correct'); // Mostrar la verdadera
+                errors++;
+                document.getElementById('errors').textContent = errors;
+                justText.innerHTML = `<strong class="text-red-600">¡Incorrecto!</strong> ${q.justification}`;
+            }
+
+            // Deshabilitar botones
+            opts.forEach(b => b.disabled = true);
+            feedback.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function showSummary() {
+            document.getElementById('quiz-card').classList.add('hidden');
+            document.getElementById('summary').classList.remove('hidden');
+            document.getElementById('final-score').textContent = score;
+            document.getElementById('final-errors').textContent = errors;
+        }
+
+        // Arrancar
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
