@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+    <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+    
+    <title>Resumen DI con Trucos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #fff1f2; }
+        .card { transition: all 0.3s ease; border-left-width: 5px; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .truco-box { background-color: #fef2f2; border: 2px dashed #f43f5e; padding: 1rem; border-radius: 8px; margin-top: 10px; }
+        .truco-title { color: #be123c; font-weight: bold; display: block; margin-bottom: 4px; }
+        .code-tag { font-family: monospace; background-color: #fce7f3; padding: 2px 4px; border-radius: 4px; color: #be185d; font-weight: bold; }
+    </style>
+</head>
+<body class="p-4 md:p-8 max-w-7xl mx-auto">
+
+    <header class="text-center mb-10">
+        <h1 class="text-4xl font-bold text-pink-900 mb-2">🎨 DI: Trucos para el Examen</h1>
+        <p class="text-gray-700 font-medium">Memoriza las diferencias clave</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div class="bg-white p-5 rounded-lg shadow border-orange-500 card">
+            <h2 class="text-xl font-bold text-orange-600 mb-3">📚 1. Documentación y Ayudas</h2>
+            <ul class="space-y-3 text-sm text-gray-700">
+                <li><strong>Tipos de Documentos:</strong>
+                    <ul class="list-disc ml-5">
+                        <li><strong>Guía Rápida:</strong> Resumen esencial. Objetivo: <strong>Inicio Inmediato</strong>.</li>
+                        <li><strong>Manual de Usuario:</strong> Instrucciones completas. Objetivo: <strong>Operativa Diaria</strong>.</li>
+                        <li><strong>Manual de Instalación:</strong> Requisitos y puesta en marcha.</li>
+                    </ul>
+                </li>
+                <li><strong>Ayudas en Pantalla:</strong>
+                    <ul class="list-disc ml-5">
+                        <li><strong>Tooltip:</strong> Etiqueta al pasar el ratón (Hover).</li>
+                        <li><strong>Contextual:</strong> Ayuda específica de donde estás.</li>
+                    </ul>
+                </li>
+                
+                <div class="truco-box">
+                    <span class="truco-title">🧠 TRUCO: Herramientas de Documentación</span>
+                    <p>Si te preguntan cuál <strong>NO</strong> existe:</p>
+                    <p class="mt-1 text-lg">👉 <strong>DocFinger</strong> (No te chupes el dedo)</p>
+                    <p class="text-xs mt-1 text-gray-500">Las que SÍ existen: SandCastle (Arena), GhostDoc (Fantasma), HelpNDoc.</p>
+                </div>
+            </ul>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow border-pink-500 card">
+            <h2 class="text-xl font-bold text-pink-600 mb-3">🧪 2. Tipos de Pruebas</h2>
+            <ul class="space-y-2 text-sm text-gray-700">
+                <li><strong>Caja Negra vs Blanca:</strong>
+                    <ul class="list-disc ml-5">
+                        <li><strong>Negra:</strong> Funcional. No ves código. (Entradas/Salidas).</li>
+                        <li><strong>Blanca:</strong> Estructural. Ves el código (Caminos lógicos).</li>
+                    </ul>
+                </li>
+                <li><strong>Fases (El orden importa):</strong>
+                    <ol class="list-decimal ml-5">
+                        <li><strong>Unitarias:</strong> Piezas sueltas.</li>
+                        <li><strong>Integración:</strong> Juntar piezas.</li>
+                        <li><strong>Sistema:</strong> Todo junto.</li>
+                        <li><strong>Aceptación:</strong> Cliente da el OK.</li>
+                    </ol>
+                </li>
+
+                <div class="truco-box">
+                    <span class="truco-title">🧠 TRUCO: ¿Alfa o Beta?</span>
+                    <ul class="list-none space-y-1">
+                        <li>🅰️ <strong>ALFA:</strong> "A" de <strong>Adentro</strong>. (En casa, desarrolladores).</li>
+                        <li>🅱️ <strong>BETA:</strong> "B" de <strong>Barrio</strong>. (Fuera, usuarios reales).</li>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow border-blue-500 card">
+            <h2 class="text-xl font-bold text-blue-600 mb-3">⚡ 3. Eventos (La Trampa)</h2>
+            <ul class="space-y-2 text-sm text-gray-700">
+                <li><strong>Listeners:</strong> Son siempre <strong>Asíncronos</strong>.</li>
+                <li><strong>Ratón:</strong> <code class="code-tag">mouseExited</code> se dispara al salir del componente.</li>
+                
+                <div class="truco-box">
+                    <span class="truco-title">🧠 TRUCO: Teclado (Key)</span>
+                    <ul class="list-none space-y-2">
+                        <li>👇 <strong>keyPressed:</strong> Solo bajar. (Acto físico inmediato).</li>
+                        <li>✍️ <strong>keyTyped:</strong> Bajar + Subir = <strong>Escribir</strong>.</li>
+                        <li class="font-bold text-pink-700">¡OJO! Solo keyTyped genera el CARÁCTER.</li>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow border-green-500 card">
+            <h2 class="text-xl font-bold text-green-600 mb-3">📊 4. Métricas e Informes</h2>
+            <ul class="space-y-2 text-sm text-gray-700">
+                <li><strong>Informes:</strong>
+                    <ul class="list-disc ml-5">
+                        <li>1º Paso: <strong>Selección de Datos</strong> (Antes de pintar nada).</li>
+                        <li>Cabecera Informe ≠ Cabecera Página.</li>
+                    </ul>
+                </li>
+                
+                <div class="truco-box">
+                    <span class="truco-title">🧠 TRUCO: Métricas</span>
+                    <ul class="list-none space-y-1">
+                        <li>⏱️ <strong>Directa:</strong> Se ve. (Reloj, Contador). Ej: Tiempo, Coste.</li>
+                        <li>Pf <strong>Indirecta:</strong> Se calcula. (Fórmula). Ej: Densidad = Defectos / KLOC.</li>
+                    </ul>
+                </div>
+                
+                <div class="mt-2 text-xs bg-gray-100 p-2 rounded">
+                    <strong>Versionado:</strong><br>
+                    🟢 Pares (2.0) = Estables.<br>
+                    🔴 Impares (1.9) = Desarrollo/Inestable.
+                </div>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="mt-8 bg-gray-800 text-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold text-pink-400 mb-4 text-center">🔥 Fichas "Salva-Examen"</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-red-500">Herramienta Falsa → <br><strong>DocFinger</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-green-500">Inicio Inmediato → <br><strong>Guía Rápida</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-blue-500">Genera Carácter → <br><strong>keyTyped</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-yellow-500">Prueba Externa → <br><strong>Beta</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-purple-500">Métrica Fórmula → <br><strong>Indirecta</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-pink-500">1º Paso Informe → <br><strong>Datos</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-indigo-500">XAML ID → <br><strong>x:Name</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-red-500">Impar → <br><strong>Inestable</strong></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
