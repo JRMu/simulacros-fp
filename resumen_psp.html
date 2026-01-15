@@ -7,203 +7,1243 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
     <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
-
-    <title>Repaso PSP - VERSIÓN MASTER COMPLETA</title>
+    <title>Examen Integral PSP (130+ Preguntas)</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+    <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f3e8ff; }
-        .card { transition: all 0.3s ease; border-left-width: 5px; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
-        .truco { background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 0.5rem; margin-top: 0.5rem; font-size: 0.9em; color: #92400e; }
-        .code-tag { font-family: monospace; background-color: #e5e7eb; padding: 2px 4px; border-radius: 4px; color: #7e22ce; font-weight: bold; }
-        .estado { display: inline-block; padding: 1px 5px; border-radius: 4px; font-size: 0.8em; font-weight: bold; margin-right: 3px; border: 1px solid rgba(0,0,0,0.1); }
-        .importante { text-decoration: underline; text-decoration-color: #ef4444; text-decoration-thickness: 2px; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .option-card:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
     </style>
 </head>
-<body class="p-4 md:p-8 max-w-7xl mx-auto">
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
 
-    <header class="text-center mb-10">
-        <h1 class="text-4xl font-bold text-purple-900 mb-2">⚙️ Repaso Maestro PSP</h1>
-        <p class="text-gray-700 font-medium">Contiene TODO: Libro + PDF + Modelos de Examen (Sin resumir)</p>
-    </header>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-        <div class="bg-white p-5 rounded-lg shadow border-red-500 card">
-            <h2 class="text-xl font-bold text-red-600 mb-3 flex justify-between">
-                <span>🔒 1. Seguridad</span>
-                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">RA5</span>
-            </h2>
-            <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Objetivo:</strong> Confidencialidad, Integridad, Disponibilidad + <strong>No Repudio</strong> (Origen).</li>
-                <li><strong>Prácticas de Programación Segura:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Archivos:</strong> Configuración de solo lectura. Permisos estrictos.</li>
-                        <li><strong>Código:</strong> <span class="importante">Validar siempre los datos de entrada</span> (Input Validation). Eliminar código obsoleto.</li>
-                        <li><strong>Cifrado:</strong> Obligatorio para <strong>información sensible</strong>.</li>
-                    </ul>
-                </li>
-                <li><strong>Control de Acceso (Fases):</strong>
-                    <ol class="list-decimal ml-5 mt-1">
-                        <li><strong>Identificación:</strong> Usuario dice quién es.</li>
-                        <li><strong>Autenticación:</strong> Sistema lo verifica (Contraseña, Biometría).</li>
-                        <li><strong>Autorización:</strong> Sistema concede permisos (Último paso).</li>
-                    </ol>
-                </li>
-                <li><strong>Criptografía Java (JCA):</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Simétrica:</strong> 1 clave compartida (Rápida). Ej: AES.</li>
-                        <li><strong>Asimétrica:</strong> 2 claves (Pública/Privada). Ej: RSA (Factorización primos).</li>
-                        <li><strong>Hash:</strong> Resumen único. MD5 = 128 bits.</li>
-                        <li><code class="code-tag">Cipher.getInstance()</code>: Crea el objeto.</li>
-                        <li><code class="code-tag">doFinal()</code>: Ejecuta el cifrado/descifrado.</li>
-                    </ul>
-                </li>
-            </ul>
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-3xl overflow-hidden min-h-[500px] flex flex-col relative">
+        
+        <div class="bg-indigo-600 p-6 text-white flex justify-between items-center z-10">
+            <h1 class="text-xl font-bold flex items-center gap-2">
+                <i class="fas fa-server"></i> Examen PSP (Completo)
+            </h1>
+            <div id="progress-container" class="hidden text-sm font-medium bg-indigo-500 px-3 py-1 rounded-full">
+                <span id="current-question-num">1</span> / <span id="total-questions-num">0</span>
+            </div>
         </div>
 
-        <div class="bg-white p-5 rounded-lg shadow border-blue-500 card">
-            <h2 class="text-xl font-bold text-blue-600 mb-3 flex justify-between">
-                <span>🧵 2. Procesos e Hilos</span>
-                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">RA1 y RA2</span>
-            </h2>
-            <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Conceptos Básicos:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Proceso:</strong> Programa en ejecución (Activo). Gestionado por SO.</li>
-                        <li><strong>Hilo (Thread):</strong> Unidad de ejecución <strong>dentro</strong> del proceso. Comparte recursos/memoria. <br><em>Ventaja:</em> Menor coste de creación y cambio de contexto.</li>
-                        <li><strong>Contexto Propio del Hilo:</strong> Pila, Contador de Programa (CP) e Identificador.</li>
-                    </ul>
-                </li>
-                <li class="bg-blue-50 p-2 rounded border border-blue-200">
-                    <strong>🚦 Ciclo de Vida del Hilo (Preguntas Fijas):</strong>
-                    <ul class="mt-1 space-y-1">
-                        <li><span class="estado bg-green-200 text-green-900">Ejecución</span> Tiene la CPU y está procesando.</li>
-                        <li><span class="estado bg-yellow-200 text-yellow-900">Listo (Runnable)</span> Creado y esperando turno de CPU.</li>
-                        <li><span class="estado bg-red-200 text-red-900">Bloqueado</span> Espera un recurso o evento (E/S, Sleep).</li>
-                        <li><span class="estado bg-gray-200 text-gray-900">Terminado</span> Finaliza su método <code class="code-tag">run()</code>.</li>
-                    </ul>
-                </li>
-                <li><strong>Gestión y Sincronización:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Planificador:</strong> Decide qué proceso usa la CPU.</li>
-                        <li><strong>Sincronización:</strong> Uso de <code class="code-tag">synchronized</code> para evitar <strong>Condiciones de Carrera</strong> en datos compartidos.</li>
-                        <li><strong>Deadlock (Abrazo Mortal):</strong> Bloqueo mutuo indefinido.</li>
-                    </ul>
-                </li>
-                <li><strong>Métodos Trampa:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><code class="code-tag">start()</code> vs <code class="code-tag">run()</code>: <strong>start()</strong> inicia el hilo real.</li>
-                        <li><code class="code-tag">currentThread()</code>: Devuelve la REFERENCIA (Objeto).</li>
-                        <li><code class="code-tag">sleep()</code>: Pausa temporalmente.</li>
-                    </ul>
-                </li>
-                <li><strong>Bernstein (Concurrencia):</strong>
-                    <div class="text-xs mt-1">Para que sea concurrente (determinista), la intersección debe ser vacía en Escrituras:</div>
-                    <div class="truco">📝 <strong>Regla:</strong> L1 ∩ L2 ≠ Ø es irrelevante. El conflicto es siempre con la <strong>Escritura (E)</strong>.</div>
-                </li>
-            </ul>
-        </div>
+        <div class="flex-1 p-6 relative flex flex-col justify-center">
+            
+            <div id="start-screen" class="text-center space-y-6 fade-in">
+                <div class="w-24 h-24 bg-indigo-100 rounded-full flex items-center justify-center mx-auto text-indigo-600 text-4xl mb-4">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-slate-800">Programación de Servicios y Procesos</h2>
+                <p class="text-slate-600 max-w-md mx-auto">
+                    Cuestionario interactivo completo. Incluye preguntas del examen integral y los nuevos temas añadidos.
+                </p>
+                <div class="flex flex-col gap-2 max-w-xs mx-auto">
+                    <div class="flex items-center gap-2 text-sm text-slate-500 justify-center">
+                        <i class="fas fa-layer-group"></i> 132 Preguntas totales
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-slate-500 justify-center">
+                        <i class="fas fa-shuffle"></i> Orden y respuestas aleatorias
+                    </div>
+                </div>
+                <button onclick="startQuiz()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg mt-4">
+                    Comenzar Examen
+                </button>
+            </div>
 
-        <div class="bg-white p-5 rounded-lg shadow border-green-500 card">
-            <h2 class="text-xl font-bold text-green-600 mb-3 flex justify-between">
-                <span>🌍 3. Redes y Sockets</span>
-                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">RA3</span>
-            </h2>
-            <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Roles:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Cliente:</strong> Activo. Inicia la comunicación.</li>
-                        <li><strong>Servidor:</strong> Pasivo. Espera peticiones.</li>
-                    </ul>
-                </li>
-                <li><strong>Protocolos (Capa Aplicación):</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>SMTP:</strong> Envío de Correo.</li>
-                        <li><strong>HTTP/HTTPS:</strong> Web (Puertos 80 / 443).</li>
-                        <li><strong>FTP:</strong> Transferencia Archivos (Librería Apache Commons Net).</li>
-                        <li><strong>DHCP:</strong> Asignación dinámica de IPs.</li>
-                        <li><strong>SSH:</strong> Administración remota segura (Puerto 22).</li>
-                    </ul>
-                </li>
-                <li><strong>Transporte (TCP vs UDP):</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>TCP:</strong> Conexión, Fiable, Ordenado.</li>
-                        <li><strong>UDP:</strong> Sin conexión, No fiable (rápido).</li>
-                    </ul>
-                    <div class="truco">🤝 <strong>Handshake Fin TCP (4 pasos):</strong> <br>1. Cliente FIN → 2. Servidor ACK → 3. Servidor FIN → 4. Cliente ACK.</div>
-                </li>
-                <li><strong>Sockets:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li>Definición: Mecanismo de comunicación entre apps.</li>
-                        <li><strong>Identificador Único (5 elementos):</strong> Protocolo + IP Origen + Puerto Origen + IP Destino + Puerto Destino.</li>
-                        <li><code class="code-tag">ServerSocket</code>: Servidor. Método <code class="code-tag">accept()</code> (Bloqueante).</li>
-                        <li><code class="code-tag">Socket</code>: Cliente.</li>
-                        <li><code class="code-tag">InetAddress</code>: Representa la IP.</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+            <div id="quiz-screen" class="hidden flex flex-col h-full fade-in">
+                <div class="mb-6">
+                    <span class="text-xs font-bold text-indigo-600 uppercase tracking-wide mb-1 block">Pregunta</span>
+                    <h3 id="question-text" class="text-xl md:text-2xl font-semibold text-slate-800 leading-relaxed">
+                        </h3>
+                </div>
 
-        <div class="bg-white p-5 rounded-lg shadow border-purple-500 card">
-            <h2 class="text-xl font-bold text-purple-600 mb-3 flex justify-between">
-                <span>🚀 4. Servicios Distribuidos</span>
-                <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">RA4</span>
-            </h2>
-            <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Definición Servicio:</strong> Proceso en segundo plano (Background), sin interfaz gráfica (GUI), larga duración.</li>
-                <li><strong>Tipos de Servidor:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Iterativo:</strong> Sin hilos. Atiende 1 a 1 (Secuencial).</li>
-                        <li><strong>Concurrente:</strong> Con hilos. Atiende múltiples clientes a la vez.</li>
-                        <li><strong>Dedicado:</strong> Hardware exclusivo para un cliente.</li>
-                    </ul>
-                </li>
-                <li><strong>Componentes de Infraestructura:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Balanceador de Carga:</strong> Distribuye peticiones entre servidores.</li>
-                        <li><strong>Alta Disponibilidad:</strong> Réplicas para evitar caídas.</li>
-                        <li><strong>Monitorización:</strong> Herramientas (Admin Tareas) para supervisar estado.</li>
-                    </ul>
-                </li>
-                <li><strong>Tecnologías Remotas:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>RMI (Java):</strong> Invocar métodos de objetos en otra JVM.</li>
-                        <li><strong>RPC:</strong> Llamada a Procedimiento Remoto (Estructurado).</li>
-                        <li><strong>API:</strong> Interfaz que documenta las funciones del servicio.</li>
-                    </ul>
-                </li>
-                <li class="bg-purple-50 p-2 rounded border border-purple-200">
-                    <strong>Web Services (REST vs SOAP):</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>SOAP:</strong> XML obligatorio. Estricto. Pesado.</li>
-                        <li><strong>REST:</strong> Usa HTTP estándar. <strong>Stateless</strong> (Sin estado: el mensaje lleva todo).</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+                <div id="options-container" class="grid gap-3 md:grid-cols-1">
+                    </div>
 
-    </div>
+                <div id="feedback-area" class="mt-6 hidden p-4 rounded-lg bg-slate-50 border border-slate-200">
+                    <div class="flex items-start gap-3">
+                        <div id="feedback-icon" class="text-2xl mt-1"></div>
+                        <div>
+                            <h4 id="feedback-title" class="font-bold text-lg"></h4>
+                            <p id="feedback-justification" class="text-slate-600 mt-1 text-sm leading-relaxed"></p>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-end">
+                        <button id="next-btn" onclick="nextQuestion()" class="bg-slate-800 hover:bg-slate-900 text-white font-medium py-2 px-6 rounded-lg transition-colors flex items-center gap-2">
+                            Siguiente <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-    <div class="mt-8 bg-gray-800 text-white p-6 rounded-lg shadow-lg mb-10">
-        <h2 class="text-2xl font-bold text-yellow-400 mb-4 text-center">⚡ Flashcards Examen (Lo que cae literal)</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-yellow-500">Usa CPU → <br><strong>Ejecución</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-yellow-500">Espera CPU → <br><strong>Listo</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-yellow-500">Espera Recurso → <br><strong>Bloqueado</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-purple-500">Invoca Remoto Java → <br><strong>RMI</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-green-500">Asigna IP → <br><strong>DHCP</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-blue-500">Evitar Race Cond. → <br><strong>Sincronización</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-green-500">Enviar Email → <br><strong>SMTP</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-blue-500">Ref Hilo Actual → <br><strong>currentThread()</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-red-500">1 Clave → <br><strong>Simétrica</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-red-500">MD5 → <br><strong>128 bits</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-green-500">SSH → <br><strong>Puerto 22</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-purple-500">Docu Servicio → <br><strong>API</strong></div>
+            <div id="result-screen" class="hidden text-center space-y-6 fade-in">
+                <div class="w-24 h-24 mx-auto rounded-full flex items-center justify-center text-4xl shadow-lg relative" id="score-circle">
+                    </div>
+                
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-800 mb-2">¡Examen Finalizado!</h2>
+                    <p class="text-slate-600">Tu puntuación final es:</p>
+                </div>
+
+                <div class="text-5xl font-black text-indigo-600 tracking-tight" id="final-score">
+                    0/0
+                </div>
+
+                <div class="w-full bg-slate-200 rounded-full h-4 max-w-md mx-auto overflow-hidden">
+                    <div id="final-progress-bar" class="bg-indigo-600 h-4 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                </div>
+                
+                <p id="score-message" class="text-lg font-medium text-slate-700"></p>
+
+                <button onclick="restartQuiz()" class="bg-white border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 mt-6">
+                    <i class="fas fa-redo"></i> Intentar de nuevo
+                </button>
+            </div>
+
         </div>
     </div>
 
+    <script>
+        // --- DATASET: 132 Questions Total ---
+        const rawQuestions = [
+            // --- BLOQUE ORIGINAL ---
+            {
+                q: "Según las prácticas de programación segura, ¿cómo deben tratarse los archivos de la aplicación para evitar modificaciones externas?",
+                options: ["Deben ser archivos ejecutables públicos.", "Deben tener permisos de escritura total.", "Deben ser siempre archivos ocultos.", "Deben ser de solo lectura."],
+                correct: 3,
+                justification: "El manual indica que los archivos de la aplicación deben ser de solo lectura para prevenir que un usuario los modifique malintencionadamente."
+            },
+            {
+                q: "¿Qué fase del control de acceso se encarga de verificar fehacientemente que el usuario es quien dice ser (ej. mediante contraseña)?",
+                options: ["Identificación.", "Autorización.", "Autenticación.", "Registro."],
+                correct: 2,
+                justification: "La autenticación es el proceso donde el sistema comprueba la identidad declarada del usuario."
+            },
+            {
+                q: "¿Cómo se denomina al último paso del control de acceso que ofrece el recurso si el proceso previo fue exitoso?",
+                options: ["Autorización.", "Verificación.", "Autenticación.", "Identificación."],
+                correct: 0,
+                justification: "La autorización es la fase final que concede el acceso a la información o recursos tras una autenticación positiva."
+            },
+            {
+                q: "¿Qué técnica de autenticación reduce el factor humano utilizando rasgos como la retina o la huella dactilar?",
+                options: ["Cifrado asimétrico.", "Biometría.", "Firma digital.", "Certificación."],
+                correct: 1,
+                justification: "La biometría engloba lectores físicos que ofrecen mayor seguridad al eliminar la vulnerabilidad del factor humano."
+            },
+            {
+                q: "En Java, ¿qué método de la clase Cipher realiza la operación final de encriptación o desencriptación de los datos?",
+                options: ["init().", "update().", "doFinal().", "getInstance()."],
+                correct: 2,
+                justification: "El método doFinal() es el encargado de ejecutar la transformación criptográfica final sobre los datos."
+            },
+            {
+                q: "¿Cuál es la función principal de las tres condiciones de Bernstein?",
+                options: ["Determinar si dos instrucciones pueden ejecutarse concurrentemente.", "Generar claves públicas y privadas para RSA.", "Establecer un túnel seguro mediante SSH.", "Sincronizar hilos mediante el uso de monitores."],
+                correct: 0,
+                justification: "Bernstein estableció condiciones de intersección vacía entre conjuntos de lectura y escritura para permitir la ejecución simultánea."
+            },
+            {
+                q: "¿Qué técnica divide un problema grande en partes pequeñas para resolverlas simultáneamente en equipos multiprocesadores?",
+                options: ["Programación distribuida.", "Programación paralela.", "Programación iterativa.", "Programación monohilo."],
+                correct: 1,
+                justification: "La programación paralela ejecuta muchas instrucciones a la vez dividiendo problemas de grandes dimensiones."
+            },
+            {
+                q: "¿Qué define a los archivos ejecutables desde el punto de vista del sistema operativo?",
+                options: ["Son archivos de texto con el código fuente original.", "Son carpetas que contienen exclusivamente librerías Java.", "Son archivos binarios con instrucciones en lenguaje máquina.", "Son procesos que requieren siempre una interfaz gráfica."],
+                correct: 2,
+                justification: "Los ejecutables contienen el código fuente ya traducido por el compilador para ser entendido directamente por el microprocesador."
+            },
+            {
+                q: "¿Qué característica define específicamente a un 'servicio'?",
+                options: ["Se ejecuta en segundo plano y carece de interfaz gráfica.", "Es controlado permanentemente por el usuario de forma directa.", "Finaliza inmediatamente tras su primera instrucción.", "Solo puede ejecutarse en sistemas monohilo."],
+                correct: 0,
+                justification: "Los servicios son procesos que funcionan en segundo plano, destinados a tareas de mantenimiento o procesos continuos sin interacción directa."
+            },
+            {
+                q: "¿Qué función se utiliza específicamente en sistemas Windows para solicitar la creación de un nuevo proceso?",
+                options: ["fork().", "createProcess().", "new Thread().", "start()."],
+                correct: 1,
+                justification: "Mientras que en Linux se usa fork(), en Windows la función nativa es createProcess()."
+            },
+            {
+                q: "¿Qué efecto tiene invocar el método sleep() sobre un proceso o hilo?",
+                options: ["Detiene su ejecución de forma permanente.", "Pausa el hilo durante una cantidad determinada de milisegundos.", "Termina el método run() de forma ordenada.", "Despierta a todos los hilos que están en espera."],
+                correct: 1,
+                justification: "El método sleep() detiene la ejecución del hilo actual por el tiempo especificado en sus parámetros."
+            },
+            {
+                q: "Al comparar hilos y procesos, ¿cuál es una ventaja competitiva fundamental de los hilos?",
+                options: ["Los hilos no comparten memoria entre sí.", "Son totalmente independientes del proceso que los creó.", "Tienen un menor coste de creación y cambio de contexto.", "Requieren una mayor reserva de recursos del sistema operativo."],
+                correct: 2,
+                justification: "Crear un hilo es más rápido y económico en recursos que crear un proceso debido a que comparten memoria."
+            },
+            {
+                q: "¿Qué método se utiliza para despertar hilos bloqueados y NO para detener el hilo actual?",
+                options: ["notify().", "wait().", "sleep().", "suspend()."],
+                correct: 0,
+                justification: "Mientras wait o sleep bloquean el hilo, notify se usa para enviar una señal de reactivación a otros hilos."
+            },
+            {
+                q: "¿En qué momento se considera que un hilo ha pasado definitivamente al estado 'Muerto'?",
+                options: ["Cuando invoca el método yield().", "Cuando finaliza la ejecución de su método run().", "Cuando se bloquea por una operación de entrada/salida.", "Al entrar en una sección crítica synchronized."],
+                correct: 1,
+                justification: "Un hilo muere al terminar sus instrucciones en el método run() o por una parada externa."
+            },
+            {
+                q: "¿En qué capa del modelo TCP/IP se ubican protocolos como HTTP, FTP y DNS?",
+                options: ["Capa de Internet.", "Capa de Transporte.", "Capa de Aplicación.", "Capa de Red."],
+                correct: 2,
+                justification: "La capa de aplicación maneja protocolos de alto nivel que implementan servicios para el usuario."
+            },
+            {
+                q: "¿Qué mecanismo permite la comunicación entre aplicaciones abstrayendo al usuario de las capas inferiores?",
+                options: ["Sockets.", "RMI.", "DatagramPacket.", "Tuberías."],
+                correct: 0,
+                justification: "Un socket crea un canal de comunicación entre aplicaciones a través de la red simplificando el intercambio."
+            },
+            {
+                q: "¿Qué protocolo de transporte se caracteriza por ser orientado a conexión y fiable?",
+                options: ["UDP.", "TCP.", "IP.", "ICMP."],
+                correct: 1,
+                justification: "TCP asegura la entrega ordenada y fiable de paquetes mediante una conexión previa."
+            },
+            {
+                q: "En la programación de sockets, ¿qué método vincula el socket a una dirección IP y puerto local?",
+                options: ["connect().", "accept().", "bind().", "listen()."],
+                correct: 2,
+                justification: "El método bind() realiza el enlazamiento del socket a una dirección y puerto determinados."
+            },
+            {
+                q: "¿Qué función de ServerSocket bloquea la ejecución esperando una petición de conexión entrante?",
+                options: ["bind().", "accept().", "read().", "close()."],
+                correct: 1,
+                justification: "El método accept() detiene al servidor hasta que recibe y acepta la conexión de un cliente."
+            },
+            {
+                q: "¿Qué protocolo permite asignar dinámicamente direcciones IP a los clientes de una red?",
+                options: ["DNS.", "DHCP.", "SMTP.", "NFS."],
+                correct: 1,
+                justification: "El servidor configurado con DHCP asigna IPs de forma automática a los dispositivos que se conectan."
+            },
+            {
+                q: "¿Cuándo es aconsejable utilizar un servidor concurrente en lugar de uno iterativo?",
+                options: ["Cuando solo se atiende una petición cada vez.", "Cuando hay una gran cantidad de peticiones simultáneas.", "Si el coste de recursos es muy elevado para procesos cortos.", "Cuando se utiliza exclusivamente el protocolo UDP."],
+                correct: 1,
+                justification: "Los servidores concurrentes permiten atender a múltiples clientes a la vez mediante hilos."
+            },
+            {
+                q: "¿Qué técnica es conceptualmente parecida a RMI pero basada en programación estructurada?",
+                options: ["SOAP.", "RPC (Remote Procedure Call).", "REST.", "TCP."],
+                correct: 1,
+                justification: "El RPC es la variante estructurada para invocar procedimientos remotos, similar al RMI orientado a objetos."
+            },
+            {
+                q: "¿Qué herramienta distribuye las peticiones masivas entre servidores para evitar colapsos?",
+                options: ["Servidor dedicado.", "Balanceadores de carga.", "Réplicas de servidores.", "Monitorización."],
+                correct: 1,
+                justification: "Los balanceadores distribuyen la carga de tráfico masivo para optimizar rendimiento."
+            },
+            {
+                q: "¿Cómo se denomina al equipo informático que es único para una empresa y no se comparte?",
+                options: ["Servidor compartido.", "Servidor espejo.", "Servidor dedicado.", "Servidor concurrente."],
+                correct: 2,
+                justification: "Un servidor dedicado es aquel recurso único para una organización."
+            },
+            {
+                q: "¿Cuántos bits genera un resumen mediante el algoritmo hash MD5?",
+                options: ["160 bits.", "128 bits.", "256 bits.", "64 bits."],
+                correct: 1,
+                justification: "El algoritmo MD5 genera resúmenes de longitud fija de 128 bits."
+            },
+            {
+                q: "La seguridad del algoritmo RSA se basa en la dificultad de resolver:",
+                options: ["La sustitución de caracteres.", "La factorización de números enteros.", "La exclusión mutua.", "La condición de carrera."],
+                correct: 1,
+                justification: "RSA utiliza pares de números hallados mediante operaciones con números primos grandes."
+            },
+            {
+                q: "¿Qué puerto utiliza habitualmente el protocolo SSH?",
+                options: ["80.", "443.", "22.", "21."],
+                correct: 2,
+                justification: "El puerto estándar para la comunicación segura mediante el intérprete de órdenes seguro es el 22."
+            },
+            {
+                q: "¿Qué problema ocurre cuando dos procesos se bloquean esperando recursos que el otro retiene?",
+                options: ["Inanición.", "Exclusión mutua.", "Abrazo mortal (Deadlock).", "Inconsistencia."],
+                correct: 2,
+                justification: "El deadlock es el interbloqueo mutuo entre procesos por dependencia de recursos."
+            },
+            {
+                q: "¿Qué comando de Linux muestra los procesos activos detallando el UID y el PID?",
+                options: ["ls -l.", "ps -f.", "renice.", "taskset."],
+                correct: 1,
+                justification: "El comando ps -f es el encargado de listar los procesos activos con su información técnica."
+            },
+            {
+                q: "¿Cuál es el rango de prioridad de un hilo en el lenguaje Java?",
+                options: ["Entre 1 y 10.", "Entre 0 y 100.", "Entre -20 y 20.", "Entre 1 y 5."],
+                correct: 0,
+                justification: "Java utiliza un rango de 1 (MIN_PRIORITY) a 10 (MAX_PRIORITY)."
+            },
+            {
+                q: "¿Qué mensaje inicia el 'Three-way handshake' en una conexión TCP?",
+                options: ["ACK.", "FIN.", "SYN.", "SYN-ACK."],
+                correct: 2,
+                justification: "El cliente solicita la conexión enviando el mensaje de sincronización SYN."
+            },
+            {
+                q: "¿Qué lenguaje utiliza obligatoriamente el protocolo SOAP para sus mensajes?",
+                options: ["JSON.", "HTML.", "XML.", "Texto plano."],
+                correct: 2,
+                justification: "SOAP define la comunicación de objetos mediante el lenguaje XML."
+            },
+            {
+                q: "¿Cuáles son las operaciones estándares de los servicios web REST?",
+                options: ["SYN, ACK, FIN.", "POST, GET, PUT y DELETE.", "START, RUN, STOP.", "BIND, ACCEPT, SEND."],
+                correct: 1,
+                justification: "REST basa su uso en los verbos estándar de HTTP."
+            },
+            {
+                q: "¿Qué librería externa de Java se usa habitualmente para clientes FTP?",
+                options: ["Java Standard API.", "Apache Commons Net.", "Google Guava.", "RMI Registry."],
+                correct: 1,
+                justification: "Esta librería proporciona clases como FTPClient para la gestión de transferencias."
+            },
+            {
+                q: "¿Cómo se denomina a un proceso finalizado que aún no ha liberado sus recursos en Unix?",
+                options: ["Huérfano.", "Zombie.", "Activo.", "Bloqueado."],
+                correct: 1,
+                justification: "Los procesos zombies han terminado su ejecución pero mantienen su entrada en la tabla de procesos."
+            },
+            {
+                q: "¿Qué palabra clave de Java evita que varios hilos usen a la vez un recurso compartido?",
+                options: ["volatile.", "synchronized.", "static.", "final."],
+                correct: 1,
+                justification: "synchronized bloquea el acceso de otros hilos al objeto marcado hasta que el actual termina."
+            },
+            {
+                q: "¿Qué clase de Java representa una dirección IP?",
+                options: ["URL.", "InetAddress.", "Socket.", "ServerSocket."],
+                correct: 1,
+                justification: "InetAddress es la clase específica del API de Java para representar IPs."
+            },
+            {
+                q: "La capacidad de contar con servidores réplica para evitar interrupciones se conoce como:",
+                options: ["Balanceo de carga.", "Alta disponibilidad.", "Programación paralela.", "Encadenamiento."],
+                correct: 1,
+                justification: "La alta disponibilidad garantiza un servicio cercano al 100% mediante réplicas activas."
+            },
+            {
+                q: "¿Qué puerto utiliza el protocolo HTTPS por defecto?",
+                options: ["80.", "22.", "443.", "21."],
+                correct: 2,
+                justification: "HTTPS añade seguridad a HTTP utilizando el puerto 443."
+            },
+            {
+                q: "¿Qué servicio asegura que un emisor no pueda negar haber enviado un mensaje?",
+                options: ["Confidencialidad.", "No repudio en origen.", "Disponibilidad.", "Integridad."],
+                correct: 1,
+                justification: "El no repudio en origen aporta pruebas de que el emisor envió el mensaje."
+            },
+            {
+                q: "¿Qué método inicializa e inicia realmente la ejecución de un hilo en Java?",
+                options: ["start().", "run().", "init().", "execute()."],
+                correct: 0,
+                justification: "El método start() crea el hilo y llama automáticamente al método run()."
+            },
+            {
+                q: "¿En qué nivel del modelo TCP/IP se realiza la división del mensaje en paquetes?",
+                options: ["Nivel de aplicación.", "Nivel de transporte.", "Nivel de Internet.", "Nivel de red."],
+                correct: 1,
+                justification: "El nivel de transporte es el encargado de segmentar la información en paquetes para el envío."
+            },
+            {
+                q: "Para una programación segura: un código limpio aporta seguridad, la reutilización debe ser de código revisado y se debe eliminar el código obsoleto. ¿Es correcto?",
+                options: ["Sí, todas son prácticas recomendadas.", "No, el código obsoleto no afecta.", "No, no se debe reutilizar nunca código.", "Sí, pero solo si es código Java."],
+                correct: 0,
+                justification: "Son principios fundamentales para evitar confusiones y vulnerabilidades en la aplicación."
+            },
+            {
+                q: "¿Qué información se considera 'sensible' en una base de datos?",
+                options: ["Solo la contraseña.", "Solo el DNI.", "Solo la dirección física.", "Contraseña, DNI y dirección física (todas las anteriores)."],
+                correct: 3,
+                justification: "Se considera sensible cualquier información privada del usuario."
+            },
+            {
+                q: "¿Qué información mantiene un hilo como contexto propio e independiente dentro del proceso?",
+                options: ["Claves criptográficas.", "Identificador, pila y contador de programa.", "Código fuente y datos globales.", "Recursos compartidos del sistema operativo."],
+                correct: 1,
+                justification: "Aunque comparten datos del proceso, los hilos tienen su propia pila y registro contador."
+            },
+            {
+                q: "¿Qué identifica de forma completa y única una conexión TCP?",
+                options: ["Solo la IP del servidor.", "El protocolo HTTP.", "IP origen, IP destino y los puertos de ambos.", "El nombre del host cliente."],
+                correct: 2,
+                justification: "Un socket TCP se define por el conjunto (IP, puerto) de ambos extremos."
+            },
+            {
+                q: "¿Cuál es el objetivo principal de la planificación de procesos del sistema operativo?",
+                options: ["Eliminar procesos inactivos permanentemente.", "Asignar memoria RAM de forma estática.", "Decidir qué proceso usa la CPU en cada momento.", "Compilar los archivos ejecutables."],
+                correct: 2,
+                justification: "El planificador gestiona el reparto del tiempo de procesador entre los procesos preparados."
+            },
+            {
+                q: "¿Qué ocurre cuando un hilo modifica un dato compartido en la memoria del proceso?",
+                options: ["Los demás hilos del mismo proceso pueden ver el cambio.", "El cambio se pierde si el hilo no lo guarda en disco.", "El sistema operativo bloquea el hilo inmediatamente.", "Se crea una copia privada para el resto de hilos."],
+                correct: 0,
+                justification: "Los hilos comparten la sección de datos del proceso padre."
+            },
+            {
+                q: "¿Qué define fundamentalmente a un protocolo criptográfico?",
+                options: ["Un lenguaje de programación nuevo.", "Reglas para la seguridad en la comunicación de sistemas.", "Un algoritmo de compresión de datos.", "Un tipo de sistema operativo seguro."],
+                correct: 1,
+                justification: "Especifican cómo utilizar algoritmos para establecer claves, autenticar entidades, etc."
+            },
+            {
+                q: "¿Cuál es el inconveniente principal de UDP frente a TCP?",
+                options: ["Es mucho más lento en transferencia.", "Requiere una conexión previa muy pesada.", "No garantiza la entrega de los mensajes.", "No permite enviar paquetes de datos."],
+                correct: 2,
+                justification: "UDP es un protocolo no fiable porque no realiza acuse de recibo ni ordenamiento."
+            },
+            {
+                q: "¿Qué herramienta permite supervisar el estado de disponibilidad inmediata de un servicio?",
+                options: ["Editor de código.", "Compilador.", "Herramientas de monitorización.", "Depurador."],
+                correct: 2,
+                justification: "Los administradores usan herramientas de monitorización para realizar acciones de mantenimiento inmediatas."
+            },
+            {
+                q: "¿Qué clase de Java permite al servidor aceptar específicamente conexiones TCP entrantes?",
+                options: ["ServerSocket.", "URL.", "DatagramPacket.", "HttpURLConnection."],
+                correct: 0,
+                justification: "ServerSocket es la clase que escucha en un puerto peticiones de clientes TCP."
+            },
+            {
+                q: "¿Qué componente documenta el catálogo de funciones accesibles de un servicio para desarrolladores?",
+                options: ["BCP.", "API.", "RMI.", "Socket."],
+                correct: 1,
+                justification: "Una API proporciona los métodos y parámetros definidos para interactuar con un software."
+            },
+            {
+                q: "¿Qué tipo de criptografía utiliza una única clave compartida para cifrar y descifrar?",
+                options: ["Criptografía asimétrica.", "Criptografía simétrica.", "Función Hash.", "Firma digital."],
+                correct: 1,
+                justification: "En la simétrica, emisor y receptor comparten la misma clave secreta."
+            },
+            {
+                q: "En el modelo cliente-servidor, ¿qué rol es el encargado de iniciar normalmente la comunicación?",
+                options: ["El servidor.", "El cliente.", "El router.", "El firewall."],
+                correct: 1,
+                justification: "Los clientes realizan las peticiones iniciales y los servidores responden."
+            },
+            {
+                q: "¿Qué función tienen los puntos de interrupción (breakpoints) en el desarrollo?",
+                options: ["Muestran valores para comprobar que los datos son correctos.", "Determinan si el depurador debe parar la ejecución en un punto.", "Permiten verificar la trazabilidad de la aplicación.", "Todas las respuestas son correctas."],
+                correct: 3,
+                justification: "Se usan como herramientas de depuración para analizar el estado del programa en puntos críticos."
+            },
+            {
+                q: "Según los casos prácticos, ¿qué algoritmo se utiliza en Java para cifrar una variable 'Mensaje' en modo ECB?",
+                options: ["RSA.", "MD5.", "AES.", "SHA-256."],
+                correct: 2,
+                justification: "El caso práctico 2 requiere programar una clase usando AES/ECB para cifrado."
+            },
+            {
+                q: "En Linux, ¿qué instrucción permite cambiar la prioridad de un proceso que ya está en ejecución?",
+                options: ["nice.", "renice.", "taskset.", "ps -l."],
+                correct: 1,
+                justification: "nice se usa al iniciar un proceso, mientras que renice modifica la prioridad de uno ya existente."
+            },
+            {
+                q: "¿Qué técnica se utiliza para dividir un mensaje en paquetes en el nivel de transporte del modelo TCP/IP?",
+                options: ["Encapsulación.", "Fragmentación en paquetes.", "Handshake.", "Invocación remota."],
+                correct: 1,
+                justification: "La fragmentación o segmentación ocurre en el nivel de transporte para dividir el mensaje en unidades manejables."
+            },
+            {
+                q: "¿Qué método estático de la clase Cipher se utiliza para crear una instancia del objeto especificando el algoritmo de cifrado (ej: 'AES/ECB/PKCS5Padding')?",
+                options: ["Cipher.init()", "Cipher.getInstance()", "Cipher.create()", "Cipher.update()"],
+                correct: 1,
+                justification: "El método getInstance() es el encargado de instanciar la clase Cipher con la transformación solicitada para poder usarla."
+            },
+            {
+                q: "Según el protocolo TCP, ¿cuál es la secuencia correcta de mensajes para cerrar una conexión (Handshake de fin)?",
+                options: ["El cliente envía FIN y la conexión se corta inmediatamente.", "Secuencia de 4 pasos: FIN (Cliente) -> ACK (Servidor) -> FIN (Servidor) -> ACK (Cliente).", "El servidor envía RST al cliente para finalizar.", "El cliente envía un paquete STOP y espera confirmación."],
+                correct: 1,
+                justification: "El cierre ordenado requiere que ambos extremos confirmen el fin: primero uno envía FIN y recibe ACK, luego el otro envía su FIN y recibe su ACK."
+            },
+            {
+                q: "¿Qué protocolo de la capa de aplicación es el estándar utilizado para el envío y transferencia de correo electrónico?",
+                options: ["POP3.", "IMAP.", "SMTP.", "HTTP."],
+                correct: 2,
+                justification: "SMTP (Simple Mail Transfer Protocol) es el protocolo diseñado para el intercambio y envío de correos, mientras que POP3/IMAP son para la recepción."
+            },
+            {
+                q: "Según el solucionario del libro, ¿qué ventaja principal ofrece REST frente a SOAP en comunicaciones simultáneas?",
+                options: [
+                    "REST utiliza un cifrado más potente que SOAP.",
+                    "Los mensajes enviados definen todo lo necesario para procesarse, por lo que el servidor no necesita almacenar el estado (Stateless).",
+                    "REST permite el uso de protocolos de transporte distintos a HTTP.",
+                    "SOAP no permite el envío de datos binarios."
+                ],
+                correct: 1,
+                justification: "Texto literal del solucionario (5.5): 'Los mensajes definen todo lo necesario... por lo que ni cliente ni servidor deben almacenar el estado'."
+            },
+            {
+                q: "¿Qué método de la clase Thread devuelve la REFERENCIA al objeto hilo que se está ejecutando actualmente (no su ID)?",
+                options: [
+                    "long getId()",
+                    "static Thread currentThread()",
+                    "void interrupt()",
+                    "String getName()"
+                ],
+                correct: 1,
+                justification: "Cuidado con la trampa: getId() devuelve un número (long), pero currentThread() devuelve la referencia al propio objeto (Thread) en ejecución."
+            },
+            {
+                q: "¿Qué elementos identifican de forma COMPLETA y única una conexión de socket establecida entre dos máquinas?",
+                options: [
+                    "Solo la IP y puerto del servidor.",
+                    "La IP de origen y la IP de destino únicamente.",
+                    "Protocolo, IP origen, Puerto origen, IP destino y Puerto destino.",
+                    "El nombre de dominio y la dirección MAC."
+                ],
+                correct: 2,
+                justification: "Aunque un socket local es IP:Puerto, la conexión completa (el túnel) se identifica por los 5 valores: Protocolo + IP/Puerto de ambos extremos."
+            },
+            {
+                q: "En las condiciones de Bernstein, si la intersección entre el Conjunto de Lectura 1 (L1) y el Conjunto de Lectura 2 (L2) es vacía, ¿podemos asegurar que hay concurrencia?",
+                options: [
+                    "Sí, porque no comparten datos leídos.",
+                    "No, porque las condiciones de Bernstein solo comparan Escritura vs Lectura o Escritura vs Escritura.",
+                    "Sí, es la condición principal de Bernstein.",
+                    "No, porque siempre debe haber intersección en las lecturas."
+                ],
+                correct: 1,
+                justification: "Pregunta trampa: Dos procesos pueden leer lo mismo a la vez sin problemas. Bernstein se centra en conflictos de modificación (Escritura). Saber solo L1 y L2 no determina si hay conflicto de escritura."
+            },
+            {
+                q: "¿Cuál es la consecuencia funcional principal de NO utilizar hilos (servidor iterativo) en un servidor web?",
+                options: [
+                    "El servidor consume más memoria RAM.",
+                    "Solo se puede atender una única petición a la vez (de forma secuencial).",
+                    "El código es mucho más complejo de mantener.",
+                    "No se pueden utilizar sockets TCP."
+                ],
+                correct: 1,
+                justification: "Aunque los hilos ahorran recursos, la razón funcional de usarlos es que un servidor 'sin hilos' (iterativo) bloquea a todos los usuarios hasta que termina con el primero."
+            },
+            {
+                q: "¿Cuál de las siguientes NO es una de las tres condiciones de Bernstein necesarias para que dos procesos (P1 y P2) puedan ejecutarse concurrentemente?",
+                options: [
+                    "L(P1) ∩ E(P2) = Ø (Intersección vacía entre Lectura de 1 y Escritura de 2).",
+                    "E(P1) ∩ L(P2) = Ø (Intersección vacía entre Escritura de 1 y Lectura de 2).",
+                    "E(P1) ∩ E(P2) = Ø (Intersección vacía entre Escrituras de ambos).",
+                    "L(P1) ∩ L(P2) = Ø (Intersección vacía entre Lecturas de ambos)."
+                ],
+                correct: 3,
+                justification: "Bernstein NO prohíbe que dos procesos lean la misma variable a la vez. El conflicto solo existe si al menos uno de ellos escribe (modifica) el dato."
+            },
+            {
+                q: "En la notación de las condiciones de Bernstein, ¿qué representa habitualmente el conjunto E(Pi)?",
+                options: [
+                    "El conjunto de variables de Entrada (Lectura).",
+                    "El conjunto de Errores del proceso.",
+                    "El conjunto de variables de Escritura (Salida/Modificación).",
+                    "El conjunto de Estados del proceso."
+                ],
+                correct: 2,
+                justification: "E(Pi) o W(Pi) representa el conjunto de Escritura (Write/Output), es decir, las variables que el proceso va a alterar durante su ejecución."
+            },
+            {
+                q: "Si se cumplen las tres condiciones de Bernstein entre dos procesos, ¿qué propiedad importante se garantiza?",
+                options: [
+                    "Que los procesos se ejecutarán más rápido.",
+                    "El determinismo: el resultado final será el mismo independientemente de si se ejecutan secuencial o concurrentemente.",
+                    "Que no habrá interbloqueos (Deadlocks) bajo ninguna circunstancia.",
+                    "Que el sistema operativo asignará más prioridad a estos procesos."
+                ],
+                correct: 1,
+                justification: "El objetivo de Bernstein es garantizar que la ejecución paralela no corrompa los datos, asegurando que el resultado sea determinista (igual que si fueran uno detrás de otro)."
+            },
+            {
+                q: "RA2 - ¿Qué estado tiene un hilo creado pero aún no ejecutado?",
+                options: ["Muerto", "Bloqueado", "Ejecución", "Listo"],
+                correct: 3,
+                justification: "Estado del ciclo de vida: el hilo ha sido creado y está a la espera de que el planificador le asigne la CPU."
+            },
+            {
+                q: "RA1 - ¿Qué es un proceso en un sistema operativo?",
+                options: ["Un hilo independiente del hardware", "Un programa en ejecución gestionado por el sistema operativo", "Un archivo ejecutable almacenado en disco", "Un servicio exclusivo del usuario"],
+                correct: 1,
+                justification: "Definición literal: Un proceso es un programa dinámico en ejecución, a diferencia del archivo estático en disco."
+            },
+            {
+                q: "RA1 - ¿Qué elemento permite ejecutar tareas de forma concurrente dentro de un proceso?",
+                options: ["Servicios", "Ejecutables", "Hilos", "Drivers"],
+                correct: 2,
+                justification: "Los hilos (threads) son las unidades que comparten los recursos del proceso padre para trabajar simultáneamente."
+            },
+            {
+                q: "RA5 - ¿Qué práctica mejora la seguridad del código?",
+                options: ["Evitar revisiones", "Validar los datos de entrada", "Usar solo bajo nivel", "Reutilizar código obsoleto"],
+                correct: 1,
+                justification: "La validación de inputs es fundamental para evitar inyecciones y errores no controlados."
+            },
+            {
+                q: "RA1 - ¿Qué ocurre si dos procesos acceden sin control a un recurso compartido?",
+                options: ["Los procesos se detienen", "El sistema siempre lo evita automáticamente", "Se crea un nuevo hilo", "Pueden producirse inconsistencias"],
+                correct: 3,
+                justification: "Sin mecanismos de sincronización (como semáforos o monitores), los datos pueden corromperse (condición de carrera)."
+            },
+            {
+                q: "RA5 - ¿Qué elemento es clave en protocolos criptográficos?",
+                options: ["Gestión de hilos", "Balanceo de carga", "Planificación de procesos", "Establecimiento de claves"],
+                correct: 3,
+                justification: "Los protocolos seguros definen cómo se generan, intercambian y establecen las claves para el cifrado."
+            },
+            {
+                q: "RA1 - ¿Qué estado indica que un proceso está usando la CPU?",
+                options: ["Bloqueado", "Ejecución", "Listo", "Terminado"],
+                correct: 1,
+                justification: "El proceso en ejecución es el que tiene el control del procesador en ese instante."
+            },
+            {
+                q: "RA4 - ¿Qué tecnología permite invocar métodos remotos en Java?",
+                options: ["RMI", "FTP", "DNS", "HTTP"],
+                correct: 0,
+                justification: "RMI (Remote Method Invocation) permite llamar a métodos de objetos en otras máquinas virtuales."
+            },
+            {
+                q: "RA3 - ¿Qué rol inicia normalmente la comunicación en red?",
+                options: ["Router", "Servidor", "Cliente", "Firewall"],
+                correct: 2,
+                justification: "El cliente es quien solicita el inicio de la conexión hacia el servidor."
+            },
+            {
+                q: "RA3 - ¿Qué clase Java permite aceptar conexiones entrantes?",
+                options: ["DatagramSocket", "URL", "ServerSocket", "Socket"],
+                correct: 2,
+                justification: "ServerSocket se utiliza en el lado servidor para esperar y aceptar peticiones."
+            },
+            {
+                q: "RA1 - ¿Qué objetivo tiene la planificación de procesos?",
+                options: ["Decidir qué proceso usa la CPU en cada momento", "Compilar los ejecutables", "Eliminar procesos inactivos", "Asignar memoria permanente a los procesos"],
+                correct: 0,
+                justification: "El planificador del SO decide los turnos de uso del procesador."
+            },
+            {
+                q: "RA5 - ¿Qué define un protocolo criptográfico?",
+                options: ["Un algoritmo aislado", "Un sistema operativo", "Un lenguaje de programación", "Reglas para comunicaciones seguras"],
+                correct: 3,
+                justification: "Conjunto de reglas que gobiernan el intercambio seguro de información."
+            },
+            {
+                q: "RA5 - ¿Qué práctica es segura al trabajar con archivos?",
+                options: ["Abrirlos en modo escritura siempre", "Ejecutarlos desde la app", "Controlar permisos de acceso", "Usar rutas absolutas públicas"],
+                correct: 2,
+                justification: "La restricción de permisos es básica para la seguridad de la información."
+            },
+            {
+                q: "RA2 - ¿Qué método pausa un hilo durante un tiempo determinado?",
+                options: ["stop()", "sleep()", "notify()", "wait()"],
+                correct: 1,
+                justification: "sleep() detiene la ejecución el tiempo especificado en milisegundos."
+            },
+            {
+                q: "RA4 - ¿Qué protocolo utiliza XML para servicios web?",
+                options: ["SOAP", "UDP", "RPC", "REST"],
+                correct: 0,
+                justification: "SOAP utiliza exclusivamente XML para el formato de sus mensajes."
+            },
+            {
+                q: "RA4 - ¿Qué caracteriza a un servidor concurrente?",
+                options: ["No usa hilos", "Atiende varias peticiones a la vez", "Usa solo UDP", "Atiende una petición cada vez"],
+                correct: 1,
+                justification: "Utiliza hilos o procesos hijos para gestionar múltiples clientes simultáneamente."
+            },
+            {
+                q: "RA1 - ¿Qué característica define a un servicio del sistema?",
+                options: ["Solo se inicia manualmente", "Se ejecuta en segundo plano sin interacción directa del usuario", "Finaliza tras una única ejecución", "Siempre requiere interfaz gráfica"],
+                correct: 1,
+                justification: "Los servicios (demonios) funcionan en background sin interfaz de usuario."
+            },
+            {
+                q: "RA3 - ¿Qué es un socket?",
+                options: ["Una dirección IP", "Un mecanismo de comunicación entre aplicaciones en red", "Un servicio del sistema", "Un protocolo de transporte"],
+                correct: 1,
+                justification: "Punto final de una conexión que permite a las aplicaciones intercambiar datos."
+            },
+            {
+                q: "RA5 - ¿Qué objetivo tiene la programación segura?",
+                options: ["Aumentar el tamaño del código", "Eliminar la reutilización", "Proteger datos y aplicaciones", "Evitar el uso de librerías"],
+                correct: 2,
+                justification: "El objetivo fundamental es garantizar la confidencialidad, integridad y disponibilidad, protegiendo los datos y la lógica de la aplicación."
+            },
+            {
+                q: "RA5 - ¿Qué criptografía utiliza una sola clave?",
+                options: ["Clave simétrica", "Hash", "Clave pública", "Biométrica"],
+                correct: 0,
+                justification: "La criptografía simétrica utiliza la misma clave tanto para cifrar como para descifrar (clave compartida)."
+            },
+            {
+                q: "RA4 - ¿Qué componente documenta funciones accesibles de un servicio?",
+                options: ["Balanceador", "Switch", "API", "Servidor dedicado"],
+                correct: 2,
+                justification: "Una API (Interfaz de Programación de Aplicaciones) define y documenta cómo interactuar con el servicio."
+            },
+            {
+                q: "RA5 - ¿Qué fase concede acceso a recursos tras verificar identidad?",
+                options: ["Identificación", "Registro", "Autenticación", "Autorización"],
+                correct: 3,
+                justification: "Una vez autenticado (sabemos quién eres), la Autorización es la fase que determina qué puedes hacer o tocar."
+            },
+            {
+                q: "RA1 - ¿Qué herramienta permite monitorizar procesos en ejecución?",
+                options: ["Editor de texto", "IDE", "Administrador de tareas", "Compilador"],
+                correct: 2,
+                justification: "El Administrador de tareas (o 'ps' / 'top' en Linux) permite visualizar y gestionar los procesos activos."
+            },
+            {
+                q: "RA2 - ¿Qué estado indica que un hilo espera un recurso o evento?",
+                options: ["Listo", "Bloqueado", "Terminado", "Ejecución"],
+                correct: 1,
+                justification: "El estado 'Bloqueado' (Blocked/Waiting) ocurre cuando el hilo se detiene esperando algo (I/O, un monitor, etc.) y libera la CPU."
+            },
+            {
+                q: "RA1 - ¿Qué caracteriza a la programación paralela?",
+                options: ["Ejecución secuencial optimizada", "Ejecución simultánea en varios procesadores o núcleos", "Uso exclusivo de red", "Ausencia de comunicación entre tareas"],
+                correct: 1,
+                justification: "La clave de la programación paralela es dividir el trabajo para usar varios núcleos a la vez (simultaneidad)."
+            },
+            {
+                q: "RA5 - ¿Qué tipo de información debe cifrarse siempre?",
+                options: ["Código fuente", "Archivos temporales", "Datos públicos", "Información sensible"],
+                correct: 3,
+                justification: "Toda información confidencial o sensible (contraseñas, datos personales, bancarios) debe protegerse mediante cifrado."
+            },
+            {
+                q: "RA2 - ¿Qué técnica evita condiciones de carrera entre hilos?",
+                options: ["Planificación", "Serialización", "Sincronización", "Compilación"],
+                correct: 2,
+                justification: "La sincronización (con synchronized) coordina el acceso a recursos compartidos para evitar inconsistencias (condiciones de carrera)."
+            },
+            {
+                q: "RA2 - ¿Qué ocurre cuando un hilo modifica un dato compartido?",
+                options: ["El cambio se pierde", "El hilo se bloquea", "El dato se copia automáticamente", "Los demás hilos pueden ver el cambio"],
+                correct: 3,
+                justification: "Al compartir el mismo espacio de memoria del proceso, cualquier cambio en una variable común es visible inmediatamente para los demás hilos."
+            },
+            {
+                q: "RA3 - ¿Para qué se usan hilos en servidores de red?",
+                options: ["Reducir la seguridad", "Atender múltiples clientes simultáneamente", "Eliminar la planificación", "Evitar el uso de sockets"],
+                correct: 1,
+                justification: "El uso de hilos permite crear servidores concurrentes que no dejan esperando a un cliente mientras atienden a otro."
+            },
+            // --- TEMA 1: Uso de técnicas de programación segura ---
+            {
+                q: "¿Cuál de las siguientes afirmaciones sobre las prácticas de programación segura es correcta?",
+                options: ["No es necesario validar los datos introducidos si la aplicación es interna.", "Se debe verificar siempre que los datos introducidos son válidos, tanto parámetros como ficheros.", "Se recomienda mantener el código obsoleto por si se necesita en el futuro.", "Las rutas de los ficheros deben ser relativas para mayor seguridad."],
+                correct: 1,
+                justification: "Es necesario verificar siempre que los datos introducidos son válidos, tanto los parámetros, como la información y los ficheros."
+            },
+            {
+                q: "En el contexto de la criptografía, ¿qué es una función hash o de una sola vía?",
+                options: ["Una función que convierte una cadena en otra de longitud variable.", "Una función que permite cifrar y descifrar un mensaje con la misma clave.", "Una función que, dada cualquier cadena, la convierte en otra de longitud fija y es imposible volver al texto original.", "Un algoritmo de criptografía asimétrica utilizado para el intercambio de claves."],
+                correct: 2,
+                justification: "Una función hash convierte cualquier cadena en otra de longitud fija y es un 'camino imposible' (no reversible)."
+            },
+            {
+                q: "¿Qué caracteriza a los algoritmos de criptografía simétrica (clave secreta)?",
+                options: ["Utilizan una clave pública para cifrar y una privada para descifrar.", "El emisor y el receptor comparten una única clave para cifrar y descifrar.", "Son algoritmos basados exclusivamente en funciones hash.", "La seguridad radica en la factorización de números enteros grandes."],
+                correct: 1,
+                justification: "En los algoritmos de clave secreta (simétrica), tanto el emisor como el receptor comparten una única clave."
+            },
+            {
+                q: "¿Cuál de los siguientes algoritmos NO se considera seguro actualmente debido a la longitud de su clave o vulnerabilidades?",
+                options: ["AES con clave de 256 bits.", "RSA.", "SHA-2.", "DES (clave de 56 bits) y SHA-1."],
+                correct: 3,
+                justification: "DES utiliza una clave de 56 bits y SHA-1 resúmenes de 160 bits, por lo que no se consideran seguros."
+            },
+            {
+                q: "En una política de seguridad, ¿qué garantiza el 'No repudio'?",
+                options: ["Que los datos están a disposición de quienes deban acceder a ellos.", "Que el receptor conoce la identidad del emisor.", "Permite probar la participación de las partes en una comunicación, impidiendo que nieguen el envío o recepción.", "Que los mensajes solo pueden ser leídos por personas autorizadas."],
+                correct: 2,
+                justification: "El no repudio permite probar la participación de las partes; el emisor no puede negar el envío y el receptor no puede negar la recepción."
+            },
+            {
+                q: "¿Cuál es la diferencia entre identificación y autenticación?",
+                options: ["La identificación comprueba la contraseña y la autenticación el usuario.", "La identificación es cuando el usuario indica quién es, y la autenticación es cuando el sistema comprueba que es quien dice ser.", "Son sinónimos, significan exactamente lo mismo.", "La autorización ocurre antes que la identificación."],
+                correct: 1,
+                justification: "Identificación es indicar el usuario; Autenticación es verificar que el usuario es quien dice ser."
+            },
+            {
+                q: "¿Qué puerto utiliza el protocolo seguro SSH para la comunicación?",
+                options: ["Puerto 80.", "Puerto 443.", "Puerto 21.", "Puerto 22."],
+                correct: 3,
+                justification: "El protocolo SSH utiliza el puerto 22."
+            },
+            {
+                q: "En Java, ¿qué clase se utiliza para generar claves en criptografía simétrica?",
+                options: ["KeyPairGenerator.", "MessageDigest.", "KeyGenerator.", "Cipher."],
+                correct: 2,
+                justification: "La clase KeyGenerator se usa para cifrado simétrico (SecretKey)."
+            },
+            {
+                q: "¿Qué algoritmo es la base de la firma digital y utiliza un par de claves (pública y privada)?",
+                options: ["MD5.", "RSA.", "AES.", "Triple DES."],
+                correct: 1,
+                justification: "RSA es un algoritmo de clave pública (asimétrica) y es la base de la firma digital."
+            },
+            {
+                q: "¿Qué información de usuario se considera sensible y debe ir cifrada en la base de datos?",
+                options: ["Contraseñas.", "Datos personales (DNI, cuenta bancaria).", "Número de tarjeta de crédito.", "Todas las respuestas son correctas."],
+                correct: 3,
+                justification: "Se considera sensible contraseñas, datos personales, DNI, tarjetas de crédito, etc."
+            },
+
+            // --- TEMA 2: Programación multiproceso ---
+            {
+                q: "Para que dos instrucciones se puedan ejecutar concurrentemente, según Bernstein, deben cumplirse tres condiciones. ¿Cuál de las siguientes es una de ellas?",
+                options: ["La intersección de los conjuntos de lectura debe ser nula.", "La intersección del conjunto de lectura de una con el de escritura de la otra debe ser vacía.", "Ambas instrucciones deben escribir en la misma variable.", "El tiempo de ejecución debe ser idéntico."],
+                correct: 1,
+                justification: "Se debe cumplir que L(Si) ∩ E(Sj) = Ø, es decir, lo que lee uno no debe ser escrito por el otro al mismo tiempo."
+            },
+            {
+                q: "¿Qué problema de la programación concurrente se produce cuando dos procesos se quedan bloqueados esperando recursos que posee el otro?",
+                options: ["Inanición.", "Exclusión mutua.", "Abrazo mortal (Deadlock).", "Condición de carrera."],
+                correct: 2,
+                justification: "El Abrazo mortal (Deadlock) ocurre cuando hay un bloqueo mutuo por espera de recursos."
+            },
+            {
+                q: "En programación distribuida, ¿cómo se denomina al conjunto de máquinas interconectadas que trabajan como una sola?",
+                options: ["Cluster.", "Grid.", "Thread pool.", "Socket group."],
+                correct: 1,
+                justification: "Este conjunto de máquinas separadas físicamente que operan interconectadas se conoce como grid."
+            },
+            {
+                q: "¿En qué estado se encuentra un proceso que ha interrumpido su ejecución y está esperando a que termine una operación (por ejemplo, una lectura de datos)?",
+                options: ["Activo.", "Preparado.", "Zombie.", "Bloqueado."],
+                correct: 3,
+                justification: "Está Bloqueado a la espera de que termine la operación que provocó la pausa."
+            },
+            {
+                q: "¿Qué diferencia principal existe entre un Hilo y un Proceso en cuanto a la memoria?",
+                options: ["Los procesos comparten la memoria entre sí; los hilos no.", "Un proceso comparte toda la memoria reservada con sus hilos.", "Los hilos tienen su propia sección de código y datos independiente del proceso.", "No existe diferencia, ambos son independientes."],
+                correct: 1,
+                justification: "Un proceso solamente puede crear hilos para sí mismo, y dichos hilos comparten toda la memoria reservada para el proceso."
+            },
+            {
+                q: "¿Qué función se utiliza en sistemas Linux para crear un nuevo proceso (proceso hijo)?",
+                options: ["createProcess()", "newProcess()", "fork()", "start()"],
+                correct: 2,
+                justification: "En Linux se utiliza fork(), mientras que createProcess() es para Windows."
+            },
+            {
+                q: "¿Qué es un 'Servicio' en el contexto de sistemas operativos?",
+                options: ["Un proceso que siempre tiene interfaz gráfica.", "Un proceso que se ejecuta en primer plano controlado por el usuario.", "Un proceso que se ejecuta en segundo plano y carece de interfaz gráfica.", "Un archivo ejecutable con extensión .bat."],
+                correct: 2,
+                justification: "Los servicios se ejecutan en segundo plano, no son controlados directamente por el usuario y carecen de interfaz gráfica."
+            },
+            {
+                q: "¿Qué señal se envía a los procesos para interrumpir su ejecución (típicamente al pulsar Ctrl+C)?",
+                options: ["SIGKILL", "SIGINT", "SLEEP", "KILL"],
+                correct: 1,
+                justification: "SIGINT se envía al pulsar Ctrl+C para interrumpir la ejecución."
+            },
+            {
+                q: "¿Cuál de los siguientes recursos es propio de un hilo y NO se comparte con el resto de hilos del mismo proceso?",
+                options: ["Sección de código.", "Sección de datos.", "Recursos del sistema operativo.", "Contador de programa y pila."],
+                correct: 3,
+                justification: "Un hilo posee su propio contador de programa, juego de registros y espacio de pila. El código y los datos son comunes."
+            },
+            {
+                q: "¿Qué comando utilizarías en Linux para ver la información de los procesos activos (UID, PID, PPID...)?",
+                options: ["ls -l", "ps -f", "tasklist", "process -all"],
+                correct: 1,
+                justification: "El comando es ps -f."
+            },
+
+            // --- TEMA 3: Programación multihilo ---
+            {
+                q: "En la clase Thread, ¿cuál es la diferencia principal entre los métodos start() y run()?",
+                options: ["start() contiene el código a ejecutar y run() inicializa el hilo.", "run() crea el hilo en el sistema operativo y start() lo detiene.", "start() inicializa el hilo y llama internamente a run(), que contiene el código de ejecución.", "Ambos métodos hacen exactamente lo mismo, son sinónimos."],
+                correct: 2,
+                justification: "start() inicializa el hilo, mientras que run() es el que contiene las instrucciones a ejecutar."
+            },
+            {
+                q: "¿Qué recursos comparten los hilos que pertenecen a un mismo proceso?",
+                options: ["El contador de programa y la pila.", "La sección de código, la sección de datos y los recursos del sistema operativo.", "Únicamente los registros de la CPU.", "Los hilos no comparten nada, son totalmente independientes como los procesos."],
+                correct: 1,
+                justification: "Los hilos comparten código, datos y recursos del SO. Lo que tienen propio es la pila, registros y contador."
+            },
+            {
+                q: "¿Cuál es el rango de valores enteros para definir la prioridad de un hilo en Java?",
+                options: ["De 0 a 100.", "De 1 a 10.", "De 0 a 1.", "De 1 a 5."],
+                correct: 1,
+                justification: "La prioridad se mide mediante un rango de valores enteros entre 1 (mínima) y 10 (máxima)."
+            },
+            {
+                q: "¿Qué ocurre si un hilo invoca el método wait()?",
+                options: ["El hilo finaliza su ejecución inmediatamente (estado Muerto).", "El hilo se duerme un tiempo fijo y despierta solo.", "El hilo entra en estado Bloqueado y espera a que otro hilo invoque notify() o notifyAll().", "El hilo cede su turno voluntariamente pero sigue en estado Ejecutable."],
+                correct: 2,
+                justification: "Al invocar wait(), el hilo se bloquea hasta recibir un notify() o notifyAll()."
+            },
+            {
+                q: "¿Qué problema de sincronización se define como 'dos hilos se quedan bloqueados porque cada uno espera un recurso que tiene el otro'?",
+                options: ["Inanición (Starvation).", "Condición de carrera.", "Inconsistencia de memoria.", "Interbloqueo (Deadlock)."],
+                correct: 3,
+                justification: "El interbloqueo ocurre cuando un hilo espera un recurso asociado a otro hilo que también está bloqueado."
+            },
+            {
+                q: "¿Para qué sirve la palabra clave synchronized en Java?",
+                options: ["Para aumentar la prioridad del hilo.", "Para crear un nuevo hilo asociado a un proceso.", "Para marcar un bloque de código u objeto como ocupado, obligando a otros hilos a esperar para acceder.", "Para detener la ejecución de todos los hilos del sistema."],
+                correct: 2,
+                justification: "synchronized marca un objeto/fichero como ocupado; si otro hilo intenta acceder, se queda bloqueado esperando."
+            },
+            {
+                q: "En la gestión de hilos por parte del Sistema Operativo, ¿en qué consiste el 'Multihilo apropiativo'?",
+                options: ["El sistema operativo determina cuándo debe haber un cambio de contexto (quita el control al hilo).", "El propio hilo decide cuándo abandonar el control de la CPU.", "El hilo se apropia de todos los recursos y no los libera hasta terminar.", "Es un sistema que solo permite un hilo por proceso."],
+                correct: 0,
+                justification: "En el multihilo apropiativo, el SO decide cuándo hacer el cambio de contexto, evitando que un hilo monopolice la CPU."
+            },
+            {
+                q: "¿Qué ventaja principal tienen los hilos frente a los procesos?",
+                options: ["Los hilos son más seguros porque no comparten memoria.", "La creación de un hilo tiene un coste menor que la creación de un proceso.", "Los hilos no pueden entrar en estado de bloqueo.", "Los hilos no necesitan sincronización."],
+                correct: 1,
+                justification: "Crear un hilo cuesta menos porque no necesita reservar memoria nueva (la comparte), y el cambio de contexto es más rápido."
+            },
+            {
+                q: "¿Qué herramienta se utiliza en la depuración para detener la ejecución de la aplicación en una línea concreta y examinar valores?",
+                options: ["El recolector de basura (Garbage Collector).", "El método yield().", "Los puntos de interrupción (Breakpoints).", "El método stop()."],
+                correct: 2,
+                justification: "Los puntos de interrupción indican al depurador que pare o pause la ejecución en un punto determinado."
+            },
+            {
+                q: "¿Qué estado adquiere un hilo cuando se invoca el método sleep(long milis)?",
+                options: ["Nuevo.", "Ejecutable.", "Muerto.", "Bloqueado."],
+                correct: 3,
+                justification: "Cuando se invoca sleep(), el hilo pasa a estado Bloqueado durante el tiempo especificado."
+            },
+
+            // --- TEMA 4: Programación de comunicaciones en red ---
+            {
+                q: "¿Qué información define un socket de forma única?",
+                options: ["La dirección MAC y la dirección IP.", "La dirección IP, el protocolo y el puerto.", "El nombre del host y el protocolo.", "Únicamente el puerto de comunicación."],
+                correct: 1,
+                justification: "Un socket se define mediante la dirección IP de los dos dispositivos, el protocolo de transporte y el puerto."
+            },
+            {
+                q: "¿Cuál es la función principal del método accept() de la clase ServerSocket?",
+                options: ["Conectar el cliente al servidor enviando una petición.", "Bloquear la ejecución del servidor hasta que un cliente solicita una conexión.", "Enviar datos al cliente conectado.", "Cerrar el puerto para que nadie más se conecte."],
+                correct: 1,
+                justification: "accept() espera (bloquea) hasta que llega una petición y devuelve un socket para comunicarse."
+            },
+            {
+                q: "¿Qué protocolo de transporte elegirías para una aplicación de videoconferencia en tiempo real donde la velocidad es prioritaria sobre la pérdida de algún paquete?",
+                options: ["TCP.", "HTTP.", "UDP.", "FTP."],
+                correct: 2,
+                justification: "UDP es no orientado a conexión y más rápido, ideal cuando el tiempo es crítico y se tolera pérdida de datos."
+            },
+            {
+                q: "En una comunicación TCP, ¿qué flujos se utilizan para enviar y recibir datos a través del objeto Socket?",
+                options: ["DatagramPacket y DatagramSocket.", "InputStream y OutputStream.", "Reader y Writer.", "InputPacket y OutputPacket."],
+                correct: 1,
+                justification: "En TCP (clase Socket), la comunicación se realiza mediante flujos de entrada (InputStream) y salida (OutputStream)."
+            },
+            {
+                q: "¿Qué método se utiliza en la clase DatagramSocket para mandar un paquete UDP?",
+                options: ["write().", "send().", "push().", "transmit()."],
+                correct: 1,
+                justification: "En UDP (DatagramSocket), se usa send() para enviar."
+            },
+            {
+                q: "¿Qué ocurre en el '3-way handshake' (apretón de manos de 3 vías) del protocolo TCP?",
+                options: ["Se envían los datos duplicados tres veces para asegurar la llegada.", "El cliente y el servidor intercambian mensajes SYN, SYN+ACK y ACK para establecer la conexión antes de enviar datos.", "Se desconecta la comunicación en tres pasos seguros.", "Es el proceso de autenticación de usuario en tres fases."],
+                correct: 1,
+                justification: "Es el proceso de establecimiento de conexión TCP: SYN (petición), SYN+ACK (confirmación), ACK (confirmación cliente)."
+            },
+            {
+                q: "Si queremos implementar un servidor que pueda atender a 50 clientes simultáneamente sin hacerles esperar, ¿qué técnica debemos usar?",
+                options: ["Crear un array de 50 sockets.", "Usar el protocolo UDP obligatoriamente.", "Usar un bucle infinito en el hilo principal.", "Crear un nuevo hilo (Thread) por cada petición de cliente aceptada."],
+                correct: 3,
+                justification: "Para atender peticiones simultáneas en un servidor, se debe crear un hilo para cada cliente."
+            },
+            {
+                q: "¿Cuál de las siguientes afirmaciones sobre DatagramPacket es correcta?",
+                options: ["Solo se utiliza en el servidor.", "Es la clase que establece la conexión en UDP.", "Representa el contenedor de datos (el paquete) que se envía o recibe en UDP.", "Garantiza que el paquete llegue a su destino."],
+                correct: 2,
+                justification: "DatagramPacket es la clase que permite crear paquetes (datos + dirección) para enviarlos por UDP."
+            },
+            {
+                q: "¿Qué clase usarías para obtener la dirección IP de tu propia máquina local mediante código Java?",
+                options: ["Socket.", "InetAddress.", "URL.", "LocalHost."],
+                correct: 1,
+                justification: "La clase InetAddress tiene el método getLocalHost() para esto."
+            },
+            {
+                q: "¿Qué puerto utiliza por defecto el protocolo HTTP seguro (HTTPS) en la capa de transporte?",
+                options: ["80.", "21.", "22.", "443."],
+                correct: 3,
+                justification: "HTTPS usa el puerto 443 (HTTP usa el 80, SSH el 22)."
+            },
+
+            // --- TEMA 5: Generación de servicios de red ---
+            {
+                q: "¿Qué protocolo se utiliza principalmente para el ENVÍO de correo electrónico desde un cliente a un servidor?",
+                options: ["POP3.", "IMAP.", "SMTP.", "SNMP."],
+                correct: 2,
+                justification: "SMTP se usa para envío. POP e IMAP son para recepción."
+            },
+            {
+                q: "¿Cuál es la principal ventaja de la arquitectura REST frente a SOAP?",
+                options: ["REST utiliza XML obligatoriamente, lo que lo hace más seguro.", "REST es 'Stateless' (sin estado), por lo que el servidor no necesita almacenar datos de la sesión del cliente, haciendo los mensajes auto-contenidos.", "REST solo funciona en redes locales.", "REST requiere autenticación biométrica."],
+                correct: 1,
+                justification: "REST no obliga a guardar estado; el mensaje lleva toda la info necesaria."
+            },
+            {
+                q: "¿Qué clase de Java se utiliza para representar la información de un archivo alojado en un servidor FTP (nombre, tamaño, tipo)?",
+                options: ["File.", "FTPFile.", "FTPData.", "RemoteFile."],
+                correct: 1,
+                justification: "La clase es FTPFile (con métodos getName, getSize, etc.)."
+            },
+            {
+                q: "¿En qué se diferencia un Servidor Iterativo de uno Concurrente?",
+                options: ["El iterativo usa TCP y el concurrente UDP.", "El iterativo atiende peticiones de una en una, mientras que el concurrente atiende varias simultáneamente.", "El iterativo es para webs y el concurrente para correo.", "No hay diferencia, son sinónimos."],
+                correct: 1,
+                justification: "El iterativo procesa secuencialmente (espera a terminar uno para coger otro); el concurrente procesa en paralelo."
+            },
+            {
+                q: "¿Qué tecnología de comunicación Java permite invocar métodos de objetos situados en una máquina remota?",
+                options: ["RPC (Remote Procedure Call).", "RMI (Remote Method Invocation).", "NFS (Network File System).", "DHCP (Dynamic Host Configuration Protocol)."],
+                correct: 1,
+                justification: "RMI (Remote Method Invocation) es la tecnología propia de Java para objetos remotos."
+            },
+            {
+                q: "¿Qué función cumple un Balanceador de Carga en un servicio de red?",
+                options: ["Encriptar los datos para que viajen seguros.", "Asignar IPs dinámicas a los clientes.", "Distribuir las peticiones entre distintos servidores para evitar colapsos y optimizar el rendimiento.", "Convertir nombres de dominio en direcciones IP."],
+                correct: 2,
+                justification: "Los balanceadores distribuyen la carga masiva entre varios servidores para evitar colapsos."
+            },
+            {
+                q: "¿Qué método de la clase SMTPClient se utiliza para verificar que una dirección de correo es válida?",
+                options: ["verify().", "checkEmail().", "validate().", "login()."],
+                correct: 0,
+                justification: "El método es verify(String username)."
+            },
+            {
+                q: "En el contexto de servicios web REST, ¿qué formato de intercambio de datos es el más extendido por ser ligero?",
+                options: ["XML.", "HTML.", "JSON.", "CSV."],
+                correct: 2,
+                justification: "REST suele usar JSON, mientras que SOAP usa obligatoriamente XML."
+            },
+            {
+                q: "¿Qué protocolo de capa de aplicación asigna dinámicamente direcciones IP a los clientes que se conectan a la red?",
+                options: ["DNS.", "HTTP.", "DHCP.", "FTP."],
+                correct: 2,
+                justification: "DHCP es el encargado de la asignación dinámica de IPs."
+            },
+            {
+                q: "¿Cuál es la diferencia fundamental entre RMI y RPC?",
+                options: ["RMI es para C++ y RPC para Java.", "RMI se basa en programación orientada a objetos y RPC en programación estructurada.", "RMI es más lento que RPC.", "RPC usa XML y RMI usa JSON."],
+                correct: 1,
+                justification: "RMI es para objetos (Java) y RPC para procedimientos (estructurada)."
+            }
+        ];
+
+        // --- APP LOGIC ---
+
+        let quizQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let isAnswered = false;
+
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultScreen = document.getElementById('result-screen');
+        
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const currentQNum = document.getElementById('current-question-num');
+        const totalQNum = document.getElementById('total-questions-num');
+        const progressContainer = document.getElementById('progress-container');
+        const feedbackArea = document.getElementById('feedback-area');
+        const feedbackTitle = document.getElementById('feedback-title');
+        const feedbackJustification = document.getElementById('feedback-justification');
+        const feedbackIcon = document.getElementById('feedback-icon');
+        const nextBtn = document.getElementById('next-btn');
+
+        // Shuffle Array Helper
+        function shuffle(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        // Initialize Quiz
+        function startQuiz() {
+            // 1. Prepare questions: deep copy
+            let questions = JSON.parse(JSON.stringify(rawQuestions));
+            
+            // 2. Shuffle questions
+            questions = shuffle(questions);
+            
+            // 3. Shuffle options for each question AND update the correct index
+            questions.forEach(q => {
+                const originalCorrectText = q.options[q.correct]; // Store the text of the correct answer
+                q.options = shuffle(q.options); // Shuffle options
+                q.correct = q.options.indexOf(originalCorrectText); // Find new index of correct answer
+            });
+
+            quizQuestions = questions;
+            currentQuestionIndex = 0;
+            score = 0;
+            
+            totalQNum.innerText = quizQuestions.length;
+            
+            startScreen.classList.add('hidden');
+            resultScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            progressContainer.classList.remove('hidden');
+            
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            isAnswered = false;
+            const q = quizQuestions[currentQuestionIndex];
+            
+            // Update Text
+            currentQNum.innerText = currentQuestionIndex + 1;
+            questionText.innerText = q.q;
+            
+            // Clear Options & Feedback
+            optionsContainer.innerHTML = '';
+            feedbackArea.classList.add('hidden');
+            
+            // Render Options
+            q.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = `option-card w-full text-left p-4 rounded-xl border-2 border-slate-200 bg-white hover:border-indigo-300 transition-all group flex items-start gap-3`;
+                btn.onclick = () => checkAnswer(index, btn);
+                
+                const letter = String.fromCharCode(65 + index); // A, B, C, D...
+                btn.innerHTML = `
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-100 text-slate-600 rounded-full font-bold group-hover:bg-indigo-100 group-hover:text-indigo-600 transition-colors">${letter}</span>
+                    <span class="text-slate-700 font-medium pt-1">${opt}</span>
+                `;
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIndex, selectedBtn) {
+            if (isAnswered) return;
+            isAnswered = true;
+
+            const q = quizQuestions[currentQuestionIndex];
+            const isCorrect = selectedIndex === q.correct;
+            
+            // Highlight Selected
+            if (isCorrect) {
+                score++;
+                selectedBtn.classList.remove('border-slate-200', 'bg-white');
+                selectedBtn.classList.add('border-green-500', 'bg-green-50');
+                selectedBtn.querySelector('span:first-child').classList.add('bg-green-200', 'text-green-800');
+                
+                showFeedback(true, q.justification);
+            } else {
+                selectedBtn.classList.remove('border-slate-200', 'bg-white');
+                selectedBtn.classList.add('border-red-500', 'bg-red-50');
+                selectedBtn.querySelector('span:first-child').classList.add('bg-red-200', 'text-red-800');
+                
+                // Highlight Correct One
+                const correctBtn = optionsContainer.children[q.correct];
+                correctBtn.classList.remove('border-slate-200', 'bg-white');
+                correctBtn.classList.add('border-green-500', 'bg-green-50');
+                
+                showFeedback(false, q.justification);
+            }
+        }
+
+        function showFeedback(isCorrect, text) {
+            feedbackArea.classList.remove('hidden');
+            feedbackArea.className = `mt-6 p-4 rounded-lg border flex flex-col ${isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'} fade-in`;
+            
+            feedbackIcon.innerHTML = isCorrect ? '<i class="fas fa-check-circle text-green-600"></i>' : '<i class="fas fa-times-circle text-red-600"></i>';
+            feedbackTitle.innerText = isCorrect ? "¡Correcto!" : "Incorrecto";
+            feedbackTitle.className = `font-bold text-lg ${isCorrect ? 'text-green-800' : 'text-red-800'}`;
+            
+            feedbackJustification.innerText = text || "Sin justificación disponible.";
+            
+            // Auto scroll to feedback on mobile
+            if(window.innerWidth < 768) {
+                feedbackArea.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizQuestions.length) {
+                renderQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            quizScreen.classList.add('hidden');
+            progressContainer.classList.add('hidden');
+            resultScreen.classList.remove('hidden');
+            
+            const total = quizQuestions.length;
+            const percentage = (score / total) * 100;
+            
+            document.getElementById('final-score').innerText = `${score}/${total}`;
+            
+            // Animate Bar
+            setTimeout(() => {
+                document.getElementById('final-progress-bar').style.width = `${percentage}%`;
+            }, 100);
+
+            // Icon and Message
+            const scoreCircle = document.getElementById('score-circle');
+            const scoreMsg = document.getElementById('score-message');
+            
+            if (percentage >= 90) {
+                scoreCircle.className = "w-24 h-24 mx-auto rounded-full flex items-center justify-center text-4xl shadow-lg relative bg-green-100 text-green-600 mb-4";
+                scoreCircle.innerHTML = '<i class="fas fa-trophy"></i>';
+                scoreMsg.innerText = "¡Excelente! Eres un experto en PSP.";
+            } else if (percentage >= 70) {
+                scoreCircle.className = "w-24 h-24 mx-auto rounded-full flex items-center justify-center text-4xl shadow-lg relative bg-blue-100 text-blue-600 mb-4";
+                scoreCircle.innerHTML = '<i class="fas fa-thumbs-up"></i>';
+                scoreMsg.innerText = "¡Muy bien! Tienes conocimientos sólidos.";
+            } else if (percentage >= 50) {
+                scoreCircle.className = "w-24 h-24 mx-auto rounded-full flex items-center justify-center text-4xl shadow-lg relative bg-yellow-100 text-yellow-600 mb-4";
+                scoreCircle.innerHTML = '<i class="fas fa-book-reader"></i>';
+                scoreMsg.innerText = "Aprobado, pero podrías repasar un poco más.";
+            } else {
+                scoreCircle.className = "w-24 h-24 mx-auto rounded-full flex items-center justify-center text-4xl shadow-lg relative bg-red-100 text-red-600 mb-4";
+                scoreCircle.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+                scoreMsg.innerText = "Necesitas estudiar más. ¡No te rindas!";
+            }
+        }
+
+        function restartQuiz() {
+            startQuiz();
+        }
+    </script>
 </body>
 </html>
-    
-
