@@ -7,6 +7,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
     <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
+
     <title>Repaso PSP</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -14,174 +15,65 @@
         .card { transition: all 0.3s ease; border-left-width: 5px; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
         .truco { background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 0.5rem; margin-top: 0.5rem; font-size: 0.9em; color: #92400e; }
+        .leaks { background-color: #fce7f3; border-left: 4px solid #db2777; padding: 0.5rem; margin-top: 0.5rem; font-size: 0.9em; color: #831843; }
         .code-tag { font-family: monospace; background-color: #e9d5ff; padding: 2px 5px; border-radius: 4px; color: #6b21a8; font-weight: bold; border: 1px solid #d8b4fe; }
         .dato-examen { background-color: #dcfce7; color: #166534; font-size: 0.85em; padding: 2px 6px; border-radius: 99px; font-weight: bold; margin-left: 5px; }
-        .old-check { background-color: #e0f2fe; color: #0369a1; font-size: 0.8em; padding: 1px 4px; border-radius: 4px; margin-left: 5px; }
+        .new-tag { background-color: #fce7f3; color: #be185d; font-size: 0.75em; padding: 1px 4px; border-radius: 3px; font-weight: bold; margin-left: 4px; text-transform: uppercase; }
     </style>
 </head>
 <body class="p-4 md:p-8 max-w-7xl mx-auto">
 
     <header class="text-center mb-10">
-        <h1 class="text-4xl font-bold text-purple-900 mb-2">⚙️ PSP: Repaso</h1>
-        <p class="text-gray-700 font-medium">Repaso PSP</p>
+        <h1 class="text-4xl font-bold text-purple-900 mb-2">⚙️ Repaso de Conceptos PSP</h1>
+        <p class="text-gray-700 font-medium">Fusión del Temario Principal + Conceptos Clave</p>
     </header>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         <div class="bg-white p-5 rounded-lg shadow border-red-500 card">
-            <h2 class="text-xl font-bold text-red-600 mb-3">🔒 1. Seguridad y Criptografía</h2>
+            <h2 class="text-xl font-bold text-red-600 mb-3">🔒 1. Seguridad y Acceso</h2>
             <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Objetivos:</strong> Confidencialidad, Integridad, Disponibilidad + <strong>No Repudio</strong>.</li>
-                <li><strong>Clase `Cipher` (Java):</strong>
+                <li><strong>Fases Control Acceso (Orden):</strong>
+                    <ol class="list-decimal ml-5 mt-1">
+                        <li><strong>Identificación:</strong> Decir quién eres (User).</li>
+                        <li><strong>Autenticación:</strong> Demostrarlo (Pass, <span class="new-tag">Biometría</span>).</li>
+                        <li><strong>Autorización:</strong> El último paso. Da permisos.</li>
+                    </ol>
+                </li>
+                <li><strong>Programación Segura:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><code class="code-tag">getInstance()</code>: Crea instancia (ej: "AES/ECB...").</li>
-                        <li><code class="code-tag">init()</code>: Inicializa (Modo + Clave).</li>
-                        <li><code class="code-tag">doFinal()</code>: Ejecuta el cifrado real. <span class="dato-examen">¡Examen!</span></li>
+                        <li>Archivos: Siempre <strong>Solo Lectura</strong>.</li>
+                        <li>Validar Inputs siempre.</li>
                     </ul>
                 </li>
-                <li><strong>Tipos de Claves:</strong>
+                <li><strong>Criptografía (Clase Cipher):</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Simétrica (SecretKey):</strong> 1 clave. Rápida. (AES, DES).</li>
-                        <li><strong>Asimétrica (KeyPair):</strong> 2 claves (Pública/Privada). Lenta. (RSA).</li>
-                        <li><strong>Hash (MessageDigest):</strong> Resumen único (MD5, SHA).</li>
+                        <li><code class="code-tag">getInstance()</code>: Algoritmo.</li>
+                        <li><code class="code-tag">init()</code>: Modo + Clave.</li>
+                        <li><code class="code-tag">doFinal()</code>: Ejecuta. <span class="dato-examen">¡Examen!</span></li>
                     </ul>
                 </li>
-                <li><strong>Prácticas:</strong> Archivos de solo lectura, validar inputs.</li>
+                <li><strong>Tipos de Claves:</strong> Simétrica (1 clave, rápida), Asimétrica (2 claves, lenta), Hash (Resumen).</li>
             </ul>
         </div>
 
         <div class="bg-white p-5 rounded-lg shadow border-blue-500 card">
             <h2 class="text-xl font-bold text-blue-600 mb-3">🧵 2. Procesos e Hilos</h2>
             <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Comandos Linux:</strong> <code class="code-tag">ps -ef</code> (Muestra PID y UID). <span class="dato-examen">¡Nuevo!</span></li>
-                <li><strong>Métodos Críticos (Diferencias):</strong>
+                <li><strong>Conceptos Base:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><code class="code-tag">start()</code>: <strong>Crea</strong> el hilo (Llama a run).</li>
-                        <li><code class="code-tag">run()</code>: Contiene el <strong>código</strong> (No crea hilo).</li>
-                        <li><code class="code-tag">notify()</code>: <strong>Despierta</strong> hilos en espera.</li>
-                        <li><code class="code-tag">sleep()</code>: Pausa (Timed Waiting).</li>
+                        <li><strong>Servicio:</strong> Programa en 2º plano sin interfaz. <span class="new-tag">Definición</span></li>
+                        <li><strong>Hilo vs Proceso:</strong> Hilo comparte memoria y su creación tiene <strong>menor coste</strong>.</li>
+                        <li><strong>Comandos:</strong> <code class="code-tag">ps -ef</code> (Linux).</li>
+                        <li><strong>Crear Proceso:</strong> <code class="code-tag">createProcess()</code> (C/Win) o <code class="code-tag">ProcessBuilder</code> (Java).</li>
                     </ul>
                 </li>
-                <li><strong>Identificación (Trampa):</strong>
-                    <div class="truco">🚨 <strong>Reference</strong> = <code class="code-tag">currentThread()</code> (Objeto). <br>🚨 <strong>ID</strong> = <code class="code-tag">getId()</code> (Número long).</div>
-                </li>
-                <li><strong>Bernstein:</strong> Conflicto solo si hay <strong>Escritura</strong>. (2 Lecturas = OK / No se sabe).</li>
-            </ul>
-        </div>
-
-       <div class="bg-white p-5 rounded-lg shadow border-green-500 card">
-            <h2 class="text-xl font-bold text-green-600 mb-3 flex justify-between">
-                <span>🌍 3. Redes y Sockets</span>
-                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">RA3</span>
-            </h2>
-            <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Puertos Clave:</strong>
+                <li><strong>Métodos Hilos:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>SSH:</strong> 22 <span class="dato-examen">Seguro</span></li>
-                        <li><strong>HTTPS:</strong> 443 <span class="dato-examen">Web</span></li>
-                        <li><strong>FTP:</strong> 21 (Control) / 20 (Datos).</li>
+                        <li><code class="code-tag">start()</code>: Crea hilo. / <code class="code-tag">run()</code>: Ejecuta código.</li>
+                        <li><code class="code-tag">sleep()</code>: Pausa. / <code class="code-tag">notify()</code>: Despierta (NO para el hilo, solo avisa).</li>
+                        <li><strong>Fin del Hilo:</strong> Cuando termina el método <code class="code-tag">run()</code>.</li>
                     </ul>
                 </li>
-                <li><strong>Sockets (5 Elementos):</strong>
-                    <div class="truco text-xs">Protocolo + IP A + Puerto A + IP B + Puerto B</div>
-                </li>
-
-                <li class="mt-4">
-                    <strong>🤝 Ciclo de Vida TCP (Esquema Visual):</strong>
-                    
-                    <div class="mt-2 bg-green-50 border border-green-200 rounded p-2">
-                        <p class="text-xs font-bold text-green-800 mb-1 border-b border-green-200">🟢 1. APERTURA (3-Way)</p>
-                        <div class="font-mono text-xs space-y-1">
-                            <div class="flex justify-between items-center">
-                                <span class="text-blue-600 font-bold">Cliente</span>
-                                <span class="text-gray-500">--- SYN &rarr;</span>
-                                <span class="text-purple-600 font-bold">Servidor</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-blue-600 font-bold">Cliente</span>
-                                <span class="text-gray-500">&larr; SYN+ACK ---</span>
-                                <span class="text-purple-600 font-bold">Servidor</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-blue-600 font-bold">Cliente</span>
-                                <span class="text-gray-500">--- ACK &rarr;</span>
-                                <span class="text-purple-600 font-bold">Servidor</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-2 bg-red-50 border border-red-200 rounded p-2">
-                        <p class="text-xs font-bold text-red-800 mb-1 border-b border-red-200">🔴 2. CIERRE (4 Pasos)</p>
-                        <div class="font-mono text-xs space-y-1">
-                            <div class="flex justify-between items-center">
-                                <span class="text-blue-600 font-bold">Cliente</span>
-                                <span class="text-gray-500">--- FIN &rarr;</span>
-                                <span class="text-purple-600 font-bold">Servidor</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-blue-600 font-bold">Cliente</span>
-                                <span class="text-gray-500">&larr; ACK ---</span>
-                                <span class="text-purple-600 font-bold">Servidor</span>
-                            </div>
-                            <div class="text-center text-gray-400 text-[10px] py-1">... (Servidor termina tareas) ...</div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-blue-600 font-bold">Cliente</span>
-                                <span class="text-gray-500">&larr; FIN ---</span>
-                                <span class="text-purple-600 font-bold">Servidor</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-blue-600 font-bold">Cliente</span>
-                                <span class="text-gray-500">--- ACK &rarr;</span>
-                                <span class="text-purple-600 font-bold">Servidor</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-                <li><strong>Clases Java:</strong> <code class="code-tag">InetAddress</code>, <code class="code-tag">ServerSocket</code> (bind/accept).</li>
-            </ul>
-        </div>
-
-        <div class="bg-white p-5 rounded-lg shadow border-purple-500 card">
-            <h2 class="text-xl font-bold text-purple-600 mb-3">🚀 4. Servicios Distribuidos</h2>
-            <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Tipos de Servidor (COMPLETO):</strong> <span class="old-check">Están todos</span>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Iterativo:</strong> Sin hilos (Secuencial, lento).</li>
-                        <li><strong>Concurrente:</strong> Con hilos (Simultáneo, rápido).</li>
-                        <li><strong>Dedicado:</strong> Hardware exclusivo para un cliente.</li>
-                        <li><strong>Balanceador de Carga:</strong> Distribuye tráfico entre varios servidores.</li>
-                    </ul>
-                </li>
-                <li><strong>RMI (Objetos Remotos):</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li>Clase: <code class="code-tag">UnicastRemoteObject</code>.</li>
-                        <li>Excepción: <code class="code-tag">RemoteException</code>.</li>
-                        <li>Necesitas: Interfaz + Objeto Remoto (Servidor) + Cliente.</li>
-                    </ul>
-                </li>
-                <li class="bg-purple-50 p-2 rounded border border-purple-200 mt-2">
-                    <strong>REST vs SOAP:</strong> REST es <strong>Stateless</strong> (Toda la info en el mensaje). SOAP usa XML estricto.
-                </li>
-            </ul>
-        </div>
-
-    </div>
-
-    <div class="mt-8 bg-gray-800 text-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold text-yellow-400 mb-4 text-center">⚡ Flashcards Técnicas</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-yellow-500">Ver Procesos → <br><strong>ps -ef</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-yellow-500">Ejecuta Cifrado → <br><strong>doFinal()</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-red-500">Puerto Seguro → <br><strong>443 (HTTPS)</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-red-500">Puerto SSH → <br><strong>22</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-blue-500">Lanza Hilo → <br><strong>start()</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-blue-500">Cierra TCP → <br><strong>4 Pasos (FIN)</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-green-500">Socket → <br><strong>5 Elementos</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-purple-500">Excepción RMI → <br><strong>RemoteException</strong></div>
-        </div>
-    </div>
-
-</body>
-</html>
-
+                <li><strong>Identificación (Trampa Leaks):</strong>
+                    <div class="leaks">🚨 <strong>Reference</strong> = <code
