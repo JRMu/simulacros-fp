@@ -69,25 +69,76 @@
             </ul>
         </div>
 
-        <div class="bg-white p-5 rounded-lg shadow border-green-500 card">
-            <h2 class="text-xl font-bold text-green-600 mb-3">🌍 3. Redes y Sockets</h2>
+       <div class="bg-white p-5 rounded-lg shadow border-green-500 card">
+            <h2 class="text-xl font-bold text-green-600 mb-3 flex justify-between">
+                <span>🌍 3. Redes y Sockets</span>
+                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">RA3</span>
+            </h2>
             <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Puertos Clave (Memoriza):</strong>
+                <li><strong>Puertos Clave:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>SSH:</strong> 22 (Remoto Seguro). <span class="dato-examen">¡Cae!</span></li>
-                        <li><strong>HTTP:</strong> 80 / <strong>HTTPS:</strong> 443 (Web Segura).</li>
+                        <li><strong>SSH:</strong> 22 <span class="dato-examen">Seguro</span></li>
+                        <li><strong>HTTPS:</strong> 443 <span class="dato-examen">Web</span></li>
                         <li><strong>FTP:</strong> 21 (Control) / 20 (Datos).</li>
-                        <li><strong>Telnet:</strong> 23 (Inseguro).</li>
                     </ul>
                 </li>
-                <li><strong>Sockets (Identificación Total):</strong>
-                    <div class="truco">🔑 <strong>Son 5 elementos:</strong><br>Protocolo + IP Origen + Puerto Origen + IP Destino + Puerto Destino. <span class="old-check">Confirmado</span></div>
+                <li><strong>Sockets (5 Elementos):</strong>
+                    <div class="truco text-xs">Protocolo + IP A + Puerto A + IP B + Puerto B</div>
                 </li>
-                <li><strong>Clases Java:</strong> <code class="code-tag">InetAddress</code> (IPs), <code class="code-tag">ServerSocket</code> (bind/accept).</li>
-                <li><strong>TCP Handshake:</strong>
-                    <br>🔹 <strong>Apertura (3):</strong> SYN → SYN-ACK → ACK.
-                    <br>🔸 <strong>Cierre (4):</strong> FIN → ACK → FIN → ACK.
+
+                <li class="mt-4">
+                    <strong>🤝 Ciclo de Vida TCP (Esquema Visual):</strong>
+                    
+                    <div class="mt-2 bg-green-50 border border-green-200 rounded p-2">
+                        <p class="text-xs font-bold text-green-800 mb-1 border-b border-green-200">🟢 1. APERTURA (3-Way)</p>
+                        <div class="font-mono text-xs space-y-1">
+                            <div class="flex justify-between items-center">
+                                <span class="text-blue-600 font-bold">Cliente</span>
+                                <span class="text-gray-500">--- SYN &rarr;</span>
+                                <span class="text-purple-600 font-bold">Servidor</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-blue-600 font-bold">Cliente</span>
+                                <span class="text-gray-500">&larr; SYN+ACK ---</span>
+                                <span class="text-purple-600 font-bold">Servidor</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-blue-600 font-bold">Cliente</span>
+                                <span class="text-gray-500">--- ACK &rarr;</span>
+                                <span class="text-purple-600 font-bold">Servidor</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 bg-red-50 border border-red-200 rounded p-2">
+                        <p class="text-xs font-bold text-red-800 mb-1 border-b border-red-200">🔴 2. CIERRE (4 Pasos)</p>
+                        <div class="font-mono text-xs space-y-1">
+                            <div class="flex justify-between items-center">
+                                <span class="text-blue-600 font-bold">Cliente</span>
+                                <span class="text-gray-500">--- FIN &rarr;</span>
+                                <span class="text-purple-600 font-bold">Servidor</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-blue-600 font-bold">Cliente</span>
+                                <span class="text-gray-500">&larr; ACK ---</span>
+                                <span class="text-purple-600 font-bold">Servidor</span>
+                            </div>
+                            <div class="text-center text-gray-400 text-[10px] py-1">... (Servidor termina tareas) ...</div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-blue-600 font-bold">Cliente</span>
+                                <span class="text-gray-500">&larr; FIN ---</span>
+                                <span class="text-purple-600 font-bold">Servidor</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-blue-600 font-bold">Cliente</span>
+                                <span class="text-gray-500">--- ACK &rarr;</span>
+                                <span class="text-purple-600 font-bold">Servidor</span>
+                            </div>
+                        </div>
+                    </div>
                 </li>
+
+                <li><strong>Clases Java:</strong> <code class="code-tag">InetAddress</code>, <code class="code-tag">ServerSocket</code> (bind/accept).</li>
             </ul>
         </div>
 
@@ -133,3 +184,4 @@
 
 </body>
 </html>
+
