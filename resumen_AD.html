@@ -9,9 +9,6 @@
     <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
-    <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-
     <title>Repaso Final AD - Chuleta Definitiva</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -125,28 +122,43 @@
             </ul>
         </div>
 
-        <div class="bg-white p-5 rounded-lg shadow border-red-500 card border-l-8">
-            <h2 class="text-xl font-bold text-red-600 mb-3">🔥 3.5. ORM: El Desfase (LEAKS)</h2>
-            <p class="text-xs text-gray-500 mb-2">Detalles técnicos del "Impedance Mismatch":</p>
+      <div class="bg-white p-5 rounded-lg shadow border-blue-400 card border-l-8">
+            <h2 class="text-xl font-bold text-blue-700 mb-3">📘 3.5. El Desfase (Libro vs Examen)</h2>
+            <p class="text-xs text-gray-500 mb-2">Cómo llama el examen a lo que explica el libro:</p>
             
             <div class="space-y-2 text-sm">
-                <div class="leak-orm">
-                    <strong>1. Granularidad:</strong> Objetos finos (Dirección) vs Tablas planas.
+                <div class="libro-examen">
+                    <strong>1. Granularidad:</strong>
+                    <br><em>Libro:</em> "Tener muchas clases pequeñas (Dirección, CP) que van a una sola tabla."
                 </div>
-                <div class="leak-orm">
-                    <strong>2. Herencia:</strong> Java tiene `extends`. SQL NO tiene herencia natural.
+                <div class="libro-examen">
+                    <strong>2. Subtipos (Herencia):</strong>
+                    <br><em>Libro:</em> "SQL no tiene `extends` ni herencia como Java."
                 </div>
-                <div class="leak-orm">
-                    <strong>3. Identidad:</strong> Java usa `==` (memoria). BD usa Primary Key (PK).
+                <div class="libro-examen">
+                    <strong>3. Identidad:</strong>
+                    <br><em>Libro:</em> "En Java usas `==`, en BD usas Clave Primaria (PK)."
                 </div>
-                <div class="leak-orm">
-                    <strong>4. Asociaciones:</strong> Java referencias unidireccionales. BD Foreign Keys.
+                <div class="libro-examen">
+                    <strong>4. Asociaciones:</strong>
+                    <br><em>Libro:</em> "En Java el padre tiene lista de hijos. En BD el hijo tiene la FK del padre."
                 </div>
-                <div class="leak-orm">
-                    <strong>5. Navegación:</strong> Java recorre grafo (`.get()`). BD hace JOINs.
+                <div class="libro-examen">
+                    <strong>5. Navegación:</strong>
+                    <br><em>Libro:</em> "En Java haces `getPedidos()`. En BD haces JOINs costosos."
                 </div>
             </div>
+            <p class="text-[10px] text-gray-400 mt-2 italic">* Estos 5 puntos son la teoría oficial del problema "Impedance Mismatch".</p>
         </div>
+        <div class="bg-white p-5 rounded-lg shadow border-yellow-500 card">
+            <h2 class="text-xl font-bold text-yellow-600 mb-3">📦 4. Tipos y BDOO</h2>
+            <ul class="space-y-2 text-sm text-gray-700">
+                <li><strong>Tipos Grandes (LOBs):</strong>
+                    <ul class="list-disc ml-5 mt-1">
+                        <li><strong>C</strong>LOB: Caracteres (Texto largo).</li>
+                        <li><strong>B</strong>LOB: Binario (Imágenes/PDF).</li>
+                    </ul>
+                </li>
         <div class="bg-white p-5 rounded-lg shadow border-yellow-500 card">
             <h2 class="text-xl font-bold text-yellow-600 mb-3">📦 4. Tipos y BDOO</h2>
             <ul class="space-y-2 text-sm text-gray-700">
@@ -250,3 +262,4 @@
 </body>
 
 </html>
+
