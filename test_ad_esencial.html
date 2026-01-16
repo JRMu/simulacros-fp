@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test AD: Nivel Técnico/Denso</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f1f5f9; color: #334155; }
+        .hidden { display: none; }
+        .correct { background-color: #d1fae5; border-color: #10b981; color: #065f46; }
+        .incorrect { background-color: #fee2e2; border-color: #ef4444; color: #991b1b; }
+        /* Estilo para las opciones largas y densas */
+        .option-btn { 
+            transition: all 0.2s; 
+            border: 1px solid #cbd5e1; 
+            background-color: white; 
+            font-size: 0.95rem; 
+            line-height: 1.6; 
+            text-align: left;
+        }
+        .option-btn:hover:not(:disabled) { background-color: #f8fafc; border-color: #94a3b8; }
+        .card-enter { animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .tag { font-size: 0.7rem; text-transform: uppercase; font-weight: bold; padding: 2px 6px; border-radius: 4px; letter-spacing: 0.05em; }
+        .tag-hard { background-color: #475569; color: white; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <header class="bg-slate-800 text-white shadow-md sticky top-0 z-10 border-b border-slate-600">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-lg font-bold flex items-center gap-2 text-slate-200">
+                <span class="text-xl">⚖️</span> Test Técnico AD
+            </h1>
+            <div class="flex items-center gap-4 text-xs font-mono">
+                <div class="bg-slate-900 px-3 py-1 rounded text-green-400 border border-slate-700">OK: <span id="score">0</span></div>
+                <div class="bg-slate-900 px-3 py-1 rounded text-red-400 border border-slate-700">ERR: <span id="errors">0</span></div>
+                <div class="bg-slate-700 px-3 py-1 rounded text-white border border-slate-500"><span id="progress">1</span>/42</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center justify-center p-4">
+        <div id="quiz-card" class="bg-white rounded-lg shadow-xl p-6 md:p-8 w-full max-w-3xl border border-slate-200 card-enter">
+            <div class="mb-4 flex justify-between">
+                <span class="tag tag-hard">Concepto Teórico</span>
+            </div>
+            
+            <h2 id="question-text" class="text-lg md:text-xl font-semibold text-slate-800 mb-6 leading-relaxed border-b pb-4 border-slate-100"></h2>
+            
+            <div id="options-container" class="space-y-4"></div>
+
+            <div id="feedback" class="hidden mt-8 p-5 rounded bg-slate-50 border-l-4 border-indigo-500">
+                <p id="justification" class="text-slate-700 text-sm italic leading-relaxed"></p>
+                <button onclick="nextQuestion()" class="mt-4 px-6 py-2 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded shadow transition-colors text-sm uppercase tracking-wide">Siguiente Pregunta</button>
+            </div>
+        </div>
+
+        <div id="summary" class="hidden bg-white rounded-lg shadow-xl p-8 w-full max-w-md text-center border-t-4 border-slate-800 card-enter">
+            <div class="text-5xl mb-4">🏁</div>
+            <h2 class="text-2xl font-bold text-slate-800 mb-2">Test Finalizado</h2>
+            <p class="text-slate-500 mb-6 text-sm">Nivel de Precisión Técnica</p>
+            <div class="flex justify-center gap-8 mb-8">
+                <div class="text-center"><div class="text-3xl font-bold text-green-600" id="final-score">0</div><div class="text-xs uppercase text-slate-400">Aciertos</div></div>
+                <div class="text-center"><div class="text-3xl font-bold text-red-600" id="final-errors">0</div><div class="text-xs uppercase text-slate-400">Fallos</div></div>
+            </div>
+            <button onclick="location.reload()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 rounded shadow">Repetir</button>
+        </div>
+    </main>
+
+    <script>
+        // --- BANCO DE PREGUNTAS TÉCNICAS (42 ITEMS) ---
+        // Estilo: Enunciado largo, respuestas parecidas, sin escenarios.
+        
+        const rawQuestions = [
+            // --- BLOQUE 1: FICHEROS & STREAMS ---
+            {
+                q: "En relación con la arquitectura de entrada/salida en Java, ¿cuál es la distinción técnica fundamental entre la clase heredada 'java.io.File' y la interfaz 'java.nio.file.Path' introducida en la especificación NIO.2?",
+                o: [
+                    "La clase File es una representación abstracta moderna que permite el acceso no bloqueante, mientras que Path es una clase concreta heredada.",
+                    "La interfaz Path es parte de la nueva API NIO.2 y ofrece una mayor versatilidad para manejar sistemas de archivos no predeterminados y enlaces simbólicos, superando las limitaciones de File.",
+                    "La clase File está marcada como 'deprecated' en las versiones actuales del JDK y no debe utilizarse, siendo Path su único reemplazo válido.",
+                    "La interfaz Path se utiliza exclusivamente para la manipulación de archivos XML, mientras que File se utiliza para archivos binarios."
+                ],
+                c: 1,
+                j: "Path (NIO.2) mejora a File permitiendo acceso a sistemas de ficheros virtuales, mejor manejo de errores y enlaces simbólicos."
+            },
+            {
+                q: "Con respecto a la manipulación de archivos de acceso aleatorio mediante la clase 'java.io.RandomAccessFile', ¿cuál es la función exacta del método 'seek(long pos)' en contraposición a otros métodos de posicionamiento?",
+                o: [
+                    "El método seek establece el puntero del archivo en una posición relativa, sumando el valor 'pos' a la posición actual del puntero.",
+                    "El método seek establece el puntero del archivo en una posición absoluta medida en bytes desde el comienzo del archivo.",
+                    "El método seek mueve el contenido físico del archivo hacia la posición especificada, reescribiendo los bytes anteriores.",
+                    "El método seek busca una cadena de texto específica dentro del archivo y devuelve su posición absoluta."
+                ],
+                c: 1,
+                j: "Seek es absoluto (desde el byte 0). SkipBytes sería el relativo."
+            },
+            {
+                q: "En el contexto del procesamiento de flujos de datos (Streams), ¿qué diferencia conceptual existe entre las jerarquías de clases basadas en 'InputStream/OutputStream' frente a las basadas en 'Reader/Writer'?",
+                o: [
+                    "InputStream/OutputStream están diseñadas para manejar flujos de caracteres Unicode de 16 bits, mientras que Reader/Writer manejan flujos de bytes puros de 8 bits.",
+                    "InputStream/OutputStream están diseñadas para manejar flujos de bytes crudos (binarios), mientras que Reader/Writer están especializadas en el manejo de caracteres y texto.",
+                    "InputStream/OutputStream son clases obsoletas de Java 1.0, mientras que Reader/Writer son sus reemplazos directos en la API NIO.",
+                    "No existe diferencia conceptual; son alias para las mismas operaciones de bajo nivel del sistema operativo."
+                ],
+                c: 1,
+                j: "Stream = Bytes (8 bits, Binario). Reader/Writer = Caracteres (16 bits, Texto)."
+            },
+
+            // --- BLOQUE 2: XML ---
+            {
+                q: "Analizando los modelos de análisis sintáctico XML (Parsing), ¿cuál es la desventaja crítica del modelo DOM (Document Object Model) en comparación con el modelo SAX (Simple API for XML) al procesar documentos de gran volumen?",
+                o: [
+                    "El modelo DOM carga la estructura completa del documento en la memoria heap como un árbol de objetos, lo que puede provocar excepciones de falta de memoria (OutOfMemoryError) con archivos grandes.",
+                    "El modelo DOM es un parser basado exclusivamente en eventos secuenciales, lo que impide la navegación hacia atrás en el documento y dificulta las modificaciones.",
+                    "El modelo DOM no permite la modificación de los nodos del documento una vez cargados, siendo una API de solo lectura estricta.",
+                    "El modelo DOM requiere obligatoriamente que el documento XML tenga un esquema XSD asociado, mientras que SAX no lo requiere."
+                ],
+                c: 0,
+                j: "La desventaja de DOM es el consumo de RAM al cargar todo el árbol. SAX no carga nada, solo lee."
+            },
+            {
+                q: "En la arquitectura de Bases de Datos Nativas XML (como eXist-db), ¿cómo se define técnicamente el concepto de 'Colección' dentro de la jerarquía de almacenamiento?",
+                o: [
+                    "Una Colección es un archivo individual que contiene múltiples documentos XML concatenados en una sola estructura raíz.",
+                    "Una Colección es una estructura lógica equivalente a un directorio del sistema de archivos, que actúa como contenedor de recursos (documentos XML o binarios) y subcolecciones.",
+                    "Una Colección es un conjunto de índices estructurales generados automáticamente para optimizar las consultas XPath.",
+                    "Una Colección es un tipo de dato primitivo de XQuery utilizado para almacenar arrays de resultados en memoria."
+                ],
+                c: 1,
+                j: "En BBDD Nativas: Colección = Carpeta. Recurso = Archivo."
+            },
+            {
+                q: "Según el estándar W3C y el temario oficial, ¿cuál es la relación taxonómica y funcional entre el lenguaje XPath y el lenguaje XQuery?",
+                o: [
+                    "XQuery es un subconjunto limitado de XPath diseñado específicamente para bases de datos relacionales, eliminando las funciones de navegación.",
+                    "XPath es una extensión de XQuery que añade capacidades de manipulación de datos (DML) como inserción y borrado.",
+                    "XQuery está considerado formalmente como una extensión (superset) de XPath 2.0, incorporando sus expresiones de ruta y añadiendo estructuras de control complejas (FLWOR).",
+                    "Son lenguajes completamente independientes sin sintaxis compartida, siendo XPath para XSLT y XQuery para bases de datos."
+                ],
+                c: 2,
+                j: "XQuery > XPath. Todo lo que hace XPath lo hace XQuery, pero XQuery añade bucles y uniones."
+            },
+
+            // --- BLOQUE 3: JDBC ---
+            {
+                q: "Dentro de la interfaz 'java.sql.Statement', ¿cuál es la especificación correcta del método 'executeUpdate' en términos de su propósito y valor de retorno?",
+                o: [
+                    "Se utiliza para ejecutar consultas de selección (SELECT) y devuelve un objeto ResultSet que contiene los datos recuperados.",
+                    "Se utiliza para ejecutar sentencias de manipulación de datos (INSERT, UPDATE, DELETE) y devuelve un valor entero (int) que representa el número de filas afectadas.",
+                    "Se utiliza para ejecutar sentencias de manipulación de datos (INSERT, UPDATE, DELETE) y devuelve un valor booleano (boolean) que indica si la operación fue exitosa.",
+                    "Se utiliza para ejecutar procedimientos almacenados y devuelve un objeto CallableStatement con los parámetros de salida."
+                ],
+                c: 1,
+                j: "executeUpdate para cambios (DML). Retorna int (filas). executeQuery para SELECT. Retorna ResultSet."
+            },
+            {
+                q: "Desde el punto de vista de la seguridad y el rendimiento en JDBC, ¿cuál es la justificación técnica para priorizar el uso de 'PreparedStatement' sobre 'Statement'?",
+                o: [
+                    "PreparedStatement permite la precompilación de la sentencia SQL en el servidor de base de datos y evita la inyección SQL mediante el uso de parámetros bind (marcadores de posición).",
+                    "PreparedStatement permite la ejecución de sentencias DDL (Data Definition Language) que no están soportadas por la interfaz Statement estándar.",
+                    "PreparedStatement ejecuta la consulta en un hilo separado de forma asíncrona, mejorando la respuesta de la interfaz de usuario.",
+                    "PreparedStatement convierte automáticamente los resultados relacionales en objetos Java, eliminando la necesidad de mapeo manual."
+                ],
+                c: 0,
+                j: "Dos claves: Precompilación (Rendimiento) y Parámetros (Seguridad/Anti-Inyección)."
+            },
+            {
+                q: "En la gestión de transacciones JDBC con 'AutoCommit' desactivado, ¿qué comportamiento define el protocolo en caso de que la conexión se cierre abruptamente sin invocar explícitamente al método 'commit()'?",
+                o: [
+                    "El motor de base de datos ejecuta un 'commit' implícito para asegurar la consistencia y durabilidad de los datos introducidos hasta el momento.",
+                    "El motor de base de datos mantiene los datos en un estado temporal de 'lectura sucia' hasta que se restablece la conexión.",
+                    "El motor de base de datos ejecuta un 'rollback' automático, deshaciendo todas las operaciones realizadas en la transacción actual para mantener la atomicidad.",
+                    "El comportamiento es indefinido y depende exclusivamente de la configuración del sistema operativo del servidor."
+                ],
+                c: 2,
+                j: "Sin commit explícito, ante un cierre, la BD protege la integridad haciendo Rollback."
+            },
+            {
+                q: "Con respecto a los tipos de datos LOB (Large Object) en JDBC, ¿cuál es la distinción semántica entre los tipos CLOB y BLOB?",
+                o: [
+                    "CLOB se utiliza para almacenar grandes volúmenes de datos binarios (imágenes, audio), mientras que BLOB se utiliza para grandes volúmenes de texto.",
+                    "CLOB se utiliza para almacenar grandes volúmenes de texto basado en caracteres (Character Large Object), mientras que BLOB se utiliza para datos binarios puros (Binary Large Object).",
+                    "CLOB es un tipo de dato obsoleto reemplazado por VARCHAR, mientras que BLOB sigue vigente para archivos multimedia.",
+                    "Ambos tipos son idénticos en su estructura interna, diferenciándose únicamente en el juego de caracteres utilizado para su codificación."
+                ],
+                c: 1,
+                j: "C = Character (Texto). B = Binary (Binario)."
+            },
+
+            // --- BLOQUE 4: ORM & HIBERNATE (LEAKS INCLUIDOS) ---
+            {
+                q: "En el contexto del mapeo objeto-relacional (ORM), el problema de la 'Granularidad' se manifiesta debido a una discrepancia estructural. ¿Cuál de las siguientes afirmaciones describe con precisión técnica este fenómeno?",
+                o: [
+                    "Se refiere a la situación en la que el modelo de objetos es de grano grueso (pocas clases), obligando a dividir una única entidad Java en múltiples tablas SQL.",
+                    "Se refiere a la situación en la que el modelo de objetos es de grano fino (muchas clases pequeñas), permitiendo que múltiples clases Java se mapeen a una única tabla de base de datos.",
+                    "Se refiere a la incapacidad de los tipos de datos primitivos de Java para representar la precisión granular de los tipos numéricos de SQL.",
+                    "Se refiere a la limitación de Hibernate para gestionar relaciones de herencia cuando las clases tienen pocos atributos."
+                ],
+                c: 1,
+                j: "Granularidad = Java tiene más clases (más finas) que tablas tiene la BD."
+            },
+            {
+                q: "El problema de los 'Subtipos' es uno de los componentes del desajuste de impedancia (Impedance Mismatch). ¿Cuál es la causa técnica fundamental de este conflicto?",
+                o: [
+                    "El lenguaje Java no soporta la herencia múltiple de clases, mientras que el modelo relacional permite que una tabla herede de múltiples tablas padre.",
+                    "El modelo relacional estándar (SQL) carece de un mecanismo nativo de herencia de tablas, obligando al ORM a simular la jerarquía de clases mediante estrategias de mapeo complejas.",
+                    "Los subtipos en Java se resuelven en tiempo de compilación, lo que es incompatible con la resolución dinámica de tipos de las bases de datos SQL.",
+                    "Las claves foráneas en SQL no pueden referenciar a tablas que formen parte de una estructura de herencia lógica."
+                ],
+                c: 1,
+                j: "Java tiene 'extends'. SQL no. El ORM tiene que 'simular' esa herencia con tablas."
+            },
+            {
+                q: "En relación con el ciclo de vida de los objetos en JPA/Hibernate, ¿qué condición define técnicamente el estado 'Persistent' (o Managed) de una entidad?",
+                o: [
+                    "El objeto tiene una representación en la base de datos (identificador) y está actualmente asociado a una Sesión (EntityManager) activa, por lo que los cambios se sincronizan automáticamente.",
+                    "El objeto ha sido guardado en la base de datos, pero la Sesión se ha cerrado, por lo que los cambios realizados en memoria no se sincronizarán.",
+                    "El objeto ha sido instanciado recientemente en memoria mediante el operador 'new' y aún no tiene correspondencia en la base de datos.",
+                    "El objeto ha sido marcado para su eliminación en la base de datos y será borrado físicamente al confirmar la transacción."
+                ],
+                c: 0,
+                j: "Persistent = ID en BD + Session Activa (Vigilancia activa)."
+            },
+            {
+                q: "¿Cuál es la diferencia arquitectónica y funcional entre las interfaces 'SessionFactory' y 'Session' en el marco de trabajo Hibernate?",
+                o: [
+                    "SessionFactory es un objeto ligero que se crea para cada petición de usuario, mientras que Session es un objeto pesado y único para toda la aplicación.",
+                    "SessionFactory es un objeto pesado, hilo-seguro y único por aplicación (Singleton), encargado de crear instancias ligeras y no hilo-seguras de Session para cada unidad de trabajo.",
+                    "Session es la interfaz encargada de la configuración global y el mapeo de clases, mientras que SessionFactory se utiliza exclusivamente para ejecutar consultas HQL.",
+                    "Ambas interfaces son funcionalmente equivalentes y pueden intercambiarse, siendo SessionFactory la implementación moderna de la interfaz Session."
+                ],
+                c: 1,
+                j: "Factory = Fábrica (Pesada, Una). Session = Producto/Sesión (Ligera, Muchas)."
+            },
+            {
+                q: "En el contexto de la gestión de identidades, ¿cómo se describe el problema de 'Identidad' dentro del desajuste objeto-relacional?",
+                o: [
+                    "Java define la identidad de los objetos basándose en la ubicación de memoria (==) o la igualdad lógica (equals), mientras que las bases de datos relacionales utilizan exclusivamente la Clave Primaria (PK).",
+                    "Java utiliza identificadores numéricos únicos globales (UUID) para todos los objetos, mientras que las bases de datos requieren claves primarias secuenciales.",
+                    "Las bases de datos relacionales no permiten la existencia de dos filas con valores idénticos, mientras que Java permite múltiples objetos con los mismos atributos.",
+                    "El problema reside en que Java no permite el uso de claves compuestas, obligando a simplificar el modelo de base de datos."
+                ],
+                c: 0,
+                j: "Identidad Java (Memoria) vs Identidad BD (PK). Son mecanismos distintos."
+            },
+
+            // --- BLOQUE 5: COMPONENTES & MANIFEST ---
+            {
+                q: "Con respecto al empaquetado y despliegue de aplicaciones Java, ¿cuál es la función específica del archivo 'MANIFEST.MF' ubicado dentro del directorio META-INF de un archivo JAR?",
+                o: [
+                    "Contiene las definiciones de las dependencias de compilación del proyecto, permitiendo a herramientas como Maven descargar las librerías necesarias.",
+                    "Proporciona metadatos en tiempo de ejecución sobre el contenido del archivo, incluyendo la definición de la clase principal (Main-Class) y la ruta de clases (Class-Path) para librerías externas.",
+                    "Almacena las credenciales de seguridad cifradas y los certificados digitales necesarios para la firma del código del componente.",
+                    "Actúa como un descriptor de despliegue para servidores de aplicaciones web, definiendo los servlets y los mapeos de URL."
+                ],
+                c: 1,
+                j: "Es el DNI del JAR para EJECUTAR (Runtime). Define Main-Class y Class-Path."
+            },
+            {
+                q: "En la especificación de Enterprise JavaBeans (EJB), ¿qué característica distingue fundamentalmente a un 'Stateless Session Bean' de un 'Stateful Session Bean'?",
+                o: [
+                    "El Stateless Bean mantiene el estado conversacional del cliente entre múltiples llamadas a métodos, mientras que el Stateful Bean se reinicia en cada llamada.",
+                    "El Stateless Bean no mantiene ningún estado conversacional asociado a un cliente específico, permitiendo que el contenedor reutilice la instancia para diferentes clientes (pooling).",
+                    "El Stateless Bean está diseñado para representar datos persistentes en la base de datos, mientras que el Stateful Bean contiene la lógica de negocio.",
+                    "El Stateless Bean solo puede ser accedido de forma asíncrona mediante colas de mensajes, a diferencia del Stateful Bean que es síncrono."
+                ],
+                c: 1,
+                j: "Stateless = Sin memoria (Reutilizable/Rápido). Stateful = Con memoria (Cliente específico)."
+            },
+            {
+                q: "¿Qué propiedad de un JavaBean se caracteriza por permitir que otros componentes (listeners) registren su interés y sean notificados automáticamente cuando el valor de dicha propiedad cambia?",
+                o: [
+                    "Propiedad Indexada (Indexed Property), que permite acceder a un array de valores.",
+                    "Propiedad Restringida (Constrained Property), que permite a los oyentes vetar el cambio.",
+                    "Propiedad Ligada (Bound Property), que dispara eventos PropertyChangeEvent al modificarse.",
+                    "Propiedad Simple (Simple Property), que expone métodos getter y setter estándar."
+                ],
+                c: 2,
+                j: "Ligada (Bound) = Notifica el cambio. Restringida (Constrained) = Pide permiso (Veto)."
+            },
+
+            // --- BLOQUE 6: EXTRAS TÉCNICOS ---
+            {
+                q: "Al realizar consultas utilizando HQL (Hibernate Query Language), ¿cuál es la diferencia sintáctica crítica respecto a SQL estándar?",
+                o: [
+                    "HQL utiliza nombres de tablas y columnas físicas de la base de datos, ignorando el mapeo de objetos.",
+                    "HQL es sensible a mayúsculas para las palabras clave (SELECT, FROM) pero insensible para los nombres de clases.",
+                    "HQL opera sobre el modelo de objetos, utilizando nombres de Clases y Atributos Java en lugar de nombres de tablas y columnas SQL.",
+                    "HQL requiere obligatoriamente el uso de procedimientos almacenados para realizar cualquier operación de selección."
+                ],
+                c: 2,
+                j: "HQL consulta OBJETOS. Usas 'Usuario' (Clase), no 'tbl_users' (Tabla)."
+            },
+            {
+                q: "¿Qué acción de limpieza es imperativo realizar sobre un objeto 'java.sql.Connection' tras finalizar su uso en un bloque finally o try-with-resources?",
+                o: [
+                    "Invocar el método 'commit()' para asegurar que no queden datos pendientes.",
+                    "Invocar el método 'close()' para liberar los recursos físicos (sockets, memoria) tanto en el cliente como en el servidor de base de datos.",
+                    "Invocar el método 'flush()' para vaciar el búfer de red.",
+                    "Establecer la referencia del objeto a 'null' para que el recolector de basura lo elimine eventualmente."
+                ],
+                c: 1,
+                j: "Si no haces close(), agotas el pool de conexiones y la BD deja de responder."
+            },
+            {
+                q: "En el contexto de JPA, ¿cuál es la finalidad de la anotación '@Transient' aplicada sobre un campo de una entidad?",
+                o: [
+                    "Indica que el campo es la clave primaria de la tabla y debe ser autogenerada.",
+                    "Indica que el campo debe ser persistido en una tabla secundaria separada.",
+                    "Indica que el campo no es persistente, es decir, no debe ser almacenado ni recuperado de la base de datos por el motor ORM.",
+                    "Indica que el campo contiene datos sensibles y debe ser cifrado antes de guardarse."
+                ],
+                c: 2,
+                j: "Transient = Ignorar en BD (Solo existe en memoria RAM)."
+            },
+            {
+                q: "¿Cuál es la función del mecanismo de 'Dirty Checking' (Comprobación de Suciedad) implementado por Hibernate?",
+                o: [
+                    "Verificar la integridad referencial de las claves foráneas antes de realizar una inserción.",
+                    "Detectar automáticamente las modificaciones en el estado de los objetos persistentes y sincronizarlos con la base de datos sin necesidad de llamadas explícitas a 'update'.",
+                    "Comprobar que los datos introducidos no contengan caracteres ilegales que puedan provocar inyección SQL.",
+                    "Validar que la memoria caché de segundo nivel esté sincronizada con la base de datos."
+                ],
+                c: 1,
+                j: "Hibernate vigila los objetos. Si cambias algo, él hace el UPDATE solo."
+            }
+        ];
+
+        // --- LÓGICA DEL TEST ---
+        let questions = [], currentQuestionIndex = 0, score = 0, errors = 0, canAnswer = true;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function startQuiz() {
+            questions = shuffleArray([...rawQuestions]); 
+            currentQuestionIndex = 0;
+            score = 0;
+            errors = 0;
+            document.getElementById('summary').classList.add('hidden');
+            document.getElementById('quiz-card').classList.remove('hidden');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex >= questions.length) {
+                showResults();
+                return;
+            }
+            
+            const q = questions[currentQuestionIndex];
+            document.getElementById('question-text').textContent = q.q;
+            document.getElementById('progress').textContent = currentQuestionIndex + 1;
+            
+            const optsContainer = document.getElementById('options-container');
+            optsContainer.innerHTML = '';
+            document.getElementById('feedback').classList.add('hidden');
+            canAnswer = true;
+
+            q.o.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = "option-btn w-full p-4 rounded shadow-sm text-slate-600";
+                btn.textContent = opt;
+                btn.onclick = () => checkAnswer(index, btn);
+                optsContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIndex, btn) {
+            if (!canAnswer) return;
+            canAnswer = false;
+            const q = questions[currentQuestionIndex];
+            const opts = document.querySelectorAll('.option-btn');
+            const justText = document.getElementById('justification');
+            
+            if (selectedIndex === q.c) {
+                btn.classList.add('correct');
+                btn.style.borderColor = "#10b981";
+                score++;
+                document.getElementById('score').textContent = score;
+                justText.innerHTML = `<strong class="text-green-600 block mb-2">✅ EXPLICACIÓN TÉCNICA:</strong> ${q.j}`;
+            } else {
+                btn.classList.add('incorrect');
+                btn.style.borderColor = "#ef4444";
+                if (opts[q.c]) {
+                    opts[q.c].classList.add('correct');
+                    opts[q.c].style.borderColor = "#10b981";
+                }
+                errors++;
+                document.getElementById('errors').textContent = errors;
+                justText.innerHTML = `<strong class="text-red-600 block mb-2">❌ FALLO TÉCNICO:</strong> ${q.j}`;
+            }
+            
+            opts.forEach(b => b.disabled = true);
+            document.getElementById('feedback').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function showResults() {
+            document.getElementById('quiz-card').classList.add('hidden');
+            document.getElementById('summary').classList.remove('hidden');
+            document.getElementById('final-score').textContent = score;
+            document.getElementById('final-errors').textContent = errors;
+        }
+
+        window.onload = startQuiz;
+    </script>
+</body>
+</html>
