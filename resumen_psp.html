@@ -7,14 +7,14 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
     <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
-
-    <title>Repaso PSP - VERSIÓN MASTER COMPLETA</title>
+    <title>Repaso PSP</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #f3e8ff; }
         .card { transition: all 0.3s ease; border-left-width: 5px; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
         .truco { background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 0.5rem; margin-top: 0.5rem; font-size: 0.9em; color: #92400e; }
+        .leaks { background-color: #fce7f3; border-left: 4px solid #db2777; padding: 0.5rem; margin-top: 0.5rem; font-size: 0.9em; color: #831843; }
         .code-tag { font-family: monospace; background-color: #e5e7eb; padding: 2px 4px; border-radius: 4px; color: #7e22ce; font-weight: bold; }
         .estado { display: inline-block; padding: 1px 5px; border-radius: 4px; font-size: 0.8em; font-weight: bold; margin-right: 3px; border: 1px solid rgba(0,0,0,0.1); }
         .importante { text-decoration: underline; text-decoration-color: #ef4444; text-decoration-thickness: 2px; }
@@ -23,8 +23,8 @@
 <body class="p-4 md:p-8 max-w-7xl mx-auto">
 
     <header class="text-center mb-10">
-        <h1 class="text-4xl font-bold text-purple-900 mb-2">⚙️ Repaso Maestro PSP</h1>
-        <p class="text-gray-700 font-medium">Contiene TODO: Libro + PDF + Modelos de Examen (Sin resumir)</p>
+        <h1 class="text-4xl font-bold text-purple-900 mb-2">⚙️ PSP: Repaso Final</h1>
+        <p class="text-gray-700 font-medium"></p>
     </header>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -35,28 +35,19 @@
                 <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">RA5</span>
             </h2>
             <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Objetivo:</strong> Confidencialidad, Integridad, Disponibilidad + <strong>No Repudio</strong> (Origen).</li>
-                <li><strong>Prácticas de Programación Segura:</strong>
+                <li><strong>Objetivos:</strong> Confidencialidad, Integridad, Disponibilidad + <strong>No Repudio</strong>.</li>
+                <li><strong>Prácticas Seguras:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Archivos:</strong> Configuración de solo lectura. Permisos estrictos.</li>
-                        <li><strong>Código:</strong> <span class="importante">Validar siempre los datos de entrada</span> (Input Validation). Eliminar código obsoleto.</li>
-                        <li><strong>Cifrado:</strong> Obligatorio para <strong>información sensible</strong>.</li>
+                        <li><strong>Archivos:</strong> Permisos estrictos (Solo lectura).</li>
+                        <li><strong>Código:</strong> <span class="importante">Validar siempre los Inputs</span>.</li>
+                        <li><strong>Cifrado:</strong> Obligatorio para datos sensibles.</li>
                     </ul>
-                </li>
-                <li><strong>Control de Acceso (Fases):</strong>
-                    <ol class="list-decimal ml-5 mt-1">
-                        <li><strong>Identificación:</strong> Usuario dice quién es.</li>
-                        <li><strong>Autenticación:</strong> Sistema lo verifica (Contraseña, Biometría).</li>
-                        <li><strong>Autorización:</strong> Sistema concede permisos (Último paso).</li>
-                    </ol>
                 </li>
                 <li><strong>Criptografía Java (JCA):</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Simétrica:</strong> 1 clave compartida (Rápida). Ej: AES.</li>
-                        <li><strong>Asimétrica:</strong> 2 claves (Pública/Privada). Ej: RSA (Factorización primos).</li>
-                        <li><strong>Hash:</strong> Resumen único. MD5 = 128 bits.</li>
-                        <li><code class="code-tag">Cipher.getInstance()</code>: Crea el objeto.</li>
-                        <li><code class="code-tag">doFinal()</code>: Ejecuta el cifrado/descifrado.</li>
+                        <li><strong>Simétrica:</strong> 1 clave (Rápida). Ej: AES.</li>
+                        <li><strong>Asimétrica:</strong> 2 claves (Pública/Privada). Ej: RSA.</li>
+                        <li><strong>Hash:</strong> Resumen único (MD5 = 128 bits).</li>
                     </ul>
                 </li>
             </ul>
@@ -68,39 +59,28 @@
                 <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">RA1 y RA2</span>
             </h2>
             <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Conceptos Básicos:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Proceso:</strong> Programa en ejecución (Activo). Gestionado por SO.</li>
-                        <li><strong>Hilo (Thread):</strong> Unidad de ejecución <strong>dentro</strong> del proceso. Comparte recursos/memoria. <br><em>Ventaja:</em> Menor coste de creación y cambio de contexto.</li>
-                        <li><strong>Contexto Propio del Hilo:</strong> Pila, Contador de Programa (CP) e Identificador.</li>
-                    </ul>
-                </li>
+                <li><strong>Contexto del Hilo:</strong> Pila, Contador de Programa (CP) e Identificador.</li>
                 <li class="bg-blue-50 p-2 rounded border border-blue-200">
-                    <strong>🚦 Ciclo de Vida del Hilo (Preguntas Fijas):</strong>
+                    <strong>🚦 Ciclo de Vida (¡Fijo!):</strong>
                     <ul class="mt-1 space-y-1">
-                        <li><span class="estado bg-green-200 text-green-900">Ejecución</span> Tiene la CPU y está procesando.</li>
-                        <li><span class="estado bg-yellow-200 text-yellow-900">Listo (Runnable)</span> Creado y esperando turno de CPU.</li>
-                        <li><span class="estado bg-red-200 text-red-900">Bloqueado</span> Espera un recurso o evento (E/S, Sleep).</li>
-                        <li><span class="estado bg-gray-200 text-gray-900">Terminado</span> Finaliza su método <code class="code-tag">run()</code>.</li>
+                        <li><span class="estado bg-green-200 text-green-900">Ejecución</span> Tiene CPU.</li>
+                        <li><span class="estado bg-yellow-200 text-yellow-900">Listo</span> Espera turno CPU.</li>
+                        <li><span class="estado bg-red-200 text-red-900">Bloqueado</span> Espera recurso/evento (sleep, E/S).</li>
+                        <li><span class="estado bg-gray-200 text-gray-900">Terminado</span> Fin del run().</li>
                     </ul>
                 </li>
-                <li><strong>Gestión y Sincronización:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Planificador:</strong> Decide qué proceso usa la CPU.</li>
-                        <li><strong>Sincronización:</strong> Uso de <code class="code-tag">synchronized</code> para evitar <strong>Condiciones de Carrera</strong> en datos compartidos.</li>
-                        <li><strong>Deadlock (Abrazo Mortal):</strong> Bloqueo mutuo indefinido.</li>
-                    </ul>
+                <li><strong>Métodos Trampa (LEAK HOY):</strong>
+                    <div class="leaks">🚨 <strong>¡OJO DIFERENCIA!</strong><br>
+                    - <code class="code-tag">currentThread()</code>: Devuelve la <strong>REFERENCIA</strong> (el Objeto hilo).<br>
+                    - <code class="code-tag">getId()</code>: Devuelve el <strong>IDENTIFICADOR</strong> (número long).</div>
                 </li>
-                <li><strong>Métodos Trampa:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><code class="code-tag">start()</code> vs <code class="code-tag">run()</code>: <strong>start()</strong> inicia el hilo real.</li>
-                        <li><code class="code-tag">currentThread()</code>: Devuelve la REFERENCIA (Objeto).</li>
-                        <li><code class="code-tag">sleep()</code>: Pausa temporalmente.</li>
-                    </ul>
+                <li><strong>¿Por qué usar hilos en Servidor?</strong>
+                    <div class="leaks">🚨 <strong>Respuesta Correcta:</strong><br>
+                    "Para atender múltiples peticiones simultáneamente. <strong>Sin hilos, solo se atiende una petición a la vez</strong> (Secuencial)."</div>
                 </li>
-                <li><strong>Bernstein (Concurrencia):</strong>
-                    <div class="text-xs mt-1">Para que sea concurrente (determinista), la intersección debe ser vacía en Escrituras:</div>
-                    <div class="truco">📝 <strong>Regla:</strong> L1 ∩ L2 ≠ Ø es irrelevante. El conflicto es siempre con la <strong>Escritura (E)</strong>.</div>
+                <li><strong>Bernstein (LEAK HOY):</strong>
+                    <div class="truco">📝 <strong>Truco Trampa:</strong> Si te dicen L1 ∩ L2 ≠ Ø (Dos Lecturas)... ¿Es concurrente?<br>
+                    <strong>Respuesta:</strong> ¡NO SE PUEDE SABER! El conflicto solo existe si hay al menos una <strong>Escritura (E)</strong>. Dos lecturas nunca dan problemas.</div>
                 </li>
             </ul>
         </div>
@@ -111,35 +91,22 @@
                 <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">RA3</span>
             </h2>
             <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Roles:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Cliente:</strong> Activo. Inicia la comunicación.</li>
-                        <li><strong>Servidor:</strong> Pasivo. Espera peticiones.</li>
-                    </ul>
+                <li><strong>Protocolos:</strong> SMTP (Email), HTTP (Web), FTP (Archivos), DHCP (IP Dinámica).</li>
+                <li><strong>Sockets (Identificación Total):</strong>
+                    <div class="truco">🔑 <strong>Son 5 elementos:</strong><br>Protocolo + IP Origen + Puerto Origen + IP Destino + Puerto Destino.</div>
                 </li>
-                <li><strong>Protocolos (Capa Aplicación):</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>SMTP:</strong> Envío de Correo.</li>
-                        <li><strong>HTTP/HTTPS:</strong> Web (Puertos 80 / 443).</li>
-                        <li><strong>FTP:</strong> Transferencia Archivos (Librería Apache Commons Net).</li>
-                        <li><strong>DHCP:</strong> Asignación dinámica de IPs.</li>
-                        <li><strong>SSH:</strong> Administración remota segura (Puerto 22).</li>
-                    </ul>
+                <li><strong>Cierre TCP (4 pasos):</strong>
+                    <ol class="list-decimal ml-5 text-xs">
+                        <li>Cliente envía <strong>FIN</strong>.</li>
+                        <li>Servidor envía <strong>ACK</strong>.</li>
+                        <li>Servidor envía <strong>FIN</strong>.</li>
+                        <li>Cliente envía <strong>ACK</strong>.</li>
+                    </ol>
                 </li>
-                <li><strong>Transporte (TCP vs UDP):</strong>
+                <li><strong>Clases Java:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>TCP:</strong> Conexión, Fiable, Ordenado.</li>
-                        <li><strong>UDP:</strong> Sin conexión, No fiable (rápido).</li>
-                    </ul>
-                    <div class="truco">🤝 <strong>Handshake Fin TCP (4 pasos):</strong> <br>1. Cliente FIN → 2. Servidor ACK → 3. Servidor FIN → 4. Cliente ACK.</div>
-                </li>
-                <li><strong>Sockets:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li>Definición: Mecanismo de comunicación entre apps.</li>
-                        <li><strong>Identificador Único (5 elementos):</strong> Protocolo + IP Origen + Puerto Origen + IP Destino + Puerto Destino.</li>
-                        <li><code class="code-tag">ServerSocket</code>: Servidor. Método <code class="code-tag">accept()</code> (Bloqueante).</li>
+                        <li><code class="code-tag">ServerSocket</code>: Servidor. Método <code class="code-tag">accept()</code>.</li>
                         <li><code class="code-tag">Socket</code>: Cliente.</li>
-                        <li><code class="code-tag">InetAddress</code>: Representa la IP.</li>
                     </ul>
                 </li>
             </ul>
@@ -151,33 +118,20 @@
                 <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">RA4</span>
             </h2>
             <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Definición Servicio:</strong> Proceso en segundo plano (Background), sin interfaz gráfica (GUI), larga duración.</li>
-                <li><strong>Tipos de Servidor:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Iterativo:</strong> Sin hilos. Atiende 1 a 1 (Secuencial).</li>
-                        <li><strong>Concurrente:</strong> Con hilos. Atiende múltiples clientes a la vez.</li>
-                        <li><strong>Dedicado:</strong> Hardware exclusivo para un cliente.</li>
-                    </ul>
-                </li>
-                <li><strong>Componentes de Infraestructura:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Balanceador de Carga:</strong> Distribuye peticiones entre servidores.</li>
-                        <li><strong>Alta Disponibilidad:</strong> Réplicas para evitar caídas.</li>
-                        <li><strong>Monitorización:</strong> Herramientas (Admin Tareas) para supervisar estado.</li>
-                    </ul>
-                </li>
-                <li><strong>Tecnologías Remotas:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>RMI (Java):</strong> Invocar métodos de objetos en otra JVM.</li>
-                        <li><strong>RPC:</strong> Llamada a Procedimiento Remoto (Estructurado).</li>
-                        <li><strong>API:</strong> Interfaz que documenta las funciones del servicio.</li>
-                    </ul>
+                <li><strong>RMI (Java):</strong> Objetos Remotos.
+                    <div class="leaks">🚨 <strong>Necesario:</strong> Requiere implementar el <strong>Objeto Servidor</strong> (Remoto) y registrarlo.</div>
                 </li>
                 <li class="bg-purple-50 p-2 rounded border border-purple-200">
-                    <strong>Web Services (REST vs SOAP):</strong>
+                    <strong>REST vs SOAP (LEAK HOY):</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>SOAP:</strong> XML obligatorio. Estricto. Pesado.</li>
-                        <li><strong>REST:</strong> Usa HTTP estándar. <strong>Stateless</strong> (Sin estado: el mensaje lleva todo).</li>
+                        <li><strong>SOAP:</strong> Pesado, XML estricto, guarda estado.</li>
+                        <li><strong>REST:</strong> Ligero. <strong>Ventaja clave:</strong> Es <strong>Stateless (Sin estado)</strong> → "Toda la información necesaria viaja en el mensaje".</li>
+                    </ul>
+                </li>
+                <li><strong>Tipos de Servidor:</strong>
+                    <ul class="list-disc ml-5 mt-1">
+                        <li><strong>Iterativo:</strong> Sin hilos (Lento, cola de espera).</li>
+                        <li><strong>Concurrente:</strong> Con hilos (Rápido, simultáneo).</li>
                     </ul>
                 </li>
             </ul>
@@ -186,24 +140,18 @@
     </div>
 
     <div class="mt-8 bg-gray-800 text-white p-6 rounded-lg shadow-lg mb-10">
-        <h2 class="text-2xl font-bold text-yellow-400 mb-4 text-center">⚡ Flashcards Examen (Lo que cae literal)</h2>
+        <h2 class="text-2xl font-bold text-yellow-400 mb-4 text-center">⚡ Flashcards "Anti-Trampas"</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
             <div class="bg-gray-700 p-2 rounded border-l-4 border-yellow-500">Usa CPU → <br><strong>Ejecución</strong></div>
             <div class="bg-gray-700 p-2 rounded border-l-4 border-yellow-500">Espera CPU → <br><strong>Listo</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-yellow-500">Espera Recurso → <br><strong>Bloqueado</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-purple-500">Invoca Remoto Java → <br><strong>RMI</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-green-500">Asigna IP → <br><strong>DHCP</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-blue-500">Evitar Race Cond. → <br><strong>Sincronización</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-green-500">Enviar Email → <br><strong>SMTP</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-blue-500">Ref Hilo Actual → <br><strong>currentThread()</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-red-500">1 Clave → <br><strong>Simétrica</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-red-500">MD5 → <br><strong>128 bits</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-green-500">SSH → <br><strong>Puerto 22</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-purple-500">Docu Servicio → <br><strong>API</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-red-500">Espera E/S → <br><strong>Bloqueado</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-blue-500">currentThread() → <br><strong>REFERENCIA</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-blue-500">getId() → <br><strong>IDENTIFICADOR</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-green-500">L1 ∩ L2 ≠ Ø → <br><strong>No se sabe</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-purple-500">REST → <br><strong>Stateless</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-pink-500">Sin Hilos → <br><strong>Secuencial (1 a 1)</strong></div>
         </div>
     </div>
 
 </body>
 </html>
-    
-
