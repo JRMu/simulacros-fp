@@ -7,14 +7,14 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
     <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
-    <title>Repaso Final AD - Chuleta Definitiva</title>
+    <title>Repaso Final AD</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #f0fdf4; }
         .card { transition: all 0.3s ease; border-left-width: 5px; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
         .truco { background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 0.5rem; margin-top: 0.5rem; font-size: 0.9em; color: #92400e; }
-        .libro-examen { background-color: #f0f9ff; border-left: 4px solid #0ea5e9; padding: 0.5rem; margin-top: 0.5rem; font-size: 0.9em; color: #0369a1; }
+        .leak-orm { background-color: #fef2f2; border-left: 4px solid #ef4444; padding: 0.5rem; margin-top: 0.5rem; font-size: 0.9em; color: #991b1b; }
         .code-tag { font-family: monospace; background-color: #e5e7eb; padding: 2px 4px; border-radius: 4px; color: #c026d3; font-weight: bold; }
     </style>
 </head>
@@ -22,11 +22,11 @@
 
     <header class="text-center mb-10">
         <h1 class="text-4xl font-bold text-green-700 mb-2">📚 Repaso de Conceptos AD</h1>
-        <p class="text-gray-600 font-medium">Estrictamente basado en el Temario Oficial</p>
+        <p class="text-gray-600 font-medium">Versión MASTER: Trucos, Trampas y Leaks</p>
         <div class="mt-3 space-x-2">
             <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">PDF Completo</span>
             <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded">Incluye Trucos</span>
-            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">Mapeo Libro-Examen</span>
+            <span class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded">Incluye Leaks ORM</span>
         </div>
     </header>
 
@@ -50,13 +50,14 @@
                         <li><code class="code-tag">getFilePointer()</code>: Dice dónde estás.</li>
                     </ul>
                 </li>
-                <li><strong>Métodos File:</strong>
+                <li><strong>Métodos File (Anexo):</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><code class="code-tag">isDirectory()</code>: Verifica si es carpeta.</li>
+                        <li><code class="code-tag">isDirectory()</code>: El "policía" que verifica si es carpeta.</li>
                         <li><code class="code-tag">File.separator</code>: Barra correcta Win/Linux.</li>
                         <li><code class="code-tag">deleteOnExit()</code>: Borra al cerrar app.</li>
                     </ul>
                 </li>
+                <li><strong>Desventaja Secuencial:</strong> Es como una cinta VHS, debes pasar por todo lo anterior para llegar al final.</li>
             </ul>
         </div>
 
@@ -65,9 +66,9 @@
             <ul class="space-y-2 text-sm text-gray-700">
                 <li><strong>Componentes:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><code class="code-tag">DriverManager</code>: Carga driver.</li>
-                        <li><code class="code-tag">Connection</code>: Sesión BD (¡Cerrar!).</li>
-                        <li><code class="code-tag">ResultSet</code>: Tabla resultados.</li>
+                        <li><code class="code-tag">DriverManager</code>: Portero (Carga driver).</li>
+                        <li><code class="code-tag">Connection</code>: Túnel (¡Cerrar siempre!).</li>
+                        <li><code class="code-tag">ResultSet</code>: Respuesta (Tablas).</li>
                     </ul>
                 </li>
                 <li><strong>Sentencias:</strong>
@@ -78,19 +79,19 @@
                 </li>
                 <li><strong>Ejecución (Regla de Oro):</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>SELECT</strong> → <code class="code-tag">executeQuery()</code>.</li>
-                        <li><strong>INSERT/UPDATE</strong> → <code class="code-tag">executeUpdate()</code>.</li>
+                        <li><strong>SELECT</strong> → <code class="code-tag">executeQuery()</code> ("Query"="Pregunta").</li>
+                        <li><strong>INSERT/UPDATE</strong> → <code class="code-tag">executeUpdate()</code> ("Update"="Cambio").</li>
                     </ul>
                 </li>
                 <li><strong>Transacciones:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><code class="code-tag">setAutoCommit(false)</code>: Manual.</li>
+                        <li><code class="code-tag">setAutoCommit(false)</code>: Inicia manual.</li>
                         <li><code class="code-tag">commit()</code>: Guardar.</li>
                         <li><code class="code-tag">rollback()</code>: Deshacer.</li>
                     </ul>
                 </li>
                 <li class="bg-red-50 p-2 rounded border border-red-200">
-                    <strong>¡OJO!</strong> <code class="code-tag">DROP</code> borra estructura. <code class="code-tag">DELETE</code> borra filas.
+                    <strong>¡OJO!</strong> <code class="code-tag">DROP</code> es el comando nuclear (borra estructura y datos). <code class="code-tag">DELETE</code> solo borra filas.
                 </li>
             </ul>
         </div>
@@ -98,121 +99,128 @@
         <div class="bg-white p-5 rounded-lg shadow border-green-500 card">
             <h2 class="text-xl font-bold text-green-600 mb-3">🌱 3. ORM y Hibernate</h2>
             <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Problema:</strong> Desfase Objeto-Relacional.</li>
-                <li><strong>Configuración:</strong>
+                <li><strong>Problema:</strong> Desfase Objeto-Relacional. <br><strong>Solución:</strong> Abstracción.</li>
+                <li><strong>Configuración (Truco):</strong>
                     <ul class="list-disc ml-5 mt-1">
                         <li>Maven → <code class="code-tag">pom.xml</code>.</li>
-                        <li>Hibernate → <code class="code-tag">hibernate.cfg.xml</code>.</li>
+                        <li>Hibernate Nativo → <code class="code-tag">hibernate.cfg.xml</code>.</li>
+                        <li>Componentes/JAR → <code class="code-tag">MANIFEST.MF</code>.</li>
                     </ul>
                 </li>
                 <li><strong>Ciclo de Vida (JPA):</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Transient:</strong> Nuevo, no guardado.</li>
-                        <li><strong>Persistent:</strong> Guardado y conectado.</li>
-                        <li><strong>Detached:</strong> Guardado pero desconectado.</li>
+                        <li><strong>Transient:</strong> Nuevo, no en BD.</li>
+                        <li><strong>Persistent:</strong> En BD y conectado.</li>
+                        <li><strong>Detached:</strong> En BD pero desconectado.</li>
                     </ul>
                 </li>
-                <li><strong>@Transient:</strong> No guardar este campo en BD.</li>
-                <li><strong>Consultas:</strong> <code class="code-tag">HQL</code> (Hibernate) usa nombres de Clases, no de Tablas.</li>
+                <li><strong>Anotación @Transient:</strong> Etiqueta para decirle a la BD "Ignora esto, no lo guardes" (ej: edad calculada).</li>
+                <li><strong>Consultas:</strong> <code class="code-tag">HQL/OQL</code> consultan Objetos, no tablas. Variables OQL llevan <code class="code-tag">$</code>.</li>
             </ul>
         </div>
 
-        <div class="bg-white p-5 rounded-lg shadow border-blue-400 card border-l-8">
-            <h2 class="text-xl font-bold text-blue-700 mb-3">📘 3.5. El Desfase (Libro vs Examen)</h2>
-            <p class="text-xs text-gray-500 mb-2">Cómo llama el examen a lo que explica el libro:</p>
+        <div class="bg-white p-5 rounded-lg shadow border-red-500 card border-l-8">
+            <h2 class="text-xl font-bold text-red-600 mb-3">🔥 3.5. ORM: El Desfase (PREGUNTAS REBUSCADAS)</h2>
+            <p class="text-xs text-gray-500 mb-2">Las 5 opciones técnicas que caen en el examen:</p>
             
             <div class="space-y-2 text-sm">
-                <div class="libro-examen">
-                    <strong>1. Granularidad:</strong>
-                    <br><em>Libro:</em> "Tener muchas clases pequeñas (Dirección, CP) que van a una sola tabla."
+                <div class="leak-orm">
+                    <strong>1. Granularidad:</strong> Problema cuando tienes clases muy finas (ej: Clase 'Dirección') que la BD quiere aplanar en una sola tabla.
                 </div>
-                <div class="libro-examen">
-                    <strong>2. Subtipos (Herencia):</strong>
-                    <br><em>Libro:</em> "SQL no tiene `extends` ni herencia como Java."
+                <div class="leak-orm">
+                    <strong>2. Herencia (Subtipos):</strong> Java usa `extends` natural. SQL NO tiene herencia. El ORM sufre para simularlo.
                 </div>
-                <div class="libro-examen">
-                    <strong>3. Identidad:</strong>
-                    <br><em>Libro:</em> "En Java usas `==`, en BD usas Clave Primaria (PK)."
+                <div class="leak-orm">
+                    <strong>3. Identidad:</strong> Java usa `==` (memoria) o `equals`. La BD usa Clave Primaria (PK). No es lo mismo.
                 </div>
-                <div class="libro-examen">
-                    <strong>4. Asociaciones:</strong>
-                    <br><em>Libro:</em> "En Java el padre tiene lista de hijos. En BD el hijo tiene la FK del padre."
+                <div class="leak-orm">
+                    <strong>4. Asociaciones:</strong> En Java son referencias (unidireccionales). En BD son Foreign Keys (FK).
                 </div>
-                <div class="libro-examen">
-                    <strong>5. Navegación:</strong>
-                    <br><em>Libro:</em> "En Java haces `getPedidos()`. En BD haces JOINs costosos."
+                <div class="leak-orm">
+                    <strong>5. Navegación:</strong> En Java haces `.getLista()`. En BD eso implica JOINs costosos.
                 </div>
             </div>
-            <p class="text-[10px] text-gray-400 mt-2 italic">* Estos 5 puntos son la teoría oficial del problema "Impedance Mismatch".</p>
         </div>
         <div class="bg-white p-5 rounded-lg shadow border-yellow-500 card">
             <h2 class="text-xl font-bold text-yellow-600 mb-3">📦 4. Tipos y BDOO</h2>
             <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Tipos Grandes (LOBs):</strong>
+                <li><strong>Regla Mnemotécnica CLOB/BLOB:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>C</strong>LOB: Caracteres (Texto largo).</li>
-                        <li><strong>B</strong>LOB: Binario (Imágenes/PDF).</li>
+                        <li><strong>C</strong>LOB: <strong>C</strong>aracteres (Texto).</li>
+                        <li><strong>B</strong>LOB: <strong>B</strong>inario (Imagen/Audio).</li>
+                    </ul>
+                    <div class="truco">🚫 <strong>¡Aviso!</strong> Nunca guardes XML en BLOB (caja negra).</div>
+                </li>
+                <li><strong>Características BDOO:</strong>
+                    <ul class="list-disc ml-5 mt-1">
+                        <li>Usa <strong>Herencia</strong> para reutilizar.</li>
+                        <li><strong>Polimorfismo:</strong> Buscar en tabla "Padre" trae datos de "Hijas".</li>
+                        <li>Tipos complejos: <code class="code-tag">CREATE TYPE</code> y <code class="code-tag">ARRAY</code>.</li>
                     </ul>
                 </li>
-                <li><strong>BDOO (Orientada a Objetos):</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li>Permite <strong>Herencia</strong> y <strong>Polimorfismo</strong> real.</li>
-                        <li>Tipos complejos: <code class="code-tag">ARRAY</code>, <code class="code-tag">STRUCT</code>.</li>
-                    </ul>
-                </li>
-                <li><strong>PL/SQL:</strong> Bloques con <code class="code-tag">BEGIN</code> / <code class="code-tag">END</code>.</li>
-                <li><strong>BD Embebida:</strong> (SQLite) Sin servidor, es un fichero local.</li>
+                <li><strong>ANSI SQL 1999:</strong> Modernización que permitió guardar Colecciones (Arrays) en una celda.</li>
+                <li><strong>PL/SQL:</strong> Siempre tienen <code class="code-tag">BEGIN</code> y <code class="code-tag">END</code>.</li>
+                <li><strong>BD Embebida (SQLite):</strong> Va incrustada, sin servidor externo.</li>
             </ul>
         </div>
 
         <div class="bg-white p-5 rounded-lg shadow border-orange-500 card">
             <h2 class="text-xl font-bold text-orange-600 mb-3">📜 5. XML Nativa</h2>
             <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Nativa (eXist-db):</strong> Mantiene jerarquía XML. Colección=Carpeta.</li>
+                <li><strong>Nativa (eXist-db):</strong> Guarda XML sin transformar (mantiene jerarquía). Colección=Carpeta, Recurso=Archivo.</li>
                 <li><strong>Lenguajes:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>XPath:</strong> Selecciona nodos (Rutas).</li>
-                        <li><strong>XQuery:</strong> Consultas complejas (FLWOR). Variables con <code class="code-tag">$</code>.</li>
-                        <li><strong>XUpdate:</strong> Modificar (Insert/Delete).</li>
+                        <li><strong>XSD:</strong> Define estructura válida (Reglas).</li>
+                        <li><strong>XPath:</strong> El GPS (Selecciona nodos).</li>
+                        <li><strong>XQuery:</strong> Amplía <strong>XPath</strong> para consultas complejas (FLWOR). Sus variables llevan <code class="code-tag">$</code>.</li>
+                        <li><strong>XUpdate:</strong> Extensión para <strong>modificar</strong> datos.</li>
                     </ul>
                 </li>
                 <li><strong>DOM vs SAX:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>DOM:</strong> Árbol en memoria (Lento, Modificable).</li>
-                        <li><strong>SAX:</strong> Eventos secuenciales (Rápido, Solo lectura).</li>
+                        <li><strong>DOM:</strong> Carga todo el árbol en RAM. Problema: Come mucha memoria.</li>
+                        <li><strong>SAX:</strong> (Implícito) Opuesto a DOM, no carga todo.</li>
                     </ul>
                 </li>
-                <li><strong>Índices Estructurales:</strong> Optimizan búsquedas de etiquetas XML.</li>
+                <li><strong>Índices Estructurales:</strong> Aceleran búsquedas por rutas (tags específicos).</li>
             </ul>
         </div>
 
         <div class="bg-white p-5 rounded-lg shadow border-purple-500 card">
             <h2 class="text-xl font-bold text-purple-600 mb-3">🧩 6. Componentes y EJB</h2>
             <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Empaquetado:</strong> JAR (ZIP con clases).</li>
+                <li><strong>Empaquetado (JAR):</strong> Es un ZIP con las clases compiladas.</li>
                 <li class="bg-purple-50 p-2 rounded border border-purple-200">
-                    <strong>Diferencia Ficheros:</strong>
+                    <strong>¡Diferencia de Ficheros!:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>MANIFEST.MF:</strong> Info interna del JAR (Clase Main, Librerías).</li>
-                        <li><strong>pom.xml:</strong> Dependencias de Maven (Construcción).</li>
+                        <li><strong><code class="code-tag">manifest.mf</code>:</strong> (En META-INF). Describe el componente y sus librerías requeridas <strong>dentro del JAR</strong>.</li>
+                        <li><strong><code class="code-tag">pom.xml</code>:</strong> Fichero de <strong>Maven</strong> para gestionar dependencias del proyecto.</li>
+                    </ul>
+                </li>
+                
+                <li><strong>Conceptos Clave:</strong>
+                    <ul class="list-disc ml-5 mt-1">
+                        <li><strong>Encapsulación:</strong> Ocultar implementación (Interfaz pública).</li>
+                        <li><strong>Introspección:</strong> Analizarse en tiempo de ejecución.</li>
                     </ul>
                 </li>
                 
                 <li><strong>Propiedades Bean:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Indexada:</strong> Array.</li>
-                        <li><strong>Ligada:</strong> Notifica cambios.</li>
-                        <li><strong>Restringida:</strong> Pide permiso (Veto).</li>
+                        <li><strong>Indexada:</strong> Lista/Array.</li>
+                        <li><strong>Ligada:</strong> Notifica cambios (PropertyChange).</li>
+                        <li><strong>Restringida:</strong> Pide permiso (VetoableChange).</li>
                     </ul>
                 </li>
                 
                 <li><strong>Tipos EJB:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Stateless:</strong> Rápido, sin memoria.</li>
-                        <li><strong>Stateful:</strong> Carrito compra (recuerda).</li>
-                        <li><strong>MDB:</strong> Mensajes asíncronos.</li>
-                        <li><strong>Singleton:</strong> Uno para todos.</li>
+                        <li><strong>Stateless:</strong> Sin memoria (Rápido).</li>
+                        <li><strong>Stateful:</strong> Con memoria (Carrito).</li>
+                        <li><strong>MDB:</strong> Asíncrono (Mensajes).</li>
+                        <li><strong>Singleton:</strong> Instancia única.</li>
                     </ul>
+                    <div class="truco">🚨 <strong>Trampa:</strong> "Bean de Interfaz" NO existe.</div>
                 </li>
             </ul>
         </div>
@@ -220,21 +228,18 @@
     </div>
 
     <div class="mt-8 bg-gray-800 text-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold text-yellow-400 mb-4 text-center">🚀 Fichas Rápidas de Repaso</h2>
+        <h2 class="text-2xl font-bold text-yellow-400 mb-4 text-center">🚀 Resumen de Emergencia (Fichas Rápidas)</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
             <div class="bg-gray-700 p-2 rounded">¿SELECT? → <strong>executeQuery</strong></div>
             <div class="bg-gray-700 p-2 rounded">¿INSERT? → <strong>executeUpdate</strong></div>
-            <div class="bg-gray-700 p-2 rounded">¿XML Grande? → <strong>Nativa / SAX</strong></div>
+            <div class="bg-gray-700 p-2 rounded">¿XML Grande? → <strong>Nativo</strong></div>
             <div class="bg-gray-700 p-2 rounded">¿Foto? → <strong>BLOB</strong></div>
-            <div class="bg-gray-700 p-2 rounded">¿Info JAR? → <strong>MANIFEST.MF</strong></div>
+            <div class="bg-gray-700 p-2 rounded">¿Dependencias JAR? → <strong>MANIFEST.MF</strong></div>
             <div class="bg-gray-700 p-2 rounded">¿Config Hibernate? → <strong>hibernate.cfg.xml</strong></div>
             <div class="bg-gray-700 p-2 rounded">¿Clave Primaria? → <strong>@Id</strong></div>
-            <div class="bg-gray-700 p-2 rounded">¿Variable XQuery? → <strong>$</strong></div>
+            <div class="bg-gray-700 p-2 rounded">¿Variable OQL? → <strong>$</strong></div>
         </div>
     </div>
 
 </body>
-
 </html>
-
-
