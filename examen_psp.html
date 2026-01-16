@@ -47,7 +47,7 @@
                 </p>
                 <div class="flex flex-col gap-2 max-w-xs mx-auto">
                     <div class="flex items-center gap-2 text-sm text-slate-500 justify-center">
-                        <i class="fas fa-layer-group"></i> 149 Preguntas totales
+                        <i class="fas fa-layer-group"></i> 151 Preguntas totales
                     </div>
                     <div class="flex items-center gap-2 text-sm text-slate-500 justify-center">
                         <i class="fas fa-shuffle"></i> Orden y respuestas aleatorias
@@ -112,7 +112,7 @@
     </div>
 
     <script>
-        // --- DATASET: 149 Questions Total ---
+        // --- DATASET: 151 Questions Total ---
         const rawQuestions = [
             // --- BLOQUE ORIGINAL ---
             {
@@ -1057,7 +1057,30 @@
                 options: ["RMI es para C++ y RPC para Java.", "RMI se basa en programación orientada a objetos y RPC en programación estructurada.", "RMI es más lento que RPC.", "RPC usa XML y RMI usa JSON."],
                 correct: 1,
                 justification: "RMI es para objetos (Java) y RPC para procedimientos (estructurada)."
+            },
+            {
+                q: "En un análisis de Bernstein, el enunciado solo indica que L(S1) ∩ L(S2) = ∅ (los conjuntos de lectura son disjuntos). ¿Pueden ejecutarse concurrentemente?",
+                options: [
+                    "Sí, al no haber conflicto de lectura es totalmente seguro.",
+                    "No, nunca pueden ejecutarse concurrentemente si los conjuntos son disjuntos.",
+                    "Sí, pero solo si las instrucciones son atómicas.",
+                    "No se puede determinar con esa información."
+                ],
+                correct: 3,
+                justification: "TRAMPA: Bernstein ignora las lecturas entre sí, pero el enunciado OCULTA los conjuntos de Escritura (E). Si ambos escriben en la misma variable, fallará. Sin saber E, no puedes asegurar nada."
+            },
+            {
+                q: "¿Cuál es el protocolo estándar a nivel de aplicación utilizado para la transferencia/envío de correo electrónico entre servidores?",
+                options: [
+                    "POP3",
+                    "IMAP",
+                    "SMTP",
+                    "SNMP"
+                ],
+                correct: 2,
+                justification: "Mnemotecnia: SMTP (Send Mail / Salida). POP3 e IMAP son protocolos de recepción/lectura para el usuario final."
             }
+            
         ];
 
         // --- APP LOGIC ---

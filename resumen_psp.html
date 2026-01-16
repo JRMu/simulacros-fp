@@ -1,202 +1,455 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
-    <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>"
+    />
+    <script
+      data-goatcounter="https://jrenedo.goatcounter.com/count"
+      async
+      src="//gc.zgo.at/count.js"
+    ></script>
 
     <title>Repaso de Conceptos PSP</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f3e8ff; }
-        .card { transition: all 0.3s ease; border-left-width: 5px; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
-        .truco { background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 0.5rem; margin-top: 0.5rem; font-size: 0.9em; color: #92400e; }
-        .leaks { background-color: #fce7f3; border-left: 4px solid #db2777; padding: 0.5rem; margin-top: 0.5rem; font-size: 0.9em; color: #831843; }
-        .code-tag { font-family: monospace; background-color: #e9d5ff; padding: 2px 5px; border-radius: 4px; color: #6b21a8; font-weight: bold; border: 1px solid #d8b4fe; }
-        .dato-examen { background-color: #dcfce7; color: #166534; font-size: 0.85em; padding: 2px 6px; border-radius: 99px; font-weight: bold; margin-left: 5px; }
-        .new-tag { background-color: #fce7f3; color: #be185d; font-size: 0.75em; padding: 1px 4px; border-radius: 3px; font-weight: bold; margin-left: 4px; text-transform: uppercase; }
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f3e8ff;
+      }
+      .card {
+        transition: all 0.3s ease;
+        border-left-width: 5px;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+      .truco {
+        background-color: #fffbeb;
+        border-left: 4px solid #f59e0b;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        font-size: 0.9em;
+        color: #92400e;
+      }
+      .leaks {
+        background-color: #fce7f3;
+        border-left: 4px solid #db2777;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        font-size: 0.9em;
+        color: #831843;
+      }
+      .code-tag {
+        font-family: monospace;
+        background-color: #e9d5ff;
+        padding: 2px 5px;
+        border-radius: 4px;
+        color: #6b21a8;
+        font-weight: bold;
+        border: 1px solid #d8b4fe;
+      }
+      .dato-examen {
+        background-color: #dcfce7;
+        color: #166534;
+        font-size: 0.85em;
+        padding: 2px 6px;
+        border-radius: 99px;
+        font-weight: bold;
+        margin-left: 5px;
+      }
+      .new-tag {
+        background-color: #fce7f3;
+        color: #be185d;
+        font-size: 0.75em;
+        padding: 1px 4px;
+        border-radius: 3px;
+        font-weight: bold;
+        margin-left: 4px;
+        text-transform: uppercase;
+      }
     </style>
-</head>
-<body class="p-4 md:p-8 max-w-7xl mx-auto">
-
+  </head>
+  <body class="p-4 md:p-8 max-w-7xl mx-auto">
     <header class="text-center mb-10">
-        <h1 class="text-4xl font-bold text-purple-900 mb-2">⚙️ Repaso de Conceptos PSP</h1>
-        <p class="text-gray-700 font-medium">Fusión del Temario Principal + Conceptos Clave</p>
+      <h1 class="text-4xl font-bold text-purple-900 mb-2">
+        ⚙️ Repaso de Conceptos PSP
+      </h1>
+      <p class="text-gray-700 font-medium">
+        Fusión del Temario Principal + Conceptos Clave
+      </p>
     </header>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-        <div class="bg-white p-5 rounded-lg shadow border-red-500 card">
-            <h2 class="text-xl font-bold text-red-600 mb-3">🔒 1. Seguridad y Acceso</h2>
-            <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Fases Control Acceso (Orden):</strong>
-                    <ol class="list-decimal ml-5 mt-1">
-                        <li><strong>Identificación:</strong> Decir quién eres (User).</li>
-                        <li><strong>Autenticación:</strong> Demostrarlo (Pass, <span class="new-tag">Biometría</span>).</li>
-                        <li><strong>Autorización:</strong> El último paso. Da permisos.</li>
-                    </ol>
-                </li>
-                <li><strong>Programación Segura:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li>Archivos: Siempre <strong>Solo Lectura</strong>.</li>
-                        <li>Validar Inputs siempre.</li>
-                    </ul>
-                </li>
-                <li><strong>Criptografía (Clase Cipher):</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><code class="code-tag">getInstance()</code>: Algoritmo.</li>
-                        <li><code class="code-tag">init()</code>: Modo + Clave.</li>
-                        <li><code class="code-tag">doFinal()</code>: Ejecuta. <span class="dato-examen">¡Examen!</span></li>
-                    </ul>
-                </li>
-                <li><strong>Tipos de Claves:</strong> Simétrica (1 clave, rápida), Asimétrica (2 claves, lenta), Hash (Resumen).</li>
+      <div class="bg-white p-5 rounded-lg shadow border-red-500 card">
+        <h2 class="text-xl font-bold text-red-600 mb-3">
+          🔒 1. Seguridad y Acceso
+        </h2>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li>
+            <strong>Fases Control Acceso (Orden):</strong>
+            <ol class="list-decimal ml-5 mt-1">
+              <li><strong>Identificación:</strong> Decir quién eres (User).</li>
+              <li>
+                <strong>Autenticación:</strong> Demostrarlo (Pass,
+                <span class="new-tag">Biometría</span>).
+              </li>
+              <li>
+                <strong>Autorización:</strong> El último paso. Da permisos.
+              </li>
+            </ol>
+          </li>
+          <li>
+            <strong>Programación Segura:</strong>
+            <ul class="list-disc ml-5 mt-1">
+              <li>Archivos: Siempre <strong>Solo Lectura</strong>.</li>
+              <li>Validar Inputs siempre.</li>
             </ul>
-        </div>
-
-        <div class="bg-white p-5 rounded-lg shadow border-blue-500 card">
-            <h2 class="text-xl font-bold text-blue-600 mb-3">🧵 2. Procesos e Hilos</h2>
-            <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Conceptos Base:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Servicio:</strong> Programa en 2º plano sin interfaz.</li>
-                        <li><strong>Hilo vs Proceso:</strong> Hilo comparte memoria y su creación tiene <strong>menor coste</strong>.</li>
-                        <li><strong>Comandos:</strong> <code class="code-tag">ps -ef</code> (Linux).</li>
-                        <li><strong>Crear Proceso:</strong> <code class="code-tag">createProcess()</code> (C/Win) o <code class="code-tag">ProcessBuilder</code> (Java).</li>
-                    </ul>
-                </li>
-                <li><strong>Métodos Hilos:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><code class="code-tag">start()</code>: Crea hilo. / <code class="code-tag">run()</code>: Ejecuta código.</li>
-                        <li><code class="code-tag">sleep()</code>: Pausa. / <code class="code-tag">notify()</code>: Despierta.</li>
-                        <li><strong>Fin del Hilo:</strong> Cuando termina el método <code class="code-tag">run()</code>.</li>
-                    </ul>
-                </li>
-                <li><strong>Identificación (Trampa Leaks):</strong>
-                    <div class="leaks">🚨 <strong>Reference</strong> = <code class="code-tag">currentThread()</code>. <br>🚨 <strong>ID</strong> = <code class="code-tag">getId()</code>.</div>
-                </li>
-                
-              <li class="mt-4">
-    <strong>Bernstein (Paralelismo) - <span class="text-red-600">LA TRAMPA</span>:</strong>
-    <div class="bg-gray-50 border border-gray-300 rounded p-2 text-xs mt-1">
-        <p class="mb-2">Para que sea Paralelizable, deben cumplirse <strong>LAS 3</strong> condiciones:</p>
-        
-        <ul class="list-none space-y-1 ml-1 text-gray-700 font-mono">
-            <li>1. L<sub>1</sub> ∩ E<sub>2</sub> = ∅ (Lectura 1 vs <strong>Escritura</strong> 2)</li>
-            <li>2. E<sub>1</sub> ∩ L<sub>2</sub> = ∅ (<strong>Escritura</strong> 1 vs Lectura 2)</li>
-            <li>3. E<sub>1</sub> ∩ E<sub>2</sub> = ∅ (<strong>Escritura</strong> 1 vs <strong>Escritura</strong> 2)</li>
+          </li>
+          <li>
+            <strong>Criptografía (Clase Cipher):</strong>
+            <ul class="list-disc ml-5 mt-1">
+              <li><code class="code-tag">getInstance()</code>: Algoritmo.</li>
+              <li><code class="code-tag">init()</code>: Modo + Clave.</li>
+              <li>
+                <code class="code-tag">doFinal()</code>: Ejecuta.
+                <span class="dato-examen">¡Examen!</span>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Tipos de Claves:</strong> Simétrica (1 clave, rápida),
+            Asimétrica (2 claves, lenta), Hash (Resumen).
+          </li>
         </ul>
-        <div class="text-[10px] text-gray-500 mt-1 ml-1 font-sans"><em>*Fíjate: Todas las reglas obligatorias incluyen al menos una "E".</em></div>
-        
-        <div class="mt-3 bg-white p-2 border-l-4 border-red-500 shadow-sm font-sans">
-            <p class="font-bold text-red-700 text-sm">🚨 PREGUNTA TRAMPA</p>
-            
-            <p class="mt-1">"Solo sabemos que <strong>L<sub>1</sub> ∩ L<sub>2</sub> = ∅</strong> (o que es ≠ ∅). ¿Es concurrente?"</p>
-            
-            <p class="mt-2 font-bold text-gray-800">Respuesta: <span class="bg-yellow-200 px-1">NO SE PUEDE SABER</span>.</p>
-            
-            <p class="mt-1 text-gray-600 italic">
-                <strong>¿Por qué?</strong> Porque Bernstein <strong>IGNORA</strong> las interacciones Lectura-Lectura (L ∩ L).
-                <br>
-                Dos procesos pueden leer a la vez sin problema. El peligro está en Escribir (E). Como el enunciado <strong>TE OCULTA los datos de Escritura (E)</strong>, te falta información crítica para validar las reglas 1, 2 y 3.
-            </p>
+      </div>
 
-            <div class="mt-2 font-bold text-green-700 border-t pt-1">
-                RESUMEN MENTAL:
-                <br>❌ Si choca Escritura (E ∩ E, L ∩ E) = NO Paralelo.
-                <br>👀 Si solo hablan de Lecturas (L ∩ L) = <strong>DATO INÚTIL / FALTAN DATOS</strong>.
+      <div class="bg-white p-5 rounded-lg shadow border-blue-500 card">
+        <h2 class="text-xl font-bold text-blue-600 mb-3">
+          🧵 2. Procesos e Hilos
+        </h2>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li>
+            <strong>Conceptos Base:</strong>
+            <ul class="list-disc ml-5 mt-1">
+              <li>
+                <strong>Servicio:</strong> Programa en 2º plano sin interfaz.
+              </li>
+              <li>
+                <strong>Hilo vs Proceso:</strong> Hilo comparte memoria y su
+                creación tiene <strong>menor coste</strong>.
+              </li>
+              <li>
+                <strong>Comandos:</strong>
+                <code class="code-tag">ps -ef</code> (Linux).
+              </li>
+              <li>
+                <strong>Crear Proceso:</strong>
+                <code class="code-tag">createProcess()</code> (C/Win) o
+                <code class="code-tag">ProcessBuilder</code> (Java).
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Métodos Hilos:</strong>
+            <ul class="list-disc ml-5 mt-1">
+              <li>
+                <code class="code-tag">start()</code>: Crea hilo. /
+                <code class="code-tag">run()</code>: Ejecuta código.
+              </li>
+              <li>
+                <code class="code-tag">sleep()</code>: Pausa. /
+                <code class="code-tag">notify()</code>: Despierta.
+              </li>
+              <li>
+                <strong>Fin del Hilo:</strong> Cuando termina el método
+                <code class="code-tag">run()</code>.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Identificación (Trampa Leaks):</strong>
+            <div class="leaks">
+              🚨 <strong>Reference</strong> =
+              <code class="code-tag">currentThread()</code>. <br />🚨
+              <strong>ID</strong> = <code class="code-tag">getId()</code>.
             </div>
-        </div>
-    </div>
-</li>
-            </ul>
-        </div>
+          </li>
 
-        <div class="bg-white p-5 rounded-lg shadow border-green-500 card">
-            <h2 class="text-xl font-bold text-green-600 mb-3">🌍 3. Redes y Sockets</h2>
-            <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Protocolos:</strong> TCP (Conexión), UDP (No conexión), DHCP, DNS.</li>
-                <li><strong>Sockets (5 Elementos):</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><code class="code-tag">bind()</code>: Asocia socket a Puerto/IP.</li>
-                        <li><code class="code-tag">accept()</code>: Espera conexión.</li>
-                        <li><strong>Definición:</strong> Proto + IP A + Port A + IP B + Port B.</li>
-                    </ul>
-                </li>
-                <li><strong>Puertos:</strong> SSH (22), HTTP (80), HTTPS (443).</li>
-                
-                <li class="mt-4">
-                    <strong>🤝 Ciclo de Vida TCP (Esquema Visual):</strong>
-                    <div class="mt-2 bg-green-50 border border-green-200 rounded p-2">
-                        <p class="text-xs font-bold text-green-800 mb-1 border-b border-green-200">🟢 1. APERTURA (3-Way)</p>
-                        <div class="font-mono text-xs space-y-1">
-                            <div class="flex justify-between items-center"><span class="text-blue-600 font-bold">Cliente</span><span class="text-gray-500">--- SYN &rarr;</span><span class="text-purple-600 font-bold">Servidor</span></div>
-                            <div class="flex justify-between items-center"><span class="text-blue-600 font-bold">Cliente</span><span class="text-gray-500">&larr; SYN+ACK ---</span><span class="text-purple-600 font-bold">Servidor</span></div>
-                            <div class="flex justify-between items-center"><span class="text-blue-600 font-bold">Cliente</span><span class="text-gray-500">--- ACK &rarr;</span><span class="text-purple-600 font-bold">Servidor</span></div>
-                        </div>
-                    </div>
-                    <div class="mt-2 bg-red-50 border border-red-200 rounded p-2">
-                        <p class="text-xs font-bold text-red-800 mb-1 border-b border-red-200">🔴 2. CIERRE (4 Pasos)</p>
-                        <div class="font-mono text-xs space-y-1">
-                            <div class="flex justify-between items-center"><span class="text-blue-600 font-bold">Cliente</span><span class="text-gray-500">--- FIN &rarr;</span><span class="text-purple-600 font-bold">Servidor</span></div>
-                            <div class="flex justify-between items-center"><span class="text-blue-600 font-bold">Cliente</span><span class="text-gray-500">&larr; ACK ---</span><span class="text-purple-600 font-bold">Servidor</span></div>
-                            <div class="flex justify-between items-center"><span class="text-blue-600 font-bold">Cliente</span><span class="text-gray-500">&larr; FIN ---</span><span class="text-purple-600 font-bold">Servidor</span></div>
-                            <div class="flex justify-between items-center"><span class="text-blue-600 font-bold">Cliente</span><span class="text-gray-500">--- ACK &rarr;</span><span class="text-purple-600 font-bold">Servidor</span></div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+          <li class="mt-4">
+            <strong
+              >Bernstein (Paralelismo) -
+              <span class="text-red-600">ANÁLISIS COMPLETO</span>:</strong
+            >
+            <div
+              class="bg-gray-50 border border-gray-300 rounded p-2 text-xs mt-1"
+            >
+              <p class="mb-2">
+                Para que S1 y S2 sean paralelizables, deben cumplirse
+                <strong>LAS 3</strong> intersecciones vacías (= ∅):
+              </p>
 
-        <div class="bg-white p-5 rounded-lg shadow border-purple-500 card">
-            <h2 class="text-xl font-bold text-purple-600 mb-3">🚀 4. Servicios Distribuidos</h2>
-            <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Tipos de Servidor:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Concurrente:</strong> Usa Hilos. Para <strong>gran cantidad de peticiones</strong>.</li>
-                        <li><strong>Iterativo:</strong> Secuencial (1 a 1).</li>
-                        <li><strong>Dedicado:</strong> Hardware exclusivo.</li>
-                        <li><strong>Balanceador de Carga:</strong> Reparte trabajo entre varios.</li>
-                    </ul>
+              <ul class="list-none space-y-1 ml-1 text-gray-700 font-mono">
+                <li>
+                  1. L<sub>1</sub> ∩ E<sub>2</sub> = ∅ (Lectura 1 vs
+                  <strong>Escritura</strong> 2)
                 </li>
-                <li><strong>RMI (Java):</strong> Invocar métodos remotos.
-                    <div class="truco">¿Parecido a RMI? 👉 <strong>RPC</strong> (Remote Procedure Call). Es la base teórica.</div>
-                    <div class="leaks">🚨 Necesita: Interfaz + Objeto Remoto + Cliente.</div>
+                <li>
+                  2. E<sub>1</sub> ∩ L<sub>2</sub> = ∅ (<strong
+                    >Escritura</strong
+                  >
+                  1 vs Lectura 2)
                 </li>
-                <li><strong>REST vs SOAP (Leaks):</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>REST:</strong> Stateless (Sin estado). Ligero (JSON).</li>
-                        <li><strong>SOAP:</strong> Con estado. Pesado (XML).</li>
-                    </ul>
+                <li>
+                  3. E<sub>1</sub> ∩ E<sub>2</sub> = ∅ (<strong
+                    >Escritura</strong
+                  >
+                  1 vs <strong>Escritura</strong> 2)
                 </li>
-            </ul>
-        </div>
+              </ul>
+              <div class="text-[10px] text-gray-500 mt-1 ml-1">
+                <em
+                  >*Truco: Busca la 'E'. Si no hay 'E' en la fórmula, no es una
+                  condición de Bernstein.</em
+                >
+              </div>
 
+              <div class="mt-3 space-y-2">
+                <div
+                  class="bg-white p-2 border-l-4 border-yellow-400 shadow-sm"
+                >
+                  <p class="font-bold text-yellow-700 text-[11px]">
+                    ⚠️ TRAMPA 1: "Solo sé que L ∩ L = ∅"
+                  </p>
+                  <p class="text-gray-600">
+                    Respuesta: <strong>NO SE PUEDE SABER.</strong>
+                  </p>
+                  <p class="text-[10px] italic">
+                    Razón: Te ocultan las Escrituras (E). Sin saber dónde
+                    escriben, es suicida ejecutar en paralelo.
+                  </p>
+                </div>
+
+                <div class="bg-white p-2 border-l-4 border-red-500 shadow-sm">
+                  <p class="font-bold text-red-700 text-[11px]">
+                    🔥 TRAMPA 2: "S1: c=a-b | S2: x=c+n"
+                  </p>
+                  <p class="text-gray-600">
+                    ¿Qué falla? <strong>E(S1) ∩ L(S2) ≠ ∅</strong>
+                  </p>
+                  <p class="text-[10px] italic">
+                    Razón: S1 <strong>Escribe c</strong> y S2
+                    <strong>Lee c</strong>. (Busca la opción E1 ∩ L2).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-white p-5 rounded-lg shadow border-green-500 card">
+        <h2 class="text-xl font-bold text-green-600 mb-3">
+          🌍 3. Redes y Sockets
+        </h2>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li>
+            <strong>Protocolos:</strong> TCP (Conexión), UDP (No conexión),
+            DHCP, DNS.
+          </li>
+          <li>
+            <strong>Sockets (5 Elementos):</strong>
+            <ul class="list-disc ml-5 mt-1">
+              <li>
+                <code class="code-tag">bind()</code>: Asocia socket a Puerto/IP.
+              </li>
+              <li><code class="code-tag">accept()</code>: Espera conexión.</li>
+              <li>
+                <strong>Definición:</strong> Proto + IP A + Port A + IP B + Port
+                B.
+              </li>
+            </ul>
+          </li>
+          <li><strong>Puertos:</strong> SSH (22), HTTP (80), HTTPS (443).</li>
+
+          <li class="mt-4">
+            <strong>🤝 Ciclo de Vida TCP (Esquema Visual):</strong>
+            <div class="mt-2 bg-green-50 border border-green-200 rounded p-2">
+              <p
+                class="text-xs font-bold text-green-800 mb-1 border-b border-green-200"
+              >
+                🟢 1. APERTURA (3-Way)
+              </p>
+              <div class="font-mono text-xs space-y-1">
+                <div class="flex justify-between items-center">
+                  <span class="text-blue-600 font-bold">Cliente</span
+                  ><span class="text-gray-500">--- SYN &rarr;</span
+                  ><span class="text-purple-600 font-bold">Servidor</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-blue-600 font-bold">Cliente</span
+                  ><span class="text-gray-500">&larr; SYN+ACK ---</span
+                  ><span class="text-purple-600 font-bold">Servidor</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-blue-600 font-bold">Cliente</span
+                  ><span class="text-gray-500">--- ACK &rarr;</span
+                  ><span class="text-purple-600 font-bold">Servidor</span>
+                </div>
+              </div>
+            </div>
+            <div class="mt-2 bg-red-50 border border-red-200 rounded p-2">
+              <p
+                class="text-xs font-bold text-red-800 mb-1 border-b border-red-200"
+              >
+                🔴 2. CIERRE (4 Pasos)
+              </p>
+              <div class="font-mono text-xs space-y-1">
+                <div class="flex justify-between items-center">
+                  <span class="text-blue-600 font-bold">Cliente</span
+                  ><span class="text-gray-500">--- FIN &rarr;</span
+                  ><span class="text-purple-600 font-bold">Servidor</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-blue-600 font-bold">Cliente</span
+                  ><span class="text-gray-500">&larr; ACK ---</span
+                  ><span class="text-purple-600 font-bold">Servidor</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-blue-600 font-bold">Cliente</span
+                  ><span class="text-gray-500">&larr; FIN ---</span
+                  ><span class="text-purple-600 font-bold">Servidor</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-blue-600 font-bold">Cliente</span
+                  ><span class="text-gray-500">--- ACK &rarr;</span
+                  ><span class="text-purple-600 font-bold">Servidor</span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-blue-50 p-3 rounded-lg border-2 border-blue-200 shadow-md mt-4 page-break-inside-avoid"
+            >
+              <h3
+                class="font-bold text-blue-800 text-sm flex items-center gap-2"
+              >
+                📧 Protocolos de Correo (Nivel Aplicación)
+              </h3>
+              <ul class="mt-2 text-xs text-gray-700 space-y-2">
+                <li class="flex items-start gap-2">
+                  <span class="bg-blue-200 text-blue-800 px-1 rounded font-bold"
+                    >SMTP</span
+                  >
+                  <span
+                    ><strong>(Simple Mail Transfer Protocol):</strong> Sirve
+                    para <strong class="text-blue-700">ENVIAR</strong> correos
+                    (de cliente a servidor, o entre servidores). <br /><em
+                      >*Si preguntan "protocolo de correo" a secas, suele ser
+                      este.</em
+                    ></span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <span
+                    class="bg-green-200 text-green-800 px-1 rounded font-bold"
+                    >POP3 / IMAP</span
+                  >
+                  <span
+                    >Sirven para
+                    <strong class="text-green-700">RECIBIR / LEER</strong>
+                    (descargar del servidor al cliente).</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-white p-5 rounded-lg shadow border-purple-500 card">
+        <h2 class="text-xl font-bold text-purple-600 mb-3">
+          🚀 4. Servicios Distribuidos
+        </h2>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li>
+            <strong>Tipos de Servidor:</strong>
+            <ul class="list-disc ml-5 mt-1">
+              <li>
+                <strong>Concurrente:</strong> Usa Hilos. Para
+                <strong>gran cantidad de peticiones</strong>.
+              </li>
+              <li><strong>Iterativo:</strong> Secuencial (1 a 1).</li>
+              <li><strong>Dedicado:</strong> Hardware exclusivo.</li>
+              <li>
+                <strong>Balanceador de Carga:</strong> Reparte trabajo entre
+                varios.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>RMI (Java):</strong> Invocar métodos remotos.
+            <div class="truco">
+              ¿Parecido a RMI? 👉 <strong>RPC</strong> (Remote Procedure Call).
+              Es la base teórica.
+            </div>
+            <div class="leaks">
+              🚨 Necesita: Interfaz + Objeto Remoto + Cliente.
+            </div>
+          </li>
+          <li>
+            <strong>REST vs SOAP (Leaks):</strong>
+            <ul class="list-disc ml-5 mt-1">
+              <li>
+                <strong>REST:</strong> Stateless (Sin estado). Ligero (JSON).
+              </li>
+              <li><strong>SOAP:</strong> Con estado. Pesado (XML).</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div class="mt-8 bg-gray-800 text-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold text-yellow-400 mb-4 text-center">⚡ Flashcards Lista Final</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-yellow-500">Parecido a RMI → <br><strong>RPC</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-yellow-500">Último paso Acceso → <br><strong>Autorización</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-red-500">Archivos Seguros → <br><strong>Solo Lectura</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-red-500">Para gran carga → <br><strong>Servidor Concurrente</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-blue-500">No para el hilo → <br><strong>notify()</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-blue-500">Bernstein → <br><strong>Paralelismo</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-green-500">Orientado a Conexión → <br><strong>TCP</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-purple-500">Asocia Puerto → <br><strong>bind()</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-pink-500">REST → <br><strong>Stateless</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-indigo-500">Ver Procesos → <br><strong>ps -ef</strong></div>
+      <h2 class="text-2xl font-bold text-yellow-400 mb-4 text-center">
+        ⚡ Flashcards Lista Final
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
+        <div class="bg-gray-700 p-2 rounded border-l-4 border-yellow-500">
+          Parecido a RMI → <br /><strong>RPC</strong>
         </div>
+        <div class="bg-gray-700 p-2 rounded border-l-4 border-yellow-500">
+          Último paso Acceso → <br /><strong>Autorización</strong>
+        </div>
+        <div class="bg-gray-700 p-2 rounded border-l-4 border-red-500">
+          Archivos Seguros → <br /><strong>Solo Lectura</strong>
+        </div>
+        <div class="bg-gray-700 p-2 rounded border-l-4 border-red-500">
+          Para gran carga → <br /><strong>Servidor Concurrente</strong>
+        </div>
+        <div class="bg-gray-700 p-2 rounded border-l-4 border-blue-500">
+          No para el hilo → <br /><strong>notify()</strong>
+        </div>
+        <div class="bg-gray-700 p-2 rounded border-l-4 border-blue-500">
+          Bernstein → <br /><strong>Paralelismo</strong>
+        </div>
+        <div class="bg-gray-700 p-2 rounded border-l-4 border-green-500">
+          Orientado a Conexión → <br /><strong>TCP</strong>
+        </div>
+        <div class="bg-gray-700 p-2 rounded border-l-4 border-purple-500">
+          Asocia Puerto → <br /><strong>bind()</strong>
+        </div>
+        <div class="bg-gray-700 p-2 rounded border-l-4 border-pink-500">
+          REST → <br /><strong>Stateless</strong>
+        </div>
+        <div class="bg-gray-700 p-2 rounded border-l-4 border-indigo-500">
+          Ver Procesos → <br /><strong>ps -ef</strong>
+        </div>
+      </div>
     </div>
-
-</body>
+  </body>
 </html>
-
-
-
-
-
