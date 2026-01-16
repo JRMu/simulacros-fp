@@ -24,7 +24,7 @@
 
     <header class="text-center mb-10">
         <h1 class="text-4xl font-bold text-purple-900 mb-2">⚙️ PSP: Repaso Final</h1>
-        <p class="text-gray-700 font-medium"></p>
+        <p class="text-gray-700 font-medium">Temario Completo + Leaks del Examen 🚨</p>
     </header>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -69,7 +69,7 @@
                         <li><span class="estado bg-gray-200 text-gray-900">Terminado</span> Fin del run().</li>
                     </ul>
                 </li>
-                <li><strong>Métodos Trampa (LEAK HOY):</strong>
+                <li><strong>Métodos Trampa (LEAK):</strong>
                     <div class="leaks">🚨 <strong>¡OJO DIFERENCIA!</strong><br>
                     - <code class="code-tag">currentThread()</code>: Devuelve la <strong>REFERENCIA</strong> (el Objeto hilo).<br>
                     - <code class="code-tag">getId()</code>: Devuelve el <strong>IDENTIFICADOR</strong> (número long).</div>
@@ -78,9 +78,11 @@
                     <div class="leaks">🚨 <strong>Respuesta Correcta:</strong><br>
                     "Para atender múltiples peticiones simultáneamente. <strong>Sin hilos, solo se atiende una petición a la vez</strong> (Secuencial)."</div>
                 </li>
-                <li><strong>Bernstein (LEAK HOY):</strong>
-                    <div class="truco">📝 <strong>Truco Trampa:</strong> Si te dicen L1 ∩ L2 ≠ Ø (Dos Lecturas)... ¿Es concurrente?<br>
-                    <strong>Respuesta:</strong> ¡NO SE PUEDE SABER! El conflicto solo existe si hay al menos una <strong>Escritura (E)</strong>. Dos lecturas nunca dan problemas.</div>
+                <li><strong>Bernstein (Concurrencia):</strong>
+                    <ul class="list-disc ml-5 mt-1">
+                        <li><strong>Regla General:</strong> Conflicto si intersección Escritura ≠ Ø.</li>
+                        <li><strong class="text-pink-700">Trampa Examen:</strong> Si te dicen L1 ∩ L2 ≠ Ø (Dos Lecturas)... ¿Es concurrente? <strong>Respuesta:</strong> ¡NO SE PUEDE SABER! (Falta info de escritura).</li>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -121,17 +123,19 @@
                 <li><strong>RMI (Java):</strong> Objetos Remotos.
                     <div class="leaks">🚨 <strong>Necesario:</strong> Requiere implementar el <strong>Objeto Servidor</strong> (Remoto) y registrarlo.</div>
                 </li>
-                <li class="bg-purple-50 p-2 rounded border border-purple-200">
-                    <strong>REST vs SOAP (LEAK HOY):</strong>
+                <li><strong>Tipos de Servidor (COMPLETO):</strong>
+                    <ul class="list-disc ml-5 mt-1">
+                        <li><strong>Iterativo:</strong> Sin hilos (Secuencial, lento).</li>
+                        <li><strong>Concurrente:</strong> Con hilos (Simultáneo, rápido).</li>
+                        <li><strong>Dedicado:</strong> Hardware exclusivo para un cliente.</li>
+                        <li><strong>Balanceador de Carga:</strong> Distribuye el tráfico entre varios servidores.</li>
+                    </ul>
+                </li>
+                <li class="bg-purple-50 p-2 rounded border border-purple-200 mt-2">
+                    <strong>REST vs SOAP (LEAK):</strong>
                     <ul class="list-disc ml-5 mt-1">
                         <li><strong>SOAP:</strong> Pesado, XML estricto, guarda estado.</li>
                         <li><strong>REST:</strong> Ligero. <strong>Ventaja clave:</strong> Es <strong>Stateless (Sin estado)</strong> → "Toda la información necesaria viaja en el mensaje".</li>
-                    </ul>
-                </li>
-                <li><strong>Tipos de Servidor:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Iterativo:</strong> Sin hilos (Lento, cola de espera).</li>
-                        <li><strong>Concurrente:</strong> Con hilos (Rápido, simultáneo).</li>
                     </ul>
                 </li>
             </ul>
@@ -149,7 +153,7 @@
             <div class="bg-gray-700 p-2 rounded border-l-4 border-blue-500">getId() → <br><strong>IDENTIFICADOR</strong></div>
             <div class="bg-gray-700 p-2 rounded border-l-4 border-green-500">L1 ∩ L2 ≠ Ø → <br><strong>No se sabe</strong></div>
             <div class="bg-gray-700 p-2 rounded border-l-4 border-purple-500">REST → <br><strong>Stateless</strong></div>
-            <div class="bg-gray-700 p-2 rounded border-l-4 border-pink-500">Sin Hilos → <br><strong>Secuencial (1 a 1)</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-pink-500">Sin Hilos → <br><strong>Secuencial</strong></div>
         </div>
     </div>
 
