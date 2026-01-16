@@ -87,7 +87,7 @@
             </ul>
         </div>
 
-        <div class="bg-white p-5 rounded-lg shadow border-green-500 card">
+       <div class="bg-white p-5 rounded-lg shadow border-green-500 card">
             <h2 class="text-xl font-bold text-green-600 mb-3 flex justify-between">
                 <span>🌍 3. Redes y Sockets</span>
                 <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">RA3</span>
@@ -97,14 +97,24 @@
                 <li><strong>Sockets (Identificación Total):</strong>
                     <div class="truco">🔑 <strong>Son 5 elementos:</strong><br>Protocolo + IP Origen + Puerto Origen + IP Destino + Puerto Destino.</div>
                 </li>
-                <li><strong>Cierre TCP (4 pasos):</strong>
-                    <ol class="list-decimal ml-5 text-xs">
-                        <li>Cliente envía <strong>FIN</strong>.</li>
-                        <li>Servidor envía <strong>ACK</strong>.</li>
-                        <li>Servidor envía <strong>FIN</strong>.</li>
-                        <li>Cliente envía <strong>ACK</strong>.</li>
-                    </ol>
+                
+                <li class="bg-green-50 p-2 rounded border border-green-200">
+                    <strong>🤝 Ciclo de Vida TCP (¡Vital!):</strong>
+                    <ul class="mt-1 text-xs space-y-2">
+                        <li><strong>1. APERTURA (3-Way Handshake):</strong>
+                            <br>1. Cliente envía <strong>SYN</strong> (Sincronizar).
+                            <br>2. Servidor responde <strong>SYN-ACK</strong>.
+                            <br>3. Cliente confirma <strong>ACK</strong>. <span class="text-green-700 font-bold">→ ¡Conectado!</span>
+                        </li>
+                        <li><strong>2. CIERRE (4 Pasos):</strong>
+                            <br>1. Cliente envía <strong>FIN</strong>.
+                            <br>2. Servidor confirma <strong>ACK</strong>.
+                            <br>3. Servidor envía su <strong>FIN</strong> (cuando termina).
+                            <br>4. Cliente confirma <strong>ACK</strong>. <span class="text-red-700 font-bold">→ ¡Desconectado!</span>
+                        </li>
+                    </ul>
                 </li>
+
                 <li><strong>Clases Java:</strong>
                     <ul class="list-disc ml-5 mt-1">
                         <li><code class="code-tag">ServerSocket</code>: Servidor. Método <code class="code-tag">accept()</code>.</li>
@@ -159,3 +169,4 @@
 
 </body>
 </html>
+
