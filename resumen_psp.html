@@ -8,8 +8,7 @@
     <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
 
-
-    <title>Repaso PSP</title>
+    <title>Repaso de Conceptos PSP</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #f3e8ff; }
@@ -63,7 +62,7 @@
             <ul class="space-y-2 text-sm text-gray-700">
                 <li><strong>Conceptos Base:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Servicio:</strong> Programa en 2º plano sin interfaz. <span class="new-tag">Definición</span></li>
+                        <li><strong>Servicio:</strong> Programa en 2º plano sin interfaz.</li>
                         <li><strong>Hilo vs Proceso:</strong> Hilo comparte memoria y su creación tiene <strong>menor coste</strong>.</li>
                         <li><strong>Comandos:</strong> <code class="code-tag">ps -ef</code> (Linux).</li>
                         <li><strong>Crear Proceso:</strong> <code class="code-tag">createProcess()</code> (C/Win) o <code class="code-tag">ProcessBuilder</code> (Java).</li>
@@ -72,15 +71,29 @@
                 <li><strong>Métodos Hilos:</strong>
                     <ul class="list-disc ml-5 mt-1">
                         <li><code class="code-tag">start()</code>: Crea hilo. / <code class="code-tag">run()</code>: Ejecuta código.</li>
-                        <li><code class="code-tag">sleep()</code>: Pausa. / <code class="code-tag">notify()</code>: Despierta (NO para el hilo, solo avisa).</li>
+                        <li><code class="code-tag">sleep()</code>: Pausa. / <code class="code-tag">notify()</code>: Despierta.</li>
                         <li><strong>Fin del Hilo:</strong> Cuando termina el método <code class="code-tag">run()</code>.</li>
                     </ul>
                 </li>
                 <li><strong>Identificación (Trampa Leaks):</strong>
                     <div class="leaks">🚨 <strong>Reference</strong> = <code class="code-tag">currentThread()</code>. <br>🚨 <strong>ID</strong> = <code class="code-tag">getId()</code>.</div>
                 </li>
-                <li><strong>Bernstein:</strong>
-                    <div class="truco">¿Para qué sirve? 👉 Para saber si se pueden <strong>Paralelizar</strong> instrucciones. <br>Regla: Conflicto si hay Escritura. (2 Lecturas = No se sabe/OK).</div>
+                
+                <li class="mt-2">
+                    <strong>Bernstein (Paralelismo):</strong>
+                    <div class="truco">
+                        <p class="font-bold border-b border-yellow-300 mb-1">⚠️ La Regla de Oro:</p>
+                        <ul class="list-disc ml-4 text-xs">
+                            <li>Lectura &#8745; Escritura &ne; &Oslash; &rarr; ❌ <strong>NO</strong> Paralelizable.</li>
+                            <li>Escritura &#8745; Escritura &ne; &Oslash; &rarr; ❌ <strong>NO</strong> Paralelizable.</li>
+                            <li>Lectura &#8745; Lectura &ne; &Oslash; &rarr; ✅ <strong>SÍ</strong> (Safe).</li>
+                        </ul>
+                        <p class="mt-1 bg-white p-1 rounded text-red-600 font-bold border border-red-200 text-xs">
+                            🚨 TRAMPA EXAMEN: Si te dicen que $L_1 \cap L_2 \neq \emptyset$ (Solo coinciden lecturas)...
+                            <br>Respuesta: "No se puede saber" (o No hay conflicto).
+                            <br>El conflicto SOLO existe si hay una <strong>Escritura (E)</strong>.
+                        </p>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -88,18 +101,12 @@
         <div class="bg-white p-5 rounded-lg shadow border-green-500 card">
             <h2 class="text-xl font-bold text-green-600 mb-3">🌍 3. Redes y Sockets</h2>
             <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Capa de Aplicación:</strong> HTTP, FTP, DNS, SMTP, DHCP.</li>
-                <li><strong>Protocolos Transporte:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>TCP:</strong> Orientado a Conexión (Fiable).</li>
-                        <li><strong>UDP:</strong> No orientado (Rápido, Streaming).</li>
-                    </ul>
-                </li>
-                <li><strong>Sockets (Comunicación entre Apps):</strong>
+                <li><strong>Protocolos:</strong> TCP (Conexión), UDP (No conexión), DHCP, DNS.</li>
+                <li><strong>Sockets (5 Elementos):</strong>
                     <ul class="list-disc ml-5 mt-1">
                         <li><code class="code-tag">bind()</code>: Asocia socket a Puerto/IP.</li>
-                        <li><code class="code-tag">accept()</code>: Espera conexión (Bloqueante).</li>
-                        <li><strong>5 Elementos:</strong> Proto + IP A + Port A + IP B + Port B.</li>
+                        <li><code class="code-tag">accept()</code>: Espera conexión.</li>
+                        <li><strong>Definición:</strong> Proto + IP A + Port A + IP B + Port B.</li>
                     </ul>
                 </li>
                 <li><strong>Puertos:</strong> SSH (22), HTTP (80), HTTPS (443).</li>
@@ -144,7 +151,7 @@
                 </li>
                 <li><strong>REST vs SOAP (Leaks):</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><strong>REST:</strong> Stateless (Sin estado). Toda la info va en el mensaje. Ligero (JSON).</li>
+                        <li><strong>REST:</strong> Stateless (Sin estado). Ligero (JSON).</li>
                         <li><strong>SOAP:</strong> Con estado. Pesado (XML).</li>
                     </ul>
                 </li>
