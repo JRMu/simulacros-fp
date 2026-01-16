@@ -79,33 +79,42 @@
                     <div class="leaks">🚨 <strong>Reference</strong> = <code class="code-tag">currentThread()</code>. <br>🚨 <strong>ID</strong> = <code class="code-tag">getId()</code>.</div>
                 </li>
                 
-                <li class="mt-4">
-                    <strong>Bernstein (Paralelismo) - <span class="text-red-600">LA TRAMPA</span>:</strong>
-                    <div class="bg-gray-50 border border-gray-300 rounded p-2 text-xs mt-1">
-                        <p class="mb-2">Para que sea Paralelizable, deben cumplirse <strong>LAS 3</strong> condiciones:</p>
-                        <ul class="list-none space-y-1 ml-1">
-                            <li>1. $L_1 \cap E_2 = \emptyset$ (Lectura 1 vs Escritura 2)</li>
-                            <li>2. $E_1 \cap L_2 = \emptyset$ (Escritura 1 vs Lectura 2)</li>
-                            <li>3. $E_1 \cap E_2 = \emptyset$ (Escritura 1 vs Escritura 2)</li>
-                        </ul>
-                        
-                        <div class="mt-3 bg-white p-2 border-l-4 border-red-500 shadow-sm">
-                            <p class="font-bold text-red-700 text-sm">🚨 PREGUNTA DE EXAMEN:</p>
-                            <p class="mt-1">"Solo sabemos que $L_1 \cap L_2 \neq \emptyset$. ¿Es concurrente?"</p>
-                            
-                            <p class="mt-2 font-bold text-gray-800">Respuesta: <span class="bg-yellow-200 px-1">NO SE PUEDE SABER</span>.</p>
-                            <p class="mt-1 text-gray-600 italic">
-                                <strong>¿Por qué?</strong> Porque Bernstein no prohíbe que lean lo mismo ($L \cap L$ no es problema), 
-                                pero como el enunciado <strong>NO te dice nada de las Escrituras ($E$)</strong>, te falta información para comprobar las reglas 1, 2 y 3.
-                            </p>
-                            <div class="mt-2 font-bold text-green-700 border-t pt-1">
-                                RESUMEN MENTAL:
-                                <br>❌ Si choca Escritura = NO Paralelo.
-                                <br>❓ Si solo hablan de Lecturas = FALTAN DATOS.
-                            </div>
-                        </div>
-                    </div>
-                </li>
+               <li class="mt-4">
+    <strong>Bernstein (Paralelismo) - <span class="text-red-600">LA TRAMPA</span>:</strong>
+    <div class="bg-gray-50 border border-gray-300 rounded p-2 text-xs mt-1">
+        <p class="mb-2">Para que sea Paralelizable, deben cumplirse <strong>LAS 3</strong> condiciones:</p>
+        
+        <ul class="list-none space-y-1 ml-1 text-gray-700">
+            <li>1. $L_1 \cap E_2 = \emptyset$ (Lectura 1 vs <strong>Escritura</strong> 2)</li>
+            <li>2. $E_1 \cap L_2 = \emptyset$ (<strong>Escritura</strong> 1 vs Lectura 2)</li>
+            <li>3. $E_1 \cap E_2 = \emptyset$ (<strong>Escritura</strong> 1 vs <strong>Escritura</strong> 2)</li>
+        </ul>
+        <div class="text-[10px] text-gray-500 mt-1 ml-1"><em>*Fíjate: Todas las reglas obligatorias incluyen al menos una "E".</em></div>
+        
+        <div class="mt-3 bg-white p-2 border-l-4 border-red-500 shadow-sm">
+            <p class="font-bold text-red-700 text-sm">🚨 PREGUNTA TRAMPA (CASO ALEJANDRA):</p>
+            <p class="mt-1">"Solo sabemos que $L_1 \cap L_2 = \emptyset$ (o que es $\neq \emptyset$). ¿Es concurrente?"</p>
+            
+            <p class="mt-2 font-bold text-gray-800">Respuesta: <span class="bg-yellow-200 px-1">NO SE PUEDE SABER</span>.</p>
+            
+            <p class="mt-1 text-gray-600 italic">
+                <strong>¿Por qué?</strong> Porque Bernstein <strong>IGNORA</strong> las interacciones Lectura-Lectura ($L \cap L$).
+                <br>
+                Dos procesos pueden leer a la vez sin problema. El peligro está en Escribir ($E$). Como el enunciado <strong>TE OCULTA los datos de Escritura ($E$)</strong>, te falta información crítica para validar las reglas 1, 2 y 3.
+            </p>
+
+            <div class="mt-2 font-bold text-green-700 border-t pt-1">
+                RESUMEN MENTAL:
+                <br>❌ Si choca Escritura ($E \cap E$, $L \cap E$) = NO Paralelo.
+                
+
+[Image of Intersection of sets]
+
+                <br>👀 Si solo hablan de Lecturas ($L \cap L$) = <strong>DATO INÚTIL / FALTAN DATOS</strong>.
+            </div>
+        </div>
+    </div>
+</li>
             </ul>
         </div>
 
@@ -189,4 +198,5 @@
 
 </body>
 </html>
+
 
