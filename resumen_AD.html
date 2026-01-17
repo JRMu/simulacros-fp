@@ -128,31 +128,21 @@
                 </li>
                 <li><strong>Anotación @Transient:</strong> Etiqueta para decirle a la BD "Ignora esto, no lo guardes" (ej: edad calculada).</li>
                 <li><strong>Consultas:</strong> <code class="code-tag">HQL/OQL</code> consultan Objetos, no tablas. Variables OQL llevan <code class="code-tag">$</code>.</li>
+                <li class="bg-red-50 p-2 rounded border-l-2 border-red-400 mt-2">
+    <strong class="text-red-700">🚨 El Desfase (Las 5 Claves):</strong>
+    <span class="text-xs text-gray-600 block mb-1">Si las opciones son largas, buscan esto:</span>
+    <ul class="list-disc ml-5 text-xs space-y-1">
+        <li><strong>1. Granularidad:</strong> Tienes clases muy finas (ej: clase <code>Dirección</code>) que en la BD se guardan "aplanadas" en la tabla Usuario.</li>
+        <li><strong>2. Herencia (Subtipos):</strong> Java usa <code>extends</code>. SQL <strong>NO</strong> tiene herencia. El ORM sufre para mapearlo.</li>
+        <li><strong>3. Identidad:</strong> Java diferencia por dirección de memoria (<code>==</code>). SQL diferencia por <strong>Clave Primaria (PK)</strong>.</li>
+        <li><strong>4. Asociaciones:</strong> En Java son referencias (unidireccionales). En SQL son Foreign Keys.</li>
+        <li><strong>5. Navegación:</strong> En Java saltas de objeto en objeto (grafo). En SQL necesitas hacer JOINs costosos.</li>
+    </ul>
+</li>
             </ul>
         </div>
 
-        <div class="bg-white p-5 rounded-lg shadow border-red-500 card border-l-8">
-            <h2 class="text-xl font-bold text-red-600 mb-3">🔥 3.5. ORM: El Desfase (PREGUNTAS REBUSCADAS)</h2>
-            <p class="text-xs text-gray-500 mb-2">Las 5 opciones técnicas que caen en el examen:</p>
-            
-            <div class="space-y-2 text-sm">
-                <div class="leak-orm">
-                    <strong>1. Granularidad:</strong> Problema cuando tienes clases muy finas (ej: Clase 'Dirección') que la BD quiere aplanar en una sola tabla.
-                </div>
-                <div class="leak-orm">
-                    <strong>2. Herencia (Subtipos):</strong> Java usa `extends` natural. SQL NO tiene herencia. El ORM sufre para simularlo.
-                </div>
-                <div class="leak-orm">
-                    <strong>3. Identidad:</strong> Java usa `==` (memoria) o `equals`. La BD usa Clave Primaria (PK). No es lo mismo.
-                </div>
-                <div class="leak-orm">
-                    <strong>4. Asociaciones:</strong> En Java son referencias (unidireccionales). En BD son Foreign Keys (FK).
-                </div>
-                <div class="leak-orm">
-                    <strong>5. Navegación:</strong> En Java haces `.getLista()`. En BD eso implica JOINs costosos.
-                </div>
-            </div>
-        </div>
+
         <div class="bg-white p-5 rounded-lg shadow border-yellow-500 card">
             <h2 class="text-xl font-bold text-yellow-600 mb-3">📦 4. Tipos y BDOO</h2>
             <ul class="space-y-2 text-sm text-gray-700">
