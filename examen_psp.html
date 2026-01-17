@@ -47,7 +47,7 @@
                 </p>
                 <div class="flex flex-col gap-2 max-w-xs mx-auto">
                     <div class="flex items-center gap-2 text-sm text-slate-500 justify-center">
-                        <i class="fas fa-layer-group"></i> 151 Preguntas totales
+                        <i class="fas fa-layer-group"></i> 152 Preguntas totales
                     </div>
                     <div class="flex items-center gap-2 text-sm text-slate-500 justify-center">
                         <i class="fas fa-shuffle"></i> Orden y respuestas aleatorias
@@ -112,7 +112,7 @@
     </div>
 
     <script>
-        // --- DATASET: 151 Questions Total ---
+        // --- DATASET: 152 Questions Total ---
         const rawQuestions = [
             // --- BLOQUE ORIGINAL ---
             {
@@ -1079,6 +1079,17 @@
                 ],
                 correct: 2,
                 justification: "Mnemotecnia: SMTP (Send Mail / Salida). POP3 e IMAP son protocolos de recepción/lectura para el usuario final."
+            },
+            {
+                q: "Dadas las instrucciones S1: c = a - b y S2: x = c + n. Para que puedan ejecutarse concurrentemente deben cumplirse las condiciones de Bernstein. ¿Cuál de las siguientes condiciones es la que NO se cumple (impidiendo el paralelismo)?",
+                options: [
+                    "E(S1) ∩ L(S2) = ∅",  // Opción A: Esta es la que NO se cumple (es falsa porque la intersección tiene 'c')
+                    "L(S1) ∩ E(S2) = ∅",  // Opción B: Se cumple (Lectura S1 vs Escritura S2)
+                    "E(S1) ∩ E(S2) = ∅",  // Opción C: Se cumple (Escrituras distintas c y x)
+                    "L(S1) ∩ L(S2) = ∅"   // Opción D: Irrelevante (Bernstein permite L-L)
+                ],
+                correct: 0,
+                justification: "Falla la condición de Dependencia de Flujo (Escritura-Lectura). La instrucción S1 escribe 'c' y la S2 necesita leer esa 'c'. Por tanto, la intersección E(S1)∩L(S2) NO es vacía (contiene 'c'), así que la condición de que sea igual a vacío (= ∅) no se cumple."
             }
             
         ];
