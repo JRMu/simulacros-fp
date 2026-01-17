@@ -58,6 +58,10 @@
                     </ul>
                 </li>
                 <li><strong>Desventaja Secuencial:</strong> Es como una cinta VHS, debes pasar por todo lo anterior para llegar al final.</li>
+                <li class="pt-2 mt-2 border-t border-blue-100">
+    <strong>NIO.2 (Moderno):</strong> <code>java.nio.file.Path</code> es la evolución de <code>File</code>.
+    <br><span class="text-xs text-gray-500">Es más versátil: soporta enlaces simbólicos y sistemas de archivos no estándar (ZIP, FTP).</span>
+</li>
             </ul>
         </div>
 
@@ -93,6 +97,10 @@
                 <li class="bg-red-50 p-2 rounded border border-red-200">
                     <strong>¡OJO!</strong> <code class="code-tag">DROP</code> es el comando nuclear (borra estructura y datos). <code class="code-tag">DELETE</code> solo borra filas.
                 </li>
+                <li class="bg-indigo-50 p-1 rounded border-l-2 border-indigo-400">
+    <strong>execute() (a secas):</strong> Devuelve <code>boolean</code>.
+    <span class="text-xs">Úsalo para operaciones DDL desconocidas o complejas (ej: <code>CREATE</code>, <code>ALTER</code>).</span>
+</li>
             </ul>
         </div>
 
@@ -183,6 +191,7 @@
                     </ul>
                 </li>
                 <li><strong>Índices Estructurales:</strong> Aceleran búsquedas por rutas (tags específicos).</li>
+                <li><strong>DTD:</strong> Validación antigua (el "abuelo" del XSD). Menos potente.</li>
             </ul>
         </div>
 
@@ -222,11 +231,20 @@
                     </ul>
                     <div class="truco">🚨 <strong>Trampa:</strong> "Bean de Interfaz" NO existe.</div>
                 </li>
+                <li class="bg-purple-50 p-2 rounded border-l-2 border-purple-400 mt-2">
+    <strong>🔍 Conceptos "Leak":</strong>
+    <ul class="list-disc ml-5 mt-1 text-xs">
+        <li><strong>@Remote:</strong> Hace que el EJB sea accesible desde otra máquina (Red).</li>
+        <li><strong>@since:</strong> Etiqueta que indica "Desde qué versión" existe un método.</li>
+        <li><strong>Entity Beans:</strong> (Concepto Legacy). Los antiguos EJBs de datos antes de existir JPA (@Entity).</li>
+    </ul>
+</li>
             </ul>
         </div>
 
-    </div>
-
+    
+   
+        </div>
     <div class="mt-8 bg-gray-800 text-white p-6 rounded-lg shadow-lg">
         <h2 class="text-2xl font-bold text-yellow-400 mb-4 text-center">🚀 Resumen de Emergencia (Fichas Rápidas)</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
