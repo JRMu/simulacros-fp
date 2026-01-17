@@ -74,7 +74,12 @@
             <ul class="space-y-2 text-sm text-gray-700">
                 <li><strong>Componentes:</strong>
                     <ul class="list-disc ml-5 mt-1">
-                        <li><code class="code-tag">DriverManager</code>: Portero (Carga driver).</li>
+                        <li><code class="code-tag">DriverManager</code>: Portero (Carga driver).
+                        <ul class="list-circle ml-5 text-xs text-gray-500 mt-1">
+                            <li><strong>Carga Dinámica</strong> Se usa el método <code class="code-tag">Class.forName("com.mysql...")</code>.</li>
+                            <li>(En Java moderno es automático).</li>
+                        </ul>
+                    </li>
                         <li><code class="code-tag">Connection</code>: Túnel (¡Cerrar siempre!).</li>
                         <li><code class="code-tag">ResultSet</code>: Respuesta (Tablas).</li>
                     </ul>
