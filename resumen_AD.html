@@ -93,7 +93,9 @@
                 <li><strong>Ejecución (Regla de Oro):</strong>
                     <ul class="list-disc ml-5 mt-1">
                         <li><strong>SELECT</strong> → <code class="code-tag">executeQuery()</code> ("Query"="Pregunta").</li>
-                        <li><strong>INSERT/UPDATE</strong> → <code class="code-tag">executeUpdate()</code> ("Update"="Cambio").</li>
+                    <li><strong>INSERT / UPDATE / <span class="text-red-600">ALTER</span></strong> → <code class="code-tag">executeUpdate()</code> ("Cambio").
+                        <br><span class="text-[10px] text-gray-500">Sirve para modificar datos O estructura. (En CREATE/ALTER devuelve 0).</span>
+                    </li>
                     </ul>
                 </li>
                 <li><strong>Transacciones:</strong>
