@@ -7,953 +7,157 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
     <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
-    <title>Test Desarrollo de interfaces</title>
+    
+    <title>Resumen DI con Trucos</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #f0fdf4; /* Fondo verde muy suave */
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column;
-        }
-        .fade-in { animation: fadeIn 0.3s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .option-card { transition: all 0.2s ease; }
-        .option-card:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
-        
-        /* Botón Siguiente Sticky (Pegajoso) */
-        .sticky-footer {
-            position: sticky;
-            bottom: 0;
-            background: white;
-            border-top: 1px solid #e5e7eb;
-            padding: 1rem;
-            z-index: 50;
-            border-bottom-left-radius: 1rem;
-            border-bottom-right-radius: 1rem;
-            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #fff1f2; }
+        .card { transition: all 0.3s ease; border-left-width: 5px; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .truco-box { background-color: #fef2f2; border: 2px dashed #f43f5e; padding: 1rem; border-radius: 8px; margin-top: 10px; }
+        .truco-title { color: #be123c; font-weight: bold; display: block; margin-bottom: 4px; }
+        .code-tag { font-family: monospace; background-color: #fce7f3; padding: 2px 4px; border-radius: 4px; color: #be185d; font-weight: bold; }
     </style>
 </head>
-<body class="py-8 px-4">
+<body class="p-4 md:p-8 max-w-7xl mx-auto">
 
-    <div class="bg-white rounded-2xl shadow-xl w-full max-w-3xl mx-auto border-t-4 border-green-600 flex flex-col relative">
+    <header class="text-center mb-10">
+        <h1 class="text-4xl font-bold text-pink-900 mb-2">🎨 DI: Trucos para el Examen</h1>
+        <p class="text-gray-700 font-medium">Memoriza las diferencias clave</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div class="bg-white p-5 rounded-lg shadow border-orange-500 card">
+            <h2 class="text-xl font-bold text-orange-600 mb-3">📚 1. Documentación y Ayudas</h2>
+            <ul class="space-y-3 text-sm text-gray-700">
+                <li><strong>Tipos de Documentos:</strong>
+                    <ul class="list-disc ml-5">
+                        <li><strong>Guía Rápida:</strong> Resumen esencial. Objetivo: <strong>Inicio Inmediato</strong>.</li>
+                        <li><strong>Manual de Usuario:</strong> Instrucciones completas. Objetivo: <strong>Operativa Diaria</strong>.</li>
+                        <li><strong>Manual de Instalación:</strong> Requisitos y puesta en marcha.</li>
+                    </ul>
+                </li>
+                <li><strong>Ayudas en Pantalla:</strong>
+                    <ul class="list-disc ml-5">
+                        <li><strong>Tooltip:</strong> Etiqueta al pasar el ratón (Hover).</li>
+                        <li><strong>Contextual:</strong> Ayuda específica de donde estás.</li>
+                    </ul>
+                </li>
+                
+                <div class="truco-box">
+                    <span class="truco-title">🧠 TRUCO: Herramientas de Documentación</span>
+                    <p>Si te preguntan cuál <strong>NO</strong> existe:</p>
+                    <p class="mt-1 text-lg">👉 <strong>DocFinger</strong> (No te chupes el dedo)</p>
+                    <p class="text-xs mt-1 text-gray-500">Las que SÍ existen: SandCastle (Arena), GhostDoc (Fantasma), HelpNDoc.</p>
+                </div>
+            </ul>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow border-pink-500 card">
+            <h2 class="text-xl font-bold text-pink-600 mb-3">🧪 2. Tipos de Pruebas</h2>
+            <ul class="space-y-2 text-sm text-gray-700">
+                <li><strong>Caja Negra vs Blanca:</strong>
+                    <ul class="list-disc ml-5">
+                        <li><strong>Negra:</strong> Funcional. No ves código. (Entradas/Salidas).</li>
+                        <li><strong>Blanca:</strong> Estructural. Ves el código (Caminos lógicos).</li>
+                    </ul>
+                </li>
+                <li><strong>Fases (El orden importa):</strong>
+                    <ol class="list-decimal ml-5">
+                        <li><strong>Unitarias:</strong> Piezas sueltas.</li>
+                        <li><strong>Integración:</strong> Juntar piezas.</li>
+                        <li><strong>Sistema:</strong> Todo junto.</li>
+                        <li><strong>Aceptación:</strong> Cliente da el OK.</li>
+                    </ol>
+                </li>
+
+                <div class="truco-box">
+                    <span class="truco-title">🧠 TRUCO: ¿Alfa o Beta?</span>
+                    <ul class="list-none space-y-1">
+                        <li>🅰️ <strong>ALFA:</strong> "A" de <strong>Adentro</strong>. (En casa, desarrolladores).</li>
+                        <li>🅱️ <strong>BETA:</strong> "B" de <strong>Barrio</strong>. (Fuera, usuarios reales).</li>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow border-blue-500 card">
+            <h2 class="text-xl font-bold text-blue-600 mb-3">⚡ 3. Eventos (La Trampa)</h2>
+            <ul class="space-y-2 text-sm text-gray-700">
+                <li><strong>Listeners:</strong> Son siempre <strong>Asíncronos</strong>.</li>
+                <li><strong>Ratón:</strong> <code class="code-tag">mouseExited</code> se dispara al salir del componente.</li>
+                
+                <div class="truco-box">
+                    <span class="truco-title">🧠 TRUCO: Teclado (Key)</span>
+                    <ul class="list-none space-y-2">
+                        <li>👇 <strong>keyPressed:</strong> Solo bajar. (Acto físico inmediato).</li>
+                        <li>✍️ <strong>keyTyped:</strong> Bajar + Subir = <strong>Escribir</strong>.</li>
+                        <li class="font-bold text-pink-700">¡OJO! Solo keyTyped genera el CARÁCTER.</li>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+
         
-        <div class="bg-green-600 p-5 text-white flex justify-between items-center rounded-t-lg shadow-sm z-10">
-            <h1 class="text-lg font-bold flex items-center gap-2">
-                <i class="fas fa-desktop"></i> Desarrollo de interfaces
-            </h1>
-            <div id="status-bar" class="hidden flex gap-3 text-sm font-medium">
-                <div class="bg-green-700 px-3 py-1 rounded-lg flex items-center gap-2">
-                    <span class="text-green-200"><i class="fas fa-check"></i> <span id="score-display">0</span></span>
-                    <span class="text-red-200 ml-2"><i class="fas fa-times"></i> <span id="errors-display">0</span></span>
-                </div>
-                <div class="bg-green-500 px-3 py-1 rounded-full w-16 text-center">
-                    <span id="current-q">1</span>/<span id="total-q">0</span>
-                </div>
-            </div>
+       <div class="bg-white p-5 rounded-lg shadow border-green-500 card">
+    <h2 class="text-xl font-bold text-green-600 mb-3">📊 4. Métricas e Informes</h2>
+    <ul class="space-y-2 text-sm text-gray-700">
+        <li><strong>Informes:</strong>
+            <ul class="list-disc ml-5">
+                <li>1º Paso: <strong>Selección de Datos</strong> (Antes de pintar nada).</li>
+                <li>Cabecera Informe ≠ Cabecera Página.</li>
+            </ul>
+        </li>
+
+        <li class="pt-2 border-t border-green-100 mt-2">
+            <strong class="text-green-700">Tipos de Métricas:</strong>
+            <ul class="space-y-2 mt-1">
+                <li class="bg-gray-50 p-2 rounded border-l-4 border-blue-400">
+                    <strong>1. Indirecta:</strong> Relación entre 2 o más atributos.
+                    <br><em class="text-xs text-gray-500">Ej: % Enlaces Rotos, % Presencia propiedad ALT.</em>
+                </li>
+                
+                <li><strong>2. Interna:</strong> Valor numérico del <strong>atributo en sí mismo</strong> (independiente de cómo se obtiene).</li>
+                
+                <li><strong>3. Externa:</strong> Resultado de métrica indirecta que involucra al <strong>Sujeto + Entorno</strong>.</li>
+                
+                <li><strong>4. Objetiva:</strong> Valor resultante de un atributo de un sujeto (tiene grados de objetividad).</li>
+                
+                <li class="bg-pink-50 p-2 rounded border-l-4 border-pink-400">
+                    <strong>5. Subjetiva:</strong> Valor numérico que <strong>siempre involucra al usuario</strong>.
+                    <br><span class="text-xs text-pink-800 font-semibold">Se mide mediante Heurísticas o Criterios de Preferencia.</span>
+                </li>
+            </ul>
+        </li>
+
+        <div class="mt-2 text-xs bg-gray-100 p-2 rounded">
+            <strong>Versionado:</strong><br>
+            🟢 Pares (2.0) = Estables.<br>
+            🔴 Impares (1.9) = Desarrollo/Inestable.
         </div>
-
-        <div class="p-6 sm:p-8 flex-grow">
-            
-            <div id="start-screen" class="text-center space-y-8 fade-in py-8">
-                <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto text-green-600 text-4xl mb-4 shadow-sm">
-                    <i class="fas fa-pencil-ruler"></i>
-                </div>
-                <div>
-                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Desarrollo de Interfaces</h2>
-                    <p class="text-gray-500">100+ Preguntas</p>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-4 max-w-xs mx-auto text-sm text-gray-600">
-                    <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
-                        <i class="fas fa-list-ol text-green-500 mb-1 block text-lg"></i>
-                        <span id="start-total-q">--</span> Preguntas
-                    </div>
-                    <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
-                        <i class="fas fa-random text-green-500 mb-1 block text-lg"></i>
-                        Aleatorio
-                    </div>
-                </div>
-
-                <button onclick="startQuiz()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-xl w-full max-w-sm mx-auto shadow-lg transition-transform transform hover:scale-105 flex justify-center items-center gap-2 text-lg">
-                    <i class="fas fa-play"></i> Comenzar Test
-                </button>
-            </div>
-
-            <div id="quiz-screen" class="hidden flex flex-col fade-in">
-                
-                <div class="mb-6">
-                    <span class="text-xs font-bold text-green-600 uppercase tracking-wider mb-2 block">Pregunta</span>
-                    <h3 id="question-text" class="text-xl sm:text-2xl font-bold text-gray-800 leading-snug"></h3>
-                </div>
-
-                <div id="options-container" class="space-y-3">
-                    </div>
-
-                <div id="feedback-area" class="hidden mt-8 pt-6 border-t border-gray-100 fade-in">
-                    <div class="flex gap-4 mb-4 items-start bg-green-50 p-5 rounded-xl border border-green-100 shadow-sm">
-                        <div id="feedback-icon" class="text-2xl flex-shrink-0 mt-1"></div>
-                        <div>
-                            <h4 id="feedback-title" class="font-bold text-base mb-1"></h4>
-                            <p id="feedback-text" class="text-gray-700 text-sm leading-relaxed"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="result-screen" class="hidden text-center space-y-8 fade-in py-8">
-                <div class="relative inline-block">
-                    <div class="w-32 h-32 mx-auto rounded-full flex items-center justify-center text-5xl shadow-xl relative z-10 bg-white border-4" id="score-circle"></div>
-                </div>
-                
-                <div>
-                    <h2 class="text-4xl font-black text-gray-800 mb-1" id="final-score-text">0/0</h2>
-                    <p class="text-gray-500 text-sm font-semibold uppercase">Resultado Final</p>
-                </div>
-
-                <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden max-w-sm mx-auto">
-                    <div id="final-progress-bar" class="bg-green-600 h-full rounded-full transition-all duration-1000" style="width: 0%"></div>
-                </div>
-                
-                <p id="score-message" class="font-medium text-green-700 text-lg"></p>
-
-                <div class="flex flex-col gap-3 max-w-xs mx-auto pt-4">
-                    <button id="retry-failed-btn" onclick="restartQuiz(true)" class="hidden bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-md w-full transition-colors flex justify-center items-center gap-2">
-                        <i class="fas fa-hammer"></i> Repasar Fallos
-                    </button>
-                    <button onclick="restartQuiz(false)" class="bg-white border-2 border-green-600 text-green-600 hover:bg-green-50 font-bold py-3 px-6 rounded-lg w-full transition-colors">
-                        <i class="fas fa-redo"></i> Reiniciar Todo
-                    </button>
-                </div>
-            </div>
-
-        </div>
-
-        <div id="next-container" class="hidden sticky-footer">
-            <button onclick="nextQuestion()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-xl text-lg shadow-md transition-colors flex justify-center items-center gap-2">
-                Siguiente Pregunta <i class="fas fa-arrow-right"></i>
-            </button>
-        </div>
+    </ul>
+</div>
 
     </div>
 
-    <script>
-        // --- BASE DE DATOS DE PREGUNTAS DI ---
-        const rawQuestions = [
-            {
-                q: "Según la metodología de diseño de informes, ¿cuál es el primer paso fundamental antes de definir la apariencia?",
-                options: ["Selección de datos", "Diseño de la cabecera", "Agrupación visual", "Exportación a PDF"],
-                correct: 0,
-                justification: "El temario indica que antes de comenzar con el diseño visual, es preciso identificar qué se debe representar y realizar la selección de datos."
-            },
-            {
-                q: "¿Qué evento de teclado se dispara inmediatamente al presionar una tecla?",
-                options: ["keyPressed", "keyTyped", "keyReleased", "keyEntered"],
-                correct: 0,
-                justification: "<b>keyPressed</b> se produce al presionar la tecla. <b>keyTyped</b> requiere pulsar y soltar (carácter). <b>keyReleased</b> al soltar."
-            },
-            {
-                q: "¿Qué definición describe mejor a una GUI?",
-                options: ["Conjunto de elementos gráficos para comunicación usuario-sistema", "Distribución física de los componentes hardware", "Código fuente del núcleo del sistema", "Protocolo de red para transmisión de datos"],
-                correct: 0,
-                justification: "La GUI es el medio visual (iconos, ventanas) que permite la interacción, en contraposición a la línea de comandos."
-            },
-            {
-                q: "En una clase, ¿qué representa una propiedad simple?",
-                options: ["Un valor único que define un estado", "Una colección de objetos", "Un método sin retorno", "Un evento del sistema"],
-                correct: 0,
-                justification: "Una propiedad simple almacena un dato atómico (ej. color, tamaño) que refleja el estado del objeto."
-            },
-            {
-                q: "¿Qué herramientas se utilizan habitualmente para la evaluación de la usabilidad?",
-                options: ["Entrevistas, tests y cuestionarios", "Solo compiladores de código", "Analizadores de base de datos", "Depuradores de memoria"],
-                correct: 0,
-                justification: "La evaluación de usabilidad emplea métodos cualitativos y cuantitativos como entrevistas, test con usuarios y cuestionarios."
-            },
-            {
-                q: "¿Qué función cumple el evento `keyPressed`?",
-                options: ["Detecta el acto inicial de presionar una tecla", "Detecta cuando se suelta la tecla", "Detecta un carácter completo", "Detecta el clic del ratón"],
-                correct: 0,
-                justification: "Es el evento primario que captura la acción física de bajar la tecla, antes de que se genere el carácter."
-            },
-            {
-                q: "Un componente de software integra:",
-                options: ["Propiedades, eventos y métodos", "Solo variables globales", "Solo la interfaz visual", "Solo la lógica de base de datos"],
-                correct: 0,
-                justification: "Un componente encapsula estado (propiedades), comportamiento (métodos) y comunicación (eventos)."
-            },
-            {
-                q: "Un 'escuchador' (listener) funciona de manera:",
-                options: ["Asíncrona", "Síncrona", "Secuencial", "Bloqueante"],
-                correct: 0,
-                justification: "Los listeners son asíncronos: reaccionan cuando ocurre el evento sin detener el flujo principal del programa."
-            },
-            {
-                q: "¿Qué evento de teclado implica el ciclo completo de pulsar y soltar (generando carácter)?",
-                options: ["keyTyped", "keyReleased", "keyPressed", "keyDown"],
-                correct: 0,
-                justification: "<b>keyTyped</b> es el evento de alto nivel que indica que se ha introducido un carácter completo."
-            },
-            {
-                q: "¿Cuáles son formas válidas de comunicarse con un ordenador?",
-                options: ["Gráfica, línea de comandos y natural (voz/tacto)", "Exclusivamente entorno gráfico", "Exclusivamente línea de comandos", "Solo mediante periféricos de salida"],
-                correct: 0,
-                justification: "Existen múltiples interfaces: GUI (Gráfica), CLI (Línea de comandos) y NUI (Interfaz natural)."
-            },
-            {
-                q: "Según Nielsen, los pilares de la estructura visual son:",
-                options: ["Jerarquía, foco, homogeneidad y relaciones", "Color, sonido, vídeo y texto", "Complejidad, detalle, realismo y sombras", "Originalidad, sorpresa, caos y arte"],
-                correct: 0,
-                justification: "Una buena estructura requiere jerarquía visual, foco de atención, homogeneidad y relaciones lógicas."
-            },
-            {
-                q: "¿Cuál es la función principal de SVG?",
-                options: ["Definir gráficos vectoriales 2D mediante XML", "Renderizar mapas de bits (píxeles)", "Gestionar bases de datos", "Compilar código máquina"],
-                correct: 0,
-                justification: "SVG describe gráficos vectoriales escalables usando marcado XML."
-            },
-            {
-                q: "La sección 'Cabecera del Informe' se caracteriza por:",
-                options: ["Aparecer una única vez al inicio del documento", "Repetirse en cada página", "Aparecer al final del documento", "Contener los datos detallados"],
-                correct: 0,
-                justification: "La cabecera del informe es distinta de la cabecera de página; solo se imprime al comienzo absoluto."
-            },
-            {
-                q: "¿Qué control permite selección múltiple independiente?",
-                options: ["CheckBox", "RadioButton", "ComboBox", "TextBox"],
-                correct: 0,
-                justification: "El <b>CheckBox</b> permite marcar varias opciones independientemente. RadioButton es excluyente."
-            },
-            {
-                q: "Un beneficio clave de la usabilidad es:",
-                options: ["Reducción de costes de aprendizaje", "Aumento de la complejidad técnica", "Mayor consumo de recursos", "Uso de colores más brillantes"],
-                correct: 0,
-                justification: "Facilita el aprendizaje del usuario, reduciendo costes de formación y soporte."
-            },
-            {
-                q: "¿Qué propiedad NO es lógica de un CheckBox?",
-                options: ["Stretch", "IsChecked", "Content", "IsEnabled"],
-                correct: 0,
-                justification: "IsChecked, Content e IsEnabled son lógicas. 'Stretch' es una propiedad de diseño/layout (común en imágenes)."
-            },
-            {
-                q: "La heurística 'Visibilidad del estado del sistema' implica:",
-                options: ["Mantener al usuario informado con feedback constante", "Hacer visible el código fuente", "Usar diseños transparentes", "Permitir deshacer indefinidamente"],
-                correct: 0,
-                justification: "El sistema debe informar siempre de lo que está ocurriendo (ej. barras de carga)."
-            },
-            {
-                q: "¿Para qué sirve un archivo de solución (.sln) en Visual Studio?",
-                options: ["Agrupar y organizar proyectos relacionados", "Compilar el código fuente", "Guardar preferencias del editor", "Almacenar datos de la aplicación"],
-                correct: 0,
-                justification: "El archivo .sln es un contenedor que agrupa varios proyectos (.csproj, etc.) para gestionarlos juntos."
-            },
-            {
-                q: "¿Por qué se aconseja usar listas desplegables (ComboBox)?",
-                options: ["Ahorran espacio y validan la entrada", "Permiten escribir textos largos", "Son más fáciles de programar", "Permiten selección múltiple visual"],
-                correct: 0,
-                justification: "Ocupan poco espacio y limitan la entrada a valores predefinidos válidos."
-            },
-            {
-                q: "Que NetBeans sea de 'Código Abierto' significa:",
-                options: ["Su código fuente es accesible y modificable", "Solo funciona en sistemas Linux", "No tiene soporte oficial", "Solo permite programar en Java"],
-                correct: 0,
-                justification: "Permite el acceso al código fuente para su estudio, modificación y redistribución."
-            },
-            {
-                q: "¿Qué es XAML?",
-                options: ["Lenguaje declarativo para interfaces gráficas", "Lenguaje de programación compilado", "Motor de base de datos", "Protocolo de comunicación"],
-                correct: 0,
-                justification: "XAML define la interfaz de usuario en tecnologías Microsoft (WPF, UWP) separándola de la lógica."
-            },
-            {
-                q: "En XAML, ¿qué atributo identifica unívocamente un elemento?",
-                options: ["x:Name", "ID", "Key", "Tag"],
-                correct: 0,
-                justification: "El atributo <b>Name</b> (o x:Name) asigna el identificador para el code-behind."
-            },
-            {
-                q: "El evento que ocurre al salir el puntero de un componente es:",
-                options: ["mouseExited", "mouseEntered", "mouseReleased", "mouseClicked"],
-                correct: 0,
-                justification: "<b>mouseExited</b> se dispara cuando el cursor abandona el área visual del control."
-            },
-            {
-                q: "Un cuadro de diálogo MODAL:",
-                options: ["Bloquea la interacción con la ventana padre", "Permite usar otras ventanas simultáneamente", "Se cierra automáticamente", "No tiene bordes"],
-                correct: 0,
-                justification: "Exige atención inmediata e impide volver a la ventana principal hasta cerrarlo."
-            },
-            {
-                q: "Un principio básico de diseño de interfaces es:",
-                options: ["Consistencia", "Ambigüedad", "Complejidad", "Opacidad"],
-                correct: 0,
-                justification: "La consistencia asegura que elementos similares funcionen de manera similar."
-            },
-            {
-                q: "Sobre el uso de fuentes, se recomienda:",
-                options: ["Usar semántica clara y limitar la variedad", "Usar muchas fuentes distintas", "Escribir todo en mayúsculas", "Usar fuentes difíciles de leer"],
-                correct: 0,
-                justification: "La legibilidad y la jerarquía son claves; el exceso de fuentes confunde."
-            },
-            {
-                q: "La sección 'Cuerpo' de un informe:",
-                options: ["Se repite por cada registro de datos", "Aparece una vez por página", "Contiene solo los totales", "Muestra el título principal"],
-                correct: 0,
-                justification: "Es la sección iterativa donde se muestran los datos detallados."
-            },
-            {
-                q: "Los componentes heredados de `UserControl` obtienen:",
-                options: ["Propiedades, eventos y métodos base", "Solo la apariencia visual", "Ninguna funcionalidad", "Solo métodos privados"],
-                correct: 0,
-                justification: "Heredan toda la funcionalidad estándar del control de usuario base."
-            },
-            {
-                q: "Eclipse destaca por:",
-                options: ["Su arquitectura de plugins multipropósito", "Ser exclusivo de Windows", "No permitir depuración", "Ser de pago"],
-                correct: 0,
-                justification: "Su sistema de plugins permite soportar casi cualquier lenguaje (Java, C++, PHP, etc.)."
-            },
-            {
-                q: "Los elementos principales de un SVG son:",
-                options: ["Contenedores, gráficos, definiciones y animaciones", "Tablas, filas y columnas", "Clases, objetos y métodos", "Cabeceras y pies de página"],
-                correct: 0,
-                justification: "Se estructura en formas, grupos, definiciones de estilo y comportamientos."
-            },
-            {
-                q: "¿Qué ofrece una 'Guía Rápida'?",
-                options: ["Resumen de funcionalidades esenciales", "Documentación técnica completa", "Código fuente del sistema", "Manual de administración"],
-                correct: 0,
-                justification: "Permite al usuario empezar a usar el producto inmediatamente sin leer todo el manual."
-            },
-            {
-                q: "Las pruebas funcionales verifican:",
-                options: ["El cumplimiento de requisitos (qué hace)", "La estructura interna (cómo lo hace)", "El rendimiento (cuánto tarda)", "La estética (cómo se ve)"],
-                correct: 0,
-                justification: "Son pruebas de caja negra que validan entradas frente a salidas esperadas."
-            },
-            {
-                q: "Las pruebas de 'Caja Blanca' analizan:",
-                options: ["La estructura interna y lógica del código", "La interfaz de usuario", "El comportamiento externo", "La documentación"],
-                correct: 0,
-                justification: "Requieren acceso al código fuente para verificar caminos lógicos y condiciones."
-            },
-            {
-                q: "Las pruebas de 'Caja Negra' analizan:",
-                options: ["Entradas y salidas sin ver el código", "El código fuente línea por línea", "El hardware del servidor", "La base de datos directamente"],
-                correct: 0,
-                justification: "Se evalúa la funcionalidad externa sin conocer la implementación interna."
-            },
-            {
-                q: "Una prueba BETA se realiza:",
-                options: ["Por usuarios finales en entorno real", "Por desarrolladores en laboratorio", "Por auditores de seguridad", "Automáticamente por bots"],
-                correct: 0,
-                justification: "Externaliza la validación a usuarios reales antes del lanzamiento oficial."
-            },
-            {
-                q: "Las Pruebas de Sistema validan:",
-                options: ["El sistema completo e integrado", "Módulos aislados", "Solo el código fuente", "Solo el diseño gráfico"],
-                correct: 0,
-                justification: "Verifican que el sistema como un todo cumple los requisitos."
-            },
-            {
-                q: "Las pruebas de seguridad verifican:",
-                options: ["Integridad, confidencialidad y acceso", "Velocidad de procesamiento", "Estética de la interfaz", "Facilidad de instalación"],
-                correct: 0,
-                justification: "Buscan vulnerabilidades y fallos en mecanismos de protección."
-            },
-            {
-                q: "La ayuda contextual al pasar el ratón se llama:",
-                options: ["Tooltip", "Pop-up", "Modal", "Menu"],
-                correct: 0,
-                justification: "Pequeña etiqueta informativa que aparece al hacer 'hover'."
-            },
-            {
-                q: "Las pruebas de integración verifican:",
-                options: ["La interacción entre módulos", "El funcionamiento de una función", "El sistema completo", "La ortografía"],
-                correct: 0,
-                justification: "Aseguran que las piezas probadas individualmente funcionen bien juntas."
-            },
-            {
-                q: "Una prueba unitaria verifica:",
-                options: ["Una unidad mínima de código aislada", "Todo el sistema a la vez", "La experiencia de usuario", "La base de datos en producción"],
-                correct: 0,
-                justification: "Aísla métodos o clases para asegurar su corrección lógica."
-            },
-            {
-                q: "La prueba ALFA se realiza:",
-                options: ["En entorno controlado (desarrollador)", "En casa del cliente", "En producción real", "Después de la Beta"],
-                correct: 0,
-                justification: "Primera fase de pruebas completas, realizada internamente."
-            },
-            {
-                q: "¿Qué herramienta NO genera documentación?",
-                options: ["DocFinger", "HelpNDoc", "SandCastle", "GhostDoc"],
-                correct: 0,
-                justification: "DocFinger no es una herramienta estándar conocida; las otras sí."
-            },
-            {
-                q: "La 'Prueba de Recuperación' verifica:",
-                options: ["La restauración tras un fallo", "La velocidad de respuesta", "La seguridad del login", "La usabilidad del menú"],
-                correct: 0,
-                justification: "Fuerza fallos para comprobar si el sistema puede recuperarse."
-            },
-            {
-                q: "¿Para qué sirve NuGet?",
-                options: ["Gestión de paquetes y dependencias", "Compilación de código", "Edición de texto", "Diseño gráfico"],
-                correct: 0,
-                justification: "Facilita la instalación y actualización de librerías en .NET."
-            },
-            {
-                q: "Una 'Métrica Directa' se obtiene:",
-                options: ["Midiendo un atributo directamente", "Calculando una fórmula compleja", "Mediante encuestas subjetivas", "Estimando al azar"],
-                correct: 0,
-                justification: "Ej: contar errores, medir tiempo. No requiere derivación."
-            },
-            {
-                q: "Una 'Métrica Indirecta' se obtiene:",
-                options: ["Relacionando dos o más métricas", "Midiendo directamente con un reloj", "Contando elementos simples", "Por intuición"],
-                correct: 0,
-                justification: "Ej: Densidad de defectos (Defectos / Líneas de código)."
-            },
-            {
-                q: "Las pruebas de 'Uso de Recursos' miden:",
-                options: ["Consumo de CPU, RAM y disco", "Errores de sintaxis", "Calidad del diseño", "Satisfacción del usuario"],
-                correct: 0,
-                justification: "Buscan cuellos de botella y fugas de memoria."
-            },
-            {
-                q: "La firma digital de componentes garantiza:",
-                options: ["Autenticidad e integridad del origen", "Encriptación del contenido", "Compresión del archivo", "Velocidad de ejecución"],
-                correct: 0,
-                justification: "Asegura que el código viene de quien dice y no ha sido alterado."
-            },
-            {
-                q: "En versionado estándar, los números impares suelen indicar:",
-                options: ["Versiones de desarrollo (inestables)", "Versiones finales estables", "Versiones obsoletas", "Versiones de pago"],
-                correct: 0,
-                justification: "Convención común (ej. Linux): Pares=Estable, Impares=Desarrollo."
-            },
-            {
-                q: "Los 'Paquetes Gestionados' permiten:",
-                options: ["Distribución controlada y actualizaciones", "Modificación libre del código", "Creación de malware", "Borrado de datos"],
-                correct: 0,
-                justification: "Protegen la propiedad intelectual y facilitan la gestión de versiones."
-            },
-            {
-                q: "Las pruebas de regresión aseguran:",
-                options: ["Que cambios nuevos no rompan lo existente", "Que se pueda volver atrás", "Que el sistema sea rápido", "Que se instale bien"],
-                correct: 0,
-                justification: "Cruciales en mantenimiento para evitar reintroducir bugs."
-            },
-            {
-                q: "Herramientas principales de reporting:",
-                options: ["JasperReports y Reporting Services", "Word y Excel", "Photoshop e Illustrator", "Notepad y Calc"],
-                correct: 0,
-                justification: "Estándares en Java y .NET respectivamente."
-            },
-            {
-                q: "MXML se asocia a:",
-                options: ["Adobe Flex", "Microsoft WPF", "Java Swing", "Mozilla XUL"],
-                correct: 0,
-                justification: "Lenguaje de marcado para interfaces ricas en el ecosistema Flash/Flex."
-            },
-            {
-                q: "XUL se asocia a:",
-                options: ["Mozilla (Gecko)", "Microsoft (Edge)", "Google (Chrome)", "Apple (Safari)"],
-                correct: 0,
-                justification: "Lenguaje de interfaz usado en Firefox y Thunderbird."
-            },
-            {
-                q: "La 'Facilidad de Aprendizaje' mide:",
-                options: ["El desempeño del usuario novato", "El desempeño del usuario experto", "La memoria utilizada", "El coste del producto"],
-                correct: 0,
-                justification: "Curva de aprendizaje inicial."
-            },
-            {
-                q: "Técnica de prueba de Caja Negra:",
-                options: ["Partición de equivalencia", "Cobertura de sentencias", "Análisis de flujo", "Inspección de código"],
-                correct: 0,
-                justification: "Divide entradas en clases sin ver el código interno."
-            },
-            {
-                q: "Constructor correcto en Java para `Alumno`:",
-                options: ["public Alumno()", "public void Alumno()", "public class Alumno", "new Alumno()"],
-                correct: 0,
-                justification: "Mismo nombre que la clase, sin tipo de retorno."
-            },
-            {
-                q: "Formatos comunes de datos en informes:",
-                options: ["Tabular y Matricial", "Texto plano", "Binario puro", "Imágenes sueltas"],
-                correct: 0,
-                justification: "Estructuras estándar para presentar datos organizados."
-            },
-            {
-                q: "La Guía de Usuario contiene:",
-                options: ["Instrucciones operativas", "Código fuente", "Diagramas técnicos", "Biografía del autor"],
-                correct: 0,
-                justification: "Orientada al uso diario del software."
-            },
-            {
-                q: "Un 'Setter' sirve para:",
-                options: ["Asignar valor a una propiedad", "Obtener valor de una propiedad", "Imprimir valor", "Borrar objeto"],
-                correct: 0,
-                justification: "Modifica el estado interno (encapsulamiento)."
-            },
-            {
-                q: "Listener para clic de botón en Java:",
-                options: ["ActionListener", "MouseListener", "KeyListener", "WindowListener"],
-                correct: 0,
-                justification: "Maneja el evento semántico de acción (clic/intro)."
-            },
-            {
-                q: "Pasos para usar un listener:",
-                options: ["Implementar interfaz y registrar", "Solo importar", "Escribir en main", "Nada"],
-                correct: 0,
-                justification: "Patrón observador: definir acción y suscribirse."
-            },
-            {
-                q: "Un Listener es:",
-                options: ["Objeto que espera y reacciona a eventos", "Un componente visual", "Un error", "Una base de datos"],
-                correct: 0,
-                justification: "Entidad que 'escucha' sucesos asíncronos."
-            },
-            {
-                q: "Paquete base de eventos en Java:",
-                options: ["java.awt.event", "java.util", "java.io", "javax.swing"],
-                correct: 0,
-                justification: "Contiene las interfaces fundamentales de eventos."
-            },
-            {
-                q: "Evento de tecleo completo (con carácter):",
-                options: ["keyTyped", "keyPressed", "keyReleased", "mouseClicked"],
-                correct: 0,
-                justification: "Genera el carácter Unicode final."
-            },
-            {
-                q: "Las pruebas unitarias comparan:",
-                options: ["Resultado obtenido vs esperado", "Velocidad vs Tiempo", "Usuario vs Máquina", "Color vs Forma"],
-                correct: 0,
-                justification: "Validez lógica de la unidad."
-            },
-            {
-                q: "Convención para obtener valor (Java):",
-                options: ["getNombre()", "setNombre()", "nombre()", "return()"],
-                correct: 0,
-                justification: "Getter estándar."
-            },
-            {
-                q: "Atributo que NO es de JButton:",
-                options: ["IsChecked", "IsEnabled", "Text", "ToolTip"],
-                correct: 0,
-                justification: "Botones simples no tienen estado 'marcado'."
-            },
-            {
-                q: "Un Componente es:",
-                options: ["Reutilizable y modular", "De un solo uso", "Monolítico", "Abstracto"],
-                correct: 0,
-                justification: "Unidad funcional independiente."
-            },
-            {
-                q: "Archivo .nuspec contiene:",
-                options: ["Metadatos del paquete", "Código binario", "Base de datos", "Imágenes"],
-                correct: 0,
-                justification: "Manifiesto descriptivo para NuGet."
-            },
-            {
-                q: "Propiedad de estado presionado en botón:",
-                options: ["IsPressed", "IsChecked", "IsSelected", "IsActive"],
-                correct: 0,
-                justification: "Indica si el botón está hundido visualmente."
-            },
-            {
-                q: "Diseño de interfaz ideal:",
-                options: ["Sencillo y predecible", "Complejo y denso", "Inconsistente", "Oscuro"],
-                correct: 0,
-                justification: "Facilita la interacción y reduce carga cognitiva."
-            },
-            {
-                q: "Extensibilidad de NetBeans/Eclipse:",
-                options: ["Plugins para múltiples lenguajes", "Solo Java", "Solo C#", "Solo texto"],
-                correct: 0,
-                justification: "Arquitectura modular."
-            },
-            {
-                q: "Elemento `<g>` en SVG:",
-                options: ["Agrupa elementos", "Dibuja línea", "Crea enlace", "Nada"],
-                correct: 0,
-                justification: "Contenedor lógico para aplicar estilos/transformaciones."
-            },
-            {
-                q: "Aplicación RIA:",
-                options: ["Web con experiencia de escritorio", "Web estática", "Consola", "Sistema operativo"],
-                correct: 0,
-                justification: "Rich Internet Application (interactividad avanzada)."
-            },
-            {
-                q: "Eficiencia en usabilidad (usuarios expertos):",
-                options: ["Productividad tras aprender", "Facilidad inicial", "Estética", "Errores"],
-                correct: 0,
-                justification: "Velocidad de uso una vez superada la curva de aprendizaje."
-            },
-            {
-                q: "Pruebas de Sistema NO comprueban:",
-                options: ["Integridad interna (caja blanca)", "Volumen", "Recuperación", "Seguridad"],
-                correct: 0,
-                justification: "Son pruebas de caja negra a nivel sistema."
-            },
-            {
-                q: "Sección 'Descripción' en publicación:",
-                options: ["Datos básicos visibles", "Código", "Base de datos", "Servidor"],
-                correct: 0,
-                justification: "Metadata informativa."
-            },
-            {
-                q: "Sección 'Implementación' en publicación:",
-                options: ["Método de despliegue", "Lenguaje", "Color", "Precio"],
-                correct: 0,
-                justification: "Cómo se entrega el software."
-            },
-            {
-                q: "Sección 'Manifiesto' en publicación:",
-                options: ["Permisos y dependencias", "Icono", "Autor", "Manual"],
-                correct: 0,
-                justification: "Requisitos de sistema y privilegios."
-            },
-            {
-                q: "Sección 'Asociaciones' en publicación:",
-                options: ["Vincular extensiones de archivo", "Accesos directos", "Fondos", "Nada"],
-                correct: 0,
-                justification: "Abrir archivos con la app por defecto."
-            },
-            {
-                q: "Entidad básica de POC:",
-                options: ["Componente", "Función", "Puntero", "Variable"],
-                correct: 0,
-                justification: "Unidad fundamental."
-            },
-            {
-                q: "Definición de Evento:",
-                options: ["Suceso al que responder", "Error", "Función", "Variable"],
-                correct: 0,
-                justification: "Base de la interactividad."
-            },
-            {
-                q: "Pruebas de Comportamiento equivalen a:",
-                options: ["Caja Negra", "Caja Blanca", "Unitarias", "Estrés"],
-                correct: 0,
-                justification: "Se mira el comportamiento externo."
-            },
-            {
-                q: "Pruebas Estructurales equivalen a:",
-                options: ["Caja Blanca", "Caja Negra", "Sistema", "Beta"],
-                correct: 0,
-                justification: "Se mira la estructura interna."
-            },
-            {
-                q: "Tipos de datos en informes:",
-                options: ["Diversos (Texto, Num, Fecha)", "Solo texto", "Solo números", "Solo imágenes"],
-                correct: 0,
-                justification: "Soportan tipos ricos."
-            },
-            {
-                q: "Integración Ascendente:",
-                options: ["Desde bajo nivel hacia arriba", "Desde menú hacia abajo", "Todo a la vez", "Aleatorio"],
-                correct: 0,
-                justification: "Bottom-up: cimientos primero."
-            },
-            {
-                q: "Responsable Pruebas Aceptación:",
-                options: ["Cliente", "Desarrollador", "Servidor", "Admin"],
-                correct: 0,
-                justification: "Validación final de negocio."
-            },
-            {
-                q: "IDE oficial para XAML:",
-                options: ["Visual Studio", "Eclipse", "NetBeans", "IntelliJ"],
-                correct: 0,
-                justification: "Herramienta nativa Microsoft."
-            },
-            {
-                q: "Función de un 'Campo' en informe:",
-                options: ["Mostrar dato específico", "Decorar", "Paginar", "Nada"],
-                correct: 0,
-                justification: "Dato dinámico."
-            },
-            {
-                q: "Relación WPF - XAML:",
-                options: ["XAML define la UI de WPF", "Rivales", "Sin relación", "WPF es web"],
-                correct: 0,
-                justification: "Framework y lenguaje de marcado."
-            },
-            {
-                q: "Elemento 'deck' en XUL:",
-                options: ["Pila de paneles (uno visible)", "Tabla", "Botón", "Menú"],
-                correct: 0,
-                justification: "Gestión de vistas tipo mago."
-            },
-            {
-                q: "Pruebas de Recursos evalúan:",
-                options: ["CPU y Memoria", "Funcionalidad", "Usabilidad", "Unidad"],
-                correct: 0,
-                justification: "Eficiencia hardware."
-            },
-            {
-                q: "Pruebas de Seguridad evalúan:",
-                options: ["Integridad y acceso", "Velocidad", "Color", "Instalación"],
-                correct: 0,
-                justification: "Protección."
-            },
-            {
-                q: "Visibilidad del estado (Nielsen):",
-                options: ["Feedback constante", "Ver código", "Transparencia", "Nada"],
-                correct: 0,
-                justification: "Informar al usuario."
-            },
-            {
-                q: "Archivo .csproj:",
-                options: ["Configuración proyecto C#", "Ejecutable", "Código", "Base datos"],
-                correct: 0,
-                justification: "Definición del proyecto .NET."
-            },
-            {
-                q: "Guía Rápida:",
-                options: ["Resumen esencial", "Técnico completo", "Código", "Historia"],
-                correct: 0,
-                justification: "Inicio inmediato."
-            },
-            {
-                q: "Objetivo Aceptación:",
-                options: ["Validar requisitos negocio", "Bugs técnicos", "Seguridad", "Compilación"],
-                correct: 0,
-                justification: "Visto bueno final."
-            },
-            {
-                q: "Momento Pruebas Sistema:",
-                options: ["Tras integración completa", "Al inicio", "Codificando", "Nunca"],
-                correct: 0,
-                justification: "Sobre el todo."
-            },
-            {
-                q: "Métrica Indirecta:",
-                options: ["Calculada/Derivada", "Directa", "Estimada", "Errónea"],
-                correct: 0,
-                justification: "Requiere fórmula."
-            }
-        ];
+    <div class="mt-8 bg-gray-800 text-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold text-pink-400 mb-4 text-center">🔥 Fichas "Salva-Examen"</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-red-500">Herramienta Falsa → <br><strong>DocFinger</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-green-500">Inicio Inmediato → <br><strong>Guía Rápida</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-blue-500">Genera Carácter → <br><strong>keyTyped</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-yellow-500">Prueba Externa → <br><strong>Beta</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-purple-500">Métrica Fórmula → <br><strong>Indirecta</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-pink-500">1º Paso Informe → <br><strong>Datos</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-indigo-500">XAML ID → <br><strong>x:Name</strong></div>
+            <div class="bg-gray-700 p-2 rounded border-l-4 border-red-500">Impar → <br><strong>Inestable</strong></div>
+        </div>
+    </div>
 
-        // --- LÓGICA DEL TEST ---
-        let quizQuestions = [], failedQuestions = [], currentQuestionIndex = 0;
-        let score = 0, errors = 0, isAnswered = false, isRetryMode = false;
-
-        // Referencias DOM
-        const els = {
-            start: document.getElementById('start-screen'),
-            quiz: document.getElementById('quiz-screen'),
-            result: document.getElementById('result-screen'),
-            status: document.getElementById('status-bar'),
-            nextCont: document.getElementById('next-container'),
-            qText: document.getElementById('question-text'),
-            opts: document.getElementById('options-container'),
-            curQ: document.getElementById('current-q'),
-            totQ: document.getElementById('total-q'),
-            scDisp: document.getElementById('score-display'),
-            errDisp: document.getElementById('errors-display'),
-            fbArea: document.getElementById('feedback-area'),
-            fbTitle: document.getElementById('feedback-title'),
-            fbText: document.getElementById('feedback-text'),
-            fbIcon: document.getElementById('feedback-icon'),
-            startTotal: document.getElementById('start-total-q')
-        };
-
-        // Inicializar
-        els.startTotal.innerText = rawQuestions.length || 0;
-
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-
-        function startQuiz(retryMode = false) {
-            isRetryMode = retryMode;
-            let source = retryMode ? failedQuestions : JSON.parse(JSON.stringify(rawQuestions));
-            
-            if (source.length === 0) return alert("No hay preguntas para repasar.");
-
-            // Barajar preguntas y opciones
-            quizQuestions = shuffle([...source]).map(q => {
-                const correctTxt = q.options[q.correct];
-                q.options = shuffle(q.options);
-                q.correct = q.options.indexOf(correctTxt);
-                return q;
-            });
-
-            failedQuestions = [];
-            currentQuestionIndex = 0; score = 0; errors = 0;
-            updateStats();
-            
-            // UI Switch
-            els.start.classList.add('hidden');
-            els.result.classList.add('hidden');
-            els.quiz.classList.remove('hidden');
-            els.status.classList.remove('hidden');
-            els.nextCont.classList.add('hidden'); // Ocultar botón al inicio
-            
-            renderQuestion();
-        }
-
-        function updateStats() {
-            els.curQ.innerText = currentQuestionIndex + 1;
-            els.totQ.innerText = quizQuestions.length;
-            els.scDisp.innerText = score;
-            els.errDisp.innerText = errors;
-        }
-
-        function renderQuestion() {
-            isAnswered = false;
-            const q = quizQuestions[currentQuestionIndex];
-            
-            updateStats();
-            els.qText.innerText = q.q;
-            els.opts.innerHTML = '';
-            els.fbArea.classList.add('hidden');
-            els.nextCont.classList.add('hidden'); // Ocultar botón "Siguiente"
-            
-            // Scroll arriba
-            window.scrollTo(0, 0);
-
-            q.options.forEach((opt, index) => {
-                const btn = document.createElement('button');
-                btn.className = "option-card w-full text-left p-4 rounded-xl border-2 border-gray-200 bg-white text-gray-700 font-medium flex items-center gap-3 group hover:border-green-300";
-                
-                const letter = String.fromCharCode(65 + index);
-                btn.innerHTML = `<span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-gray-100 text-gray-500 rounded-full font-bold text-sm transition-colors group-hover:bg-green-100 group-hover:text-green-600">${letter}</span><span class="leading-snug">${opt}</span>`;
-                
-                btn.onclick = () => checkAnswer(index, btn);
-                els.opts.appendChild(btn);
-            });
-        }
-
-        function checkAnswer(idx, btn) {
-            if (isAnswered) return;
-            isAnswered = true;
-            const q = quizQuestions[currentQuestionIndex];
-            const isCorrect = idx === q.correct;
-            const allBtns = els.opts.children;
-
-            // Deshabilitar
-            Array.from(allBtns).forEach(b => {
-                b.disabled = true;
-                b.classList.add('opacity-60', 'cursor-not-allowed');
-                b.classList.remove('hover:border-green-300');
-            });
-            btn.classList.remove('opacity-60');
-
-            if (isCorrect) {
-                score++;
-                styleBtn(btn, 'correct');
-                showFeedback(true, q.justification);
-            } else {
-                errors++;
-                failedQuestions.push(q);
-                styleBtn(btn, 'incorrect');
-                // Mostrar correcta
-                const correctBtn = allBtns[q.correct];
-                correctBtn.classList.remove('opacity-60');
-                styleBtn(correctBtn, 'correct');
-                showFeedback(false, q.justification);
-            }
-            
-            updateStats();
-            // MOSTRAR BOTÓN SIGUIENTE (FIJO ABAJO)
-            els.nextCont.classList.remove('hidden');
-        }
-
-        function styleBtn(btn, type) {
-            btn.classList.remove('border-gray-200', 'bg-white', 'text-gray-700');
-            if (type === 'correct') {
-                btn.classList.add('border-green-500', 'bg-green-50', 'text-green-900');
-                btn.querySelector('span:first-child').className = "flex-shrink-0 w-8 h-8 flex items-center justify-center bg-green-200 text-green-700 rounded-full font-bold text-sm";
-            } else {
-                btn.classList.add('border-red-500', 'bg-red-50', 'text-red-900');
-                btn.querySelector('span:first-child').className = "flex-shrink-0 w-8 h-8 flex items-center justify-center bg-red-200 text-red-700 rounded-full font-bold text-sm";
-            }
-        }
-
-        function showFeedback(isCorrect, text) {
-            els.fbArea.classList.remove('hidden');
-            els.fbIcon.innerHTML = isCorrect ? '<i class="fas fa-check-circle text-green-500"></i>' : '<i class="fas fa-times-circle text-red-500"></i>';
-            els.fbTitle.innerText = isCorrect ? "¡Correcto!" : "Solución Correcta:";
-            els.fbTitle.className = `font-bold text-base mb-1 ${isCorrect ? 'text-green-700' : 'text-red-700'}`;
-            els.fbText.innerText = text || "Sin justificación.";
-            
-            // Scroll suave hacia abajo para mostrar feedback
-            setTimeout(() => {
-                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-            }, 100);
-        }
-
-        function nextQuestion() {
-            currentQuestionIndex++;
-            if (currentQuestionIndex < quizQuestions.length) {
-                renderQuestion();
-            } else {
-                showResult();
-            }
-        }
-
-        function showResult() {
-            els.quiz.classList.add('hidden');
-            els.status.classList.add('hidden');
-            els.nextCont.classList.add('hidden');
-            els.result.classList.remove('hidden');
-
-            const total = quizQuestions.length;
-            const pct = Math.round((score / total) * 100);
-            
-            document.getElementById('final-score-text').innerText = `${score} / ${total}`;
-            document.getElementById('final-progress-bar').style.width = `${pct}%`;
-
-            // Botón Repasar Fallos
-            const retryBtn = document.getElementById('retry-failed-btn');
-            retryBtn.classList.toggle('hidden', failedQuestions.length === 0);
-            if (failedQuestions.length > 0) retryBtn.innerHTML = `<i class="fas fa-hammer"></i> Repasar ${failedQuestions.length} Fallos`;
-
-            // Mensajes
-            const circle = document.getElementById('score-circle');
-            const msg = document.getElementById('score-message');
-            circle.className = "w-32 h-32 mx-auto rounded-full flex items-center justify-center text-5xl shadow-xl relative z-10 bg-white border-4 mb-4";
-
-            if (pct >= 90) {
-                circle.classList.add('border-green-500', 'text-green-600');
-                circle.innerHTML = '<i class="fas fa-trophy"></i>';
-                msg.innerText = "¡IMPRESIONANTE! Nivel Experto 🏆";
-            } else if (pct >= 50) {
-                circle.classList.add('border-yellow-500', 'text-yellow-600');
-                circle.innerHTML = '<i class="fas fa-thumbs-up"></i>';
-                msg.innerText = "¡Aprobado! Buen trabajo 👍";
-            } else {
-                circle.classList.add('border-red-500', 'text-red-600');
-                circle.innerHTML = '<i class="fas fa-book-open"></i>';
-                msg.innerText = "Toca estudiar más... 📚";
-            }
-        }
-
-        function restartQuiz(retry) {
-            startQuiz(retry);
-        }
-    </script>
 </body>
+
 </html>
-
-
 
 
 
