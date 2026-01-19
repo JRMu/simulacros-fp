@@ -8,25 +8,48 @@
     <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
     <title>Test Acceso a datos - Preguntas/Respuestas Densas</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #eef2ff; /* Fondo índigo muy suave */ }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #eef2ff; /* Fondo índigo muy suave */
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column;
+        }
+        
         .fade-in { animation: fadeIn 0.3s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
         .option-card { transition: all 0.2s ease; }
         .option-card:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
         
-        /* Animación suave para el botón siguiente */
-        #next-container { transition: all 0.3s ease; }
+        /* CLASE CLAVE: Botón Siguiente Sticky (Pegajoso) al fondo */
+        .sticky-footer {
+            position: sticky;
+            bottom: 0;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            padding: 1rem;
+            z-index: 50;
+            border-bottom-left-radius: 1rem; /* Coincide con rounded-2xl */
+            border-bottom-right-radius: 1rem;
+            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
+<body class="py-8 px-4">
 
-    <div class="bg-white rounded-2xl shadow-xl w-full max-w-3xl flex flex-col relative overflow-hidden min-h-[650px] border-t-4 border-indigo-600">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-3xl mx-auto border-t-4 border-indigo-600 flex flex-col relative">
         
-        <div class="bg-indigo-600 p-5 text-white flex justify-between items-center z-10 shadow-md flex-shrink-0">
+        <div class="bg-indigo-600 p-5 text-white flex justify-between items-center rounded-t-lg shadow-sm z-10">
             <h1 class="text-lg font-bold flex items-center gap-2">
                 <i class="fas fa-database"></i> Test Acceso a datos - Preguntas/Respuestas Densas
             </h1>
@@ -41,15 +64,15 @@
             </div>
         </div>
 
-        <div class="flex-1 p-6 sm:p-8 overflow-y-auto flex flex-col bg-gray-50 relative">
+        <div class="p-6 sm:p-8 flex-grow">
             
-            <div id="start-screen" class="text-center space-y-8 fade-in my-auto">
+            <div id="start-screen" class="text-center space-y-8 fade-in py-8">
                 <div class="w-24 h-24 bg-indigo-100 rounded-full flex items-center justify-center mx-auto text-indigo-600 text-4xl mb-4 shadow-sm">
                     <i class="fas fa-server"></i>
                 </div>
                 <div>
                     <h2 class="text-3xl font-bold text-gray-800 mb-2">Acceso a Datos</h2>
-                    <p class="text-gray-500">Test Acceso a datos - Preguntas/Respuestas Densas</p>
+                    <p class="text-gray-500">Preguntas y Respuestas Densas</p>
                 </div>
                 
                 <div class="grid grid-cols-2 gap-4 max-w-xs mx-auto text-sm text-gray-600">
@@ -68,28 +91,28 @@
                 </button>
             </div>
 
-            <div id="quiz-screen" class="hidden flex flex-col fade-in w-full max-w-2xl mx-auto flex-grow">
+            <div id="quiz-screen" class="hidden flex flex-col fade-in">
                 
                 <div class="mb-6">
                     <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-2 block">Pregunta</span>
                     <h3 id="question-text" class="text-xl sm:text-2xl font-bold text-gray-800 leading-snug"></h3>
                 </div>
 
-                <div id="options-container" class="space-y-3 flex-grow">
+                <div id="options-container" class="space-y-3">
                     </div>
 
-                <div id="feedback-area" class="hidden mt-6 pt-6 border-t border-gray-200 fade-in">
-                    <div class="flex gap-4 mb-4 items-start bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
+                <div id="feedback-area" class="hidden mt-8 pt-6 border-t border-gray-100 fade-in">
+                    <div class="flex gap-4 mb-4 items-start bg-indigo-50 p-5 rounded-xl border border-indigo-100 shadow-sm">
                         <div id="feedback-icon" class="text-2xl flex-shrink-0 mt-1"></div>
                         <div>
                             <h4 id="feedback-title" class="font-bold text-base mb-1"></h4>
-                            <p id="feedback-text" class="text-gray-600 text-sm leading-relaxed"></p>
+                            <p id="feedback-text" class="text-gray-700 text-sm leading-relaxed"></p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="result-screen" class="hidden text-center space-y-8 fade-in my-auto">
+            <div id="result-screen" class="hidden text-center space-y-8 fade-in py-8">
                 <div class="relative inline-block">
                     <div class="w-32 h-32 mx-auto rounded-full flex items-center justify-center text-5xl shadow-xl relative z-10 bg-white border-4" id="score-circle"></div>
                 </div>
@@ -117,7 +140,7 @@
 
         </div>
 
-        <div id="next-container" class="hidden bg-white border-t p-4 z-20 sticky bottom-0 w-full shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <div id="next-container" class="hidden sticky-footer">
             <button onclick="nextQuestion()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-xl text-lg shadow-md transition-colors flex justify-center items-center gap-2">
                 Siguiente Pregunta <i class="fas fa-arrow-right"></i>
             </button>
@@ -126,7 +149,7 @@
     </div>
 
     <script>
-        // --- BANCO DE PREGUNTAS TÉCNICAS AD ---
+        // --- BANCO DE PREGUNTAS TÉCNICAS AD (Intacto) ---
         const rawQuestions = [
             // --- BLOQUE 1: FICHEROS & STREAMS ---
             {
@@ -464,7 +487,7 @@
             els.nextCont.classList.add('hidden'); // Ocultar botón "Siguiente"
             
             // Scroll arriba
-            document.querySelector('.overflow-y-auto').scrollTop = 0;
+            window.scrollTo(0, 0);
 
             q.options.forEach((opt, index) => {
                 const btn = document.createElement('button');
@@ -531,10 +554,9 @@
             els.fbTitle.className = `font-bold text-base mb-1 ${isCorrect ? 'text-green-700' : 'text-red-700'}`;
             els.fbText.innerText = text || "Sin justificación.";
             
-            // Scroll suave hacia abajo
+            // Scroll suave hacia abajo para mostrar feedback
             setTimeout(() => {
-                const container = document.querySelector('.overflow-y-auto');
-                container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
             }, 100);
         }
 
@@ -590,4 +612,3 @@
     </script>
 </body>
 </html>
-
