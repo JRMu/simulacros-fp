@@ -115,72 +115,62 @@
             </ul>
         </div>
 
-        <div class="bg-white p-5 rounded-lg shadow border-green-500 card">
-            <h2 class="text-xl font-bold text-green-600 mb-3">🌱 3. ORM y Hibernate</h2>
-            <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Problema:</strong> Desfase Objeto-Relacional. <br><strong>Solución:</strong> Abstracción.</li>
-                <li>
-    <strong>Configuración Truco:</strong>
-    <div class="mt-2 overflow-x-auto">
-        <table class="min-w-full text-sm text-left text-gray-600 bg-gray-50 rounded-lg border border-gray-200">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-100 border-b">
-                <tr>
-                    <th class="px-4 py-2">Fichero</th>
-                    <th class="px-4 py-2">Tecnología</th>
-                    <th class="px-4 py-2">¿Para qué sirve?</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="bg-white border-b">
-                    <td class="px-4 py-2 font-mono text-indigo-600 font-bold">pom.xml</td>
-                    <td class="px-4 py-2">Maven</td>
-                    <td class="px-4 py-2">
-                        <span class="font-semibold text-gray-800">Dependencias</span>. 
-                        Se usa al <em>construir</em> el proyecto (descargar librerías).
-                    </td>
-                </tr>
-                <tr class="bg-white border-b">
-                    <td class="px-4 py-2 font-mono text-indigo-600 font-bold">hibernate.cfg.xml</td>
-                    <td class="px-4 py-2">Hibernate</td>
-                    <td class="px-4 py-2">
-                        <span class="font-semibold text-gray-800">Conexión</span>. 
-                        Define driver, URL y credenciales de la BBDD.
-                    </td>
-                </tr>
-                <tr class="bg-white">
-                    <td class="px-4 py-2 font-mono text-indigo-600 font-bold">MANIFEST.MF</td>
-                    <td class="px-4 py-2">JAR / Componentes</td>
-                    <td class="px-4 py-2">
-                        <span class="font-semibold text-gray-800">Metadatos Ejecución</span>. 
-                        Información del Bean, Main-Class y Class-Path.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</li>
-                <li><strong>Ciclo de Vida (JPA):</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><strong>Transient:</strong> Nuevo, no en BD.</li>
-                        <li><strong>Persistent:</strong> En BD y conectado.</li>
-                        <li><strong>Detached:</strong> En BD pero desconectado.</li>
-                    </ul>
-                </li>
-                <li><strong>Anotación @Transient:</strong> Etiqueta para decirle a la BD "Ignora esto, no lo guardes" (ej: edad calculada).</li>
-                <li><strong>Consultas:</strong> <code class="code-tag">HQL/OQL</code> consultan Objetos, no tablas. Variables OQL llevan <code class="code-tag">$</code>.</li>
-                <li class="bg-red-50 p-2 rounded border-l-2 border-red-400 mt-2">
-    <strong class="text-red-700">🚨 El Desfase (Las 5 Claves):</strong>
-    <span class="text-xs text-gray-600 block mb-1">Si las opciones son largas, buscan esto:</span>
-    <ul class="list-disc ml-5 text-xs space-y-1">
-        <li><strong>1. Granularidad:</strong> Tienes clases muy finas (ej: clase <code>Dirección</code>) que en la BD se guardan "aplanadas" en la tabla Usuario.</li>
-        <li><strong>2. Herencia (Subtipos):</strong> Java usa <code>extends</code>. SQL <strong>NO</strong> tiene herencia. El ORM sufre para mapearlo.</li>
-        <li><strong>3. Identidad:</strong> Java diferencia por dirección de memoria (<code>==</code>). SQL diferencia por <strong>Clave Primaria (PK)</strong>.</li>
-        <li><strong>4. Asociaciones:</strong> En Java son referencias (unidireccionales). En SQL son Foreign Keys.</li>
-        <li><strong>5. Navegación:</strong> En Java saltas de objeto en objeto (grafo). En SQL necesitas hacer JOINs costosos.</li>
-    </ul>
-</li>
+      <div class="bg-white p-5 rounded-lg shadow border-green-500 card">
+    <h2 class="text-xl font-bold text-green-600 mb-3">🌱 3. ORM y Hibernate</h2>
+    <ul class="space-y-2 text-sm text-gray-700">
+        <li><strong>Problema:</strong> Desfase Objeto-Relacional. <br><strong>Solución:</strong> Abstracción.</li>
+        <li>
+            <strong>Configuración (Truco Infalible):</strong>
+            <div class="mt-3 grid gap-3 sm:grid-cols-3">
+                
+                <div class="bg-white p-3 rounded-lg border border-indigo-100 shadow-sm flex flex-col">
+                    <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Construcción</div>
+                    <code class="text-indigo-600 font-bold text-lg mb-1">pom.xml</code>
+                    <div class="text-sm text-gray-600 leading-snug">
+                        Define las <span class="font-semibold text-gray-800">dependencias</span> (librerías) que Maven debe descargar.
+                    </div>
+                </div>
+
+                <div class="bg-white p-3 rounded-lg border border-indigo-100 shadow-sm flex flex-col">
+                    <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Conexión BBDD</div>
+                    <code class="text-indigo-600 font-bold text-lg mb-1">hibernate.cfg.xml</code>
+                    <div class="text-sm text-gray-600 leading-snug">
+                        Configura el <span class="font-semibold text-gray-800">driver y la URL</span> para conectar con la base de datos.
+                    </div>
+                </div>
+
+                <div class="bg-white p-3 rounded-lg border border-indigo-100 shadow-sm flex flex-col">
+                    <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Ejecución JAR</div>
+                    <code class="text-indigo-600 font-bold text-lg mb-1">MANIFEST.MF</code>
+                    <div class="text-sm text-gray-600 leading-snug">
+                        El DNI del ejecutable. Indica la <span class="font-semibold text-gray-800">Main-Class</span> y rutas.
+                    </div>
+                </div>
+
+            </div>
+            </li>
+        <li><strong>Ciclo de Vida (JPA):</strong>
+            <ul class="list-disc ml-5 mt-1">
+                <li><strong>Transient:</strong> Nuevo, no en BD.</li>
+                <li><strong>Persistent:</strong> En BD y conectado.</li>
+                <li><strong>Detached:</strong> En BD pero desconectado.</li>
             </ul>
-        </div>
+        </li>
+        <li><strong>Anotación @Transient:</strong> Etiqueta para decirle a la BD "Ignora esto, no lo guardes" (ej: edad calculada).</li>
+        <li><strong>Consultas:</strong> <code class="code-tag">HQL/OQL</code> consultan Objetos, no tablas. Variables OQL llevan <code class="code-tag">$</code>.</li>
+        <li class="bg-red-50 p-2 rounded border-l-2 border-red-400 mt-2">
+            <strong class="text-red-700">🚨 El Desfase (Las 5 Claves):</strong>
+            <span class="text-xs text-gray-600 block mb-1">Si las opciones son largas, buscan esto:</span>
+            <ul class="list-disc ml-5 text-xs space-y-1">
+                <li><strong>1. Granularidad:</strong> Tienes clases muy finas (ej: clase <code>Dirección</code>) que en la BD se guardan "aplanadas" en la tabla Usuario.</li>
+                <li><strong>2. Herencia (Subtipos):</strong> Java usa <code>extends</code>. SQL <strong>NO</strong> tiene herencia. El ORM sufre para mapearlo.</li>
+                <li><strong>3. Identidad:</strong> Java diferencia por dirección de memoria (<code>==</code>). SQL diferencia por <strong>Clave Primaria (PK)</strong>.</li>
+                <li><strong>4. Asociaciones:</strong> En Java son referencias (unidireccionales). En SQL son Foreign Keys.</li>
+                <li><strong>5. Navegación:</strong> En Java saltas de objeto en objeto (grafo). En SQL necesitas hacer JOINs costosos.</li>
+            </ul>
+        </li>
+    </ul>
+</div>
 
 
         <div class="bg-white p-5 rounded-lg shadow border-yellow-500 card">
@@ -295,5 +285,6 @@
 
 </body>
 </html>
+
 
 
