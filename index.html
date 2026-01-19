@@ -3,172 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal de Simulacros - FP Informática</title>
+    <title>Portal de Simulacros - FP DAM Informática</title>
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">    
-    <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-
+    
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <script data-goatcounter="https://jrenedo.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
     
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-gray-50 min-h-screen font-sans">
 
-    <nav class="bg-indigo-700 text-white p-4 shadow-lg">
-        <div class="max-w-4xl mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold">🎓 Simulacros FP</h1>
-            
+    <nav class="bg-slate-800 text-white p-4 shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold flex items-center gap-2">
+                <span>🎓</span> Simulacros FP DAM
+            </h1>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto p-6">
+    <main class="max-w-6xl mx-auto p-6 space-y-12">
         
-        <div class="text-center mb-10 mt-6">
-            <h2 class="text-3xl font-bold text-gray-800">Elige un recurso para practicar</h2>
-            <p class="text-gray-600 mt-2">Simulacros interactivos y material de repaso.</p>
+        <div class="text-center mt-8 mb-12">
+            <h2 class="text-4xl font-extrabold text-slate-800 tracking-tight">Centro de Entrenamiento</h2>
+            <p class="text-slate-500 mt-3 text-lg">Selecciona tu asignatura y el modo de práctica.</p>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-6">
+        <section>
+            <div class="flex items-center gap-3 mb-6 border-b border-indigo-200 pb-2">
+                <span class="bg-indigo-100 text-indigo-700 p-2 rounded-lg text-2xl">🗄️</span>
+                <h3 class="text-2xl font-bold text-indigo-900">Acceso a Datos</h3>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="examen_acceso_datos.html" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-indigo-100 hover:border-indigo-500 overflow-hidden relative">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-indigo-500"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-3xl">📝</span>
+                            <span class="bg-indigo-50 text-indigo-700 text-xs font-bold px-2 py-1 rounded-full border border-indigo-100">124 Preguntas</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 group-hover:text-indigo-600 transition-colors">Simulacro Completo</h4>
+                        <p class="text-gray-500 text-sm mt-2">Ficheros, XML, JDBC, Componentes y JPA.</p>
+                    </div>
+                </a>
 
-            <a href="examen_acceso_datos.html" class="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-indigo-500">
-                <div class="h-2 bg-indigo-500"></div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="text-4xl">🗄️</div>
-                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">124 Preguntas</span>
+                <a href="test_ad_esencial.html" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-indigo-100 hover:border-indigo-600 overflow-hidden relative ring-1 ring-transparent hover:ring-indigo-100">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-indigo-700"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-3xl">🧠</span>
+                            <span class="bg-indigo-600 text-white text-xs font-bold px-2 py-1 rounded-full">Nivel Técnico</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 group-hover:text-indigo-700 transition-colors">Conceptos Densos</h4>
+                        <p class="text-gray-500 text-sm mt-2">Preguntas largas y técnicas para profundizar.</p>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">Acceso a Datos (Completo)</h3>
-                    <p class="text-gray-500 text-sm mt-2">
-                        Simulacro general: Ficheros, XML, JDBC, Componentes y JPA.
-                    </p>
-                    <div class="mt-4 text-indigo-600 font-medium text-sm group-hover:underline">
-                        Comenzar Test &rarr;
-                    </div>
-                </div>
-            </a>
+                </a>
 
-            <a href="test_ad_esencial.html" class="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-indigo-600 ring-2 ring-transparent hover:ring-indigo-100">
-                <div class="h-2 bg-indigo-600"></div> <div class="p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="text-4xl">🧠</div> <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded">Nivel Técnico</span>
+                <a href="resumen_AD.html" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-indigo-100 hover:border-green-500 overflow-hidden relative">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-green-500"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-3xl">💡</span>
+                            <span class="bg-green-50 text-green-700 text-xs font-bold px-2 py-1 rounded-full border border-green-100">Apuntes</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 group-hover:text-green-600 transition-colors">Resumen y Trucos</h4>
+                        <p class="text-gray-500 text-sm mt-2">Reglas mnemotécnicas y teoría clave.</p>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 group-hover:text-indigo-700 transition-colors">AD: Conceptos Densos</h3>
-                    <p class="text-gray-500 text-sm mt-2">
-                        Preguntas con enunciados largos y respuestas técnicas detalladas. Ideal para profundizar.
-                    </p>
-                    <div class="mt-4 text-indigo-700 font-medium text-sm group-hover:underline">
-                        Reto Técnico &rarr;
-                    </div>
-                </div>
-            </a>
+                </a>
+            </div>
+        </section>
 
-            <a href="resumen_AD.html" class="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-green-500">
-                <div class="h-2 bg-indigo-500"></div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="text-4xl">📝</div> <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">Teoría + Trucos</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">Resumen Acceso a Datos</h3>
-                    <p class="text-gray-500 text-sm mt-2">
-                        Resumen de conceptos y reglas mnemotécnicas.
-                    </p>
-                    <div class="mt-4 text-indigo-600 font-medium text-sm group-hover:underline">
-                        Ver Resumen &rarr;
-                    </div>
-                </div>
-            </a>
+        <section>
+            <div class="flex items-center gap-3 mb-6 border-b border-purple-200 pb-2">
+                <span class="bg-purple-100 text-purple-700 p-2 rounded-lg text-2xl">⚙️</span>
+                <h3 class="text-2xl font-bold text-purple-900">Servicios y Procesos (PSP)</h3>
+            </div>
 
-            <a href="examen_psp.html" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-indigo-500 transform hover:-translate-y-1">
-                <div class="h-2 bg-purple-600"></div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="text-4xl">⚙️</div>
-                        <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded">152 Preguntas</span>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="examen_psp.html" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-500 overflow-hidden relative">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-purple-500"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-3xl">🚀</span>
+                            <span class="bg-purple-50 text-purple-700 text-xs font-bold px-2 py-1 rounded-full border border-purple-100">152 Preguntas</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 group-hover:text-purple-600 transition-colors">Simulacro Completo</h4>
+                        <p class="text-gray-500 text-sm mt-2">Hilos, Sockets, Seguridad y Comunicaciones.</p>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">PSP (Servicios y Procesos)</h3>
-                    <p class="text-gray-500 text-sm mt-3 leading-relaxed">
-                        Hilos, Sockets, Seguridad, Comunicaciones y Procesos.
-                    </p>
-                    <div class="mt-6 flex items-center text-purple-600 font-semibold text-sm">
-                        Comenzar Test
-                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                    </div>
-                </div>
-            </a>
+                </a>
 
-            <a href="resumen_psp.html" class="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-purple-500">
-                <div class="h-2 bg-purple-500"></div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="text-4xl">📘</div>
-                        <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded">Teoría + Trucos</span>
+                <a href="resumen_psp.html" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-green-500 overflow-hidden relative">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-green-500"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-3xl">💡</span>
+                            <span class="bg-green-50 text-green-700 text-xs font-bold px-2 py-1 rounded-full border border-green-100">Apuntes</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 group-hover:text-green-600 transition-colors">Resumen y Trucos</h4>
+                        <p class="text-gray-500 text-sm mt-2">Esquemas rápidos y conceptos clave.</p>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">Resumen PSP</h3>
-                    <p class="text-gray-500 text-sm mt-2">
-                        Resumen de conceptos y reglas mnemotécnicas.
-                    </p>
-                    <div class="mt-4 text-purple-600 font-medium text-sm group-hover:underline">
-                        Ver Resumen &rarr;
-                    </div>
-                </div>
-            </a>
+                </a>
+            </div>
+        </section>
 
-            <a href="examen_DI.html" class="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-green-500">
-                <div class="h-2 bg-green-500"></div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="text-4xl">🖥️</div>
-                        <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">101 Preguntas</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 group-hover:text-green-600 transition-colors">Desarrollo de Interfaces</h3>
-                    <p class="text-gray-500 text-sm mt-2">
-                        Documentación y Ayudas, Tipos de Pruebas, Métricas...
-                    </p>
-                    <div class="mt-4 text-green-600 font-medium text-sm group-hover:underline">
-                        Comenzar Test &rarr;
-                    </div>
-                </div>
-            </a>
+        <section>
+            <div class="flex items-center gap-3 mb-6 border-b border-green-200 pb-2">
+                <span class="bg-green-100 text-green-700 p-2 rounded-lg text-2xl">🖥️</span>
+                <h3 class="text-2xl font-bold text-green-900">Desarrollo de Interfaces</h3>
+            </div>
 
-            <a href="resumen_DI.html" class="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-green-500">
-                <div class="h-2 bg-green-500"></div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="text-4xl">📗</div>
-                        <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">Teoría + Trucos</span>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="examen_DI.html" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-green-100 hover:border-green-600 overflow-hidden relative">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-green-600"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-3xl">🎨</span>
+                            <span class="bg-green-50 text-green-700 text-xs font-bold px-2 py-1 rounded-full border border-green-100">101 Preguntas</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 group-hover:text-green-700 transition-colors">Simulacro Completo</h4>
+                        <p class="text-gray-500 text-sm mt-2">Usabilidad, Informes, Pruebas y Documentación.</p>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 group-hover:text-green-600 transition-colors">Resumen DI</h3>
-                    <p class="text-gray-500 text-sm mt-2">
-                        Resumen de conceptos y reglas mnemotécnicas.
-                    </p>
-                    <div class="mt-4 text-green-600 font-medium text-sm group-hover:underline">
-                        Ver Resumen &rarr;
-                    </div>
-                </div>
-            </a>
+                </a>
 
-        </div>
+                <a href="resumen_DI.html" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-green-100 hover:border-green-500 overflow-hidden relative">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-green-500"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-3xl">💡</span>
+                            <span class="bg-green-50 text-green-700 text-xs font-bold px-2 py-1 rounded-full border border-green-100">Apuntes</span>
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 group-hover:text-green-600 transition-colors">Resumen y Trucos</h4>
+                        <p class="text-gray-500 text-sm mt-2">Teoría resumida para repaso rápido.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
     </main>
 
-    <footer class="text-center text-gray-500 text-sm py-8 mt-10 border-t">
+    <footer class="text-center text-slate-400 text-sm py-8 mt-10 border-t border-slate-200 bg-white">
         <p>Creado para ayudar a estudiantes de DAM/DAW.</p>
     </footer>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
