@@ -119,13 +119,46 @@
             <h2 class="text-xl font-bold text-green-600 mb-3">🌱 3. ORM y Hibernate</h2>
             <ul class="space-y-2 text-sm text-gray-700">
                 <li><strong>Problema:</strong> Desfase Objeto-Relacional. <br><strong>Solución:</strong> Abstracción.</li>
-                <li><strong>Configuración (Truco):</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li>Maven → <code class="code-tag">pom.xml</code>.</li>
-                        <li>Hibernate Nativo → <code class="code-tag">hibernate.cfg.xml</code>.</li>
-                        <li>Componentes/JAR → <code class="code-tag">MANIFEST.MF</code>.</li>
-                    </ul>
-                </li>
+                <li>
+    <strong>Configuración Truco:</strong>
+    <div class="mt-2 overflow-x-auto">
+        <table class="min-w-full text-sm text-left text-gray-600 bg-gray-50 rounded-lg border border-gray-200">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-100 border-b">
+                <tr>
+                    <th class="px-4 py-2">Fichero</th>
+                    <th class="px-4 py-2">Tecnología</th>
+                    <th class="px-4 py-2">¿Para qué sirve?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-white border-b">
+                    <td class="px-4 py-2 font-mono text-indigo-600 font-bold">pom.xml</td>
+                    <td class="px-4 py-2">Maven</td>
+                    <td class="px-4 py-2">
+                        <span class="font-semibold text-gray-800">Dependencias</span>. 
+                        Se usa al <em>construir</em> el proyecto (descargar librerías).
+                    </td>
+                </tr>
+                <tr class="bg-white border-b">
+                    <td class="px-4 py-2 font-mono text-indigo-600 font-bold">hibernate.cfg.xml</td>
+                    <td class="px-4 py-2">Hibernate</td>
+                    <td class="px-4 py-2">
+                        <span class="font-semibold text-gray-800">Conexión</span>. 
+                        Define driver, URL y credenciales de la BBDD.
+                    </td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="px-4 py-2 font-mono text-indigo-600 font-bold">MANIFEST.MF</td>
+                    <td class="px-4 py-2">JAR / Componentes</td>
+                    <td class="px-4 py-2">
+                        <span class="font-semibold text-gray-800">Metadatos Ejecución</span>. 
+                        Información del Bean, Main-Class y Class-Path.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</li>
                 <li><strong>Ciclo de Vida (JPA):</strong>
                     <ul class="list-disc ml-5 mt-1">
                         <li><strong>Transient:</strong> Nuevo, no en BD.</li>
@@ -262,4 +295,5 @@
 
 </body>
 </html>
+
 
