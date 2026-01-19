@@ -7,115 +7,133 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
     <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
-    <title>Examen Integral PSP (130+ Preguntas)</title>
+    <title>Examen PSP</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
-    <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
         .fade-in { animation: fadeIn 0.3s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .option-card:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+        .option-card { transition: all 0.2s ease; }
+        .option-card:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        .btn-primary { background-color: #4f46e5; color: white; }
+        .btn-primary:hover { background-color: #4338ca; }
     </style>
 </head>
-<body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
+<body class="min-h-screen flex items-center justify-center p-4">
 
-    <div class="bg-white rounded-2xl shadow-xl w-full max-w-3xl overflow-hidden min-h-[500px] flex flex-col relative">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-3xl overflow-hidden min-h-[600px] flex flex-col relative">
         
-        <div class="bg-indigo-600 p-6 text-white flex justify-between items-center z-10">
+        <div class="bg-indigo-600 p-6 text-white flex justify-between items-center z-10 shadow-md">
             <h1 class="text-xl font-bold flex items-center gap-2">
-                <i class="fas fa-server"></i> Examen PSP (Completo)
+                <i class="fas fa-microchip"></i> Examen PSP
             </h1>
-            <div id="progress-container" class="hidden text-sm font-medium bg-indigo-500 px-3 py-1 rounded-full">
-                <span id="current-question-num">1</span> / <span id="total-questions-num">0</span>
+            <div id="status-bar" class="hidden flex gap-4 text-sm font-medium">
+                <div class="bg-indigo-700 px-3 py-1 rounded-lg flex items-center gap-2">
+                    <span class="text-green-300"><i class="fas fa-check"></i> <span id="score-display">0</span></span>
+                    <span class="text-red-300 ml-2"><i class="fas fa-times"></i> <span id="errors-display">0</span></span>
+                </div>
+                <div class="bg-indigo-500 px-3 py-1 rounded-full">
+                    <span id="current-q">1</span> / <span id="total-q">0</span>
+                </div>
             </div>
         </div>
 
-        <div class="flex-1 p-6 relative flex flex-col justify-center">
+        <div class="flex-1 p-6 sm:p-8 relative flex flex-col justify-center bg-gray-50">
             
-            <div id="start-screen" class="text-center space-y-6 fade-in">
-                <div class="w-24 h-24 bg-indigo-100 rounded-full flex items-center justify-center mx-auto text-indigo-600 text-4xl mb-4">
-                    <i class="fas fa-clipboard-list"></i>
+            <div id="start-screen" class="text-center space-y-8 fade-in">
+                <div class="w-28 h-28 bg-indigo-100 rounded-full flex items-center justify-center mx-auto text-indigo-600 text-5xl mb-4 shadow-sm">
+                    <i class="fas fa-server"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-slate-800">Programación de Servicios y Procesos</h2>
-                <p class="text-slate-600 max-w-md mx-auto">
-                    Cuestionario interactivo completo. Incluye preguntas del examen integral y los nuevos temas añadidos.
-                </p>
-                <div class="flex flex-col gap-2 max-w-xs mx-auto">
-                    <div class="flex items-center gap-2 text-sm text-slate-500 justify-center">
-                        <i class="fas fa-layer-group"></i> 152 Preguntas totales
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Programación de Servicios y Procesos</h2>
+                    <p class="text-gray-500">Test completo con preguntas aleatorias y repaso de fallos.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4 max-w-xs mx-auto text-sm text-gray-600">
+                    <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
+                        <i class="fas fa-list-ol text-indigo-500 mb-1 block text-lg"></i>
+                        <span id="start-total-q">0</span> Preguntas
                     </div>
-                    <div class="flex items-center gap-2 text-sm text-slate-500 justify-center">
-                        <i class="fas fa-shuffle"></i> Orden y respuestas aleatorias
+                    <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
+                        <i class="fas fa-random text-indigo-500 mb-1 block text-lg"></i>
+                        Aleatorio
                     </div>
                 </div>
-                <button onclick="startQuiz()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg mt-4">
-                    Comenzar Examen
+
+                <button onclick="startQuiz()" class="btn-primary font-bold py-4 px-10 rounded-full transition-all transform hover:scale-105 shadow-lg text-lg flex items-center justify-center gap-2 mx-auto">
+                    <i class="fas fa-play"></i> Comenzar Test
                 </button>
             </div>
 
-            <div id="quiz-screen" class="hidden flex flex-col h-full fade-in">
+            <div id="quiz-screen" class="hidden flex flex-col h-full fade-in max-w-2xl mx-auto w-full">
+                
                 <div class="mb-6">
-                    <span class="text-xs font-bold text-indigo-600 uppercase tracking-wide mb-1 block">Pregunta</span>
-                    <h3 id="question-text" class="text-xl md:text-2xl font-semibold text-slate-800 leading-relaxed">
-                        </h3>
+                    <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-2 block">Pregunta Actual</span>
+                    <h3 id="question-text" class="text-xl sm:text-2xl font-semibold text-gray-800 leading-relaxed"></h3>
                 </div>
 
-                <div id="options-container" class="grid gap-3 md:grid-cols-1">
+                <div id="options-container" class="space-y-3">
                     </div>
 
-                <div id="feedback-area" class="mt-6 hidden p-4 rounded-lg bg-slate-50 border border-slate-200">
-                    <div class="flex items-start gap-3">
-                        <div id="feedback-icon" class="text-2xl mt-1"></div>
+                <div id="feedback-area" class="hidden mt-6 p-5 rounded-xl border border-gray-200 bg-white shadow-sm fade-in">
+                    <div class="flex gap-4">
+                        <div id="feedback-icon" class="text-3xl flex-shrink-0"></div>
                         <div>
-                            <h4 id="feedback-title" class="font-bold text-lg"></h4>
-                            <p id="feedback-justification" class="text-slate-600 mt-1 text-sm leading-relaxed"></p>
+                            <h4 id="feedback-title" class="font-bold text-lg mb-1"></h4>
+                            <p id="feedback-text" class="text-gray-600 text-sm leading-relaxed"></p>
                         </div>
                     </div>
                     <div class="mt-4 flex justify-end">
-                        <button id="next-btn" onclick="nextQuestion()" class="bg-slate-800 hover:bg-slate-900 text-white font-medium py-2 px-6 rounded-lg transition-colors flex items-center gap-2">
+                        <button id="next-btn" onclick="nextQuestion()" class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-6 rounded-lg transition-colors flex items-center gap-2 shadow-md">
                             Siguiente <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div id="result-screen" class="hidden text-center space-y-6 fade-in">
-                <div class="w-24 h-24 mx-auto rounded-full flex items-center justify-center text-4xl shadow-lg relative" id="score-circle">
-                    </div>
+            <div id="result-screen" class="hidden text-center space-y-8 fade-in">
+                
+                <div class="relative inline-block">
+                    <div class="w-32 h-32 mx-auto rounded-full flex items-center justify-center text-5xl shadow-xl relative z-10 bg-white" id="score-circle">
+                        </div>
+                    <div class="absolute inset-0 bg-indigo-100 rounded-full transform scale-110 opacity-50 z-0"></div>
+                </div>
                 
                 <div>
-                    <h2 class="text-3xl font-bold text-slate-800 mb-2">¡Examen Finalizado!</h2>
-                    <p class="text-slate-600">Tu puntuación final es:</p>
+                    <h2 class="text-4xl font-black text-gray-800 mb-1" id="final-score-text">0/0</h2>
+                    <p class="text-gray-500 uppercase tracking-wide text-sm font-semibold">Puntuación Final</p>
                 </div>
 
-                <div class="text-5xl font-black text-indigo-600 tracking-tight" id="final-score">
-                    0/0
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 max-w-sm mx-auto">
+                    <div class="flex justify-between text-sm mb-2 text-gray-600">
+                        <span>Aciertos</span>
+                        <span>Fallos</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                        <div id="final-progress-bar" class="bg-indigo-600 h-full rounded-full transition-all duration-1000" style="width: 0%"></div>
+                    </div>
+                    <p id="score-message" class="mt-4 font-medium text-indigo-700"></p>
                 </div>
 
-                <div class="w-full bg-slate-200 rounded-full h-4 max-w-md mx-auto overflow-hidden">
-                    <div id="final-progress-bar" class="bg-indigo-600 h-4 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="restartQuiz(false)" class="bg-white border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 font-bold py-3 px-8 rounded-full transition-all shadow-sm">
+                        <i class="fas fa-redo"></i> Reiniciar Todo
+                    </button>
+                    <button id="retry-failed-btn" onclick="restartQuiz(true)" class="hidden bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition-all shadow-lg">
+                        <i class="fas fa-hammer"></i> Repasar Fallos
+                    </button>
                 </div>
-                
-                <p id="score-message" class="text-lg font-medium text-slate-700"></p>
-
-                <button onclick="restartQuiz()" class="bg-white border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 mt-6">
-                    <i class="fas fa-redo"></i> Intentar de nuevo
-                </button>
             </div>
 
         </div>
     </div>
 
     <script>
-        // --- DATASET: 152 Questions Total ---
         const rawQuestions = [
-            // --- BLOQUE ORIGINAL ---
-            {
+            // --- BLOQUE ORIGINAL 
+ {
                 q: "Según las prácticas de programación segura, ¿cómo deben tratarse los archivos de la aplicación para evitar modificaciones externas?",
                 options: ["Deben ser archivos ejecutables públicos.", "Deben tener permisos de escritura total.", "Deben ser siempre archivos ocultos.", "Deben ser de solo lectura."],
                 correct: 3,
@@ -1091,32 +1109,42 @@
                 correct: 0,
                 justification: "Falla la condición de Dependencia de Flujo (Escritura-Lectura). La instrucción S1 escribe 'c' y la S2 necesita leer esa 'c'. Por tanto, la intersección E(S1)∩L(S2) NO es vacía (contiene 'c'), así que la condición de que sea igual a vacío (= ∅) no se cumple."
             }
-            
         ];
 
-        // --- APP LOGIC ---
+        // --- LÓGICA DE LA APLICACIÓN (NO TOCAR) ---
 
         let quizQuestions = [];
+        let failedQuestions = []; // Para almacenar los fallos
         let currentQuestionIndex = 0;
         let score = 0;
+        let errors = 0;
         let isAnswered = false;
+        let isRetryMode = false;
 
+        // Elementos del DOM
         const startScreen = document.getElementById('start-screen');
         const quizScreen = document.getElementById('quiz-screen');
         const resultScreen = document.getElementById('result-screen');
+        const statusBar = document.getElementById('status-bar');
         
         const questionText = document.getElementById('question-text');
         const optionsContainer = document.getElementById('options-container');
-        const currentQNum = document.getElementById('current-question-num');
-        const totalQNum = document.getElementById('total-questions-num');
-        const progressContainer = document.getElementById('progress-container');
+        const currentQElem = document.getElementById('current-q');
+        const totalQElem = document.getElementById('total-q');
+        const scoreDisplay = document.getElementById('score-display');
+        const errorsDisplay = document.getElementById('errors-display');
+        
         const feedbackArea = document.getElementById('feedback-area');
         const feedbackTitle = document.getElementById('feedback-title');
-        const feedbackJustification = document.getElementById('feedback-justification');
+        const feedbackText = document.getElementById('feedback-text');
         const feedbackIcon = document.getElementById('feedback-icon');
-        const nextBtn = document.getElementById('next-btn');
+        
+        // Inicializar número de preguntas en pantalla de inicio
+        // Nota: Si pegas el array completo, esto mostrará el número correcto.
+        // Si usas este archivo plantilla, asegúrate de reemplazar rawQuestions.
+        document.getElementById('start-total-q').innerText = rawQuestions.length || 0;
 
-        // Shuffle Array Helper
+        // Función para barajar (Fisher-Yates)
         function shuffle(array) {
             let currentIndex = array.length, randomIndex;
             while (currentIndex != 0) {
@@ -1127,57 +1155,77 @@
             return array;
         }
 
-        // Initialize Quiz
-        function startQuiz() {
-            // 1. Prepare questions: deep copy
-            let questions = JSON.parse(JSON.stringify(rawQuestions));
+        // Iniciar el Quiz
+        // retryMode = true: Solo preguntas falladas
+        function startQuiz(retryMode = false) {
+            isRetryMode = retryMode;
             
-            // 2. Shuffle questions
-            questions = shuffle(questions);
+            // Preparar preguntas
+            let sourceQuestions = retryMode ? failedQuestions : JSON.parse(JSON.stringify(rawQuestions));
             
-            // 3. Shuffle options for each question AND update the correct index
+            if (sourceQuestions.length === 0) {
+                alert("No hay preguntas para repasar.");
+                return;
+            }
+
+            // 1. Barajar preguntas
+            let questions = shuffle([...sourceQuestions]);
+            
+            // 2. Barajar opciones dentro de cada pregunta
             questions.forEach(q => {
-                const originalCorrectText = q.options[q.correct]; // Store the text of the correct answer
-                q.options = shuffle(q.options); // Shuffle options
-                q.correct = q.options.indexOf(originalCorrectText); // Find new index of correct answer
+                // Guardamos el texto de la respuesta correcta antes de barajar
+                const correctOptionText = q.options[q.correct];
+                // Barajamos opciones
+                q.options = shuffle(q.options);
+                // Encontramos el nuevo índice de la correcta
+                q.correct = q.options.indexOf(correctOptionText);
             });
 
             quizQuestions = questions;
+            failedQuestions = []; // Reiniciamos fallos para esta nueva ronda
             currentQuestionIndex = 0;
             score = 0;
+            errors = 0;
             
-            totalQNum.innerText = quizQuestions.length;
+            // Actualizar UI
+            updateStats();
             
             startScreen.classList.add('hidden');
             resultScreen.classList.add('hidden');
             quizScreen.classList.remove('hidden');
-            progressContainer.classList.remove('hidden');
+            statusBar.classList.remove('hidden');
             
             renderQuestion();
+        }
+
+        function updateStats() {
+            currentQElem.innerText = currentQuestionIndex + 1;
+            totalQElem.innerText = quizQuestions.length;
+            scoreDisplay.innerText = score;
+            errorsDisplay.innerText = errors;
         }
 
         function renderQuestion() {
             isAnswered = false;
             const q = quizQuestions[currentQuestionIndex];
             
-            // Update Text
-            currentQNum.innerText = currentQuestionIndex + 1;
+            updateStats();
             questionText.innerText = q.q;
             
-            // Clear Options & Feedback
+            // Limpiar
             optionsContainer.innerHTML = '';
             feedbackArea.classList.add('hidden');
             
-            // Render Options
+            // Renderizar Opciones
             q.options.forEach((opt, index) => {
                 const btn = document.createElement('button');
-                btn.className = `option-card w-full text-left p-4 rounded-xl border-2 border-slate-200 bg-white hover:border-indigo-300 transition-all group flex items-start gap-3`;
+                btn.className = `option-card w-full text-left p-4 rounded-xl border-2 border-gray-200 bg-white text-gray-700 font-medium flex items-start gap-3 group`;
                 btn.onclick = () => checkAnswer(index, btn);
                 
-                const letter = String.fromCharCode(65 + index); // A, B, C, D...
+                const letter = String.fromCharCode(65 + index); 
                 btn.innerHTML = `
-                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-100 text-slate-600 rounded-full font-bold group-hover:bg-indigo-100 group-hover:text-indigo-600 transition-colors">${letter}</span>
-                    <span class="text-slate-700 font-medium pt-1">${opt}</span>
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-gray-100 text-gray-500 rounded-full font-bold text-sm group-hover:bg-indigo-100 group-hover:text-indigo-600 transition-colors">${letter}</span>
+                    <span class="pt-1">${opt}</span>
                 `;
                 optionsContainer.appendChild(btn);
             });
@@ -1190,39 +1238,57 @@
             const q = quizQuestions[currentQuestionIndex];
             const isCorrect = selectedIndex === q.correct;
             
-            // Highlight Selected
+            // Deshabilitar todos los botones
+            Array.from(optionsContainer.children).forEach(btn => {
+                btn.disabled = true;
+                btn.classList.add('opacity-70', 'cursor-not-allowed');
+            });
+            selectedBtn.classList.remove('opacity-70');
+
             if (isCorrect) {
                 score++;
-                selectedBtn.classList.remove('border-slate-200', 'bg-white');
-                selectedBtn.classList.add('border-green-500', 'bg-green-50');
-                selectedBtn.querySelector('span:first-child').classList.add('bg-green-200', 'text-green-800');
+                // Estilo Correcto
+                selectedBtn.classList.remove('border-gray-200', 'bg-white', 'text-gray-700');
+                selectedBtn.classList.add('border-green-500', 'bg-green-50', 'text-green-800');
+                selectedBtn.querySelector('span:first-child').className = "flex-shrink-0 w-8 h-8 flex items-center justify-center bg-green-200 text-green-700 rounded-full font-bold text-sm";
                 
                 showFeedback(true, q.justification);
             } else {
-                selectedBtn.classList.remove('border-slate-200', 'bg-white');
-                selectedBtn.classList.add('border-red-500', 'bg-red-50');
-                selectedBtn.querySelector('span:first-child').classList.add('bg-red-200', 'text-red-800');
+                errors++;
+                // Guardar en fallos para repasar luego
+                failedQuestions.push(q);
+
+                // Estilo Incorrecto
+                selectedBtn.classList.remove('border-gray-200', 'bg-white', 'text-gray-700');
+                selectedBtn.classList.add('border-red-500', 'bg-red-50', 'text-red-800');
+                selectedBtn.querySelector('span:first-child').className = "flex-shrink-0 w-8 h-8 flex items-center justify-center bg-red-200 text-red-700 rounded-full font-bold text-sm";
                 
-                // Highlight Correct One
+                // Mostrar cuál era la correcta
                 const correctBtn = optionsContainer.children[q.correct];
-                correctBtn.classList.remove('border-slate-200', 'bg-white');
-                correctBtn.classList.add('border-green-500', 'bg-green-50');
+                correctBtn.classList.remove('opacity-70', 'border-gray-200', 'bg-white');
+                correctBtn.classList.add('border-green-500', 'bg-green-50', 'text-green-800');
+                correctBtn.querySelector('span:first-child').className = "flex-shrink-0 w-8 h-8 flex items-center justify-center bg-green-200 text-green-700 rounded-full font-bold text-sm";
                 
                 showFeedback(false, q.justification);
             }
+            updateStats();
         }
 
         function showFeedback(isCorrect, text) {
             feedbackArea.classList.remove('hidden');
-            feedbackArea.className = `mt-6 p-4 rounded-lg border flex flex-col ${isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'} fade-in`;
+            // Reset clases base
+            feedbackArea.className = `mt-6 p-5 rounded-xl border flex flex-col sm:flex-row gap-4 fade-in shadow-sm ${isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`;
             
-            feedbackIcon.innerHTML = isCorrect ? '<i class="fas fa-check-circle text-green-600"></i>' : '<i class="fas fa-times-circle text-red-600"></i>';
+            feedbackIcon.innerHTML = isCorrect 
+                ? '<i class="fas fa-check-circle text-green-600 text-3xl"></i>' 
+                : '<i class="fas fa-times-circle text-red-600 text-3xl"></i>';
+            
             feedbackTitle.innerText = isCorrect ? "¡Correcto!" : "Incorrecto";
-            feedbackTitle.className = `font-bold text-lg ${isCorrect ? 'text-green-800' : 'text-red-800'}`;
+            feedbackTitle.className = `font-bold text-lg mb-1 ${isCorrect ? 'text-green-800' : 'text-red-800'}`;
             
-            feedbackJustification.innerText = text || "Sin justificación disponible.";
+            feedbackText.innerText = text || "Sin justificación disponible.";
             
-            // Auto scroll to feedback on mobile
+            // Scroll en móvil si es necesario
             if(window.innerWidth < 768) {
                 feedbackArea.scrollIntoView({ behavior: 'smooth', block: 'end' });
             }
@@ -1239,44 +1305,51 @@
 
         function showResult() {
             quizScreen.classList.add('hidden');
-            progressContainer.classList.add('hidden');
+            statusBar.classList.add('hidden');
             resultScreen.classList.remove('hidden');
             
             const total = quizQuestions.length;
-            const percentage = (score / total) * 100;
+            const percentage = Math.round((score / total) * 100);
             
-            document.getElementById('final-score').innerText = `${score}/${total}`;
+            document.getElementById('final-score-text').innerText = `${score} / ${total}`;
+            document.getElementById('final-progress-bar').style.width = `${percentage}%`;
             
-            // Animate Bar
-            setTimeout(() => {
-                document.getElementById('final-progress-bar').style.width = `${percentage}%`;
-            }, 100);
+            // Configurar botón de repasar fallos
+            const retryBtn = document.getElementById('retry-failed-btn');
+            if (failedQuestions.length > 0) {
+                retryBtn.classList.remove('hidden');
+                retryBtn.innerHTML = `<i class="fas fa-hammer"></i> Repasar ${failedQuestions.length} Fallos`;
+            } else {
+                retryBtn.classList.add('hidden');
+            }
 
-            // Icon and Message
+            // Mensajes e Iconos
             const scoreCircle = document.getElementById('score-circle');
             const scoreMsg = document.getElementById('score-message');
             
+            scoreCircle.className = "w-32 h-32 mx-auto rounded-full flex items-center justify-center text-5xl shadow-xl relative z-10 mb-4 border-4";
+            
             if (percentage >= 90) {
-                scoreCircle.className = "w-24 h-24 mx-auto rounded-full flex items-center justify-center text-4xl shadow-lg relative bg-green-100 text-green-600 mb-4";
+                scoreCircle.classList.add('bg-green-100', 'text-green-600', 'border-green-200');
                 scoreCircle.innerHTML = '<i class="fas fa-trophy"></i>';
-                scoreMsg.innerText = "¡Excelente! Eres un experto en PSP.";
+                scoreMsg.innerText = "¡Excelente! Nivel Experto.";
             } else if (percentage >= 70) {
-                scoreCircle.className = "w-24 h-24 mx-auto rounded-full flex items-center justify-center text-4xl shadow-lg relative bg-blue-100 text-blue-600 mb-4";
+                scoreCircle.classList.add('bg-blue-100', 'text-blue-600', 'border-blue-200');
                 scoreCircle.innerHTML = '<i class="fas fa-thumbs-up"></i>';
-                scoreMsg.innerText = "¡Muy bien! Tienes conocimientos sólidos.";
+                scoreMsg.innerText = "¡Muy bien! Buen trabajo.";
             } else if (percentage >= 50) {
-                scoreCircle.className = "w-24 h-24 mx-auto rounded-full flex items-center justify-center text-4xl shadow-lg relative bg-yellow-100 text-yellow-600 mb-4";
-                scoreCircle.innerHTML = '<i class="fas fa-book-reader"></i>';
-                scoreMsg.innerText = "Aprobado, pero podrías repasar un poco más.";
+                scoreCircle.classList.add('bg-yellow-100', 'text-yellow-600', 'border-yellow-200');
+                scoreCircle.innerHTML = '<i class="fas fa-check"></i>';
+                scoreMsg.innerText = "Aprobado. Sigue practicando.";
             } else {
-                scoreCircle.className = "w-24 h-24 mx-auto rounded-full flex items-center justify-center text-4xl shadow-lg relative bg-red-100 text-red-600 mb-4";
-                scoreCircle.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
-                scoreMsg.innerText = "Necesitas estudiar más. ¡No te rindas!";
+                scoreCircle.classList.add('bg-red-100', 'text-red-600', 'border-red-200');
+                scoreCircle.innerHTML = '<i class="fas fa-book-open"></i>';
+                scoreMsg.innerText = "Necesitas repasar más.";
             }
         }
 
-        function restartQuiz() {
-            startQuiz();
+        function restartQuiz(retryFailed) {
+            startQuiz(retryFailed);
         }
     </script>
 </body>
