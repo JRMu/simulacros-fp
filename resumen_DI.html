@@ -141,6 +141,74 @@
 
     </div>
 
+    <div class="bg-white p-5 rounded-lg shadow border-purple-600 card mt-6">
+        <h2 class="text-xl font-bold text-purple-700 mb-3">🚨 Conceptos Trampa (Lo que cae seguro)</h2>
+        <div class="grid gap-3 sm:grid-cols-2">
+
+            <div class="bg-purple-50 p-3 rounded border border-purple-200">
+                <div class="text-xs font-bold text-purple-800 uppercase mb-2 border-b border-purple-200 pb-1">
+                    ⏱️ Eficacia vs Eficiencia
+                </div>
+                <ul class="text-sm text-gray-700 space-y-2">
+                    <li>
+                        <strong>Eficacia:</strong> <span class="text-xs bg-white px-1 rounded border border-gray-300">¿Lo logra?</span><br>
+                        Capacidad de lograr el objetivo (cuántos errores comete).
+                    </li>
+                    <li>
+                        <strong>Eficiencia:</strong> <span class="text-xs bg-white px-1 rounded border border-gray-300">¿Cuánto tarda?</span><br>
+                        Tiempo/Recursos empleados una vez aprendido el uso.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-blue-50 p-3 rounded border border-blue-200">
+                <div class="text-xs font-bold text-blue-800 uppercase mb-2 border-b border-blue-200 pb-1">
+                    ♿ Conformidad WCAG
+                </div>
+                <ul class="text-sm text-gray-700 space-y-1">
+                    <li><strong>A (Mínimo):</strong> Cumple Prioridad 1.</li>
+                    <li><strong>AA (Estándar):</strong> Cumple <strong class="text-blue-700">Prioridad 1 y 2</strong>. (Lo habitual).</li>
+                    <li><strong>AAA (Excelencia):</strong> Cumple Prioridad 1, 2 y 3.</li>
+                </ul>
+                <div class="mt-2 text-xs text-gray-500 italic">
+                    *Principios <strong>POUR</strong>: Perceptible, Operable, Comprensible, Robusto.
+                </div>
+            </div>
+
+            <div class="bg-green-50 p-3 rounded border border-green-200">
+                <div class="text-xs font-bold text-green-800 uppercase mb-2 border-b border-green-200 pb-1">
+                    📑 Jasper / Informes
+                </div>
+                <ul class="text-sm text-gray-700 space-y-2">
+                    <li>
+                        <strong>Campos (Fields):</strong><br>
+                        Vienen de la BBDD. Cambian fila a fila.
+                    </li>
+                    <li>
+                        <strong>Parámetros:</strong><br>
+                        Valores globales (ej: rango de fechas) para <em>"informes activos"</em>. Se envían una vez.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-orange-50 p-3 rounded border border-orange-200">
+                <div class="text-xs font-bold text-orange-800 uppercase mb-2 border-b border-orange-200 pb-1">
+                    🧱 Componente &lt;mx:Grid&gt;
+                </div>
+                <p class="text-sm text-gray-700 leading-snug">
+                    ¡Ojo! En MXML, el <code>Grid</code> <strong>NO</strong> es para mostrar datos de una base de datos.
+                </p>
+                <p class="text-sm text-gray-800 font-semibold mt-2">
+                    Es un CONTENEDOR (Layout)
+                </p>
+                <p class="text-xs text-gray-500">
+                    Sirve para organizar botones/textos en filas y columnas (como un <code>&lt;table&gt;</code> de HTML).
+                </p>
+            </div>
+
+        </div>
+    </div>
+
     <div class="mt-8 bg-gray-800 text-white p-6 rounded-lg shadow-lg">
         <h2 class="text-2xl font-bold text-pink-400 mb-4 text-center">🔥 Fichas "Salva-Examen"</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
@@ -158,6 +226,3 @@
 </body>
 
 </html>
-
-
-
