@@ -115,35 +115,41 @@
             </ul>
         </div>
 
-      <div class="bg-white p-5 rounded-lg shadow border-green-500 card">
+     <div class="bg-white p-5 rounded-lg shadow border-green-500 card">
     <h2 class="text-xl font-bold text-green-600 mb-3">🌱 3. ORM y Hibernate</h2>
     <ul class="space-y-2 text-sm text-gray-700">
         <li><strong>Problema:</strong> Desfase Objeto-Relacional. <br><strong>Solución:</strong> Abstracción.</li>
         <li>
             <strong>Configuración (Truco Infalible):</strong>
-            <div class="mt-3 grid gap-3 sm:grid-cols-3">
+            <div class="mt-2 space-y-2">
                 
-                <div class="bg-white p-3 rounded-lg border border-indigo-100 shadow-sm flex flex-col">
-                    <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Construcción</div>
-                    <code class="text-indigo-600 font-bold text-lg mb-1">pom.xml</code>
-                    <div class="text-sm text-gray-600 leading-snug">
-                        Define las <span class="font-semibold text-gray-800">dependencias</span> (librerías) que Maven debe descargar.
+                <div class="flex flex-col sm:flex-row sm:items-center bg-gray-50 p-2 rounded border border-gray-200">
+                    <div class="sm:w-32 flex-shrink-0 mb-1 sm:mb-0">
+                        <span class="text-xs font-bold text-gray-500 block uppercase">Construcción</span>
+                        <code class="text-indigo-700 font-bold text-base">pom.xml</code>
+                    </div>
+                    <div class="text-sm text-gray-600 border-l-2 border-indigo-200 pl-3 ml-1">
+                        Define las <span class="font-semibold text-gray-800">dependencias</span> (librerías a descargar).
                     </div>
                 </div>
 
-                <div class="bg-white p-3 rounded-lg border border-indigo-100 shadow-sm flex flex-col">
-                    <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Conexión BBDD</div>
-                    <code class="text-indigo-600 font-bold text-lg mb-1">hibernate.cfg.xml</code>
-                    <div class="text-sm text-gray-600 leading-snug">
-                        Configura el <span class="font-semibold text-gray-800">driver y la URL</span> para conectar con la base de datos.
+                <div class="flex flex-col sm:flex-row sm:items-center bg-gray-50 p-2 rounded border border-gray-200">
+                    <div class="sm:w-32 flex-shrink-0 mb-1 sm:mb-0">
+                        <span class="text-xs font-bold text-gray-500 block uppercase">Conexión</span>
+                        <code class="text-indigo-700 font-bold text-base">hibernate.cfg</code>
+                    </div>
+                    <div class="text-sm text-gray-600 border-l-2 border-indigo-200 pl-3 ml-1">
+                        Configura <span class="font-semibold text-gray-800">driver y credenciales</span> de la BBDD.
                     </div>
                 </div>
 
-                <div class="bg-white p-3 rounded-lg border border-indigo-100 shadow-sm flex flex-col">
-                    <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Ejecución JAR</div>
-                    <code class="text-indigo-600 font-bold text-lg mb-1">MANIFEST.MF</code>
-                    <div class="text-sm text-gray-600 leading-snug">
-                        El DNI del ejecutable. Indica la <span class="font-semibold text-gray-800">Main-Class</span> y rutas.
+                <div class="flex flex-col sm:flex-row sm:items-center bg-gray-50 p-2 rounded border border-gray-200">
+                    <div class="sm:w-32 flex-shrink-0 mb-1 sm:mb-0">
+                        <span class="text-xs font-bold text-gray-500 block uppercase">Ejecución</span>
+                        <code class="text-indigo-700 font-bold text-base">MANIFEST.MF</code>
+                    </div>
+                    <div class="text-sm text-gray-600 border-l-2 border-indigo-200 pl-3 ml-1">
+                        Metadatos del JAR. Indica la <span class="font-semibold text-gray-800">Main-Class</span>.
                     </div>
                 </div>
 
@@ -285,6 +291,7 @@
 
 </body>
 </html>
+
 
 
 
