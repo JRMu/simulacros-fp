@@ -32,42 +32,88 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <div class="bg-white p-5 rounded-lg shadow border-blue-500 card">
-            <h2 class="text-xl font-bold text-blue-600 mb-3">📂 1. Ficheros y Streams</h2>
-            <ul class="space-y-2 text-sm text-gray-700">
-                <li><strong>Excepciones:</strong> <code class="code-tag">FileNotFoundException</code> hereda de <code class="code-tag">IOException</code>.</li>
-                <li><strong>Binario vs Texto:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li>Binario: <code class="code-tag">Stream</code> (FileInputStream).</li>
-                        <li>Texto: <code class="code-tag">Reader/Writer</code> (FileReader).</li>
-                    </ul>
-                    <div class="truco">💡 <strong>Truco:</strong> Si acaba en "Stream" son ceros y unos (fotos). Si es Reader/Writer, es texto legible.</div>
-                </li>
-                <li><strong>Lectura Eficiente:</strong> <code class="code-tag">BufferedReader</code> usa memoria intermedia (búfer) para no ir al disco por cada letra.</li>
-                <li><strong>Acceso Aleatorio:</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><code class="code-tag">seek(pos)</code>: Mueve el puntero.</li>
-                        <li><code class="code-tag">getFilePointer()</code>: Dice dónde estás.</li>
-                    </ul>
-                </li>
-                <li><strong>Métodos File (Anexo):</strong>
-                    <ul class="list-disc ml-5 mt-1">
-                        <li><code class="code-tag">isDirectory()</code>: El "policía" que verifica si es carpeta.</li>
-                        <li><code class="code-tag">File.separator</code>: Barra correcta Win/Linux.</li>
-                        <li><code class="code-tag">deleteOnExit()</code>: Borra al cerrar app.</li>
-                    </ul>
-                </li>
-                <li><strong>Desventaja Secuencial:</strong> Es como una cinta VHS, debes pasar por todo lo anterior para llegar al final.</li>
-                <li class="pt-2 mt-2 border-t border-blue-100">
-    <strong>NIO.2 (El Nuevo Estándar):</strong>
-    <ul class="list-disc ml-5 mt-1 text-xs">
-        <li>🔴 <strong>Viejo:</strong> <code>java.io.File</code> (Clásico).</li>
-        <li>🟢 <strong>Nuevo:</strong> <code>java.nio.file.Path</code> (Moderno/NIO.2).</li>
-    </ul>
-    <span class="text-xs text-gray-500 block mt-1"><em>*Path es mejor porque soporta enlaces simbólicos y sistemas raros (ZIP, FTP).</em></span>
-</li>
+<div class="bg-white p-5 rounded-lg shadow border-blue-500 card">
+    <h2 class="text-xl font-bold text-blue-600 mb-3">📂 1. Ficheros y Streams</h2>
+    <ul class="space-y-2 text-sm text-gray-700">
+        <li><strong>Excepciones:</strong> <code class="code-tag">FileNotFoundException</code> hereda de <code class="code-tag">IOException</code>.</li>
+        <li><strong>Binario vs Texto:</strong>
+            <ul class="list-disc ml-5 mt-1">
+                <li>Binario: <code class="code-tag">Stream</code> (FileInputStream).</li>
+                <li>Texto: <code class="code-tag">Reader/Writer</code> (FileReader).</li>
             </ul>
-        </div>
+            <div class="truco">💡 <strong>Truco:</strong> Si acaba en "Stream" son ceros y unos (fotos). Si es Reader/Writer, es texto legible.</div>
+        </li>
+        <li><strong>Lectura Eficiente:</strong> <code class="code-tag">BufferedReader</code> usa memoria intermedia (búfer) para no ir al disco por cada letra.</li>
+        <li><strong>Acceso Aleatorio:</strong>
+            <ul class="list-disc ml-5 mt-1">
+                <li><code class="code-tag">seek(pos)</code>: Mueve el puntero.</li>
+                <li><code class="code-tag">getFilePointer()</code>: Dice dónde estás.</li>
+            </ul>
+        </li>
+        <li><strong>Métodos File (Anexo):</strong>
+            <ul class="list-disc ml-5 mt-1">
+                <li><code class="code-tag">isDirectory()</code>: El "policía" que verifica si es carpeta.</li>
+                <li><code class="code-tag">File.separator</code>: Barra correcta Win/Linux.</li>
+                <li><code class="code-tag">deleteOnExit()</code>: Borra al cerrar app.</li>
+            </ul>
+        </li>
+        <li><strong>Desventaja Secuencial:</strong> Es como una cinta VHS, debes pasar por todo lo anterior para llegar al final.</li>
+        
+        <li class="pt-2 mt-2 border-t border-blue-100">
+            <strong>NIO.2 (El Nuevo Estándar):</strong>
+            <ul class="list-disc ml-5 mt-1 text-xs">
+                <li>🔴 <strong>Viejo:</strong> <code>java.io.File</code> (Clásico).</li>
+                <li>🟢 <strong>Nuevo:</strong> <code>java.nio.file.Path</code> (Moderno/NIO.2).</li>
+            </ul>
+            <span class="text-xs text-gray-500 block mt-1"><em>*Path es mejor porque soporta enlaces simbólicos y sistemas raros (ZIP, FTP).</em></span>
+        </li>
+
+        <li>
+            <strong class="text-red-600">🚨 LA TRAMPA: Copy vs Move</strong>
+            <p class="text-xs text-gray-500 mb-2">Usando <code>REPLACE_EXISTING</code> cuando el destino <strong>YA EXISTE</strong>:</p>
+            
+            <div class="grid gap-3 sm:grid-cols-2">
+                
+                <div class="bg-blue-50 p-2 rounded border border-blue-200">
+                    <div class="flex items-center gap-2 mb-1">
+                        <i class="fas fa-copy text-blue-600"></i>
+                        <code class="text-blue-700 font-bold text-xs">Files.copy</code>
+                    </div>
+                    <div class="text-xs font-bold text-blue-800 uppercase mb-1">CLONAR (2 Archivos)</div>
+                    <p class="text-xs text-gray-700 leading-snug">
+                        Origen: <strong>SE QUEDA</strong>.<br>
+                        Destino: <strong>Se sobrescribe</strong>.
+                    </p>
+                </div>
+
+                <div class="bg-orange-50 p-2 rounded border border-orange-200">
+                    <div class="flex items-center gap-2 mb-1">
+                        <i class="fas fa-truck-moving text-orange-600"></i>
+                        <code class="text-orange-700 font-bold text-xs">Files.move</code>
+                    </div>
+                    <div class="text-xs font-bold text-orange-800 uppercase mb-1">MUDAR (1 Archivo)</div>
+                    <p class="text-xs text-gray-700 leading-snug">
+                        Origen: <strong>SE BORRA</strong>.<br>
+                        Destino: <strong>Se sobrescribe</strong>.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-2 text-xs bg-gray-100 p-2 rounded border border-gray-200 text-gray-600 italic">
+                <strong>Nota:</strong> Si el destino <strong>NO existe</strong>, ambos funcionan igual (crean el archivo nuevo) sin dar error.
+            </div>
+        </li>
+
+        <li>
+            <strong>Rutas (Path):</strong>
+            <ul class="list-disc ml-5 mt-1 text-xs">
+                <li><code class="code-tag">relativize()</code>: Camino de A hasta B.</li>
+                <li><code class="code-tag">resolve()</code>: Unir rutas (A + B).</li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
 
         <div class="bg-white p-5 rounded-lg shadow border-indigo-500 card">
             <h2 class="text-xl font-bold text-indigo-600 mb-3">🔌 2. JDBC</h2>

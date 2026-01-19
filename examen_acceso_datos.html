@@ -71,7 +71,7 @@
                 </div>
                 <div>
                     <h2 class="text-3xl font-bold text-gray-800 mb-2">Simulacro Completo</h2>
-                    <p class="text-gray-500">124 Preguntas • Ficheros, XML, JDBC, JPA</p>
+                    <p class="text-gray-500">126 Preguntas • Ficheros, XML, JDBC, JPA</p>
                 </div>
                 
                 <div class="grid grid-cols-2 gap-4 max-w-xs mx-auto text-sm text-gray-600">
@@ -148,7 +148,7 @@
     </div>
 
     <script>
-        // --- BASE DE DATOS COMPLETA (124 Preguntas - Texto Intacto) ---
+        // --- BASE DE DATOS COMPLETA (126 Preguntas - Texto Intacto) ---
         const rawQuestions = [
             {
                 q: "¿Cuál es la principal diferencia entre las clases java.io.File y java.nio.file.Path?",
@@ -1513,6 +1513,28 @@
                 ],
                 correct: 3,
                 justification: "El método executeUpdate() se utiliza para sentencias DML (INSERT, UPDATE, DELETE) y también para sentencias DDL (Definición de Datos) como ALTER TABLE o CREATE TABLE (en cuyo caso devuelve 0)."
+            },
+            {
+                q: "Al ejecutar la instrucción Files.copy(origen, destino, StandardCopyOption.REPLACE_EXISTING), si el archivo de destino YA existe, ¿qué ocurre?",
+                options: [
+                    "Se lanza una excepción FileAlreadyExistsException.",
+                    "Se fusiona el contenido de ambos archivos.",
+                    "Se sobrescribe (reemplaza) el archivo de destino con el de origen.",
+                    "Se elimina el archivo de origen y se mueve al destino."
+                ],
+                correct: 2,
+                justification: "La opción REPLACE_EXISTING fuerza la sobrescritura. Si no se pusiera, saltaría la excepción, pero al ponerla, el destino es reemplazado por la copia."
+            },
+            {
+                q: "¿Cuál es el resultado de ejecutar Files.move(origen, destino, StandardCopyOption.REPLACE_EXISTING)?",
+                options: [
+                    "Se crea una copia en el destino y se mantiene el original (tengo dos archivos).",
+                    "El archivo de origen desaparece (se borra) y aparece en la ruta de destino (sobrescribiendo si existía).",
+                    "Se lanza una excepción porque REPLACE_EXISTING solo sirve para copiar.",
+                    "El archivo de origen pasa a ser de solo lectura."
+                ],
+                correct: 1,
+                justification: "El método move implica un traslado: el origen deja de existir en su ubicación inicial. Con REPLACE_EXISTING, si el destino estaba ocupado, se machaca."
             }
         ];
 
