@@ -71,7 +71,7 @@
                 </div>
                 <div>
                     <h2 class="text-3xl font-bold text-gray-800 mb-2">Simulacro Completo</h2>
-                    <p class="text-gray-500">126 Preguntas • Ficheros, XML, JDBC, JPA</p>
+                    <p class="text-gray-500">127 Preguntas • Ficheros, XML, JDBC, JPA</p>
                 </div>
                 
                 <div class="grid grid-cols-2 gap-4 max-w-xs mx-auto text-sm text-gray-600">
@@ -148,7 +148,7 @@
     </div>
 
     <script>
-        // --- BASE DE DATOS COMPLETA (126 Preguntas - Texto Intacto) ---
+        // --- BASE DE DATOS COMPLETA (127 Preguntas - Texto Intacto) ---
         const rawQuestions = [
             {
                 q: "¿Cuál es la principal diferencia entre las clases java.io.File y java.nio.file.Path?",
@@ -1535,7 +1535,19 @@
                 ],
                 correct: 1,
                 justification: "El método move implica un traslado: el origen deja de existir en su ubicación inicial. Con REPLACE_EXISTING, si el destino estaba ocupado, se machaca."
-            }
+            },
+            {
+                q: "En la clase java.io.File, ¿cuál es la constante correcta para obtener el separador de directorios (ej: '/' o '\\')?",
+                options: [
+                    "File.SEPARATOR",       // TRAMPA: Mayúsculas (Errata típica de exámenes)
+                    "File.OS_SEPARATOR",    // TRAMPA: Inventado
+                    "File.PATH_SEPARATOR",  // TRAMPA: Concepto erróneo (; o :)
+                    "File.separator"        // CORRECTA REAL: Minúsculas (CamelCase)
+                ],
+                correct: 3,
+                justification: "La correcta en Java es 'File.separator' (minúsculas). ⚠️ AVISO IMPORTANTE: En algunos exámenes oficiales ponen todas las opciones en mayúsculas por error. Si te pasa eso y NO está la opción en minúsculas, marca 'File.SEPARATOR', aunque técnicamente daría error de compilación."
+            },
+
         ];
 
         // --- LÓGICA DEL TEST ---
