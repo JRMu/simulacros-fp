@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+    <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+    <title>Test Desarrollo de Interfaces</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f0fdf4; /* Fondo verde muy suave */ }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .option-card { transition: all 0.2s ease; }
+        .option-card:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        
+        /* Animación suave para el botón siguiente */
+        #next-container { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-3xl flex flex-col relative overflow-hidden min-h-[650px] border-t-4 border-green-600">
+        
+        <div class="bg-green-600 p-5 text-white flex justify-between items-center z-10 shadow-md flex-shrink-0">
+            <h1 class="text-lg font-bold flex items-center gap-2">
+                <i class="fas fa-desktop"></i> Desarrollo de Interfaces
+            </h1>
+            <div id="status-bar" class="hidden flex gap-3 text-sm font-medium">
+                <div class="bg-green-700 px-3 py-1 rounded-lg flex items-center gap-2">
+                    <span class="text-green-200"><i class="fas fa-check"></i> <span id="score-display">0</span></span>
+                    <span class="text-red-200 ml-2"><i class="fas fa-times"></i> <span id="errors-display">0</span></span>
+                </div>
+                <div class="bg-green-500 px-3 py-1 rounded-full w-16 text-center">
+                    <span id="current-q">1</span>/<span id="total-q">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-1 p-6 sm:p-8 overflow-y-auto flex flex-col bg-gray-50 relative">
+            
+            <div id="start-screen" class="text-center space-y-8 fade-in my-auto">
+                <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto text-green-600 text-4xl mb-4 shadow-sm">
+                    <i class="fas fa-pencil-ruler"></i>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Simulacro de Examen</h2>
+                    <p class="text-gray-500">Preguntas oficiales de repaso.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4 max-w-xs mx-auto text-sm text-gray-600">
+                    <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
+                        <i class="fas fa-list-ol text-green-500 mb-1 block text-lg"></i>
+                        <span id="start-total-q">--</span> Preguntas
+                    </div>
+                    <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
+                        <i class="fas fa-random text-green-500 mb-1 block text-lg"></i>
+                        Aleatorio
+                    </div>
+                </div>
+
+                <button onclick="startQuiz()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-xl w-full max-w-sm mx-auto shadow-lg transition-transform transform hover:scale-105 flex justify-center items-center gap-2 text-lg">
+                    <i class="fas fa-play"></i> Comenzar Test
+                </button>
+            </div>
+
+            <div id="quiz-screen" class="hidden flex flex-col fade-in w-full max-w-2xl mx-auto flex-grow">
+                
+                <div class="mb-6">
+                    <span class="text-xs font-bold text-green-600 uppercase tracking-wider mb-2 block">Pregunta</span>
+                    <h3 id="question-text" class="text-xl sm:text-2xl font-bold text-gray-800 leading-snug"></h3>
+                </div>
+
+                <div id="options-container" class="space-y-3 flex-grow">
+                    </div>
+
+                <div id="feedback-area" class="hidden mt-6 pt-6 border-t border-gray-200 fade-in">
+                    <div class="flex gap-4 mb-4 items-start bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
+                        <div id="feedback-icon" class="text-2xl flex-shrink-0 mt-1"></div>
+                        <div>
+                            <h4 id="feedback-title" class="font-bold text-base mb-1"></h4>
+                            <p id="feedback-text" class="text-gray-600 text-sm leading-relaxed"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="result-screen" class="hidden text-center space-y-8 fade-in my-auto">
+                <div class="relative inline-block">
+                    <div class="w-32 h-32 mx-auto rounded-full flex items-center justify-center text-5xl shadow-xl relative z-10 bg-white border-4" id="score-circle"></div>
+                </div>
+                
+                <div>
+                    <h2 class="text-4xl font-black text-gray-800 mb-1" id="final-score-text">0/0</h2>
+                    <p class="text-gray-500 text-sm font-semibold uppercase">Resultado Final</p>
+                </div>
+
+                <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden max-w-sm mx-auto">
+                    <div id="final-progress-bar" class="bg-green-600 h-full rounded-full transition-all duration-1000" style="width: 0%"></div>
+                </div>
+                
+                <p id="score-message" class="font-medium text-green-700 text-lg"></p>
+
+                <div class="flex flex-col gap-3 max-w-xs mx-auto pt-4">
+                    <button id="retry-failed-btn" onclick="restartQuiz(true)" class="hidden bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-md w-full transition-colors flex justify-center items-center gap-2">
+                        <i class="fas fa-hammer"></i> Repasar Fallos
+                    </button>
+                    <button onclick="restartQuiz(false)" class="bg-white border-2 border-green-600 text-green-600 hover:bg-green-50 font-bold py-3 px-6 rounded-lg w-full transition-colors">
+                        <i class="fas fa-redo"></i> Reiniciar Todo
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="next-container" class="hidden bg-white border-t p-4 z-20 sticky bottom-0 w-full shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+            <button onclick="nextQuestion()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-xl text-lg shadow-md transition-colors flex justify-center items-center gap-2">
+                Siguiente Pregunta <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- BASE DE DATOS DI (LITERALES) ---
+        const rawQuestions = [
+            
+            // --- PRUEBAS Y CALIDAD ---
+            {
+                q: "Las pruebas de caja blanca...",
+                options: [
+                    "Se examina la lógica interna sin considerar los aspectos sobre su rendimiento",
+                    "También son conocidas como técnicas de caja transparente o de cristal",
+                    "También son llamadas pruebas estructurales",
+                    "Todas son correctas"
+                ],
+                correct: 3,
+                justification: "Las pruebas de caja blanca implican conocer el código interno. Todas las definiciones dadas (estructurales, cristal, lógica interna) son sinónimos válidos[cite: 10, 11, 12, 13]."
+            },
+            {
+                q: "En las pruebas funcionales es posible utilizar una serie de técnicas:",
+                options: [
+                    "Todas las anteriores son correctas.",
+                    "Partición de equivalencia.",
+                    "Analizar el valor límite.",
+                    "Utilizar un grafo causa-efecto."
+                ],
+                correct: 0,
+                justification: "Las pruebas funcionales (caja negra) se basan en técnicas como partición de equivalencia, análisis de valores límite y grafos causa-efecto[cite: 14, 15, 16, 17, 18]."
+            },
+            {
+                q: "Cuando un usuario carece de la supervisión del desarrollador y se encuentra en un entorno no controlado, ¿qué tipo de prueba estamos realizando?",
+                options: [
+                    "Prueba beta",
+                    "Prueba automática",
+                    "Prueba alfa",
+                    "Prueba manual"
+                ],
+                correct: 0,
+                justification: "La prueba Beta se define precisamente por realizarse en el entorno real del usuario final sin supervisión directa del equipo de desarrollo[cite: 19, 20]."
+            },
+            {
+                q: "Las pruebas beta las lleva a cabo:",
+                options: [
+                    "El analista, los desarrolladores y el cliente",
+                    "Solo el equipo de desarrollo",
+                    "El cliente o usuario final en su propio entorno",
+                    "Los probadores profesionales en laboratorio"
+                ],
+                correct: 2,
+                justification: "Son realizadas por los usuarios finales en sus propias instalaciones (entorno real)[cite: 24, 25]."
+            },
+
+            // --- EMPAQUETADO Y DISTRIBUCIÓN ---
+            {
+                q: "¿Cuál de las siguientes opciones describe mejor el proceso de creación de un paquete NuGet?",
+                options: [
+                    "Utilizar una herramienta de empaquetado específica de NuGet para generar un archivo nupkg a partir de un archivo nuspec y los archivos de la aplicación",
+                    "Empaquetar los archivos de una aplicación en un archivo ZIP y renombrarlo con la extensión nupkg",
+                    "Copiar manualmente los archivos de una aplicación en un directorio y comprimirlo en un archivo ZIP",
+                    "Crear un archivo nuspec y adjuntarlo a la aplicación antes de empaquetarla en un archivo ZIP"
+                ],
+                correct: 0,
+                justification: "El proceso estándar requiere usar la herramienta NuGet con un manifiesto (.nuspec) para generar correctamente el archivo .nupkg[cite: 26, 27]."
+            },
+            {
+                q: "¿Qué formato de archivo es comúnmente utilizado para empaquetar componentes de una aplicación en el entorno Java?",
+                options: [
+                    ".dll",
+                    ".class",
+                    ".jar",
+                    ".exe"
+                ],
+                correct: 2,
+                justification: "En Java, el formato estándar de empaquetado y distribución es JAR (Java ARchive)[cite: 31, 34]."
+            },
+            {
+                q: "¿Cuál es la estructura básica de un archivo nuspec utilizado para crear un paquete NuGet?",
+                options: [
+                    "Etiquetas HTML que definen la apariencia y el diseño del paquete",
+                    "Una lista de los archivos que se incluirán en el paquete",
+                    "Código fuente de la biblioteca o componente a empaquetar",
+                    "Metadatos que describen la información del paquete, como el nombre, la versión, el autor, etc."
+                ],
+                correct: 3,
+                justification: "El archivo .nuspec es un XML que contiene los metadatos esenciales (ID, versión, autor, dependencias) del paquete[cite: 36, 40]."
+            },
+            {
+                q: "¿Cuál es el archivo principal utilizado para definir el contenido y las configuraciones de un paquete NuGet?",
+                options: [
+                    "nuspec",
+                    ".config",
+                    ".csproj",
+                    ".dll"
+                ],
+                correct: 0,
+                justification: "El archivo .nuspec actúa como el manifiesto principal para la creación del paquete[cite: 41, 42]."
+            },
+            {
+                q: "¿Cuál es el propósito principal de crear un paquete de instalación para una aplicación?",
+                options: [
+                    "Reducir el tamaño total de la aplicación.",
+                    "Facilitar la distribución y la instalación de la aplicación en diferentes sistemas",
+                    "Mejorar la seguridad de la aplicación.",
+                    "Optimizar el rendimiento de la aplicación"
+                ],
+                correct: 1,
+                justification: "Los instaladores (setup/paquetes) buscan simplificar el despliegue para que el usuario final pueda instalar el software fácilmente en su entorno[cite: 85, 87]."
+            },
+
+            // --- DOCUMENTACIÓN Y AYUDAS ---
+            {
+                q: "¿Qué es un 'manual de instalación' en la documentación de una aplicación?",
+                options: [
+                    "Un documento que describe la interfaz de usuario y las funcionalidades de la aplicación.",
+                    "Un documento que contiene el código fuente de la aplicación",
+                    "Un documento que proporciona instrucciones detalladas sobre cómo utilizar la aplicación.",
+                    "Un documento que explica los pasos necesarios para instalar y configurar la aplicación"
+                ],
+                correct: 3,
+                justification: "Su objetivo específico es guiar al técnico o usuario en el proceso de puesta en marcha (instalación y configuración)[cite: 58, 62]."
+            },
+            {
+                q: "¿Para qué sirve la herramienta GhostDoc?",
+                options: [
+                    "Genera documentación XML",
+                    "Ninguna es correcta",
+                    "Genera documentación en HTML",
+                    "Permite detectar errores de código"
+                ],
+                correct: 0,
+                justification: "GhostDoc es una extensión para Visual Studio que ayuda a generar comentarios de documentación XML automáticamente en el código[cite: 63, 64]."
+            },
+            {
+                q: "¿Cuál es la función principal de los tooltips en la interfaz de una aplicación?",
+                options: [
+                    "Brindar acceso rápido a funciones y comandos frecuentemente utilizados",
+                    "Permitir al usuario personalizar la apariencia de la interfaz de la aplicación",
+                    "Mostrar mensajes de error cuando se produce una acción incorrecta por parte del usuario",
+                    "Proporcionar información adicional sobre un elemento de la interfaz cuando el usuario pasa el cursor sobre él"
+                ],
+                correct: 3,
+                justification: "Los tooltips son ayudas contextuales flotantes que aparecen al hacer 'hover' (pasar el ratón) sobre un control[cite: 69, 73]."
+            },
+            {
+                q: "¿Cuál es la importancia de la documentación de una aplicación?",
+                options: [
+                    "Permite a los usuarios comprender y utilizar correctamente la aplicación",
+                    "Todas las anteriores.",
+                    "Facilita la comunicación entre los miembros del equipo de desarrollo",
+                    "Facilita el mantenimiento y la evolución futura de la aplicación."
+                ],
+                correct: 1,
+                justification: "La documentación es vital en todas las fases: para el usuario final, para el equipo actual y para el mantenimiento futuro[cite: 74, 75]."
+            },
+            {
+                q: "En la documentación de una aplicación, ¿Qué se entiende por 'manual de usuario'?",
+                options: [
+                    "Un documento que proporciona instrucciones detalladas sobre cómo utilizar la aplicación.",
+                    "Un documento que contiene el código fuente de la aplicación",
+                    "Un documento que proporciona instrucciones detalladas sobre cómo utilizar la aplicación.", /* Opción repetida en fuente original, seleccionamos la definición funcional */
+                    "Un documento que explica como se ha diseñado la aplicación."
+                ],
+                correct: 0,
+                justification: "El manual de usuario está dirigido al operador final para explicarle el uso funcional del software paso a paso[cite: 78, 79]."
+            },
+
+            // --- INFORMES ---
+            {
+                q: "Las formas más habituales de representación de los datos dentro de un informe son:",
+                options: [
+                    "Indexada y Directa",
+                    "Todas son correctas",
+                    "Por columnas y Continua",
+                    "Tabular y Matriz"
+                ],
+                correct: 3,
+                justification: "Los formatos clásicos en herramientas de informes (como Reporting Services) son Tabular (lista) y Matriz (cruce de datos)[cite: 47, 51]."
+            },
+            {
+                q: "Respecto al layout, la forma más frecuente a la hora de representar datos es:",
+                options: [
+                    "Formulario tubular", /* Sic en examen, se refiere a tabular */
+                    "Formato esquemática",
+                    "Estructura árbol",
+                    "Estructura matriz"
+                ],
+                correct: 0,
+                justification: "El formato tabular es el estándar de facto para la presentación de listas de datos en informes[cite: 52, 53]."
+            },
+            {
+                q: "¿Qué tipo de valores pueden tener los parámetros en los informes?",
+                options: [
+                    "Solo valores numéricos.",
+                    "Solo valores booleanos.",
+                    "Solo valores alfanuméricos.",
+                    "Valores numéricos, alfanuméricos y de fecha"
+                ],
+                correct: 3,
+                justification: "Los informes modernos aceptan parámetros de filtrado de diversos tipos: fechas, textos, números, booleanos, etc. [cite: 101, 105]"
+            },
+            {
+                q: "Una vez concluida la selección de los datos diseñaremos una estructura visual con la forma en que va a ir organizada la información. El formato más frecuente es:",
+                options: [
+                    "formato tabular",
+                    "formato de esquema",
+                    "formato piramidal",
+                    "formato de árbol"
+                ],
+                correct: 0,
+                justification: "El diseño tabular (filas y columnas) es el más utilizado por su claridad y eficiencia espacial[cite: 106, 110]."
+            },
+            {
+                q: "¿Qué partes tiene un informe?",
+                options: [
+                    "Cabecera y pie",
+                    "Cabecera, cuerpo, pie",
+                    "Cabecera",
+                    "Cabecera y cuerpo"
+                ],
+                correct: 1,
+                 justification: "La estructura anatómica básica de un informe incluye Cabecera (Header), Cuerpo/Detalle (Body) y Pie (Footer)[cite: 114, 116]."
+            },
+
+            // --- USABILIDAD ---
+            {
+                q: "¿Qué es la eficiencia en el contexto de las medidas de usabilidad?",
+                options: [
+                    "El grado de satisfacción de los usuarios al utilizar una interfaz",
+                    "La proporción de usuarios que logran completar con éxito una tarea en una interfaz",
+                    "La velocidad con la que los usuarios pueden completar tareas en una interfaz",
+                    "La cantidad de errores cometidos por los usuarios al interactuar con una interfaz"
+                ],
+                correct: 2,
+                justification: "Eficiencia se refiere a los recursos empleados (principalmente tiempo) para lograr el objetivo con precisión[cite: 92, 98]."
+            },
+            {
+                q: "Las herramientas normalmente utilizadas para la evaluación de la usabilidad son:",
+                options: [
+                    "Entrevistas",
+                    "Todas son correctas",
+                    "Test",
+                    "Cuestionarios"
+                ],
+                correct: 1,
+                justification: "La evaluación de usabilidad emplea métodos cualitativos y cuantitativos combinados: entrevistas, tests con usuarios y cuestionarios[cite: 121, 123]."
+            },
+            {
+                q: "La interfaz gráfica de usuario hace referencia a cómo los distintos elementos gráficos permiten comunicarse con un determinado sistema informático. Señala la característica para la utilización de fuentes:",
+                options: [
+                    "Verificación de corrección de errores",
+                    "Utilizar una semántica clara",
+                    "Se debe utilizar un lenguaje no apto para todos los públicos",
+                    "Gráficos como fondo de pantalla"
+                ],
+                correct: 1,
+                justification: "El uso de tipografía debe tener una semántica y legibilidad claras para guiar al usuario[cite: 126, 129]."
+            },
+            {
+                q: "¿Cuál de los siguientes es un principio fundamental, para lograr una buena usabilidad en una interfaz de usuario?",
+                options: [
+                    "Intuitividad.",
+                    "Robustez",
+                    "Estética.",
+                    "Complejidad"
+                ],
+                correct: 0,
+                justification: "La intuitividad (que sea fácil de entender sin aprendizaje previo extenso) es un pilar de la usabilidad[cite: 132, 133]."
+            },
+            {
+                q: "¿Qué es la cualidad de ser recordado, en el contexto de las medidas de usabilidad?",
+                options: [
+                    "La proporción de usuarios que logran completar con éxito una tarea en una interfaz",
+                    "La facilidad con la que los usuarios pueden recordar cómo utilizar una interfaz después de un periodo de no uso.",
+                    "El grado de satisfacción de los usuarios al utilizar una interfaz",
+                    "La velocidad con la que los usuarios pueden completar tareas en una interfaz"
+                ],
+                correct: 1,
+                justification: "Se refiere a la 'Memorabilidad' (Memorability): cuán fácil es restablecer la competencia tras un tiempo sin usar el sistema[cite: 137, 139]."
+            },
+
+            // --- COMPONENTES Y GUI ---
+            {
+                q: "Dentro del componente Button, nos encontramos una serie de atributos, marca los que podamos utilizar en este componente:",
+                options: [
+                    "IsPulsed",
+                    "UndoLimit",
+                    "IsChecked",
+                    "IsEnabled"
+                ],
+                correct: 3,
+                justification: "IsEnabled es una propiedad estándar en casi todos los frameworks GUI para habilitar/deshabilitar la interacción. IsChecked es de CheckBox[cite: 146, 150]."
+            },
+            {
+                q: "¿Qué ventajas NO nos aporta el desarrollo de software basado en componentes?",
+                options: [
+                    "Complejidad en las pruebas",
+                    "Simplicidad en el mantenimiento del sistema",
+                    "Mayor calidad",
+                    "Reutilización de software"
+                ],
+                correct: 0,
+                justification: "La reutilización, calidad y mantenimiento son ventajas claras. La complejidad en pruebas (integración) se considera un desafío o desventaja[cite: 151, 152]."
+            },
+            {
+                q: "¿Cuál de los siguientes atributos es comúnmente utilizado en un ListBox para definir los elementos de la lista?",
+                options: [
+                    "items",
+                    "options",
+                    "values",
+                    "entries"
+                ],
+                correct: 0,
+                justification: "La colección de elementos en un ListBox suele denominarse 'Items' (ej: ListBox.Items)[cite: 156, 157]."
+            },
+            {
+                q: "Definen la relación que existe entre la interfaz y el usuario. Son ventanas de pequeño tamaño, a modo de ventanas emergentes, que permanecerán abiertas hasta que el usuario decida cerrarlas",
+                options: [
+                    "Cuadros de mando",
+                    "Informes",
+                    "Cuadros de diálogo",
+                    "Tooltip"
+                ],
+                correct: 2,
+                justification: "Esta es la definición funcional de los Cuadros de Diálogo (Dialog Boxes)[cite: 170, 174]."
+            },
+            {
+                q: "¿Cuál de los siguientes elementos actúa como un contenedor de controles MXML?",
+                options: [
+                    "ComboBox",
+                    "Grid",
+                    "List",
+                    "CheckBox"
+                ],
+                correct: 1,
+                justification: "Grid es un contenedor de diseño (layout) que organiza hijos en filas y columnas. Los otros son controles de interfaz[cite: 176, 179]."
+            },
+            {
+                q: "¿Cuál de los siguientes atributos es comúnmente utilizado en un CheckBox para indicar si está seleccionado o no?",
+                options: [
+                    "state",
+                    "selected",
+                    "checked",
+                    "value"
+                ],
+                correct: 1,
+                justification: "En frameworks como Flex/MXML (contexto de la pregunta anterior), la propiedad es 'selected'. En HTML es 'checked'[cite: 183, 185]."
+            },
+            {
+                q: "Si queremos que se produzca un evento al pulsar y soltar una tecla, ¿qué método se activará?",
+                options: [
+                    "public void keyPressed (keyEvent e)",
+                    "public void keyPulsed (keyEvent e)",
+                    "public void keyTyped (keyEvent e)",
+                    "public void keyReleased (keyEvent e)"
+                ],
+                correct: 2,
+                justification: "keyTyped se dispara cuando se ha completado la pulsación (pulsar+soltar) generando un carácter. keyReleased es solo al soltar[cite: 188, 191]."
+            },
+            {
+                q: "Dado el siguiente fragmento de código, ¿cuál es el constructor de la clase? public class Alumno...",
+                options: [
+                    "Alumno",
+                    "String getCiclo()",
+                    "public String getNombre()",
+                    "public Alumno()"
+                ],
+                correct: 3,
+                justification: "El constructor en Java/C# tiene el mismo nombre que la clase y no tiene tipo de retorno[cite: 219, 227]."
+            },
+            {
+                q: "Si queremos obtener el nombre del perro, ¿qué método implementaremos?",
+                options: [
+                    "public Int getNombre()",
+                    "public String getNombre()",
+                    "public void getNombre()",
+                    "public Nombre()"
+                ],
+                correct: 1,
+                justification: "Un método 'getter' para un atributo nombre (texto) debe ser público y devolver un String[cite: 230, 244]."
+            },
+            {
+                q: "En la ventana de propiedades de IDE NetBeans, la pestaña Properties:",
+                options: [
+                    "Muestra y permite modificar las propiedades del objeto seleccionado",
+                    "Se permite configurar las fuentes de datos que necesitan propiedades de un elemento.",
+                    "Se pueden crear y modificar eventos asociados a ese objeto",
+                    "Solo muestra las propiedades del objeto seleccionado, pero no permite modificarlas"
+                ],
+                correct: 0,
+                justification: "La hoja de propiedades permite inspeccionar y editar los atributos (color, texto, tamaño) del control seleccionado en tiempo de diseño[cite: 247, 248]."
+            },
+
+            // --- TECNOLOGÍAS ---
+            {
+                q: "¿Qué es Swing en el contexto del desarrollo de interfaces de usuario en Java?",
+                options: [
+                    "Una librería gráfica para crear interfaces de usuario en lenguaje C",
+                    "Un framework de desarrollo web para interfaces de usuario interactivas",
+                    "Una librería de componentes gráficos para crear interfaces de usuario en Java",
+                    "Un lenguaje de programación especifico para el diseño de interfaces gráficas"
+                ],
+                correct: 2,
+                justification: "Swing es el kit de herramientas de widget GUI tradicional de Java[cite: 253, 256]."
+            },
+            {
+                q: "Para un desarrollo rápido de interfaces gráficas de usuario, utilizaremos...:",
+                options: [
+                    "Gtk+",
+                    "Xamarin Studio",
+                    "Blend en Visual Studio",
+                    "Xerces"
+                ],
+                correct: 2,
+                justification: "Blend (parte de Visual Studio) es una herramienta de diseño visual específica para crear interfaces XAML rápidamente[cite: 259, 262]."
+            },
+            {
+                q: "El lenguaje basado en XML que se emplea para definir gráficos vectoriales en 2D es...:",
+                options: [
+                    "JAR",
+                    "SVG",
+                    "JPG",
+                    "GIF"
+                ],
+                correct: 1,
+                justification: "SVG significa Scalable Vector Graphics y usa XML para describir gráficos[cite: 264, 266]."
+            },
+            {
+                q: "¿Cuál de los siguientes NO es un componente del diseño de interfaces con XML?",
+                options: [
+                    "Label",
+                    "Todos son componentes del diseño de interfaces",
+                    "ComboBox",
+                    "CheckBox"
+                ],
+                correct: 1,
+                justification: "Label, ComboBox y CheckBox son todos componentes válidos en lenguajes de interfaz XML como MXML o XAML[cite: 269, 271]."
+            }
+        ];
+
+        // --- LÓGICA DEL TEST ---
+        let quizQuestions = [], failedQuestions = [], currentQuestionIndex = 0;
+        let score = 0, errors = 0, isAnswered = false, isRetryMode = false;
+
+        // Referencias DOM
+        const els = {
+            start: document.getElementById('start-screen'),
+            quiz: document.getElementById('quiz-screen'),
+            result: document.getElementById('result-screen'),
+            status: document.getElementById('status-bar'),
+            nextCont: document.getElementById('next-container'),
+            qText: document.getElementById('question-text'),
+            opts: document.getElementById('options-container'),
+            curQ: document.getElementById('current-q'),
+            totQ: document.getElementById('total-q'),
+            scDisp: document.getElementById('score-display'),
+            errDisp: document.getElementById('errors-display'),
+            fbArea: document.getElementById('feedback-area'),
+            fbTitle: document.getElementById('feedback-title'),
+            fbText: document.getElementById('feedback-text'),
+            fbIcon: document.getElementById('feedback-icon'),
+            startTotal: document.getElementById('start-total-q')
+        };
+
+        // Inicializar
+        els.startTotal.innerText = rawQuestions.length || 0;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function startQuiz(retryMode = false) {
+            isRetryMode = retryMode;
+            let source = retryMode ? failedQuestions : JSON.parse(JSON.stringify(rawQuestions));
+            
+            if (source.length === 0) return alert("No hay preguntas para repasar.");
+
+            // Barajar preguntas y opciones
+            quizQuestions = shuffle([...source]).map(q => {
+                const correctTxt = q.options[q.correct];
+                q.options = shuffle(q.options);
+                q.correct = q.options.indexOf(correctTxt);
+                return q;
+            });
+
+            failedQuestions = [];
+            currentQuestionIndex = 0; score = 0; errors = 0;
+            updateStats();
+            
+            // UI Switch
+            els.start.classList.add('hidden');
+            els.result.classList.add('hidden');
+            els.quiz.classList.remove('hidden');
+            els.status.classList.remove('hidden');
+            els.nextCont.classList.add('hidden'); // Ocultar botón al inicio
+            
+            renderQuestion();
+        }
+
+        function updateStats() {
+            els.curQ.innerText = currentQuestionIndex + 1;
+            els.totQ.innerText = quizQuestions.length;
+            els.scDisp.innerText = score;
+            els.errDisp.innerText = errors;
+        }
+
+        function renderQuestion() {
+            isAnswered = false;
+            const q = quizQuestions[currentQuestionIndex];
+            
+            updateStats();
+            els.qText.innerText = q.q;
+            els.opts.innerHTML = '';
+            els.fbArea.classList.add('hidden');
+            els.nextCont.classList.add('hidden'); // Ocultar botón "Siguiente"
+            
+            // Scroll arriba
+            if(document.querySelector('.overflow-y-auto')) {
+                document.querySelector('.overflow-y-auto').scrollTop = 0;
+            } else {
+                window.scrollTo(0,0);
+            }
+
+            q.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = "option-card w-full text-left p-4 rounded-xl border-2 border-gray-200 bg-white text-gray-700 font-medium flex items-center gap-3 group hover:border-green-300";
+                
+                const letter = String.fromCharCode(65 + index);
+                btn.innerHTML = `<span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-gray-100 text-gray-500 rounded-full font-bold text-sm transition-colors group-hover:bg-green-100 group-hover:text-green-600">${letter}</span><span class="leading-snug">${opt}</span>`;
+                
+                btn.onclick = () => checkAnswer(index, btn);
+                els.opts.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(idx, btn) {
+            if (isAnswered) return;
+            isAnswered = true;
+            const q = quizQuestions[currentQuestionIndex];
+            const isCorrect = idx === q.correct;
+            const allBtns = els.opts.children;
+
+            // Deshabilitar
+            Array.from(allBtns).forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-60', 'cursor-not-allowed');
+                b.classList.remove('hover:border-green-300');
+            });
+            btn.classList.remove('opacity-60');
+
+            if (isCorrect) {
+                score++;
+                styleBtn(btn, 'correct');
+                showFeedback(true, q.justification);
+            } else {
+                errors++;
+                failedQuestions.push(q);
+                styleBtn(btn, 'incorrect');
+                // Mostrar correcta
+                const correctBtn = allBtns[q.correct];
+                correctBtn.classList.remove('opacity-60');
+                styleBtn(correctBtn, 'correct');
+                showFeedback(false, q.justification);
+            }
+            
+            updateStats();
+            // MOSTRAR BOTÓN SIGUIENTE (FIJO ABAJO)
+            els.nextCont.classList.remove('hidden');
+        }
+
+        function styleBtn(btn, type) {
+            btn.classList.remove('border-gray-200', 'bg-white', 'text-gray-700');
+            if (type === 'correct') {
+                btn.classList.add('border-green-500', 'bg-green-50', 'text-green-900');
+                btn.querySelector('span:first-child').className = "flex-shrink-0 w-8 h-8 flex items-center justify-center bg-green-200 text-green-700 rounded-full font-bold text-sm";
+            } else {
+                btn.classList.add('border-red-500', 'bg-red-50', 'text-red-900');
+                btn.querySelector('span:first-child').className = "flex-shrink-0 w-8 h-8 flex items-center justify-center bg-red-200 text-red-700 rounded-full font-bold text-sm";
+            }
+        }
+
+        function showFeedback(isCorrect, text) {
+            els.fbArea.classList.remove('hidden');
+            els.fbIcon.innerHTML = isCorrect ? '<i class="fas fa-check-circle text-green-500"></i>' : '<i class="fas fa-times-circle text-red-500"></i>';
+            els.fbTitle.innerText = isCorrect ? "¡Correcto!" : "Solución Correcta:";
+            els.fbTitle.className = `font-bold text-base mb-1 ${isCorrect ? 'text-green-700' : 'text-red-700'}`;
+            els.fbText.innerText = text || "Sin justificación.";
+            
+            // Scroll suave hacia abajo
+            setTimeout(() => {
+                const container = document.querySelector('.overflow-y-auto');
+                if(container) {
+                    container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+                } else {
+                    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                }
+            }, 100);
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizQuestions.length) {
+                renderQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            els.quiz.classList.add('hidden');
+            els.status.classList.add('hidden');
+            els.nextCont.classList.add('hidden');
+            els.result.classList.remove('hidden');
+
+            const total = quizQuestions.length;
+            const pct = Math.round((score / total) * 100);
+            
+            document.getElementById('final-score-text').innerText = `${score} / ${total}`;
+            document.getElementById('final-progress-bar').style.width = `${pct}%`;
+
+            // Botón Repasar Fallos
+            const retryBtn = document.getElementById('retry-failed-btn');
+            retryBtn.classList.toggle('hidden', failedQuestions.length === 0);
+            if (failedQuestions.length > 0) retryBtn.innerHTML = `<i class="fas fa-hammer"></i> Repasar ${failedQuestions.length} Fallos`;
+
+            // Mensajes
+            const circle = document.getElementById('score-circle');
+            const msg = document.getElementById('score-message');
+            circle.className = "w-32 h-32 mx-auto rounded-full flex items-center justify-center text-5xl shadow-xl relative z-10 bg-white border-4 mb-4";
+
+            if (pct >= 90) {
+                circle.classList.add('border-green-500', 'text-green-600');
+                circle.innerHTML = '<i class="fas fa-trophy"></i>';
+                msg.innerText = "¡IMPRESIONANTE! Nivel Experto 🏆";
+            } else if (pct >= 50) {
+                circle.classList.add('border-blue-500', 'text-blue-600');
+                circle.innerHTML = '<i class="fas fa-thumbs-up"></i>';
+                msg.innerText = "¡Aprobado! Buen trabajo 👍";
+            } else {
+                circle.classList.add('border-red-500', 'text-red-600');
+                circle.innerHTML = '<i class="fas fa-book-open"></i>';
+                msg.innerText = "Toca estudiar más... 📚";
+            }
+        }
+
+        function restartQuiz(retry) {
+            startQuiz(retry);
+        }
+    </script>
+</body>
+</html>
