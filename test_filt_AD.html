@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test AD - Repaso Intensivo</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+    <script data-goatcounter="https://jrenedo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .fade-in { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .btn-option { transition: all 0.2s; }
+        .btn-option:hover { transform: translateX(5px); }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-200 min-h-screen font-sans">
+
+    <div class="fixed top-0 w-full bg-slate-800 border-b border-slate-700 z-10 shadow-lg">
+        <div class="max-w-3xl mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-lg font-bold text-blue-400 flex items-center gap-2">
+                📚 Test Acceso a Datos
+            </h1>
+            <div class="text-sm font-mono">
+                <span id="score" class="text-green-400 font-bold">0</span> Aciertos | 
+                <span id="errors" class="text-red-400 font-bold">0</span> Fallos
+            </div>
+        </div>
+        <div class="h-1 w-full bg-slate-900">
+            <div id="progress-bar" class="h-full bg-blue-500 transition-all duration-300" style="width: 0%"></div>
+        </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto mt-20 p-4 pb-20">
+        
+        <div id="quiz-container" class="bg-slate-800 rounded-xl shadow-2xl p-6 border border-slate-700 relative overflow-hidden">
+            
+            <span id="topic-badge" class="absolute top-0 right-0 bg-slate-700 text-xs text-slate-400 px-3 py-1 rounded-bl-lg font-mono tracking-tighter">
+                TEMA
+            </span>
+
+            <h2 id="question-text" class="text-xl md:text-2xl font-bold text-white mb-6 leading-tight mt-2">
+                Cargando pregunta...
+            </h2>
+
+            <div id="options-container" class="space-y-3">
+                </div>
+
+            <div id="feedback-container" class="hidden mt-6 pt-4 border-t border-slate-700 fade-in">
+                <div id="feedback-title" class="font-bold text-lg mb-1"></div>
+                <p id="feedback-text" class="text-slate-300 text-sm leading-relaxed"></p>
+                <button onclick="nextQuestion()" class="mt-4 w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-lg shadow-lg transform active:scale-95 transition-all">
+                    Siguiente Pregunta ➜
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- BASE DE DATOS DE PREGUNTAS ---
+        const rawQuestions = [
+            // === TEMA: FICHEROS ===
+            {
+                q: "¿Qué es un búfer en el contexto de la gestión de ficheros?",
+                options: [
+                    "Un stream para leer datos secuencialmente desde una conexión de red.",
+                    "Un bloque de memoria que permite almacenar temporalmente los datos para reducir accesos al disco.",
+                    "Un almacén de datos permanente en el disco duro.",
+                    "Una librería XML."
+                ],
+                correct: 1,
+                justification: "El búfer (memoria intermedia) reduce las operaciones de entrada/salida físicas al disco, mejorando el rendimiento."
+            },
+            {
+                q: "¿Qué clase del paquete java.io lee ficheros de texto de manera eficiente utilizando un búfer de entrada?",
+                options: [
+                    "BufferedWriter",
+                    "FileReader",
+                    "BufferedReader",
+                    "FileInputStream"
+                ],
+                correct: 2,
+                justification: "BufferedReader envuelve a un Reader (como FileReader) para añadirle la capacidad de buffering."
+            },
+            {
+                q: "En Java, para asegurar que el separador de directorios en una ruta (/ o \\) sea correcto independientemente del sistema operativo, ¿qué constante de la clase File se debe usar?",
+                options: [
+                    "File.PATH_SEPARATOR",
+                    "File.SEPARATOR", 
+                    "File.OS_SEPARATOR",
+                    "File.SYSTEM_SEPARATOR"
+                ],
+                correct: 1,
+                justification: "Nota: Aunque la convención Java suele ser minúsculas, la constante estática a veces se referencia en mayúsculas en ciertos contextos o exámenes como File.SEPARATOR."
+            },
+            {
+                q: "En el contexto de la documentación de código Java, ¿qué función tiene el tag @since en un bloque de JavaDoc?",
+                options: [
+                    "Sirve para poner el autor del desarrollo.",
+                    "Se usa para definir la versión del método o la clase (desde cuándo existe).",
+                    "Define los parámetros de entrada.",
+                    "Marca el código como obsoleto."
+                ],
+                correct: 1,
+                justification: "@since indica desde qué versión del software está disponible esa funcionalidad."
+            },
+             {
+                q: "¿Qué es un Stream (Flujo) en Java?",
+                options: [
+                    "Un fichero de estilos.",
+                    "Una abstracción que representa una secuencia de datos con un origen y un destino.",
+                    "Una base de datos en memoria.",
+                    "Un tipo de variable estática."
+                ],
+                correct: 1,
+                justification: "Los Streams son canales unidireccionales para mover bytes o caracteres de un origen a un destino."
+            },
+
+            // === TEMA: JDBC / BASES DE DATOS ===
+            {
+                q: "¿Cuál es la principal característica y ventaja de una base de datos embebida?",
+                options: [
+                    "Requiere una interfaz externa para su mantenimiento.",
+                    "Se conecta a través de un driver ODBC.",
+                    "Se instala y se ejecuta como parte del software de la aplicación, siendo invisible para el usuario.",
+                    "Es ideal para gestionar grandes cantidades de datos distribuidos."
+                ],
+                correct: 2,
+                justification: "Al ser embebida (como SQLite o H2), vive dentro de tu propia aplicación Java, no necesita un servidor separado."
+            },
+            {
+                q: "¿Cuál es el principal propósito de la API JDBC (Java Database Connectivity)?",
+                options: [
+                    "Implementar MVC.",
+                    "Establecer una conexión y comunicación uniforme entre una aplicación Java y un controlador de base de datos relacional.",
+                    "Permitir la creación de bases de datos embebidas.",
+                    "Facilitar el mapeo Objeto-Relacional (ORM)."
+                ],
+                correct: 1,
+                justification: "JDBC es el estándar de bajo nivel para que Java 'hable' SQL con cualquier base de datos."
+            },
+            {
+                q: "¿Qué interfaz JDBC se utiliza exclusivamente para recoger el resultado de una consulta de selección (SELECT)?",
+                options: [
+                    "ResultSet",
+                    "Connection",
+                    "Statement",
+                    "CallableStatement"
+                ],
+                correct: 0,
+                justification: "ResultSet es la 'hoja de resultados' que te devuelve la base de datos tras un SELECT."
+            },
+            {
+                q: "¿Cuál es la interfaz JDBC recomendada para ejecutar operaciones SQL con parámetros dinámicos (?) por seguridad?",
+                options: [
+                    "CallableStatement",
+                    "PreparedStatement",
+                    "Statement",
+                    "ResultSet"
+                ],
+                correct: 1,
+                justification: "PreparedStatement precompila la consulta y usa '?' para evitar la inyección SQL."
+            },
+            {
+                q: "¿Qué método de la interfaz Connection debe establecerse a false para poder gestionar las transacciones de manera manual?",
+                options: [
+                    "commit()",
+                    "getConnection()",
+                    "rollback()",
+                    "setAutoCommit(boolean)"
+                ],
+                correct: 3,
+                justification: "conn.setAutoCommit(false) desactiva el guardado automático, obligándote a hacer commit() o rollback() manualmente."
+            },
+
+            // === TEMA: XML / NATIVAS ===
+            {
+                q: "¿Cuál de las siguientes opciones se considera una ventaja de las Bases de Datos Nativa XML?",
+                options: [
+                    "La indexación es sencilla como en relacional.",
+                    "El espacio es mínimo.",
+                    "Permiten guardar datos de forma heterogénea y recuperar su integridad y estado original.",
+                    "Modificación atómica en cualquier parte."
+                ],
+                correct: 2,
+                justification: "Son ideales para datos semi-estructurados o heterogéneos donde el esquema varía."
+            },
+            {
+                q: "El lenguaje XQuery está considerado como una extensión directa de qué otro estándar:",
+                options: [
+                    "XPath 2.0",
+                    "XSLT",
+                    "XML Schema",
+                    "XUpdate"
+                ],
+                correct: 0,
+                justification: "XQuery incluye a XPath 2.0 completo. Todo XPath es un XQuery válido."
+            },
+            {
+                q: "¿Qué lenguaje es utilizado por las BBDD Nativas XML para recorrer los nodos de un documento?",
+                options: [
+                    "XUpdate",
+                    "DOM",
+                    "XSLT",
+                    "XPath"
+                ],
+                correct: 3,
+                justification: "XPath es el lenguaje de 'rutas' para navegar por el árbol XML."
+            },
+            {
+                q: "¿Cuál es la característica principal de una Base de Datos Nativa XML (NXD)?",
+                options: [
+                    "Indexación sencilla por defecto.",
+                    "Guarda los datos exclusivamente en documentos XML, basándose en un modelo lógico (DOM).",
+                    "Almacena datos en tablas relacionales.",
+                    "Usa un motor BLOB."
+                ],
+                correct: 1,
+                justification: "Mantiene la estructura de árbol del XML, no lo rompe en tablas."
+            },
+            {
+                q: "¿Qué lenguaje de consulta se utiliza habitualmente para bases de datos XML?",
+                options: [
+                    "HQL",
+                    "OQL",
+                    "SQL",
+                    "XQuery (XML Query Language)"
+                ],
+                correct: 3,
+                justification: "XQuery es el estándar W3C para consultar colecciones XML."
+            },
+            {
+                q: "En eXist-db, ¿qué se entiende por 'recurso' y a qué equivale en un sistema de archivos?",
+                options: [
+                    "Un servicio.",
+                    "Una colección.",
+                    "Un controlador.",
+                    "Un fichero o documento (XML o binario)."
+                ],
+                correct: 3,
+                justification: "Colección = Carpeta. Recurso = Fichero."
+            },
+            {
+                q: "En una Base de Datos Nativa XML, ¿qué elemento desempeña un rol análogo al de las TABLAS en relacional?",
+                options: [
+                    "Las colecciones.",
+                    "Los identificadores.",
+                    "Los nodos XML.",
+                    "Los recursos."
+                ],
+                correct: 0,
+                justification: "Agrupamos los documentos XML dentro de 'Colecciones', igual que agrupamos filas en 'Tablas'."
+            },
+            {
+                q: "¿Qué API de análisis sintáctico (parser) carga el documento XML completo en memoria como un árbol?",
+                options: [
+                    "DOM (Document Object Model)",
+                    "SAX",
+                    "XQuery",
+                    "JAXB"
+                ],
+                correct: 0,
+                justification: "DOM crea todo el árbol en RAM, lo que permite navegar adelante y atrás pero consume mucha memoria."
+            },
+
+            // === TEMA: HIBERNATE / ORM ===
+            {
+                q: "¿Qué representa el llamado 'desfase objeto-relacional' (Impedance Mismatch)?",
+                options: [
+                    "La diferencia estructural y de relaciones entre la POO (Objetos) y las Bases de Datos Relacionales.",
+                    "Un error de conexión JDBC.",
+                    "La necesidad de usar DDL.",
+                    "Un fallo de latencia."
+                ],
+                correct: 0,
+                justification: "Los objetos tienen herencia y grafos; las tablas tienen filas y claves foráneas. Encajarlos es difícil."
+            },
+            {
+                q: "¿Qué interfaz de la API JPA es la encargada de gestionar el ciclo de vida de las entidades (persist, merge, remove)?",
+                options: [
+                    "EntityTransaction",
+                    "PersistenceUnit",
+                    "EntityManager",
+                    "EntityManagerFactory"
+                ],
+                correct: 2,
+                justification: "El EntityManager es el 'jefe' que gestiona las entidades en JPA."
+            },
+            {
+                q: "¿Cuál es una característica clave del HQL (Hibernate Query Language)?",
+                options: [
+                    "Requiere SQL nativo.",
+                    "Solo se ejecuta en consola.",
+                    "Está acoplado al gestor de BBDD.",
+                    "Es orientado a objetos y es independiente del gestor de BBDD."
+                ],
+                correct: 3,
+                justification: "HQL trabaja con CLASES Java (ej: 'from Cliente'), no con TABLAS SQL."
+            },
+            {
+                q: "¿Cuál es la función principal de la interfaz Session en Hibernate?",
+                options: [
+                    "Configuración inicial.",
+                    "Transformar objetos a SQL.",
+                    "Es un objeto ligero que gestiona las transacciones y operaciones CRUD de objetos persistentes.",
+                    "Cerrar la SessionFactory."
+                ],
+                correct: 2,
+                justification: "Session es la interfaz principal de trabajo en Hibernate clásico."
+            },
+            {
+                q: "En el ciclo de vida Hibernate, ¿en qué estado está un objeto que tiene ID en la base de datos y está asociado a una sesión activa?",
+                options: [
+                    "Transitorio (Transient)",
+                    "Persistente (Persistent)",
+                    "Ligado (Bound)",
+                    "Separado (Detached)"
+                ],
+                correct: 1,
+                justification: "Persistent: Tiene ID y la sesión lo está vigilando."
+            },
+            {
+                q: "¿Qué anotación se utiliza para indicar que un atributo NO se debe guardar en la base de datos?",
+                options: [
+                    "@Id",
+                    "@OrderBy",
+                    "@Transient",
+                    "@Column"
+                ],
+                correct: 2,
+                justification: "@Transient marca el atributo como 'no persistente' (Hibernate lo ignora)."
+            },
+            {
+                q: "¿Cuál es la técnica principal del ORM?",
+                options: [
+                    "La conversión automática de los datos de objetos a los atributos de las tablas relacionales y viceversa.",
+                    "Sustitución de SQL por código nativo.",
+                    "Creación de BBDD orientadas a objetos.",
+                    "Uso exclusivo de JDBC."
+                ],
+                correct: 0,
+                justification: "Mapear (traducir) el mundo de objetos al mundo de tablas automáticamente."
+            },
+            {
+                q: "En un archivo de mapeo Hibernate (.hbm.xml), ¿qué elemento define la clave primaria?",
+                options: [
+                    "<generator>",
+                    "<property>",
+                    "<class>",
+                    "<id>"
+                ],
+                correct: 3,
+                justification: "La etiqueta <id> se usa en los XML antiguos de Hibernate para la Primary Key."
+            },
+            {
+                q: "¿Cuál de las siguientes características destaca la independencia de la base de datos en las herramientas ORM?",
+                options: [
+                    "Solo compatibles con una BBDD.",
+                    "Necesidad de reescribir consultas.",
+                    "Uso obligatorio de XML.",
+                    "La abstracción permite escribir consultas independientemente del gestor, facilitando la migración."
+                ],
+                correct: 3,
+                justification: "Dialectos: Cambias el dialecto y Hibernate traduce el HQL a Oracle, MySQL o lo que sea."
+            },
+
+            // === TEMA: PL/SQL Y OBJETOS ===
+            {
+                q: "En PL/SQL, ¿qué tipo de dato se usa para almacenar datos complejos y grandes como imágenes o videos?",
+                options: [
+                    "NUMBER",
+                    "LARGE OBJECT (LOB)",
+                    "BOOLEAN",
+                    "BINARY_INTEGER"
+                ],
+                correct: 1,
+                justification: "LOB (Large Object). BLOB para binarios (fotos), CLOB para caracteres (textos largos)."
+            },
+            {
+                q: "Una característica de las BDOO es la Encapsulación. ¿En qué consiste?",
+                options: [
+                    "La ocultación de información del objeto, evitando accesos incorrectos.",
+                    "Operación aplicable a distintas clases.",
+                    "Crear nuevos tipos a partir de existentes.",
+                    "Representación en filas y columnas."
+                ],
+                correct: 0,
+                justification: "Encapsular es proteger los datos internos y solo exponer métodos públicos."
+            },
+            {
+                q: "¿Qué comando DDL elimina por completo una tabla y todos sus registros?",
+                options: [
+                    "DROP",
+                    "DELETE",
+                    "ALTER",
+                    "RENAME"
+                ],
+                correct: 0,
+                justification: "DROP destruye el objeto. DELETE solo vacía los datos."
+            },
+            {
+                q: "En OQL (y XQuery FLWOR), ¿qué símbolo se suele utilizar para definir una variable?",
+                options: [
+                    "$ (Dólar)",
+                    "@",
+                    "#",
+                    "%"
+                ],
+                correct: 0,
+                justification: "En expresiones FLWOR (XQuery) las variables SIEMPRE llevan '$' delante (ej: $x)."
+            },
+            {
+                q: "¿Qué sentencia SQL (DDL) se usa en PL/SQL para crear un nuevo tipo de dato objeto?",
+                options: [
+                    "CREATE CLASS",
+                    "CREATE TYPE",
+                    "DECLARE OBJECT",
+                    "CREATE OBJECT"
+                ],
+                correct: 1,
+                justification: "La sintaxis Oracle es CREATE TYPE nombre_tipo AS OBJECT..."
+            },
+            {
+                q: "¿Qué sección de un bloque PL/SQL es obligatoria y contiene la lógica principal?",
+                options: [
+                    "EXCEPTION",
+                    "END",
+                    "BEGIN",
+                    "DECLARE"
+                ],
+                correct: 2,
+                justification: "Un bloque anónimo siempre necesita BEGIN ... END. (DECLARE y EXCEPTION son opcionales)."
+            },
+            {
+                q: "En BDOO, ¿cómo se define el polimorfismo?",
+                options: [
+                    "Ocultación de datos.",
+                    "La propiedad de una operación que puede aplicarse a objetos de distinta clase.",
+                    "Capacidad de guardar sin mapeo.",
+                    "Relación jerárquica."
+                ],
+                correct: 1,
+                justification: "Polimorfismo: Una misma orden (ej: 'dibujar()') funciona distinto según si el objeto es un Círculo o un Cuadrado."
+            },
+            {
+                q: "¿Qué utiliza OQL en sus sentencias en lugar de los nombres de tablas?",
+                options: [
+                    "El nombre de los atributos de la clase Java / Nombres de Clases.",
+                    "Nombres de ficheros.",
+                    "Direcciones de memoria.",
+                    "IDs numéricos."
+                ],
+                correct: 0,
+                justification: "OQL consulta sobre el modelo de objetos (Clases), no sobre el modelo relacional (Tablas)."
+            },
+
+            // === TEMA: EJB / COMPONENTES ===
+            {
+                q: "¿Qué tipo de EJB Session Bean mantiene el estado de conversación (Stateful)?",
+                options: [
+                    "Singleton",
+                    "Message Driven",
+                    "Stateful",
+                    "Stateless"
+                ],
+                correct: 2,
+                justification: "Stateful = Con estado. Recuerda los datos del cliente entre varias llamadas."
+            },
+            {
+                q: "¿Qué IDE es conocido por facilitar el desarrollo por módulos (Platform)?",
+                options: [
+                    "JBuilder",
+                    "IntelliJ Idea",
+                    "NetBeans",
+                    "Eclipse"
+                ],
+                correct: 2,
+                justification: "NetBeans es famoso por su 'NetBeans Platform' para aplicaciones modulares de escritorio."
+            },
+            {
+                q: "En EJB, ¿qué anotación indica que los métodos pueden ser invocados por un cliente remoto?",
+                options: [
+                    "@Entity",
+                    "@Remote",
+                    "@Stateless",
+                    "@Local"
+                ],
+                correct: 1,
+                justification: "@Remote expone el bean fuera de la máquina virtual Java (JVM) actual."
+            },
+            {
+                q: "En JavaBeans, ¿cómo se llama la propiedad que representa una lista de valores accesible por índice?",
+                options: [
+                    "Propiedad Restringida",
+                    "Propiedad Indexada",
+                    "Propiedad Ligada",
+                    "Propiedad Simple"
+                ],
+                correct: 1,
+                justification: "Indexada (Indexed) = Array o Lista. Se accede con un índice numérico."
+            },
+            {
+                q: "¿Cuál NO es un tipo principal de EJB?",
+                options: [
+                    "Beans de Entidad (Entity Beans)",
+                    "Beans de Interfaz (Interface Beans)",
+                    "Beans Controlados por Mensajes (MDB)",
+                    "Beans de Sesión (Session Beans)"
+                ],
+                correct: 1,
+                justification: "Los tipos reales son Session, Entity (aunque ahora es JPA) y MessageDriven. 'Interface Bean' no existe."
+            },
+            {
+                q: "¿Qué propiedad de un Java Bean desencadena un evento cuando su valor cambia?",
+                options: [
+                    "Propiedad Restringida",
+                    "Propiedad Simple",
+                    "Propiedad Indexada",
+                    "Propiedad Ligada (Bound)"
+                ],
+                correct: 3,
+                justification: "Bound (Ligada) avisa a los 'listeners' cuando cambia su valor."
+            }
+        ];
+
+        // --- LÓGICA DEL TEST ---
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let errors = 0;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function initQuiz() {
+            // Clonamos y barajamos preguntas
+            questions = shuffle([...rawQuestions]);
+            currentQuestionIndex = 0;
+            score = 0;
+            errors = 0;
+            updateScore();
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const q = questions[currentQuestionIndex];
+            const total = questions.length;
+            const progress = ((currentQuestionIndex) / total) * 100;
+            
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            document.getElementById('question-text').innerText = `${currentQuestionIndex + 1}/${total}. ${q.q}`;
+            
+            // Detectar tema (simple heurística por texto)
+            let topic = "GENERAL";
+            if(q.q.includes("File") || q.q.includes("stream") || q.q.includes("búfer")) topic = "FICHEROS";
+            else if(q.q.includes("JDBC") || q.q.includes("SQL")) topic = "JDBC";
+            else if(q.q.includes("XML") || q.q.includes("eXist") || q.q.includes("XQuery")) topic = "XML/NXD";
+            else if(q.q.includes("Hibernate") || q.q.includes("ORM") || q.q.includes("JPA")) topic = "HIBERNATE";
+            else if(q.q.includes("EJB") || q.q.includes("Bean")) topic = "COMPONENTES";
+            
+            document.getElementById('topic-badge').innerText = topic;
+
+            // Resetear UI
+            document.getElementById('feedback-container').classList.add('hidden');
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            // Preparar opciones barajadas pero manteniendo referencia al índice original correcto
+            let indices = q.options.map((_, i) => i);
+            indices = shuffle(indices);
+
+            indices.forEach(i => {
+                const btn = document.createElement('button');
+                btn.className = "btn-option w-full text-left p-4 rounded-lg bg-slate-700 hover:bg-slate-600 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-400";
+                btn.innerText = q.options[i];
+                btn.onclick = () => checkAnswer(i, q.correct, btn, indices);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIndex, correctIndex, btnElement, allIndices) {
+            // Deshabilitar botones
+            const buttons = document.querySelectorAll('.btn-option');
+            buttons.forEach(b => b.disabled = true);
+
+            const isCorrect = selectedIndex === correctIndex;
+            const q = questions[currentQuestionIndex];
+
+            if (isCorrect) {
+                btnElement.classList.remove('bg-slate-700', 'hover:bg-slate-600');
+                btnElement.classList.add('bg-green-600', 'border-green-400', 'text-white');
+                document.getElementById('feedback-title').innerHTML = "<span class='text-green-400'>¡CORRECTO! 🎉</span>";
+                score++;
+            } else {
+                btnElement.classList.remove('bg-slate-700', 'hover:bg-slate-600');
+                btnElement.classList.add('bg-red-600', 'border-red-400', 'text-white');
+                document.getElementById('feedback-title').innerHTML = "<span class='text-red-400'>INCORRECTO ❌</span>";
+                errors++;
+                
+                // Buscar y resaltar la correcta
+                buttons.forEach((b, idx) => {
+                    // El botón idx corresponde al índice allIndices[idx] de las opciones originales
+                    if (allIndices[idx] === correctIndex) {
+                        b.classList.remove('bg-slate-700');
+                        b.classList.add('bg-green-600', 'border-green-400', 'ring-2', 'ring-green-400');
+                    }
+                });
+            }
+
+            updateScore();
+            
+            // Mostrar justificación
+            document.getElementById('feedback-text').innerText = q.justification;
+            document.getElementById('feedback-container').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                // Fin del test
+                const finalScore = (score / questions.length * 10).toFixed(1);
+                document.getElementById('quiz-container').innerHTML = `
+                    <div class="text-center py-10">
+                        <h2 class="text-4xl font-bold text-yellow-400 mb-4">¡TEST FINALIZADO!</h2>
+                        <p class="text-2xl text-white mb-6">Tu nota: <span class="font-bold ${finalScore >= 5 ? 'text-green-400' : 'text-red-400'}">${finalScore} / 10</span></p>
+                        <p class="text-slate-400 mb-8">Has acertado ${score} de ${questions.length} preguntas.</p>
+                        <button onclick="location.reload()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg transform hover:scale-105 transition-all">
+                            🔄 Repetir Test
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        function updateScore() {
+            document.getElementById('score').innerText = score;
+            document.getElementById('errors').innerText = errors;
+        }
+
+        // Arrancar
+        initQuiz();
+    </script>
+</body>
+</html>
