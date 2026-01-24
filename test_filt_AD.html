@@ -146,359 +146,280 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
- 
-           // --- BASE DE DATOS DE PREGUNTAS (SINTAXIS CORREGIDA) ---
+// --- BASE DE DATOS LITERAL (41 PREGUNTAS FILTRADAS) ---
         const rawQuestions = [
             
-            // --- PÁGINA 1 y 8 (JDBC) ---
+            // --- BLOQUE 1: JDBC Y BASES DE DATOS ---
             {
                 q: "¿Cuál es la principal característica y ventaja de una base de datos embebida?",
                 options: [
-                    "Requiere una interfaz externa para su mantenimiento, lo que aumenta la seguridad",
-                    "Se conecta a través de un driver ODBC y requiere mapeo Objeto-Relacional",
-                    "Se instala y se ejecuta como parte del software de la aplicación, siendo invisible para el usuario",
-                    "Es ideal para gestionar grandes cantidades de datos que requieren la intervención del usuario final"
+                    "Requiere una interfaz externa para su mantenimiento, lo que aumenta la seguridad.",
+                    "Se conecta a través de un driver ODBC y requiere mapeo Objeto-Relacional.",
+                    "Se instala y se ejecuta como parte del software de la aplicación, siendo invisible para el usuario.",
+                    "Es ideal para gestionar grandes cantidades de datos que requieren la intervención del usuario final."
                 ],
                 correct: 2,
-                justification: "Las bases embebidas residen dentro de la propia aplicación."
+                justification: "Se integra dentro de la propia aplicación (como H2 o SQLite) sin necesitar un servidor independiente."
             },
             {
                 q: "¿Cuál es el principal propósito de la API JDBC (Java Database Connectivity)?",
                 options: [
-                    "Implementar la arquitectura Modelo-Vista-Controlador (MVC) para la persistencia",
-                    "Establecer una conexión y comunicación uniforme entre una aplicación Java y un controlador de base de datos relacional",
-                    "Permitir la creación de bases de datos embebidas",
-                    "Facilitar el mapeo Objeto-Relacional (ORM) en Java"
+                    "Implementar la arquitectura Modelo-Vista-Controlador (MVC) para la persistencia.",
+                    "Establecer una conexión y comunicación uniforme entre una aplicación Java y un controlador de base de datos relacional.",
+                    "Permitir la creación de bases de datos embebidas.",
+                    "Facilitar el mapeo Objeto-Relacional (ORM) en Java."
                 ],
                 correct: 1,
-                justification: "JDBC actúa como un puente estándar entre Java y cualquier base de datos SQL."
+                justification: "Es el estándar que permite a Java 'hablar' SQL con cualquier base de datos relacional."
             },
-
-            // --- PÁGINA 2, 5 y 6 (XML y NATIVAS) ---
-            {
-                q: "¿Cuál de las siguientes opciones se considera una ventaja de las Bases de Datos Nativa XML?",
-                options: [
-                    "La indexación de su contenido es tan sencilla como en una base de datos relacional",
-                    "La modificación de datos se realiza de forma atómica sobre cualquier parte del documento",
-                    "El espacio de almacenamiento es mínimo",
-                    "Permiten guardar datos de forma heterogénea y recuperar su integridad y estado original"
-                ],
-                correct: 3,
-                justification: "Permiten flexibilidad total en la estructura de los datos (heterogéneos)."
-            },
-            
-            // --- PÁGINA 2 (EJB y COMPONENTES) ---
-            {
-                q: "¿Qué tipo de EJB Session Bean se caracteriza por mantener el estado de conversación de un cliente a través de múltiples solicitudes, con variables de instancia que representan un estado único de sesión?",
-                options: [
-                    "Singleton",
-                    "Message Driven",
-                    "Stateful",
-                    "Stateless"
-                ],
-                correct: 2,
-                justification: "Stateful mantiene el estado conversacional."
-            },
-            {
-                q: "¿Qué Integrated Development Environment (IDE) es particularmente conocido por facilitar el desarrollo de aplicaciones por módulos o componentes, siendo considerado un IDE ideal para este tipo de arquitectura?",
-                options: [
-                    "JBuilder",
-                    "IntelliJ Idea",
-                    "NetBeans",
-                    "Eclipse"
-                ],
-                correct: 2,
-                justification: "NetBeans destaca por su plataforma modular."
-            },
-            {
-                q: "Dentro de la arquitectura EJB, ¿cuál es la anotación que debe usarse en una interfaz de negocio para indicar que sus métodos pueden ser invocados por un cliente remoto?",
-                options: [
-                    "@Entity",
-                    "@Remote",
-                    "@Stateless",
-                    "@Local"
-                ],
-                correct: 1,
-                justification: "@Remote expone la interfaz fuera de la JVM."
-            },
-
-            // --- PÁGINA 3 (JAVABEANS y EJB) ---
-            {
-                q: "En el modelo JavaBeans, ¿cómo se denomina la propiedad que representa una lista de valores (como un array) y que proporciona métodos específicos para acceder y modificar elementos individuales a través de un índice?",
-                options: [
-                    "Propiedad Restringida",
-                    "Propiedad Indexada",
-                    "Propiedad Ligada",
-                    "Propiedad Simple"
-                ],
-                correct: 1,
-                justification: "Propiedad Indexada permite acceso tipo array[i]."
-            },
-            {
-                q: "¿Cuál de los siguientes no es un tipo principal de Enterprise Java Bean (EJB)?",
-                options: [
-                    "Beans de Entidad (Entity Beans)",
-                    "Beans de Interfaz (Interface Beans)",
-                    "Beans Controlados por Mensajes (Message Driven Beans)",
-                    "Beans de Sesión (Session Beans)"
-                ],
-                correct: 1,
-                justification: "'Beans de Interfaz' no existe como tipo de EJB."
-            },
-            {
-                q: "¿Qué interfaz de la API JPA es la encargada de gestionar el ciclo de vida de las entidades (como persist, merge o remove) y de ejecutar las acciones entre las entidades y la base de datos?",
-                options: [
-                    "Entity Transaction",
-                    "Persistence Unit",
-                    "EntityManager",
-                    "EntityManagerFactory"
-                ],
-                correct: 2,
-                justification: "EntityManager gestiona las operaciones de persistencia."
-            },
-            {
-                q: "¿Qué tipo de propiedad de un Java Bean desencadena un evento cuando su valor cambia, requiriendo los métodos addPropertyChangeListener() y removePropertyChangeListener()?",
-                options: [
-                    "Propiedad Restringida",
-                    "Propiedad Simple",
-                    "Propiedad Indexada",
-                    "Propiedad Ligada (Bound)"
-                ],
-                correct: 3,
-                justification: "Bound Properties notifican cambios."
-            },
-
-            // --- PÁGINA 4 (PL/SQL y ODOO) ---
-            {
-                q: "En PL/SQL, los tipos de datos se clasifican en scalar y otro tipo que se utiliza para almacenar datos más complejos y grandes como imágenes o videos. ¿Cuál es este otro tipo?",
-                options: [
-                    "NUMBER",
-                    "LARGE OBJECT (LOB)",
-                    "BOOLEAN",
-                    "BINARY_INTEGER"
-                ],
-                correct: 1,
-                justification: "LOB maneja objetos grandes binarios o de texto."
-            },
-            {
-                q: "Una de las principales características de las Bases de Datos Orientadas a Objetos (BDOO), heredada de la programación orientada a objetos, es la Encapsulación. ¿En qué consiste?",
-                options: [
-                    "La ocultación de información del objeto, evitando accesos o modificaciones incorrectas o no autorizadas",
-                    "La propiedad de una operación que puede aplicarse a objetos de distinta clase",
-                    "La capacidad de crear nuevos tipos de objetos a partir de los ya existentes",
-                    "La representación de la información mediante filas y columnas de una tabla"
-                ],
-                correct: 0,
-                justification: "Encapsulación protege el estado interno."
-            },
-            {
-                q: "El lenguaje XQuery está considerado como una extensión directa de qué otro estándar de lenguajes de consulta XML:",
-                options: [
-                    "XPath 2.0",
-                    "XSLT",
-                    "XML Schema",
-                    "XUpdate"
-                ],
-                correct: 0,
-                justification: "XQuery es un superconjunto de XPath 2.0."
-            },
-            {
-                q: "¿Qué lenguaje, según el contenido, es utilizado por las Bases de Datos Nativa XML para recorrer los nodos de un documento?",
-                options: [
-                    "XUpdate",
-                    "DOM",
-                    "XSLT",
-                    "XPath"
-                ],
-                correct: 3,
-                justification: "XPath recorre el árbol de nodos."
-            },
-
-            // --- PÁGINA 5 (XML y NATIVAS) ---
-            {
-                q: "¿Cuál es la característica principal de una Base de Datos Nativa XML (NXD)?",
-                options: [
-                    "Se caracteriza por una indexación sencilla y rápida de todos sus contenidos por defecto",
-                    "Guarda los datos exclusivamente en documentos XML, basándose en un modelo lógico para ellos",
-                    "Almacena los datos en tablas relacionales para su fácil consulta",
-                    "Utiliza un motor de almacenamiento de tipo BLOB para la persistencia del documento completo"
-                ],
-                correct: 1,
-                justification: "Su modelo lógico es el XML (árbol), no tablas."
-            },
-            {
-                q: "¿Qué lenguaje de consulta se utiliza habitualmente para bases de datos XML?",
-                options: [
-                    "HQL (Hibernate Query Language)",
-                    "OQL (Object Query Language)",
-                    "SQL (Structured Query Language)",
-                    "XQuery (XML Query Language)"
-                ],
-                correct: 3,
-                justification: "XQuery es el estándar para consultar XML."
-            },
-            {
-                q: "En el contexto de la base de datos eXist-db, ¿qué se entiende por 'recurso' y a qué equivaldría en un sistema de archivos?",
-                options: [
-                    "Un servicio, equivalente a un programa ejecutable",
-                    "Una colección, equivalente a una carpeta",
-                    "Un controlador, equivalente a un driver",
-                    "Un fichero o documento, que puede ser XML o binario"
-                ],
-                correct: 3,
-                justification: "Recurso es el equivalente a fichero."
-            },
-            {
-                q: "En una Base de Datos Nativa XML, ¿qué elemento desempeña un rol análogo al de las tablas en una base de datos relacional?",
-                options: [
-                    "Las colecciones",
-                    "Los identificadores únicos (ID)",
-                    "Los nodos XML",
-                    "Los recursos"
-                ],
-                correct: 0,
-                justification: "Colecciones agrupan documentos (como Tablas agrupan filas)."
-            },
-
-            // --- PÁGINA 6 (HIBERNATE) ---
-            {
-                q: "¿Cuál es una característica clave del HQL (Hibernate Query Language)?",
-                options: [
-                    "Requiere la creación de sentencias SQL nativas para todas las operaciones de selección de datos",
-                    "Es un lenguaje que solo puede ejecutarse directamente en la consola de la base de datos",
-                    "Está totalmente acoplado al gestor de bases de datos relacionales utilizado",
-                    "Es un lenguaje de consulta orientado a objetos que utiliza clases y atributos en lugar de tablas y columnas, y es independiente del gestor de BBDD"
-                ],
-                correct: 3,
-                justification: "HQL abstrae la base de datos usando clases y objetos."
-            },
-            {
-                q: "¿Cuál de las siguientes características destaca la independencia de la base de datos en las herramientas ORM?",
-                options: [
-                    "La limitación a ser solo compatibles con un único tipo de base de datos relacional",
-                    "La necesidad de reescribir las consultas si se migra a otra base de datos",
-                    "La obligatoriedad de usar únicamente el mapeo mediante ficheros XML",
-                    "La abstracción que permite escribir consultas independientemente del gestor de base de datos que se esté utilizando, facilitando la migración"
-                ],
-                correct: 3,
-                justification: "Facilita cambiar de BBDD sin tocar el código."
-            },
-            {
-                q: "¿Cuál es la función principal de la interfaz Session en Hibernate?",
-                options: [
-                    "Se encarga de la configuración inicial de la conexión a la base de datos",
-                    "Se usa exclusivamente para transformar objetos Java a sentencias SQL",
-                    "Es un objeto ligero y seguro que gestiona las transacciones y proporciona operaciones CRUD para los objetos persistentes",
-                    "Se utiliza para cerrar definitivamente la SessionFactory"
-                ],
-                correct: 2,
-                justification: "Session es la interfaz principal para operaciones CRUD."
-            },
-            {
-                q: "En el ciclo de vida de un objeto gestionado por Hibernate, ¿en qué estado se encuentra una instancia de clase persistente cuando tiene una representación en la base de datos con un identificador y está asociada a una sesión?",
-                options: [
-                    "Estado Transitorio (Transient)",
-                    "Estado Persistente (Persistent)",
-                    "Estado Ligado (Bound)",
-                    "Estado Separado (Detached)"
-                ],
-                correct: 1,
-                justification: "Persistent: Conectado a la DB y a la sesión."
-            },
-
-            // --- PÁGINA 7 (OQL y PL/SQL) ---
-            {
-                q: "En el lenguaje de consultas para objetos (OQL), ¿qué símbolo se utiliza para definir una variable, como las que se usan en las expresiones FLWOR?",
-                options: [
-                    "@",
-                    "$",
-                    "#",
-                    "%"
-                ],
-                correct: 1,
-                justification: "El símbolo $ se usa para variables."
-            },
-            {
-                q: "¿Qué sentencia de SQL (Data Definition Language) se utiliza en PL/SQL para crear un nuevo tipo de dato que encapsula una estructura de datos y métodos, conocido como objeto?",
-                options: [
-                    "CREATE CLASS",
-                    "CREATE TYPE",
-                    "DECLARE OBJECT",
-                    "CREATE OBJECT"
-                ],
-                correct: 1,
-                justification: "CREATE TYPE es el comando DDL correcto."
-            },
-            {
-                q: "¿Cuál de las siguientes secciones de un bloque PL/SQL es obligatoria y contiene la lógica principal y las sentencias SQL que deben ejecutarse?",
-                options: [
-                    "EXCEPTION",
-                    "END",
-                    "BEGIN",
-                    "DECLARE"
-                ],
-                correct: 2,
-                justification: "BEGIN inicia el bloque ejecutable obligatorio."
-            },
-            {
-                q: "En el contexto de la orientación a objetos en bases de datos, ¿cómo se define el polimorfismo?",
-                options: [
-                    "La ocultación de datos de un objeto, permitiendo su modificación solo por operaciones definidas por el objeto",
-                    "La propiedad de una operación que puede aplicarse a objetos de distinta clase, ofreciendo una respuesta diferente",
-                    "La capacidad de un objeto de guardar sus datos en la base de datos sin un mapeo explícito",
-                    "La relación jerárquica entre una clase general y una más específica"
-                ],
-                correct: 1,
-                justification: "Polimorfismo: Misma operación, distinto comportamiento según la clase."
-            },
-            {
-                q: "¿Qué elementos utiliza el lenguaje de consultas para objetos (OQL) en sus sentencias en lugar de los nombres de las tablas del modelo relacional?",
-                options: [
-                    "El nombre de los atributos de la clase Java",
-                    "Los nombres de las Clases",
-                    "Los nombres de los ficheros",
-                    "Las direcciones de memoria"
-                ],
-                correct: 1,
-                justification: "OQL usa nombres de Clases en vez de Tablas."
-            },
-
-            // --- PÁGINA 8 y 9 (JDBC) ---
             {
                 q: "¿Qué interfaz JDBC se utiliza exclusivamente para recoger el resultado de una consulta de selección (SELECT) en forma de tabla de datos, permitiendo el avance solo hacia adelante a través de los registros?",
                 options: [
-                    "ResultSet",
-                    "Connection",
-                    "Statement",
-                    "CallableStatement"
+                    "ResultSet.",
+                    "Connection.",
+                    "Statement.",
+                    "CallableStatement."
                 ],
                 correct: 0,
-                justification: "ResultSet almacena los resultados de la consulta."
+                justification: "El ResultSet actúa como un cursor que recorre las filas devueltas por la base de datos."
             },
             {
                 q: "¿Cuál es la interfaz JDBC recomendada para ejecutar operaciones SQL con parámetros dinámicos, que son representados por un símbolo de interrogación (?) en la sentencia?",
                 options: [
-                    "CallableStatement",
-                    "PreparedStatement",
-                    "Statement",
-                    "ResultSet"
+                    "CallableStatement.",
+                    "PreparedStatement.",
+                    "Statement.",
+                    "ResultSet."
                 ],
                 correct: 1,
-                justification: "PreparedStatement gestiona parámetros dinámicos con seguridad."
+                justification: "PreparedStatement precompila la consulta y gestiona los parámetros de forma segura contra inyección SQL."
             },
             {
                 q: "¿Qué método de la interfaz Connection debe establecerse a false para poder gestionar las transacciones de manera manual en JDBC?",
                 options: [
-                    "commit()",
-                    "getConnection()",
-                    "rollback()",
-                    "setAutoCommit(boolean)"
+                    "commit().",
+                    "getConnection().",
+                    "rollback().",
+                    "setAutoCommit(boolean)."
                 ],
                 correct: 3,
-                justification: "setAutoCommit(false) activa el modo manual de transacciones."
+                justification: "Al poner setAutoCommit(false), tomamos el control manual de cuándo confirmar (commit) o deshacer (rollback) los cambios."
             },
 
-            // --- PÁGINA 9 (HIBERNATE y ORM) ---
+            // --- BLOQUE 2: XML Y BASES NATIVAS ---
+            {
+                q: "¿Cuál de las siguientes opciones se considera una ventaja de las Bases de Datos Nativa XML?",
+                options: [
+                    "La indexación de su contenido es tan sencilla como en una base de datos relacional.",
+                    "La modificación de datos se realiza de forma atómica sobre cualquier parte del documento.",
+                    "El espacio de almacenamiento es mínimo.",
+                    "Permiten guardar datos de forma heterogénea y recuperar su integridad y estado original."
+                ],
+                correct: 3,
+                justification: "Son ideales para datos semi-estructurados o heterogéneos, preservando la jerarquía original."
+            },
+            {
+                q: "El lenguaje XQuery está considerado como una extensión directa de qué otro estándar de lenguajes de consulta XML:",
+                options: [
+                    "XPath 2.0.",
+                    "XSLT.",
+                    "XML Schema.",
+                    "XUpdate."
+                ],
+                correct: 0,
+                justification: "XQuery incluye XPath 2.0 como subconjunto y lo amplía con capacidades de consulta complejas (FLWOR)."
+            },
+            {
+                q: "¿Qué lenguaje, según el contenido, es utilizado por las Bases de Datos Nativa XML para recorrer los nodos de un documento?",
+                options: [
+                    "XUpdate.",
+                    "DOM.",
+                    "XSLT.",
+                    "XPath."
+                ],
+                correct: 3,
+                justification: "XPath es el lenguaje estándar diseñado para navegar y seleccionar nodos en un árbol XML."
+            },
+            {
+                q: "¿Cuál es la característica principal de una Base de Datos Nativa XML (NXD)?",
+                options: [
+                    "Se caracteriza por una indexación sencilla y rápida de todos sus contenidos por defecto.",
+                    "Guarda los datos exclusivamente en documentos XML, basándose en un modelo lógico para ellos.",
+                    "Almacena los datos en tablas relacionales para su fácil consulta.",
+                    "Utiliza un motor de almacenamiento de tipo BLOB para la persistencia del documento completo."
+                ],
+                correct: 1,
+                justification: "Su unidad lógica es el documento XML (árbol), no filas y columnas."
+            },
+            {
+                q: "¿Qué lenguaje de consulta se utiliza habitualmente para bases de datos XML?",
+                options: [
+                    "HQL (Hibernate Query Language).",
+                    "OQL (Object Query Language).",
+                    "SQL (Structured Query Language).",
+                    "XQuery (XML Query Language)."
+                ],
+                correct: 3,
+                justification: "XQuery es el estándar W3C para consultar colecciones de datos XML."
+            },
+            {
+                q: "En el contexto de la base de datos eXist-db, ¿qué se entiende por 'recurso' y a qué equivaldría en un sistema de archivos?",
+                options: [
+                    "Un servicio, equivalente a un programa ejecutable.",
+                    "Una colección, equivalente a una carpeta.",
+                    "Un controlador, equivalente a un driver.",
+                    "Un fichero o documento, que puede ser XML o binario."
+                ],
+                correct: 3,
+                justification: "En eXist-db, 'Colección' = Carpeta y 'Recurso' = Archivo."
+            },
+            {
+                q: "En una Base de Datos Nativa XML, ¿qué elemento desempeña un rol análogo al de las tablas en una base de datos relacional?",
+                options: [
+                    "Las colecciones.",
+                    "Los identificadores únicos (ID).",
+                    "Los nodos XML.",
+                    "Los recursos."
+                ],
+                correct: 0,
+                justification: "Las Colecciones agrupan documentos, de forma análoga a como las Tablas agrupan filas."
+            },
+            {
+                q: "¿Qué API de análisis sintáctico (parser) de XML se caracteriza por cargar el documento XML completo en memoria como una estructura en árbol, permitiendo la navegación bidireccional, pero consumiendo más recursos y siendo más lenta?",
+                options: [
+                    "DOM (Document Object Model).",
+                    "SAX (Simple API for XML).",
+                    "XQuery (XML Query Language).",
+                    "JAXB (Java XML API Binding)."
+                ],
+                correct: 0,
+                justification: "DOM carga todo el XML en la memoria RAM, lo que permite moverte adelante y atrás pero consume mucha memoria."
+            },
+
+            // --- BLOQUE 3: EJB Y COMPONENTES ---
+            {
+                q: "¿Qué tipo de EJB Session Bean se caracteriza por mantener el estado de conversación de un cliente a través de múltiples solicitudes, con variables de instancia que representan un estado único de sesión?",
+                options: [
+                    "Singleton.",
+                    "Message Driven.",
+                    "Stateful.",
+                    "Stateless."
+                ],
+                correct: 2,
+                justification: "Stateful (con estado) recuerda los datos del cliente entre varias llamadas."
+            },
+            {
+                q: "¿Qué Integrated Development Environment (IDE) es particularmente conocido por facilitar el desarrollo de aplicaciones por módulos o componentes, siendo considerado un IDE ideal para este tipo de arquitectura?",
+                options: [
+                    "JBuilder.",
+                    "IntelliJ Idea.",
+                    "NetBeans.",
+                    "Eclipse."
+                ],
+                correct: 2,
+                justification: "NetBeans destaca por su arquitectura de plataforma modular (NetBeans Platform)."
+            },
+            {
+                q: "Dentro de la arquitectura EJB, ¿cuál es la anotación que debe usarse en una interfaz de negocio para indicar que sus métodos pueden ser invocados por un cliente remoto?",
+                options: [
+                    "@Entity.",
+                    "@Remote.",
+                    "@Stateless.",
+                    "@Local."
+                ],
+                correct: 1,
+                justification: "@Remote expone el bean para acceso desde fuera de la JVM (máquina virtual) local."
+            },
+            {
+                q: "En el modelo JavaBeans, ¿cómo se denomina la propiedad que representa una lista de valores (como un array) y que proporciona métodos específicos para acceder y modificar elementos individuales a través de un índice?",
+                options: [
+                    "Propiedad Restringida.",
+                    "Propiedad Indexada.",
+                    "Propiedad Ligada.",
+                    "Propiedad Simple."
+                ],
+                correct: 1,
+                justification: "Las propiedades indexadas manejan colecciones de datos accesibles por un índice numérico."
+            },
+            {
+                q: "¿Cuál de los siguientes no es un tipo principal de Enterprise Java Bean (EJB)?",
+                options: [
+                    "Beans de Entidad (Entity Beans).",
+                    "Beans de Interfaz (Interface Beans).",
+                    "Beans Controlados por Mensajes (Message Driven Beans).",
+                    "Beans de Sesión (Session Beans)."
+                ],
+                correct: 1,
+                justification: "Los tipos reales son Sesión, Entidad (ahora JPA) y Mensajería. 'Beans de Interfaz' no existe como categoría."
+            },
+            {
+                q: "¿Qué tipo de propiedad de un Java Bean desencadena un evento cuando su valor cambia, requiriendo los métodos addPropertyChangeListener() y removePropertyChangeListener()?",
+                options: [
+                    "Propiedad Restringida.",
+                    "Propiedad Simple.",
+                    "Propiedad Indexada.",
+                    "Propiedad Ligada (Bound)."
+                ],
+                correct: 3,
+                justification: "Las propiedades Ligadas (Bound) avisan a los 'listeners' cuando cambian."
+            },
+
+            // --- BLOQUE 4: JPA Y ORM ---
+            {
+                q: "¿Qué interfaz de la API JPA es la encargada de gestionar el ciclo de vida de las entidades (como persist, merge o remove) y de ejecutar las acciones entre las entidades y la base de datos?",
+                options: [
+                    "Entity Transaction.",
+                    "Persistence Unit.",
+                    "EntityManager.",
+                    "EntityManagerFactory."
+                ],
+                correct: 2,
+                justification: "El EntityManager es el gestor principal de JPA para todas las operaciones de persistencia."
+            },
+            {
+                q: "¿Cuál es una característica clave del HQL (Hibernate Query Language)?",
+                options: [
+                    "Requiere la creación de sentencias SQL nativas para todas las operaciones de selección de datos.",
+                    "Es un lenguaje que solo puede ejecutarse directamente en la consola de la base de datos.",
+                    "Está totalmente acoplado al gestor de bases de datos relacionales utilizado.",
+                    "Es un lenguaje de consulta orientado a objetos que utiliza clases y atributos en lugar de tablas y columnas, y es independiente del gestor de BBDD."
+                ],
+                correct: 3,
+                justification: "HQL te permite escribir consultas sobre el modelo de objetos Java, sin preocuparte por las tablas SQL subyacentes."
+            },
+            {
+                q: "¿Cuál de las siguientes características destaca la independencia de la base de datos en las herramientas ORM?",
+                options: [
+                    "La limitación a ser solo compatibles con un único tipo de base de datos relacional.",
+                    "La necesidad de reescribir las consultas si se migra a otra base de datos.",
+                    "La obligatoriedad de usar únicamente el mapeo mediante ficheros XML.",
+                    "La abstracción que permite escribir consultas independientemente del gestor de base de datos que se esté utilizando, facilitando la migración."
+                ],
+                correct: 3,
+                justification: "El ORM traduce tus consultas abstractas al dialecto SQL específico del motor que uses (Oracle, MySQL, etc.)."
+            },
+            {
+                q: "¿Cuál es la función principal de la interfaz Session en Hibernate?",
+                options: [
+                    "Se encarga de la configuración inicial de la conexión a la base de datos.",
+                    "Se usa exclusivamente para transformar objetos Java a sentencias SQL.",
+                    "Es un objeto ligero y seguro que gestiona las transacciones y proporciona operaciones CRUD (Creación, Lectura, Actualización y Borrado) para los objetos persistentes.",
+                    "Se utiliza para cerrar definitivamente la SessionFactory."
+                ],
+                correct: 2,
+                justification: "Session es la interfaz principal de trabajo en Hibernate para guardar y recuperar objetos."
+            },
+            {
+                q: "En el ciclo de vida de un objeto gestionado por Hibernate, ¿en qué estado se encuentra una instancia de clase persistente cuando tiene una representación en la base de datos con un identificador y está asociada a una sesión?",
+                options: [
+                    "Estado Transitorio (Transient).",
+                    "Estado Persistente (Persistent).",
+                    "Estado Ligado (Bound).",
+                    "Estado Separado (Detached)."
+                ],
+                correct: 1,
+                justification: "Persistent significa que el objeto está 'vivo' en la base de datos y vigilado por la sesión actual."
+            },
             {
                 q: "¿Qué anotación se utiliza en una clase Java para indicar que ese atributo no se debe guardar en la base de datos (es decir, que no es persistente)?",
                 options: [
@@ -508,18 +429,18 @@
                     "@Column(name='transient_field')"
                 ],
                 correct: 2,
-                justification: "@Transient evita que el campo se guarde en la BD."
+                justification: "@Transient indica que el campo es temporal y no debe guardarse en la tabla."
             },
             {
                 q: "¿Cuál es la técnica principal del mapeo objeto-relacional (ORM) en lenguajes de programación orientados a objetos?",
                 options: [
-                    "La conversión automática de los datos de objetos a los atributos de las tablas de una base de datos relacional y viceversa",
-                    "La sustitución de todas las consultas SQL por código nativo del lenguaje",
-                    "La creación de bases de datos orientadas a objetos a partir de clases Java",
-                    "El uso exclusivo de la API JDBC para realizar todas las operaciones de persistencia"
+                    "La conversión automática de los datos de objetos a los atributos de las tablas de una base de datos relacional y viceversa.",
+                    "La sustitución de todas las consultas SQL por código nativo del lenguaje.",
+                    "La creación de bases de datos orientadas a objetos a partir de clases Java.",
+                    "El uso exclusivo de la API JDBC para realizar todas las operaciones de persistencia."
                 ],
                 correct: 0,
-                justification: "ORM mapea objetos a tablas automáticamente."
+                justification: "ORM significa 'Mapeo Objeto-Relacional': traducir automáticamente entre objetos y tablas."
             },
             {
                 q: "En un archivo de mapeo de Hibernate (.hbm.xml), ¿qué elemento se utiliza para definir la clave primaria de una clase persistente?",
@@ -530,31 +451,99 @@
                     "<id>"
                 ],
                 correct: 3,
-                justification: "<id> define la Primary Key."
+                justification: "La etiqueta <id> se usa en los XML de Hibernate para definir la Primary Key."
             },
 
-            // --- PÁGINA 10 y 11 (XML y FICHEROS) ---
+            // --- BLOQUE 5: PL/SQL, BDOO Y OQL ---
             {
-                q: "¿Qué API de análisis sintáctico (parser) de XML se caracteriza por cargar el documento XML completo en memoria como una estructura en árbol, permitiendo la navegación bidireccional, pero consumiendo más recursos y siendo más lenta?",
+                q: "En PL/SQL, los tipos de datos se clasifican en scalar y otro tipo que se utiliza para almacenar datos más complejos y grandes como imágenes o videos. ¿Cuál es este otro tipo?",
                 options: [
-                    "DOM (Document Object Model)",
-                    "SAX (Simple API for XML)",
-                    "XQuery (XML Query Language)",
-                    "JAXB (Java XML API Binding)"
+                    "NUMBER.",
+                    "LARGE OBJECT (LOB).",
+                    "BOOLEAN.",
+                    "BINARY_INTEGER."
+                ],
+                correct: 1,
+                justification: "LOB (Large Object) se usa para grandes volúmenes de datos (BLOB para binarios, CLOB para texto)."
+            },
+            {
+                q: "Una de las principales características de las Bases de Datos Orientadas a Objetos (BDOO), heredada de la programación orientada a objetos, es la Encapsulación. ¿En qué consiste?",
+                options: [
+                    "La ocultación de información del objeto, evitando accesos o modificaciones incorrectas o no autorizadas.",
+                    "La propiedad de una operación que puede aplicarse a objetos de distinta clase.",
+                    "La capacidad de crear nuevos tipos de objetos a partir de los ya existentes.",
+                    "La representación de la información mediante filas y columnas de una tabla."
                 ],
                 correct: 0,
-                justification: "DOM carga todo el documento en memoria."
+                justification: "La encapsulación protege el estado interno del objeto, exponiendo solo lo necesario."
             },
+            {
+                q: "En el lenguaje de consultas para objetos (OQL), ¿qué símbolo se utiliza para definir una variable, como las que se usan en las expresiones FLWOR?",
+                options: [
+                    "@",
+                    "$",
+                    "#",
+                    "%"
+                ],
+                correct: 1,
+                justification: "El símbolo '$' (dólar) se utiliza para declarar variables (ej: $variable)."
+            },
+            {
+                q: "¿Qué sentencia de SQL (Data Definition Language) se utiliza en PL/SQL para crear un nuevo tipo de dato que encapsula una estructura de datos y métodos, conocido como objeto?",
+                options: [
+                    "CREATE CLASS",
+                    "CREATE TYPE",
+                    "DECLARE OBJECT",
+                    "CREATE OBJECT"
+                ],
+                correct: 1,
+                justification: "La sintaxis estándar es 'CREATE TYPE nombre AS OBJECT...'."
+            },
+            {
+                q: "¿Cuál de las siguientes secciones de un bloque PL/SQL es obligatoria y contiene la lógica principal y las sentencias SQL que deben ejecutarse?",
+                options: [
+                    "EXCEPTION",
+                    "END",
+                    "BEGIN",
+                    "DECLARE"
+                ],
+                correct: 2,
+                justification: "Todo bloque PL/SQL debe tener al menos la sección ejecutable delimitada por BEGIN y END."
+            },
+            {
+                q: "En el contexto de la orientación a objetos en bases de datos, ¿cómo se define el polimorfismo?",
+                options: [
+                    "La ocultación de datos de un objeto, permitiendo su modificación solo por operaciones definidas por el objeto.",
+                    "La propiedad de una operación que puede aplicarse a objetos de distinta clase, ofreciendo una respuesta diferente.",
+                    "La capacidad de un objeto de guardar sus datos en la base de datos sin un mapeo explícito.",
+                    "La relación jerárquica entre una clase general y una más específica."
+                ],
+                correct: 1,
+                justification: "Polimorfismo: Misma operación, distinto comportamiento según la clase del objeto."
+            },
+            {
+                q: "¿Qué elementos utiliza el lenguaje de consultas para objetos (OQL) en sus sentencias en lugar de los nombres de las tablas del modelo relacional?",
+                options: [
+                    "El nombre de los atributos de la clase Java.",
+                    "Los nombres de las Clases.",
+                    "Los nombres de los ficheros.",
+                    "Las direcciones de memoria."
+                ],
+                correct: 1,
+                justification: "OQL consulta sobre Clases y Objetos, no sobre Tablas."
+            },
+
+            // --- BLOQUE 6: FICHEROS Y DDL ---
             {
                 q: "¿Qué clase del paquete java.io lee ficheros de texto de manera eficiente al utilizar un búfer de entrada de caracteres?",
                 options: [
-                    "BufferedWriter",
-                    "FileReader",
-                    "BufferedReader",
-                    "FileInputStream"
+                    "BufferedWriter.",
+                    "FileReader.",
+                    "BufferedReader.",
+                    "FileInputStream."
                 ],
                 correct: 2,
-                justification: "BufferedReader usa buffering para eficiencia."
+                justification: "BufferedReader envuelve un Reader y añade un búfer para mejorar la eficiencia de lectura."
             },
             {
                 q: "En Java, para asegurar que el separador de directorios en una ruta (/ o \\) sea correcto independientemente del sistema operativo, ¿qué constante de la clase File se debe usar?",
@@ -565,68 +554,68 @@
                     "File.SYSTEM_SEPARATOR"
                 ],
                 correct: 1,
-                justification: "File.SEPARATOR es la constante para separadores de ruta."
+                justification: "File.SEPARATOR (a menudo en mayúsculas en exámenes, 'separator' en código real) contiene el separador correcto (slash o backslash)."
             },
             {
                 q: "En el contexto de la documentación de código Java, ¿qué función tiene el tag @since en un bloque de JavaDoc?",
                 options: [
-                    "Sirve para poner el autor del desarrollo",
-                    "Se usa para definir la versión del método o la clase (desde cuándo existe)",
-                    "Define los parámetros de entrada",
-                    "Marca el código como obsoleto"
+                    "Sirve para poner el autor del desarrollo.",
+                    "Se usa para definir la versión del método o la clase (desde cuándo existe).",
+                    "Define los parámetros de entrada.",
+                    "Marca el código como obsoleto."
                 ],
                 correct: 1,
-                justification: "@since indica la versión de introducción."
+                justification: "@since indica la versión de software en la que se introdujo esa funcionalidad."
             },
             {
                 q: "¿Qué es un búfer en el contexto de la gestión de ficheros?",
                 options: [
-                    "Un bloque de memoria que permite almacenar temporalmente los datos para reducir accesos al disco",
-                    "Un stream para leer datos secuencialmente desde una conexión de red",
-                    "Una librería utilizada exclusivamente para crear y modificar ficheros XML",
-                    "Un almacén de datos permanente en el disco duro"
+                    "Un bloque de memoria que permite almacenar temporalmente los datos para reducir accesos al disco.",
+                    "Un stream para leer datos secuencialmente desde una conexión de red.",
+                    "Una librería utilizada exclusivamente para crear y modificar ficheros XML.",
+                    "Un almacén de datos permanente en el disco duro."
                 ],
                 correct: 0,
-                justification: "El búfer reduce accesos a disco almacenando datos temporalmente."
+                justification: "El búfer actúa como memoria intermedia para leer/escribir bloques grandes, minimizando las lentas operaciones de E/S físicas."
             },
-
-            // --- PÁGINA 11 (DDL y MISMATCH) ---
             {
                 q: "¿Qué comando SQL, clasificado como Lenguaje de Definición de Datos (DDL), se utiliza para eliminar por completo una tabla o una base de datos, borrando también todos sus registros?",
                 options: [
-                    "DROP",
-                    "DELETE",
-                    "ALTER",
-                    "RENAME"
+                    "DROP.",
+                    "DELETE.",
+                    "ALTER.",
+                    "RENAME."
                 ],
                 correct: 0,
-                justification: "DROP elimina estructura y datos."
+                justification: "DROP elimina el objeto (tabla/BD) y todo su contenido irreversiblemente."
             },
             {
                 q: "¿Qué representa el llamado 'desfase objeto-relacional' (Object-Relational Impedance Mismatch)?",
                 options: [
-                    "La diferencia estructural y de relaciones que surge al desarrollar aplicaciones orientadas a objetos que usan una base de datos de tipo relacional",
-                    "La necesidad de usar sentencias DDL para manipular la estructura de la base de datos",
-                    "La dificultad de mantener la coherencia de datos entre múltiples instancias de bases de datos",
-                    "El error que se produce al intentar conectar una aplicación orientada a objetos a una base de datos no compatible"
+                    "La diferencia estructural y de relaciones que surge al desarrollar aplicaciones orientadas a objetos que usan una base de datos de tipo relacional.",
+                    "La necesidad de usar sentencias DDL para manipular la estructura de la base de datos.",
+                    "La dificultad de mantener la coherencia de datos entre múltiples instancias de bases de datos.",
+                    "El error que se produce al intentar conectar una aplicación orientada a objetos a una base de datos no compatible."
                 ],
                 correct: 0,
-                justification: "Es la incompatibilidad estructural entre Objetos y Tablas."
+                justification: "Es la incompatibilidad fundamental entre el modelo de grafos de objetos y el modelo de tablas relacionales."
             },
 
-            // --- PREGUNTA CAPTURA DAYPO ---
+            // --- BLOQUE 7: MANUALES (IMAGEN DAYPO) ---
             {
                 q: "UF2. En el manual de administración:",
                 options: [
-                    "Es preciso indicar al usuario los diferentes pasos que se deben seguir para poder desarrollar un trabajo",
-                    "Hace énfasis en la extensión y la cantidad de información disponible",
-                    "Se dispone de un resumen con todos los aspectos más importantes que se han desarrollado en la documentación previa",
-                    "Viene detallado el proceso de configuración de aquellos componentes que forman parte del sistema"
+                    "Es preciso indicar al usuario los diferentes pasos que se deben seguir para poder desarrollar un trabajo.",
+                    "Hace énfasis en la extensión y la cantidad de información disponible.",
+                    "Se dispone de un resumen con todos los aspectos más importantes que se han desarrollado en la documentación previa.",
+                    "Viene detallado el proceso de configuración de aquellos componentes que forman parte del sistema."
                 ],
                 correct: 3,
-                justification: "El manual de administración se centra en la configuración técnica."
+                justification: "El manual de administración está orientado a la configuración técnica y mantenimiento, no al usuario final."
             }
-        ];
+        ]; 
+
+       
 
             // --- LÓGICA DEL TEST ---
             const els = {
