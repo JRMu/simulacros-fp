@@ -282,7 +282,7 @@
                 options: [
                     "Un documento que proporciona instrucciones detalladas sobre cómo utilizar la aplicación.",
                     "Un documento que contiene el código fuente de la aplicación",
-                    "Un documento que proporciona instrucciones detalladas sobre cómo utilizar la aplicación.", /* Opción repetida en fuente original, seleccionamos la definición funcional */
+                    "Un documento que proporciona instrucciones detalladas sobre cómo utilizar la aplicación. Un documento que contiene el codigo fuente de la aplicacion", 
                     "Un documento que explica como se ha diseñado la aplicación."
                 ],
                 correct: 0,
@@ -492,8 +492,22 @@
                 correct: 3,
                 justification: "El constructor en Java/C# tiene el mismo nombre que la clase y no tiene tipo de retorno[cite: 219, 227]."
             },
-            {
-                q: "Si queremos obtener el nombre del perro, ¿qué método implementaremos?",
+{
+                q: `Si queremos obtener el nombre del perro, ¿qué método implementaremos?
+                <div class="mt-4 bg-gray-900 text-green-400 p-4 rounded-lg shadow-lg border border-gray-700 font-mono text-sm overflow-x-auto text-left">
+<pre class="whitespace-pre">
+Public class perro extends animal {
+    String nombre;
+    String raza;
+    Int edad;
+
+    Public perro () {
+        Nombre = "Missy";
+        Raza = "Yorkshire terrier";
+        Edad = 5;
+    }
+}</pre>
+                </div>`,
                 options: [
                     "public Int getNombre()",
                     "public String getNombre()",
@@ -501,7 +515,7 @@
                     "public Nombre()"
                 ],
                 correct: 1,
-                justification: "Un método 'getter' para un atributo nombre (texto) debe ser público y devolver un String[cite: 230, 244]."
+                justification: "Un método 'getter' para un atributo nombre (texto) debe ser público y devolver un String."
             },
             {
                 q: "En la ventana de propiedades de IDE NetBeans, la pestaña Properties:",
